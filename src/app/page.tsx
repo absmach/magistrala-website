@@ -12,10 +12,10 @@ import {
 import { ProductBenefitsCard } from "@/components/benefits-card";
 import { ProductFeatureCard } from "@/components/features-card";
 import { ProductFutureFeatureCard } from "@/components/future-features-card";
-import { UseCasesCarousel } from "@/components/usecases-carousel";
 import { PricingSection } from "@/components/pricing-section";
 import { FAQCard } from "@/components/faq-card";
 import { Hero } from "@/components/hero";
+import { UseCasesTabs } from "@/components/usecase-tab";
 
 export default function Home() {
   return (
@@ -34,8 +34,8 @@ export default function Home() {
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold mb-4">Why Choose Magistrala?</h2>
           <p className="text-lg text-gray-700 mb-12">
-            Empower your production ecosystem with tools designed to simplify, secure,
-            and scale your operations.
+            Empower your production ecosystem with tools designed to simplify,
+            secure, and scale your operations.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -98,15 +98,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Use Cases Carousel */}
-      <section id="use-cases" className=" bg-gray-100 py-20">
+      {/* Use Cases Tabs */}
+      <section id="use-cases" className="bg-gray-100 py-20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-8">Use Cases</h2>
           <p className="text-lg text-gray-700 text-center mb-8">
             Here are some real world solutions that Magistrala has aided in
             fruition
           </p>
-          <UseCasesCarousel useCases={useCasesData} />
+          <UseCasesTabs useCases={useCasesData} />
         </div>
       </section>
 

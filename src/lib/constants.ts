@@ -170,7 +170,7 @@ export const faqData = [
 export const heroData = {
     title: "Simplify Messaging. Empower Systems",
     subtitle:
-      "Magistrala SaaS bridges the gap between devices, applications, and systems. With multi-protocol messaging, customizable dashboards, and robust security, we make it easy to manage, monitor, and scale your operations",
+      "Magistrala SaaS bridges the gap between devices, applications, and systems. With multi-protocol messaging, customizable dashboards, and robust security, we make it easy to manage, monitor, and scale your operations.",
     buttonText: "Get Started",
     buttonLink: "#",
     imageUrl: "/hero.avif",

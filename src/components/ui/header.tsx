@@ -5,40 +5,46 @@ import Image from 'next/image'
 export default function Header() {
   return (
     <header className="py-4 px-6 bg-white shadow-sm">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex items-center">
         {/* Logo Section */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center flex-none">
           <Image src="/abstract-machines_logo_landscape-black.svg" alt="Logo" width={200} height={200} className="mr-2" />
         </Link>
 
         {/* Navigation Section */}
-        <nav>
-          <ul className="flex space-x-8 items-center">
+        <nav className="flex-1">
+          <ul className="flex justify-center space-x-8 items-center">
             <li>
-              <Link href="#features" className="text-deepBlue-600 hover:text-deepBlue-800">
+              <Link href="#features" className="hover:text-blue-600">
                 Features
               </Link>
             </li>
             <li>
-              <Link href="#use-cases" className="text-deepBlue-600 hover:text-deepBlue-800">
+              <Link href="#use-cases" className="hover:text-blue-600">
                 Solutions
               </Link>
             </li>
             <li>
-              <Link href="#" className="text-deepBlue-600 hover:text-deepBlue-800">
+              <Link href="#" className="hover:text-blue-600">
                 Blog
               </Link>
             </li>
-            <li><Button variant="outline" className="border-deepBlue-800 text-deepBlue-800 hover:bg-deepBlue-100">Login</Button></li>
             <li>
-              <Link href="#pricing">
-                <Button variant="outline" className="border-deepBlue-800 text-deepBlue-800 hover:bg-deepBlue-100">
-                  Pricing
-                </Button>
+              <Link href="#pricing" className="hover:text-blue-600">
+                Pricing
               </Link>
             </li>
           </ul>
         </nav>
+
+        {/* Button Section */}
+        <Link href="#pricing" className="flex-none">
+          <Button 
+            variant="default" 
+            className="bg-blue-800 text-white hover:bg-blue-600 border-none px-4 py-2 rounded">
+            Try For Free
+          </Button>
+        </Link>
       </div>
     </header>
   );

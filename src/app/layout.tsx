@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Magistrala",
-  description: "Connect and V isualize your Devices",
+  description: "Connect and Visualize your Devices",
 };
 
 export default function RootLayout({
