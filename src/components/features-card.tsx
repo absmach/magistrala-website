@@ -14,7 +14,6 @@ export function ProductFeatureCard({
   reverse = false,
 }: ProductFeatureCardProps) {
   return (
-    <div className="container mx-auto max-w-5xl">
       <div
         className={`flex flex-col md:flex-row items-center justify-between gap-8 py-6 ${
           reverse ? "md:flex-row-reverse" : ""
@@ -34,6 +33,5 @@ export function ProductFeatureCard({
           />
         </div>
       </div>
-    </div>
   );
 }

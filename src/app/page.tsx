@@ -54,7 +54,7 @@ export default function Home() {
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-blue-200">
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto max-w-5xl px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">Explore Our Features</h2>
           <p className="text-lg text-gray-700 mb-12">
             Discover tools that make your development journey seamless and
@@ -114,7 +114,7 @@ export default function Home() {
       <PricingSection plans={pricingData} />
 
       {/* FAQ Section */}
-      <section id="faq" className=" py-20">
+      <section id="faq" className=" bg-gray-100 py-20 ">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-12">FAQs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { Github, Linkedin, Twitter, Mail, Phone } from 'lucide-react'
+import { Github, Linkedin, Twitter, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -11,7 +12,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold tracking-tight">IoT Platform</h3>
+            <Image
+              src="/abstract-machines_logo_landscape-black.svg"
+              alt="Abstract Machines Logo"
+              width={200}
+              height={200}
+            />
+            <h3 className="text-xl font-bold tracking-tight">Magistrala</h3>
             <p className="text-muted-foreground leading-relaxed">
               Connecting devices, sharing data, and visualizing insights with our powerful IoT platform built for the future.
             </p>
@@ -53,18 +60,11 @@ export default function Footer() {
             <h4 className="font-semibold">Contact</h4>
             <div className="space-y-2">
               <a 
-                href="mailto:info@iotplatform.com" 
+                href="info@abstractmachines.fr" 
                 className="flex items-center text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-4 w-4 mr-2" />
-                info@iotplatform.com
-              </a>
-              <a 
-                href="tel:+11234567890" 
-                className="flex items-center text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Phone className="h-4 w-4 mr-2" />
-                +1 (123) 456-7890
+                info@abstractmachines.fr
               </a>
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function Footer() {
             <div className="flex flex-col space-y-2">
               <Button variant="ghost" className="w-fit px-0 hover:bg-transparent" asChild>
                 <a 
-                  href="https://twitter.com" 
+                  href="https://twitter.com/absmach" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center text-muted-foreground hover:text-primary transition-colors"
@@ -86,7 +86,7 @@ export default function Footer() {
               </Button>
               <Button variant="ghost" className="w-fit px-0 hover:bg-transparent" asChild>
                 <a 
-                  href="https://linkedin.com" 
+                  href="https://www.linkedin.com/company/abstract-machines" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center text-muted-foreground hover:text-primary transition-colors"
@@ -97,7 +97,7 @@ export default function Footer() {
               </Button>
               <Button variant="ghost" className="w-fit px-0 hover:bg-transparent" asChild>
                 <a 
-                  href="https://github.com" 
+                  href="https://github.com/absmach/magistrala" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center text-muted-foreground hover:text-primary transition-colors"
@@ -115,13 +115,13 @@ export default function Footer() {
           <Separator className="mb-8" />
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Magistrala. All rights reserved.
+              &copy; {new Date().getFullYear()} Abstract Machines. All rights reserved.
             </p>
             <div className="flex space-x-4 text-sm text-muted-foreground">
-              <Link href="/privacy" className="hover:text-primary transition-colors">
+              <Link href="#" className="hover:text-primary transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-primary transition-colors">
+              <Link href="#" className="hover:text-primary transition-colors">
                 Terms of Service
               </Link>
             </div>

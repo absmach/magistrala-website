@@ -12,7 +12,7 @@ interface PricingSectionProps {
 
 export function PricingSection({ plans }: PricingSectionProps) {
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="pricing" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-4">Pricing</h2>
         <p className="text-lg text-gray-600 text-center mb-12">
