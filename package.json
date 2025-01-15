@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "biome lint",
     "format": "biome format . --write",
-    "check": "biome check --apply"
+    "check": "biome check --apply",
+    "postbuild": "touch out/.nojekyll"
   },
+  "homepage": "https://absmach.github.io/mg-website",
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-separator": "^1.1.1",
