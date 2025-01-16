@@ -15,7 +15,7 @@ export function ProductFutureFeatureCard({
   return (
     <Card className="overflow-hidden">
       <Image
-        src={imageUrl}
+        src={`/mg-website/${imageUrl}`}
         alt={title}
         width={400}
         height={200}

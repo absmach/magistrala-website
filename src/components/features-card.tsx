@@ -25,7 +25,7 @@ export function ProductFeatureCard({
         </div>
         <div className="w-full md:w-2/5">
           <Image
-            src={imageUrl}
+            src={`/mg-website/${imageUrl}`}
             alt={title}
             width={300}
             height={225}

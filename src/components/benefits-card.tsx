@@ -17,7 +17,7 @@ export function ProductBenefitsCard({
       <div
         className="absolute inset-0 bg-cover bg-center transform transition-transform duration-500 group-hover:scale-110"
         style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url('${imageUrl}')`,
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url('/mg-website/${imageUrl}')`,
         }}
       >
         <div className="absolute inset-0 bg-black opacity-10" />

@@ -37,7 +37,7 @@ export function Hero({
         </div>
         <div className="relative w-full h-64 md:h-80">
           <Image
-            src={imageUrl}
+            src={`/mg-website/${imageUrl}`}
             alt="Hero Image"
             fill
             style={{ objectFit: "cover" }}
