@@ -13,7 +13,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d out"
   },
-  "homepage": "https://absmach.github.io/mg-website",
+  "homepage": "https://Musilah.github.io/mg-website",
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-separator": "^1.1.1",
