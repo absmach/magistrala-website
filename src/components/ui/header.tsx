@@ -8,7 +8,7 @@ export default function Header() {
       <div className="container mx-auto flex items-center">
         {/* Logo Section */}
         <Link href="/" className="flex items-center flex-none">
-          <Image src="/abstract-machines_logo_landscape-black.svg" alt="Logo" width={200} height={200} className="mr-2" />
+          <Image src="/mg-website/abstract-machines_logo_landscape-black.svg" alt="Logo" width={200} height={200} className="mr-2" />
         </Link>
 
         {/* Navigation Section */}

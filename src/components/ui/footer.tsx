@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Image
-              src="/abstract-machines_logo_landscape-black.svg"
+              src="/mg-website/abstract-machines_logo_landscape-black.svg"
               alt="Abstract Machines Logo"
               width={200}
               height={200}
