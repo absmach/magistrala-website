@@ -20,14 +20,10 @@ export function PricingSection({ plans }: PricingSectionProps) {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {plans.map((plan) => (
-            <PricingCard
-              key={plan.title}
-              {...plan}
-            />
+            <PricingCard key={plan.title} {...plan} />
           ))}
         </div>
       </div>
     </section>
   );
 }
-

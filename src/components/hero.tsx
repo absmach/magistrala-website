@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowRightCircleIcon } from "lucide-react";
+import { getImageUrl } from "@/lib/getImageUrl";
 
 interface HeroProps {
   title: string;
@@ -37,7 +38,7 @@ export function Hero({
         </div>
         <div className="relative w-full h-64 md:h-80">
           <Image
-            src={`/mg-website/${imageUrl}`}
+            src={getImageUrl(imageUrl)}
             alt="Hero Image"
             fill
             style={{ objectFit: "cover" }}

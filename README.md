@@ -32,8 +32,35 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Deploy on Vercel
+## Building and Running Locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+For a production-like experience, follow these steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Build the project:
+
+```bash
+npm run build
+```
+
+1. Serve the output locally:
+
+```bash
+npx serve@latest out
+```
+
+1. Serve the output in development mode:
+
+```bash
+npm run dev
+```
+
+Open the served website in your browser at the provided local URL.
+
+## Deployment
+
+This project is preconfigured for deployment on GitHub Pages. Once a PR is merged to main, the deployment will be updated accordingly.
+Once deployed, the webpage will be accessible at the URL specified in the `homepage` field in the `package.json` which is currently:
+
+```json
+"homepage": "https://absmach.github.io/mg-website"
+```

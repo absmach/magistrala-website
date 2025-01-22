@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { getImageUrl } from "@/lib/getImageUrl";
 
 interface ProductFutureFeatureCardProps {
   title: string;
@@ -15,7 +16,7 @@ export function ProductFutureFeatureCard({
   return (
     <Card className="overflow-hidden">
       <Image
-        src={`/mg-website/${imageUrl}`}
+        src={getImageUrl(imageUrl)}
         alt={title}
         width={400}
         height={200}

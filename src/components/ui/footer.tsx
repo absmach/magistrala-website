@@ -3,6 +3,7 @@ import { Github, Linkedin, Twitter, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
+import { getImageUrl } from '@/lib/getImageUrl'
 
 export default function Footer() {
   return (
@@ -13,7 +14,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Image
-              src="/mg-website/abstract-machines_logo_landscape-black.svg"
+              src={getImageUrl("abstract-machines_logo_landscape-black.svg")}
               alt="Abstract Machines Logo"
               width={200}
               height={200}

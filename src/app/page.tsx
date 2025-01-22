@@ -16,6 +16,8 @@ import { PricingSection } from "@/components/pricing-section";
 import { FAQCard } from "@/components/faq-card";
 import { Hero } from "@/components/hero";
 import { UseCasesTabs } from "@/components/usecase-tab";
+import { PoweredBy } from "@/components/powered-by";
+import { ComingSoonBanner } from "@/components/coming-soonbanner";
 
 export default function Home() {
   return (
@@ -32,7 +34,9 @@ export default function Home() {
       {/* Benefits Section */}
       <section id="benefits" className="py-20 bg-gray-50">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-4">Why Choose Magistrala?</h2>
+          <h2 className="text-4xl text-blue-950 font-bold mb-4">
+            Why Choose Magistrala?
+          </h2>
           <p className="text-lg text-gray-700 mb-12">
             Empower your production ecosystem with tools designed to simplify,
             secure, and scale your operations.
@@ -52,25 +56,33 @@ export default function Home() {
         </div>
       </section>
 
+      <PoweredBy />
+
       {/* Features Section */}
       <section id="features" className="py-20 bg-blue-200">
-        <div className="container mx-auto max-w-5xl px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">Explore Our Features</h2>
-          <p className="text-lg text-gray-700 mb-12">
+        <div className="container mx-auto max-w-6xl px-6">
+          <h2 className="text-3xl font-bold mb-4 text-center text-blue-950">
+            Explore Our Features
+          </h2>
+          <p className="text-lg text-gray-700 mb-12 text-center">
             Discover tools that make your development journey seamless and
             scalable.
           </p>
 
           <div className="space-y-12">
             {featuresData.map((feature, index) => (
-              <ProductFeatureCard
-                // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for the constants
+              <div
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 key={index}
-                title={feature.title}
-                description={feature.description}
-                reverse={index % 2 !== 0}
-                imageUrl={feature.imageUrl}
-              />
+                className="border-b last:border-none pb-6"
+              >
+                <ProductFeatureCard
+                  title={feature.title}
+                  description={feature.description}
+                  reverse={index % 2 !== 0}
+                  imageUrl={feature.imageUrl}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -111,7 +123,11 @@ export default function Home() {
       </section>
 
       {/* Pricing Section*/}
-      <PricingSection plans={pricingData} />
+
+      {/* <PricingSection plans={pricingData} /> */}
+
+      {/* Coming Soon Banner Section */}
+      <ComingSoonBanner />
 
       {/* FAQ Section */}
       <section id="faq" className=" bg-gray-100 py-20 ">

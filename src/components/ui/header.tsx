@@ -1,6 +1,7 @@
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import Image from 'next/image'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { getImageUrl } from "@/lib/getImageUrl";
 
 export default function Header() {
   return (
@@ -8,7 +9,13 @@ export default function Header() {
       <div className="container mx-auto flex items-center">
         {/* Logo Section */}
         <Link href="/" className="flex items-center flex-none">
-          <Image src="/mg-website/abstract-machines_logo_landscape-black.svg" alt="Logo" width={200} height={200} className="mr-2" />
+          <Image
+            src={getImageUrl("abstract-machines_logo_landscape-black.svg")}
+            alt="Logo"
+            width={200}
+            height={200}
+            className="mr-2"
+          />
         </Link>
 
         {/* Navigation Section */}
@@ -25,7 +32,10 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="https://medium.com/abstract-machines-blog" className="hover:text-blue-600">
+              <Link
+                href="https://medium.com/abstract-machines-blog"
+                className="hover:text-blue-600"
+              >
                 Blog
               </Link>
             </li>
@@ -39,9 +49,10 @@ export default function Header() {
 
         {/* Button Section */}
         <Link href="#pricing" className="flex-none">
-          <Button 
-            variant="default" 
-            className="bg-blue-800 text-white hover:bg-blue-600 border-none px-4 py-2 rounded">
+          <Button
+            variant="default"
+            className="bg-blue-800 text-white hover:bg-blue-600 border-none px-4 py-2 rounded"
+          >
             Try For Free
           </Button>
         </Link>
