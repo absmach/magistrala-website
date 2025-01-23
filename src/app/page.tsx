@@ -1,23 +1,17 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { BenefitsSection } from '@/components/benefits-card';
+import { ComingSoonBanner } from '@/components/coming-soonbanner';
+import { FAQCard } from '@/components/faq-card';
+import { ProductFeatureCard } from '@/components/features-card';
+import { Hero } from '@/components/hero';
+import { PoweredBy } from '@/components/powered-by';
+import { UseCasesTabs } from '@/components/usecase-tab';
 import {
-  featuresData,
   benefitsData,
-  futureFeaturesData,
-  useCasesData,
-  pricingData,
   faqData,
+  featuresData,
   heroData,
-} from "@/lib/constants";
-import { ProductBenefitsCard } from "@/components/benefits-card";
-import { ProductFeatureCard } from "@/components/features-card";
-import { ProductFutureFeatureCard } from "@/components/future-features-card";
-import { PricingSection } from "@/components/pricing-section";
-import { FAQCard } from "@/components/faq-card";
-import { Hero } from "@/components/hero";
-import { UseCasesTabs } from "@/components/usecase-tab";
-import { PoweredBy } from "@/components/powered-by";
-import { ComingSoonBanner } from "@/components/coming-soonbanner";
+  useCasesData,
+} from '@/lib/constants';
 
 export default function Home() {
   return (
@@ -32,30 +26,9 @@ export default function Home() {
       />
 
       {/* Benefits Section */}
-      <section id="benefits" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl text-blue-950 font-bold mb-4">
-            Why Choose Magistrala?
-          </h2>
-          <p className="text-lg text-gray-700 mb-12">
-            Empower your production ecosystem with tools designed to simplify,
-            secure, and scale your operations.
-          </p>
+      <BenefitsSection />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {benefitsData.map((benefit, index) => (
-              <ProductBenefitsCard
-                // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for the constants
-                key={index}
-                title={benefit.title}
-                description={benefit.description}
-                imageUrl={benefit.imageUrl}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* Powered By Section */}
       <PoweredBy />
 
       {/* Features Section */}
@@ -71,11 +44,7 @@ export default function Home() {
 
           <div className="space-y-12">
             {featuresData.map((feature, index) => (
-              <div
-                // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for the constants
-                key={index}
-                className=" last:border-none pb-4"
-              >
+              <div key={feature.title} className=" last:border-none pb-4">
                 <ProductFeatureCard
                   title={feature.title}
                   description={feature.description}

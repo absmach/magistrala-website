@@ -1,10 +1,13 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { bannerIcons } from "@/lib/constants";
+import { Button } from '@/components/ui/button';
+import { bannerIcons } from '@/lib/constants';
+import Image from 'next/image';
 
 export function ComingSoonBanner() {
   return (
-    <section id="pricing" className="relative bg-gradient-to-br from-blue-500 to-purple-600 text-white py-16 px-6 shadow-lg">
+    <section
+      id="pricing"
+      className="relative bg-gradient-to-br from-blue-500 to-purple-600 text-white py-16 px-6 shadow-lg"
+    >
       <div
         className="absolute inset-0 -z-10 border-beam border-opacity-50"
         data-beam-width="6px"

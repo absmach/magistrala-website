@@ -1,11 +1,11 @@
-import { PricingCard } from "./pricing-card";
+import { PricingCard } from './pricing-card';
 
 interface PricingSectionProps {
   plans: Array<{
     title: string;
     features: string[];
     ctaText: string;
-    ctaVariant: "default" | "success";
+    ctaVariant: 'default' | 'success';
     ctaLink: string;
   }>;
 }

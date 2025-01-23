@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
-import { getImageUrl } from "@/lib/getImageUrl";
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { getImageUrl } from '@/lib/getImageUrl';
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <Image
-              src={getImageUrl("abstract-machines_logo_landscape-black.svg")}
+              src={getImageUrl('abstract-machines_logo_landscape-black.svg')}
               alt="Abstract Machines Logo"
               width={200}
               height={200}
@@ -121,18 +121,14 @@ export default function Footer() {
           {/* Newsletter Signup */}
           <div className="space-y-4">
             <h4 className="font-semibold">Newsletter</h4>
-            <p className="text-sm text-muted-foreground">
-              Stay in the loop
-            </p>
+            <p className="text-sm text-muted-foreground">Stay in the loop</p>
             <form className="flex items-center gap-2">
               <input
                 type="email"
                 placeholder="Your email address"
                 className="flex-grow p-2 rounded-md border border-gray-300 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <Button className="bg-blue-800 hover:bg-blue-600">
-                Sign Up
-              </Button>
+              <Button className="bg-blue-800 hover:bg-blue-600">Sign Up</Button>
             </form>
           </div>
         </div>

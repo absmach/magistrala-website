@@ -2,7 +2,7 @@ export interface PricingPlan {
   title: string;
   features: string[];
   ctaText: string;
-  ctaVariant: "default" | "success";
+  ctaVariant: 'default' | 'success';
   ctaLink: string;
 }
 

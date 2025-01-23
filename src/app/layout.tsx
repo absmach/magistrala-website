@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/ui/header";
-import Footer from "@/components/ui/footer";
+import Footer from '@/components/ui/footer';
+import Header from '@/components/ui/header';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Magistrala",
-  description: "Connect and Visualize your Devices",
+  title: 'Magistrala',
+  description: 'Connect and Visualize your Devices',
 };
 
 export default function RootLayout({

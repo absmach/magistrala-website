@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { getImageUrl } from "@/lib/getImageUrl";
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { getImageUrl } from '@/lib/getImageUrl';
+import Image from 'next/image';
+import { useState } from 'react';
 
 interface UseCase {
   title: string;
@@ -22,7 +22,7 @@ interface UseCasesTabsProps {
 }
 
 export function UseCasesTabs({ useCases }: UseCasesTabsProps) {
-  const [activeTab, setActiveTab] = useState(useCases[0]?.title || "");
+  const [activeTab, setActiveTab] = useState(useCases[0]?.title || '');
 
   return (
     <Tabs defaultValue={activeTab} className="w-full max-w-6xl mx-auto">

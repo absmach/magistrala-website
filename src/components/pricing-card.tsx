@@ -1,7 +1,7 @@
-import { Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import type { PricingCardProps } from "@/types/card-types";
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import type { PricingCardProps } from '@/types/card-types';
+import { Check } from 'lucide-react';
 
 export function PricingCard({
   title,

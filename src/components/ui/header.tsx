@@ -1,7 +1,8 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import { getImageUrl } from "@/lib/getImageUrl";
+import { Button } from '@/components/ui/button';
+import { navigationLinks } from '@/lib/constants';
+import { getImageUrl } from '@/lib/getImageUrl';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Header() {
   return (
@@ -10,7 +11,7 @@ export default function Header() {
         {/* Logo Section */}
         <Link href="/" className="flex items-center flex-none">
           <Image
-            src={getImageUrl("abstract-machines_logo_landscape-black.svg")}
+            src={getImageUrl('abstract-machines_logo_landscape-black.svg')}
             alt="Logo"
             width={200}
             height={200}
@@ -21,29 +22,13 @@ export default function Header() {
         {/* Navigation Section */}
         <nav className="flex-1">
           <ul className="flex justify-center space-x-8 items-center">
-            <li>
-              <Link href="#features" className="hover:text-blue-600">
-                Features
-              </Link>
-            </li>
-            <li>
-              <Link href="#use-cases" className="hover:text-blue-600">
-                Solutions
-              </Link>
-            </li>
-            <li>
-              <Link href="#pricing" className="hover:text-blue-600">
-                Pricing
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://medium.com/abstract-machines-blog"
-                className="hover:text-blue-600"
-              >
-                Blog
-              </Link>
-            </li>
+            {navigationLinks.map((link) => (
+              <li key={link.label}>
+                <Link href={link.href} className="hover:text-blue-600">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 

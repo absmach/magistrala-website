@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { getImageUrl } from "@/lib/getImageUrl";
+import { getImageUrl } from '@/lib/getImageUrl';
+import Image from 'next/image';
+import { Card, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 interface ProductFutureFeatureCardProps {
   title: string;
