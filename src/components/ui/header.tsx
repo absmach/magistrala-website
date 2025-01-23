@@ -32,16 +32,16 @@ export default function Header() {
               </Link>
             </li>
             <li>
+              <Link href="#pricing" className="hover:text-blue-600">
+                Pricing
+              </Link>
+            </li>
+            <li>
               <Link
                 href="https://medium.com/abstract-machines-blog"
                 className="hover:text-blue-600"
               >
                 Blog
-              </Link>
-            </li>
-            <li>
-              <Link href="#pricing" className="hover:text-blue-600">
-                Pricing
               </Link>
             </li>
           </ul>

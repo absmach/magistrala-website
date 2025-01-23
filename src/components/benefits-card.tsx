@@ -16,7 +16,7 @@ export function ProductBenefitsCard({
     <Card className="relative overflow-hidden h-[28rem] w-full group">
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center transform transition-transform duration-500 group-hover:scale-110"
+        className="absolute inset-0 bg-cover bg-center transform transition-transform duration-500 group-hover:scale-110 group-hover:delay-100"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url('${getImageUrl(
             imageUrl ?? ""

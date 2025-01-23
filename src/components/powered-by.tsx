@@ -1,38 +1,39 @@
+import { getImageUrl } from "@/lib/getImageUrl";
 import Image from "next/image";
 
 export function PoweredBy() {
   const partners = [
     {
       name: "Next.js",
-      logo: "/next.svg",
+      imageUrl: "next.svg",
       width: 40,
       height: 40,
       link: "https://nextjs.org",
     },
     {
       name: "Go",
-      logo: "/go.svg",
+      imageUrl: "go.svg",
       width: 40,
       height: 40,
       link: "https://golang.org",
     },
     {
       name: "ShadCN",
-      logo: "/shadcn.svg",
+      imageUrl: "shadcn.svg",
       width: 40,
       height: 40,
       link: "https://ui.shadcn.com/",
     },
     {
       name: "Abstract Machines",
-      logo: "/abstract-machines_logo_square-black.svg",
+      imageUrl: "abstract-machines_logo_square-black.svg",
       width: 40,
       height: 40,
       link: "https://github.com/absmach",
     },
     {
       name: "Stripe",
-      logo: "/stripe.svg",
+      imageUrl: "stripe.svg",
       width: 40,
       height: 40,
       link: "https://stripe.com",
@@ -55,7 +56,7 @@ export function PoweredBy() {
               className="w-32 h-12 relative grayscale hover:grayscale-0 transition-transform duration-300 hover:scale-110"
             >
               <Image
-                src={partner.logo || "/placeholder.svg"}
+                src={getImageUrl(partner.imageUrl)}
                 alt={`${partner.name} logo`}
                 fill
                 style={{ objectFit: "contain" }}

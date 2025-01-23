@@ -34,17 +34,17 @@ export const featuresData = [
 export const benefitsData = [
     {
         title: "State of the Art Security",
-        description: "Build highly secure applications with advanced encryption protocols and robust security frameworks. Magistrala ensures resilience against cyber threats giving you the confidence to innovate without compromising security",
+        description: "Build highly secure applications with advanced encryption protocols and robust security frameworks via tokens and ecnryptions. Magistrala ensures resilience against cyber threats giving you the confidence to innovate without compromising security.",
         imageUrl: "cybersec.avif"
     },
     {
         title: "Seamless Connectivity",
-        description: "Connect and manage your devices effortlessly with our open-source frameworks, libraries and APIs. Enjoy a streamlined data flow as well as smooth integration of existing systems",
+        description: "Connect and manage your devices effortlessly with our open-source frameworks, libraries and APIs. Enjoy a streamlined data flow as well as smooth integration of existing systems. We ensure seamless connectivity across diverse ecosystems.",
         imageUrl: "connectivity.avif"
     },
     {
         title: "Thriving Dev Community",
-        description: "Join a vibrant open-source community that fosters collaboration and innovation. Magistrala empowers developers to create groundbreaking technologies together through the use of training, support and events.",
+        description: "Join a vibrant open-source community that fosters collaboration and innovation. Magistrala empowers developers to create groundbreaking technologies together through the use of extensive training, support and discussion forums.",
         imageUrl: "opensource.avif"
     }
 ]
@@ -57,7 +57,7 @@ export const futureFeaturesData = [
     },
     {
         title: "Cube AI",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        description: "Cube AI leverages trusted execution environments (TEEs) to build secure, GPT-based AI applications. With Cube AI, you can deploy and run AI models on edge devices with enhanced security and privacy, enabling real-time, on-device processing of sensitive data.",
         imageUrl: "ai.jpg"
     },
     {
@@ -168,7 +168,7 @@ export const faqData = [
 ];
 
 export const heroData = {
-    title: "Simplify Messaging. Empower Systems",
+    title: "Simplify Messaging and Empower Systems",
     subtitle:
         "Magistrala SaaS bridges the gap between devices, applications, and systems. With multi-protocol messaging, customizable dashboards, and robust security, we make it easy to manage, monitor, and scale your operations.",
     buttonText: "Get Started",
@@ -177,9 +177,9 @@ export const heroData = {
 };
 
 export const bannerIcons = {
-    title: "Coming Soon for SaaS",
+    title: "Coming Soon to Magistrala Cloud",
     subtitle:
-        "Magistrala is launching as a SaaS platform! Enjoy state of the art connectivity and security paired with eye-catching dashboards tailored to your needs.",
+        "Magistrala is launching as a cloud-based service! Experience cutting-edge connectivity and security paired with visually stunning dashboards tailored to your needs.",
     buttonText: "Get Early Access",
     features: [
         {

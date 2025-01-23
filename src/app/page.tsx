@@ -72,9 +72,9 @@ export default function Home() {
           <div className="space-y-12">
             {featuresData.map((feature, index) => (
               <div
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                // biome-ignore lint/suspicious/noArrayIndexKey: This is needed for the constants
                 key={index}
-                className="border-b last:border-none pb-6"
+                className=" last:border-none pb-4"
               >
                 <ProductFeatureCard
                   title={feature.title}
@@ -89,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* Future Features Section */}
-      <section id="next-features" className="py-20 bg-blue-200">
+      {/* <section id="next-features" className="py-20 bg-blue-200">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-4">Thats not all!</h2>
           <p className="text-lg text-gray-700 mb-12">
@@ -108,7 +108,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Use Cases Tabs */}
       <section id="use-cases" className="bg-gray-100 py-20">
