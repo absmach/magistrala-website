@@ -70,6 +70,8 @@ export default function Footer() {
             </div>
           </div>
 
+          
+
           {/* Social Links */}
           <div className="space-y-4">
             <h4 className="font-semibold">Connect With Us</h4>
@@ -113,7 +115,7 @@ export default function Footer() {
 
         {/* Footer Bottom */}
         <div className="mt-12">
-          <Separator className="mb-8" />
+          <Separator className="mb-8 w-full" />
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-muted-foreground">
               &copy; {new Date().getFullYear()} Abstract Machines. All rights reserved.

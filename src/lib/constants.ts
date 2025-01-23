@@ -5,9 +5,19 @@ export const featuresData = [
         imageUrl: "visual-person.svg"
     },
     {
-        title: "Multi-Protocol Messaging",
-        description: "The Magistrala Platform is a cutting-edge SaaS solution designed to streamline communication between devices, applications, and systems, regardless of their underlying protocols such as http or mqtt. Built with multi-protocol messaging capabilities, it empowers businesses to handle data exchange across diverse infrastructures — from IoT ecosystems to cloud-based applications and enterprise software.",
-        imageUrl: "surreal-hourglass.svg",
+        title: "Efficient and Cloud-Native",
+        description: "Leverage a microservices-based, cloud-native architecture for scalable and efficient IoT application deployment.",
+        imageUrl: "scalability.svg"
+    },
+    {
+        title: "Rules Engine",
+        description: "Implement business logic and trigger custom actions in real-time with the built-in rules engine. The Rules Engine empowers you to create dynamic, event-driven solutions tailored to your specific needs, ensuring complete control over your operations.",
+        imageUrl: "calculator.svg",
+    },
+    {
+        title: "UI and Open APIs",
+        description: "Magistrala provides access to a User Interface which enables to quickly build, edit and share any dashboard data without needing any code basics. There are also well-documented open API's that enable you to integrate Magistrala easily into your own existing systems",
+        imageUrl: "ui-woman-with-a-laptop.svg"
     },
     {
         title: "Superior Security",
@@ -20,15 +30,10 @@ export const featuresData = [
         imageUrl: "searching-location-on-the-phone.svg",
     },
     {
-        title: "Efficient and Cloud-Native",
-        description: "Leverage a microservices-based, cloud-native architecture for scalable and efficient IoT application deployment.",
-        imageUrl: "scalability.svg"
-    },
-    {
-        title: "UI and Open APIs",
-        description: "Magistrala provides access to a User Interface which enables to quickly build, edit and share any dashboard data without needing any code basics. There are also well-documented open API's that enable you to integrate Magistrala easily into your own existing systems",
-        imageUrl: "ui-woman-with-a-laptop.svg"
-    },
+        title: "Multi-Protocol Messaging",
+        description: "The Magistrala Platform is a cutting-edge SaaS solution designed to streamline communication between devices, applications, and systems, regardless of their underlying protocols such as http or mqtt. Built with multi-protocol messaging capabilities, it empowers businesses to handle data exchange across diverse infrastructures — from IoT ecosystems to cloud-based applications and enterprise software.",
+        imageUrl: "surreal-hourglass.svg",
+    },    
 ]
 
 export const benefitsData = [
@@ -53,12 +58,12 @@ export const futureFeaturesData = [
     {
         title: "Rules Engine",
         description: "Implement business logic and trigger custom actions in real-time with the built-in rules engine. The Rules Engine empowers you to create dynamic, event-driven solutions tailored to your specific needs, ensuring complete control over your operations.",
-        imageUrl: "rules-engine.avif",
+        imageUrl: "calculator.svg",
     },
     {
-        title: "Cube AI",
-        description: "Cube AI leverages trusted execution environments (TEEs) to build secure, GPT-based AI applications. With Cube AI, you can deploy and run AI models on edge devices with enhanced security and privacy, enabling real-time, on-device processing of sensitive data.",
-        imageUrl: "ai.jpg"
+        title: "Lorem ipsum dolor sit amet",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        imageUrl: "premium_vector.avif"
     },
     {
         title: "Lorem ipsum dolor sit amet",
@@ -199,3 +204,11 @@ export const bannerIcons = {
         },
     ],
 };
+
+export const productsData = [
+    {
+        title: "Cube AI",
+        description: "Cube AI leverages trusted execution environments (TEEs) to build secure, GPT-based AI applications. With Cube AI, you can deploy and run AI models on edge devices with enhanced security and privacy, enabling real-time, on-device processing of sensitive data.",
+        imageUrl: "ai.jpg"
+    },
+]
