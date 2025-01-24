@@ -1,5 +1,5 @@
 import { benefitsSectionData } from '@/lib/constants';
-import { getImageUrl } from '@/lib/getImageUrl';
+import { getImageUrl } from '@/lib/utils';
 import { Card, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 interface ProductBenefitsCardProps {
@@ -48,7 +48,9 @@ export function BenefitsSection() {
   return (
     <section id={sectionId} className="py-20 bg-gray-50">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-5xl text-blue-950 font-bold mb-4">{title}</h2>
+        <h2 className="text-5xl text-blue-950 xxs:text-2xl font-bold mb-4">
+          {title}
+        </h2>
         <p className="text-xl text-gray-700 mb-12">{subtitle}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -1,5 +1,5 @@
-import { FooterBottom } from '../footer-bottom';
 import { FooterCompanyInfo } from '../footer-company-info';
+import { FooterCopyright } from '../footer-copyright';
 import { FooterNewsletter } from '../footer-newsletter';
 import { FooterQuickLinks } from '../footer-quick-links';
 import { FooterSocialLinks } from '../footer-social-links';
@@ -17,7 +17,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <FooterBottom />
+        <FooterCopyright />
       </div>
     </footer>
   );

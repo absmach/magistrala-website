@@ -1,5 +1,5 @@
 import { featuresSectionData } from '@/lib/constants';
-import { getImageUrl } from '@/lib/getImageUrl';
+import { getImageUrl } from '@/lib/utils';
 import Image from 'next/image';
 
 interface ProductFeatureCardProps {
@@ -47,7 +47,9 @@ export function FeaturesSection() {
         <h2 className="lg:text-5xl text-3xl font-bold mb-4 text-center text-blue-950">
           {title}
         </h2>
-        <p className="text-xl text-gray-700 mb-12 text-center">{subtitle}</p>
+        <p className="text-xl text-gray-700 mb-12 text-center lg:text-2xl">
+          {subtitle}
+        </p>
 
         <div className="space-y-12">
           {features.map((feature, index) => (

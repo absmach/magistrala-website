@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useCasesSectionData } from '@/lib/constants';
-import { getImageUrl } from '@/lib/getImageUrl';
+import { getImageUrl } from '@/lib/utils';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -46,7 +46,9 @@ export function UseCasesTabs({ useCases }: UseCasesTabsProps) {
                 <h3 className="lg:text-2xl text:xl font-bold tracking-tight">
                   {useCase.title}
                 </h3>
-                <p className="text-muted-foreground text-lg">{useCase.description}</p>
+                <p className="text-muted-foreground text-lg">
+                  {useCase.description}
+                </p>
                 <div className="flex flex-wrap gap-4 pt-4">
                   {useCase.ctaText && useCase.ctaLink && (
                     <Button className="bg-blue-800 hover:bg-blue-600" asChild>
@@ -88,8 +90,12 @@ export function UseCasesSection() {
   return (
     <section id={sectionId} className="bg-gray-100 py-20">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl lg:text-5xl font-bold text-center mb-8">{title}</h2>
-        <p className="text-xl lg:text-2xl text-gray-700 text-center mb-8">{subtitle}</p>
+        <h2 className="text-3xl lg:text-5xl font-bold text-center mb-8">
+          {title}
+        </h2>
+        <p className="text-xl lg:text-2xl text-gray-700 text-center mb-8">
+          {subtitle}
+        </p>
         <UseCasesTabs useCases={useCases} />
       </div>
     </section>

@@ -1,8 +1,8 @@
-import { footerData } from "@/lib/constants";
-import Link from "next/link";
+import { footerData } from '@/lib/constants';
+import Link from 'next/link';
 
-export function FooterBottom() {
-  const { year, rights, policies } = footerData.footerBottom;
+export function FooterCopyright() {
+  const { year, rights, policies } = footerData.footerCopyright;
 
   return (
     <div className="mt-12">
@@ -11,7 +11,7 @@ export function FooterBottom() {
           &copy; {year} Abstract Machines. {rights}
         </p>
         <div className="flex space-x-4 text-sm text-muted-foreground">
-          {policies.map((policy, index) => (
+          {policies.map((policy) => (
             <Link
               key={policy.label}
               href={policy.href}
@@ -21,17 +21,6 @@ export function FooterBottom() {
             </Link>
           ))}
         </div>
-      </div>
-      {/* Accreditation */}
-      <div className="mt-4 text-center text-sm text-muted-foreground">
-        Illustrations by:{" "}
-        <Link
-          href="https://popsy.co/"
-          target="_blank"
-          className="hover:text-orange-500 transition-colors underline"
-        >
-          popsy.co
-        </Link>
       </div>
     </div>
   );

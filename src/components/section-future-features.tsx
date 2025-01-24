@@ -1,5 +1,5 @@
 import { nextFeaturesSectionData } from '@/lib/constants';
-import { getImageUrl } from '@/lib/getImageUrl';
+import { getImageUrl } from '@/lib/utils';
 import Image from 'next/image';
 import { Card, CardDescription, CardHeader, CardTitle } from './ui/card';
 
@@ -24,8 +24,10 @@ export function ProductFutureFeatureCard({
         className="object-cover w-full h-60"
       />
       <CardHeader className="p-4">
-        <CardTitle className="text-lg font-semibold">{title}</CardTitle>
-        <CardDescription className="text-sm text-muted-foreground mt-2">
+        <CardTitle className="text-xl font-bold text-blue-950">
+          {title}
+        </CardTitle>
+        <CardDescription className="lg:text-lg text-md text-muted-foreground mt-2">
           {description}
         </CardDescription>
       </CardHeader>
@@ -39,8 +41,8 @@ export function NextFeaturesSection() {
   return (
     <section id={sectionId} className="py-20 bg-blue-200">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-4">{title}</h2>
-        <p className="text-lg text-gray-700 mb-12">{subtitle}</p>
+        <h2 className="lg:text-4xl text-2xl font-bold mb-4">{title}</h2>
+        <p className="text-xl text-gray-700 mb-12">{subtitle}</p>
 
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (

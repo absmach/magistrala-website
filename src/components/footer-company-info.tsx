@@ -1,5 +1,5 @@
 import { footerData } from '@/lib/constants';
-import { getImageUrl } from '@/lib/getImageUrl';
+import { getImageUrl } from '@/lib/utils';
 import Image from 'next/image';
 
 export function FooterCompanyInfo() {

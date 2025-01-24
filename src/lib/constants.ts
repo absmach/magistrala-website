@@ -1,3 +1,5 @@
+import { getCurrentYear } from './utils';
+
 export const featuresSectionData = {
   sectionId: 'features',
   title: 'Explore Our Features',
@@ -171,7 +173,7 @@ export const pricingData = [
     title: 'Starter',
     features: [
       'Pay-per-user',
-      'unlimited workspaces and clients',
+      'Unlimited workspaces and clients',
       'All elemental features',
     ],
     ctaText: 'Sign Up',
@@ -185,46 +187,14 @@ export const pricingData = [
       'Individual models and customized dashboard templates',
       'All advanced features',
     ],
-    ctaText: 'Sign Up',
+    ctaText: 'Contact Us',
     ctaVariant: 'success' as const,
     ctaLink: '/contact',
   },
 ];
 
-export const faqSectionData = {
-  sectionId: 'faq',
-  title: 'FAQs',
-  faqs: [
-    {
-      question: 'What protocols does the platform support?',
-      answer:
-        "Our platform supports a wide range of protocols including MQTT, HTTP, CoAP, and more. We're constantly adding support for new protocols to ensure compatibility with various devices.",
-    },
-    {
-      question: 'How secure is the data transmission?',
-      answer:
-        'We implement industry-standard encryption protocols and security measures to ensure that all data transmitted through our platform is secure. This includes end-to-end encryption and regular security audits.',
-    },
-    {
-      question: 'Can I integrate with existing systems?',
-      answer:
-        'Yes, our platform is designed to be highly integrable. We offer APIs and SDKs that allow you to easily integrate with your existing systems and workflows.',
-    },
-    {
-      question: 'What are the available pricing plans?',
-      answer:
-        'We offer flexible pricing plans tailored to your needs. Visit our pricing section for detailed information.',
-    },
-    {
-      question: 'How do I upgrade my plan?',
-      answer:
-        'You can upgrade your plan directly from your billing page. Select the desired plan and complete the payment process.',
-    },
-  ],
-};
-
 export const heroData = {
-  title: 'Simplify Messaging and Empower Systems',
+  title: 'Simplify Messaging  Empower Systems  Intergrate Seamlessly',
   subtitle:
     'Magistrala bridges the gap between devices, applications, and systems. With multi-protocol messaging, customizable dashboards, and robust security, we make it easy to manage, monitor, and scale your operations.',
   buttonText: 'Get Started',
@@ -315,8 +285,8 @@ export const footerData = {
     placeholder: 'Your email address',
     buttonText: 'Sign Up',
   },
-  footerBottom: {
-    year: new Date().getFullYear(),
+  footerCopyright: {
+    year: getCurrentYear(),
     rights: 'All rights reserved.',
     policies: [
       { label: 'Privacy Policy', href: '#' },
@@ -324,3 +294,93 @@ export const footerData = {
     ],
   },
 };
+
+export const poweredByPartners = [
+  {
+    name: 'Next.js',
+    imageUrl: 'next.svg',
+    width: 40,
+    height: 40,
+    link: 'https://nextjs.org',
+  },
+  {
+    name: 'Go',
+    imageUrl: 'go.svg',
+    width: 40,
+    height: 40,
+    link: 'https://golang.org',
+  },
+  {
+    name: 'ShadCN',
+    imageUrl: 'shadcn.svg',
+    width: 40,
+    height: 40,
+    link: 'https://ui.shadcn.com/',
+  },
+  {
+    name: 'Abstract Machines',
+    imageUrl: 'abstract-machines_logo_square-black.svg',
+    width: 40,
+    height: 40,
+    link: 'https://github.com/absmach',
+  },
+  {
+    name: 'Stripe',
+    imageUrl: 'stripe.svg',
+    width: 40,
+    height: 40,
+    link: 'https://stripe.com',
+  },
+  {
+    name: 'Popsy',
+    imageUrl: 'popsy.webp',
+    width: 40,
+    height: 40,
+    link: 'https://popsy.co',
+  },
+  {
+    name: 'Unsplash',
+    imageUrl: 'unsplash_icon.svg',
+    width: 40,
+    height: 40,
+    link: 'https://unsplash.com',
+  },
+];
+
+export const faqData = [
+  {
+    title: 'General Questions',
+    faqs: [
+      {
+        question: 'What protocols does the platform support?',
+        answer:
+          "Our platform supports a wide range of protocols including MQTT, HTTP, CoAP, and more. We're constantly adding support for new protocols to ensure compatibility with various devices.",
+      },
+      {
+        question: 'How secure is the data transmission?',
+        answer:
+          'We implement industry-standard encryption protocols and security measures to ensure that all data transmitted through our platform is secure. This includes end-to-end encryption and regular security audits.',
+      },
+      {
+        question: 'Can I integrate with existing systems?',
+        answer:
+          'Yes, our platform is designed to be highly integrable. We offer APIs and SDKs that allow you to easily integrate with your existing systems and workflows.',
+      },
+    ],
+  },
+  {
+    title: 'Billing and Subscription',
+    faqs: [
+      {
+        question: 'What are the available pricing plans?',
+        answer:
+          'We offer flexible pricing plans tailored to your needs. Visit our pricing section for detailed information.',
+      },
+      {
+        question: 'How do I upgrade my plan?',
+        answer:
+          'You can upgrade your plan directly from your billing page. Select the desired plan and complete the payment process.',
+      },
+    ],
+  },
+];
