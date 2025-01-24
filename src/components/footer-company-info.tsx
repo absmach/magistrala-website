@@ -13,7 +13,7 @@ export function FooterCompanyInfo() {
         width={200}
         height={200}
       />
-      <h3 className="text-xl font-bold tracking-tight">{name}</h3>
+      {/* <h3 className="text-xl font-bold tracking-tight">{name}</h3> */}
       <p className="text-muted-foreground leading-relaxed">{description}</p>
     </div>
   );

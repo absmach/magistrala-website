@@ -22,8 +22,8 @@ export function ProductFeatureCard({
       }`}
     >
       <div className="w-full md:w-1/2 space-y-4">
-        <h3 className="text-xl font-bold">{title}</h3>
-        <p className="text-gray-700">{description}</p>
+        <h3 className="text-2xl text-blue-950 font-bold">{title}</h3>
+        <p className="text-gray-700 text-lg">{description}</p>
       </div>
       <div className="w-full md:w-1/2">
         <Image
@@ -44,10 +44,10 @@ export function FeaturesSection() {
   return (
     <section id={sectionId} className="py-20 bg-blue-200">
       <div className="container mx-auto max-w-6xl px-6">
-        <h2 className="text-3xl font-bold mb-4 text-center text-blue-950">
+        <h2 className="lg:text-5xl text-3xl font-bold mb-4 text-center text-blue-950">
           {title}
         </h2>
-        <p className="text-lg text-gray-700 mb-12 text-center">{subtitle}</p>
+        <p className="text-xl text-gray-700 mb-12 text-center">{subtitle}</p>
 
         <div className="space-y-12">
           {features.map((feature, index) => (

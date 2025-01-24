@@ -43,10 +43,10 @@ export function UseCasesTabs({ useCases }: UseCasesTabsProps) {
           <Card className="overflow-hidden border-none shadow-lg">
             <div className="grid md:grid-cols-2 gap-6 p-6">
               <div className="flex flex-col justify-center space-y-4">
-                <h3 className="text-2xl font-bold tracking-tight">
+                <h3 className="lg:text-2xl text:xl font-bold tracking-tight">
                   {useCase.title}
                 </h3>
-                <p className="text-muted-foreground">{useCase.description}</p>
+                <p className="text-muted-foreground text-lg">{useCase.description}</p>
                 <div className="flex flex-wrap gap-4 pt-4">
                   {useCase.ctaText && useCase.ctaLink && (
                     <Button className="bg-blue-800 hover:bg-blue-600" asChild>
@@ -88,8 +88,8 @@ export function UseCasesSection() {
   return (
     <section id={sectionId} className="bg-gray-100 py-20">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-8">{title}</h2>
-        <p className="text-lg text-gray-700 text-center mb-8">{subtitle}</p>
+        <h2 className="text-3xl lg:text-5xl font-bold text-center mb-8">{title}</h2>
+        <p className="text-xl lg:text-2xl text-gray-700 text-center mb-8">{subtitle}</p>
         <UseCasesTabs useCases={useCases} />
       </div>
     </section>

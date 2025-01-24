@@ -43,7 +43,7 @@ export function PoweredBy() {
   return (
     <section className="py-8 bg-white">
       <div className="container mx-auto px-6">
-        <h3 className="text-center text-blue-950 font-semibold text-xl mb-8">
+        <h3 className="text-center text-blue-950 font-semibold lg:text:3xl text-xl mb-8">
           POWERED BY
         </h3>
         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">

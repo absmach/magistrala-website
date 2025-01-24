@@ -91,7 +91,7 @@ export const benefitsSectionData = {
     {
       title: 'Thriving Dev Community',
       description:
-        'Join a vibrant open-source community that fosters collaboration and innovation. Magistrala empowers developers to create groundbreaking technologies together through the use of extensive training, support and discussion forums.',
+        'Join a vibrant open-source community that fosters collaboration and innovation. Magistrala empowers developers to create groundbreaking technologies together through the use of extensive training, timely dev support and discussion forums.',
       imageUrl: 'opensource.avif',
     },
   ],

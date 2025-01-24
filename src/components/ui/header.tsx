@@ -49,3 +49,6 @@ export default function Header() {
     </header>
   );
 }
+
+
+// can have desktop nav and a small one for the small screems which is hidden when we have a large screen

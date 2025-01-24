@@ -24,7 +24,7 @@ export function FooterBottom() {
       </div>
       {/* Accreditation */}
       <div className="mt-4 text-center text-sm text-muted-foreground">
-        Source:{" "}
+        Illustrations by:{" "}
         <Link
           href="https://popsy.co/"
           target="_blank"

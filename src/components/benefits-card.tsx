@@ -30,10 +30,10 @@ export function ProductBenefitsCard({
       {/* Content */}
       <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black via-black/60 to-transparent text-white">
         <CardHeader className="p-4">
-          <CardTitle className="text-lg font-bold text-opacity-100">
+          <CardTitle className="text-xl font-bold text-opacity-100">
             {title}
           </CardTitle>
-          <CardDescription className="text-sm font-medium mt-2 text-opacity-100">
+          <CardDescription className="text-md font-medium text-white mt-2 text-opacity-70">
             {description}
           </CardDescription>
         </CardHeader>
@@ -48,8 +48,8 @@ export function BenefitsSection() {
   return (
     <section id={sectionId} className="py-20 bg-gray-50">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-4xl text-blue-950 font-bold mb-4">{title}</h2>
-        <p className="text-lg text-gray-700 mb-12">{subtitle}</p>
+        <h2 className="text-5xl text-blue-950 font-bold mb-4">{title}</h2>
+        <p className="text-xl text-gray-700 mb-12">{subtitle}</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
