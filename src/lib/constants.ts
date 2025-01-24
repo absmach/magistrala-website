@@ -1,52 +1,52 @@
 export const featuresSectionData = {
-  sectionId: "features",
-  title: "Explore Our Features",
+  sectionId: 'features',
+  title: 'Explore Our Features',
   subtitle:
-    "Discover tools that make your development journey seamless and scalable.",
+    'Discover tools that make your development journey seamless and scalable.',
   features: [
-  {
-    title: 'Data Visualization',
-    description:
-      'Magistrala takes data visualization to the next level with customizable dashboards that provide real-time insights into the metrics that matter most to your business. Access a variety of charts, gauges, and control systems to monitor your devices effortlessly. Track and map your devices globally using advanced location services with marker and route maps. Shareable dashboards make it easy to collaborate with your team and keep everyone informed, no matter where they are.',
-    imageUrl: 'visual-person.svg',
-  },
-  {
-    title: 'Efficient and Cloud-Native',
-    description:
-      'Leverage a microservices-based, cloud-native architecture for scalable and efficient IoT application deployment.',
-    imageUrl: 'scalability.svg',
-  },
-  {
-    title: 'Rules Engine',
-    description:
-      'Implement business logic and trigger custom actions in real-time with the built-in rules engine. The Rules Engine empowers you to create dynamic, event-driven solutions tailored to your specific needs, ensuring complete control over your operations.',
-    imageUrl: 'calculator.svg',
-  },
-  {
-    title: 'UI and Open APIs',
-    description:
-      "Magistrala provides access to a User Interface which enables to quickly build, edit and share any dashboard data without needing any code basics. There are also well-documented open API's that enable you to integrate Magistrala easily into your own existing systems.",
-    imageUrl: 'ui-woman-with-a-laptop.svg',
-  },
-  {
-    title: 'Superior Security',
-    description:
-      'Magistrala is built with security at its core, ensuring the protection and integrity of your data across diverse ecosystems. Advanced encryption, authentication, and fine-grained access control mechanisms safeguard sensitive information. The platform leverages access tokens for secure, token-based authentication and integrates with Google Zanzibar for distributed policy management, enabling scalable, granular access policies. Whether for IoT or enterprise systems, Magistrala provides the confidence to innovate without compromising security.',
-    imageUrl: 'abstract-art-5.svg',
-  },
-  {
-    title: 'Readers and Writers',
-    description:
-      'Magistrala enables seamless communication across diverse ecosystems with its powerful readers and writers framework. Utilize industry-leading tools like TimescaleDB, RabbitMQ, Mosquitto, and CoAPCLI to handle both message ingestion and delivery with ease. With full support for scalable databases and message brokers, you can ensure reliable data flow, optimized performance, and flexibility for your unique needs.',
-    imageUrl: 'searching-location-on-the-phone.svg',
-  },
-  {
-    title: 'Multi-Protocol Messaging',
-    description:
-      'The Magistrala Platform is a cutting-edge SaaS solution designed to streamline communication between devices, applications, and systems, regardless of their underlying protocols such as http or mqtt. Built with multi-protocol messaging capabilities, it empowers businesses to handle data exchange across diverse infrastructures — from IoT ecosystems to cloud-based applications and enterprise software.',
-    imageUrl: 'surreal-hourglass.svg',
-  },
-],
+    {
+      title: 'Data Visualization',
+      description:
+        'Magistrala takes data visualization to the next level with customizable dashboards that provide real-time insights into the metrics that matter most to your business. Access a variety of charts, gauges, and control systems to monitor your devices effortlessly. Track and map your devices globally using advanced location services with marker and route maps. Shareable dashboards make it easy to collaborate with your team and keep everyone informed, no matter where they are.',
+      imageUrl: 'visual-person.svg',
+    },
+    {
+      title: 'Efficient and Cloud-Native',
+      description:
+        'Leverage a microservices-based, cloud-native architecture for scalable and efficient IoT application deployment.',
+      imageUrl: 'scalability.svg',
+    },
+    {
+      title: 'Rules Engine',
+      description:
+        'Implement business logic and trigger custom actions in real-time with the built-in rules engine. The Rules Engine empowers you to create dynamic, event-driven solutions tailored to your specific needs, ensuring complete control over your operations.',
+      imageUrl: 'calculator.svg',
+    },
+    {
+      title: 'UI and Open APIs',
+      description:
+        "Magistrala provides access to a User Interface which enables to quickly build, edit and share any dashboard data without needing any code basics. There are also well-documented open API's that enable you to integrate Magistrala easily into your own existing systems.",
+      imageUrl: 'ui-woman-with-a-laptop.svg',
+    },
+    {
+      title: 'Superior Security',
+      description:
+        'Magistrala is built with security at its core, ensuring the protection and integrity of your data across diverse ecosystems. Advanced encryption, authentication, and fine-grained access control mechanisms safeguard sensitive information. The platform leverages access tokens for secure, token-based authentication and integrates with Google Zanzibar for distributed policy management, enabling scalable, granular access policies. Whether for IoT or enterprise systems, Magistrala provides the confidence to innovate without compromising security.',
+      imageUrl: 'abstract-art-5.svg',
+    },
+    {
+      title: 'Readers and Writers',
+      description:
+        'Magistrala enables seamless communication across diverse ecosystems with its powerful readers and writers framework. Utilize industry-leading tools like TimescaleDB, RabbitMQ, Mosquitto, and CoAPCLI to handle both message ingestion and delivery with ease. With full support for scalable databases and message brokers, you can ensure reliable data flow, optimized performance, and flexibility for your unique needs.',
+      imageUrl: 'searching-location-on-the-phone.svg',
+    },
+    {
+      title: 'Multi-Protocol Messaging',
+      description:
+        'The Magistrala Platform is a cutting-edge SaaS solution designed to streamline communication between devices, applications, and systems, regardless of their underlying protocols such as http or mqtt. Built with multi-protocol messaging capabilities, it empowers businesses to handle data exchange across diverse infrastructures — from IoT ecosystems to cloud-based applications and enterprise software.',
+      imageUrl: 'surreal-hourglass.svg',
+    },
+  ],
 };
 
 export const benefitsData = [
@@ -98,67 +98,66 @@ export const benefitsSectionData = {
 };
 
 export const nextFeaturesSectionData = {
-  sectionId: "next-features",
+  sectionId: 'next-features',
   title: "That's not all!",
   subtitle:
-    "We have a range of exciting new updates still on the drawing board to look forward to!",
+    'We have a range of exciting new updates still on the drawing board to look forward to!',
   features: [
     {
-      title: "Rules Engine",
+      title: 'Rules Engine',
       description:
-        "Implement business logic and trigger custom actions in real-time with the built-in rules engine. The Rules Engine empowers you to create dynamic, event-driven solutions tailored to your specific needs, ensuring complete control over your operations.",
-      imageUrl: "calculator.svg",
+        'Implement business logic and trigger custom actions in real-time with the built-in rules engine. The Rules Engine empowers you to create dynamic, event-driven solutions tailored to your specific needs, ensuring complete control over your operations.',
+      imageUrl: 'calculator.svg',
     },
     {
-      title: "1 Lorem ipsum dolor sit amet",
+      title: '1 Lorem ipsum dolor sit amet',
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      imageUrl: "premium_vector.avif",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      imageUrl: 'premium_vector.avif',
     },
     {
-      title: "2 Lorem ipsum dolor sit amet",
+      title: '2 Lorem ipsum dolor sit amet',
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      imageUrl: "iot-phone.jpg",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      imageUrl: 'iot-phone.jpg',
     },
   ],
 };
-
 
 export const useCasesSectionData = {
-  sectionId: "use-cases",
-  title: "Use Cases",
-  subtitle: "Here are some real-world solutions that Magistrala has aided in fruition.",
+  sectionId: 'use-cases',
+  title: 'Use Cases',
+  subtitle:
+    'Here are some real-world solutions that Magistrala has aided in fruition.',
   useCases: [
     {
-      title: "Smart Cities",
+      title: 'Smart Cities',
       description:
-        "Manage traffic flow, monitor air quality, and optimize energy usage across urban environments.",
-      imageUrl: "smart-city2.avif",
-      ctaText: "Learn more",
-      ctaLink: "#",
-      secondaryCtaText: "View demo",
-      secondaryCtaLink: "/demo/smart-cities",
+        'Manage traffic flow, monitor air quality, and optimize energy usage across urban environments.',
+      imageUrl: 'smart-city2.avif',
+      ctaText: 'Learn more',
+      ctaLink: '#',
+      secondaryCtaText: 'View demo',
+      secondaryCtaLink: '/demo/smart-cities',
     },
     {
-      title: "Smart Energy",
+      title: 'Smart Energy',
       description:
-        "Deliver and store data from smart meters in reliable and fault-tolerant way, visualize real-time and historical energy consumption data on customizable end-user dashboards.",
-      imageUrl: "smart-home.jpg",
-      ctaText: "See more about Smart energy",
-      ctaLink: "#",
+        'Deliver and store data from smart meters in reliable and fault-tolerant way, visualize real-time and historical energy consumption data on customizable end-user dashboards.',
+      imageUrl: 'smart-home.jpg',
+      ctaText: 'See more about Smart energy',
+      ctaLink: '#',
     },
     {
-      title: "Industrial IoT",
+      title: 'Industrial IoT',
       description:
-        "Monitor and control industrial equipment, optimize production processes, and predict maintenance needs in real-time.",
-      imageUrl: "more-dashboards.jpg",
-      ctaText: "Explore Industrial IoT",
-      ctaLink: "#",
+        'Monitor and control industrial equipment, optimize production processes, and predict maintenance needs in real-time.',
+      imageUrl: 'more-dashboards.jpg',
+      ctaText: 'Explore Industrial IoT',
+      ctaLink: '#',
     },
   ],
 };
-
 
 export const pricingData = [
   {
@@ -193,37 +192,36 @@ export const pricingData = [
 ];
 
 export const faqSectionData = {
-  sectionId: "faq",
-  title: "FAQs",
+  sectionId: 'faq',
+  title: 'FAQs',
   faqs: [
     {
-      question: "What protocols does the platform support?",
+      question: 'What protocols does the platform support?',
       answer:
         "Our platform supports a wide range of protocols including MQTT, HTTP, CoAP, and more. We're constantly adding support for new protocols to ensure compatibility with various devices.",
     },
     {
-      question: "How secure is the data transmission?",
+      question: 'How secure is the data transmission?',
       answer:
-        "We implement industry-standard encryption protocols and security measures to ensure that all data transmitted through our platform is secure. This includes end-to-end encryption and regular security audits.",
+        'We implement industry-standard encryption protocols and security measures to ensure that all data transmitted through our platform is secure. This includes end-to-end encryption and regular security audits.',
     },
     {
-      question: "Can I integrate with existing systems?",
+      question: 'Can I integrate with existing systems?',
       answer:
-        "Yes, our platform is designed to be highly integrable. We offer APIs and SDKs that allow you to easily integrate with your existing systems and workflows.",
+        'Yes, our platform is designed to be highly integrable. We offer APIs and SDKs that allow you to easily integrate with your existing systems and workflows.',
     },
     {
-      question: "What are the available pricing plans?",
+      question: 'What are the available pricing plans?',
       answer:
-        "We offer flexible pricing plans tailored to your needs. Visit our pricing section for detailed information.",
+        'We offer flexible pricing plans tailored to your needs. Visit our pricing section for detailed information.',
     },
     {
-      question: "How do I upgrade my plan?",
+      question: 'How do I upgrade my plan?',
       answer:
-        "You can upgrade your plan directly from your billing page. Select the desired plan and complete the payment process.",
+        'You can upgrade your plan directly from your billing page. Select the desired plan and complete the payment process.',
     },
   ],
 };
-
 
 export const heroData = {
   title: 'Simplify Messaging and Empower Systems',
@@ -280,49 +278,49 @@ export const navigationLinks = [
 
 export const footerData = {
   companyInfo: {
-    logo: "abstract-machines_logo_landscape-black.svg",
-    name: "Magistrala",
+    logo: 'abstract-machines_logo_landscape-black.svg',
+    name: 'Magistrala',
     description:
-      "Connecting devices, sharing data, and visualizing insights with our powerful IoT platform built for the future.",
+      'Connecting devices, sharing data, and visualizing insights with our powerful IoT platform built for the future.',
   },
   quickLinks: [
-    { label: "Features", href: "#features" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Use Cases", href: "#use-cases" },
-    { label: "Pricing", href: "#pricing" },
+    { label: 'Features', href: '#features' },
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Use Cases', href: '#use-cases' },
+    { label: 'Pricing', href: '#pricing' },
   ],
   socialLinks: [
     {
-      platform: "Twitter",
-      icon: "Twitter",
-      href: "https://twitter.com/absmach",
+      platform: 'Twitter',
+      icon: 'Twitter',
+      href: 'https://twitter.com/absmach',
     },
     {
-      platform: "LinkedIn",
-      icon: "Linkedin",
-      href: "https://www.linkedin.com/company/abstract-machines",
+      platform: 'LinkedIn',
+      icon: 'Linkedin',
+      href: 'https://www.linkedin.com/company/abstract-machines',
     },
     {
-      platform: "GitHub",
-      icon: "Github",
-      href: "https://github.com/absmach/magistrala",
+      platform: 'GitHub',
+      icon: 'Github',
+      href: 'https://github.com/absmach/magistrala',
     },
   ],
   contact: {
-    email: "info@abstractmachines.fr",
+    email: 'info@abstractmachines.fr',
   },
   newsletter: {
-    title: "Newsletter",
-    subtitle: "Stay in the loop",
-    placeholder: "Your email address",
-    buttonText: "Sign Up",
+    title: 'Newsletter',
+    subtitle: 'Stay in the loop',
+    placeholder: 'Your email address',
+    buttonText: 'Sign Up',
   },
   footerBottom: {
     year: new Date().getFullYear(),
-    rights: "All rights reserved.",
+    rights: 'All rights reserved.',
     policies: [
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { label: 'Privacy Policy', href: '#' },
+      { label: 'Terms of Service', href: '#' },
     ],
   },
 };

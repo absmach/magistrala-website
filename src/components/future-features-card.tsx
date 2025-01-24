@@ -1,7 +1,7 @@
+import { nextFeaturesSectionData } from '@/lib/constants';
 import { getImageUrl } from '@/lib/getImageUrl';
 import Image from 'next/image';
 import { Card, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { nextFeaturesSectionData } from "@/lib/constants";
 
 interface ProductFutureFeatureCardProps {
   title: string;

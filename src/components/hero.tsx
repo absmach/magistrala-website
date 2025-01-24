@@ -19,8 +19,8 @@ export function Hero({
   imageUrl,
 }: HeroProps) {
   return (
-    <section id="hero-section" className="py-20">
-      <div className=" container mx-auto px-6 text-center flex flex-row">
+    <section className="py-20">
+      <div className="container mx-auto px-6 text-center flex flex-col md:flex-row space-y-2">
         <div className="text-center md:text-left space-y-4">
           <h2 className="text-5xl font-bold mb-4 text-blue-950">{title}</h2>
           <p className="text-lg text-gray-700">{subtitle}</p>
@@ -42,7 +42,7 @@ export function Hero({
             alt="Hero Image"
             fill
             style={{ objectFit: 'cover' }}
-            className="w-full max-w-sm h-auto mx-auto rounded-md"
+            className="rounded-md"
           />
         </div>
       </div>

@@ -1,9 +1,9 @@
 import Footer from '@/components/ui/footer';
 import Header from '@/components/ui/header';
+import { getImageUrl } from '@/lib/getImageUrl';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { getImageUrl } from '@/lib/getImageUrl';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,11 +13,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: getImageUrl("favicon.png")
-      }
-    ]
-  }
-  };
+        url: getImageUrl('favicon.png'),
+      },
+    ],
+  },
+};
 
 export default function RootLayout({
   children,

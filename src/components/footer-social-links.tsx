@@ -1,18 +1,18 @@
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { footerData } from "@/lib/constants";
+import { Button } from '@/components/ui/button';
+import { footerData } from '@/lib/constants';
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 
 const icons = {
-    Twitter,
-    Linkedin,
-    Github,
-  } as const;
+  Twitter,
+  Linkedin,
+  Github,
+} as const;
 
 export function FooterSocialLinks() {
   return (
-  <div className="space-y-4">
-    <h4 className="font-semibold">Connect With Us</h4>
-    <div className="flex flex-col space-y-2">
+    <div className="space-y-4">
+      <h4 className="font-semibold">Connect With Us</h4>
+      <div className="flex flex-col space-y-2">
         {footerData.socialLinks.map((link) => {
           const Icon = icons[link.icon as keyof typeof icons];
           return (
@@ -29,6 +29,6 @@ export function FooterSocialLinks() {
           );
         })}
       </div>
-  </div>
+    </div>
   );
 }

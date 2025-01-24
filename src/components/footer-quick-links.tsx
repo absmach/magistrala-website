@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { footerData } from "@/lib/constants";
+import { footerData } from '@/lib/constants';
+import Link from 'next/link';
 
 export function FooterQuickLinks() {
   return (

@@ -1,6 +1,6 @@
-import { getImageUrl } from "@/lib/getImageUrl";
-import Image from "next/image";
-import { featuresSectionData } from "@/lib/constants";
+import { featuresSectionData } from '@/lib/constants';
+import { getImageUrl } from '@/lib/getImageUrl';
+import Image from 'next/image';
 
 interface ProductFeatureCardProps {
   title: string;
@@ -18,7 +18,7 @@ export function ProductFeatureCard({
   return (
     <div
       className={`flex flex-col md:flex-row items-center justify-between gap-8 py-6 ${
-        reverse ? "md:flex-row-reverse" : ""
+        reverse ? 'md:flex-row-reverse' : ''
       }`}
     >
       <div className="w-full md:w-1/2 space-y-4">

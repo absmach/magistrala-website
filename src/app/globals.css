@@ -94,16 +94,6 @@ header {
       font-size: 14px;
     }
 
-    .header-buttons {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  
-    .header-buttons a {
-      width: 100%;
-      text-align: center;
-    }
-
     .hero-container {
       flex-direction: column;
       text-align: center;

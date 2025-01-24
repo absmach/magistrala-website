@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { footerData } from "@/lib/constants";
+import Link from "next/link";
 
 export function FooterBottom() {
   const { year, rights, policies } = footerData.footerBottom;
@@ -12,11 +12,26 @@ export function FooterBottom() {
         </p>
         <div className="flex space-x-4 text-sm text-muted-foreground">
           {policies.map((policy, index) => (
-            <Link key={policy.label} href={policy.href} className="hover:text-primary transition-colors">
+            <Link
+              key={policy.label}
+              href={policy.href}
+              className="hover:text-primary transition-colors"
+            >
               {policy.label}
             </Link>
           ))}
         </div>
+      </div>
+      {/* Accreditation */}
+      <div className="mt-4 text-center text-sm text-muted-foreground">
+        Source:{" "}
+        <Link
+          href="https://popsy.co/"
+          target="_blank"
+          className="hover:text-orange-500 transition-colors underline"
+        >
+          popsy.co
+        </Link>
       </div>
     </div>
   );

@@ -3,10 +3,10 @@
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useCasesSectionData } from '@/lib/constants';
 import { getImageUrl } from '@/lib/getImageUrl';
 import Image from 'next/image';
 import { useState } from 'react';
-import { useCasesSectionData } from "@/lib/constants";
 
 interface UseCase {
   title: string;

@@ -3,13 +3,13 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { faqSectionData } from "@/lib/constants";
-import { getImageUrl } from "@/lib/getImageUrl";
+} from '@/components/ui/accordion';
+import { faqSectionData } from '@/lib/constants';
+import { getImageUrl } from '@/lib/getImageUrl';
 
 export function FAQSection() {
   const { sectionId, title, faqs } = faqSectionData;
-  const faqImage = "student-in-the-classroom.svg";
+  const faqImage = 'student-in-the-classroom.svg';
 
   return (
     <section id={sectionId} className="bg-gray-100 py-20">

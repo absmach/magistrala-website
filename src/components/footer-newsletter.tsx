@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { footerData } from "@/lib/constants";
+import { Button } from '@/components/ui/button';
+import { footerData } from '@/lib/constants';
 
 export function FooterNewsletter() {
   const { title, subtitle, placeholder, buttonText } = footerData.newsletter;
