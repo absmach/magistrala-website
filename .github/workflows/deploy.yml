@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run lint check
+        run: npm run lint
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 

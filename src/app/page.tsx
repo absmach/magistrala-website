@@ -1,9 +1,9 @@
+import { ComingSoonBanner } from '@/components/coming-soonbanner';
 import { Hero } from '@/components/hero';
 import { PoweredBy } from '@/components/powered-by';
 import { BenefitsSection } from '@/components/section-benefits';
 import { FAQSection } from '@/components/section-faq';
 import { FeaturesSection } from '@/components/section-features';
-import { NextFeaturesSection } from '@/components/section-future-features';
 import { UseCasesSection } from '@/components/usecase-tab';
 import { heroData } from '@/lib/constants';
 
@@ -26,7 +26,7 @@ export default function Home() {
       <FeaturesSection />
 
       {/* Future Features Section */}
-      <NextFeaturesSection />
+      {/* <NextFeaturesSection /> */}
 
       {/* Use Cases Tabs */}
       <UseCasesSection />
@@ -36,7 +36,7 @@ export default function Home() {
       {/* <PricingSection plans={pricingData} /> */}
 
       {/* Coming Soon Banner Section */}
-      {/* <ComingSoonBanner /> */}
+      <ComingSoonBanner />
 
       {/* Powered By Section */}
       <PoweredBy />

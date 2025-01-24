@@ -32,7 +32,7 @@ export default function Header() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="hover:text-blue-600 transition-colors"
+                  className=" text-xl font-semibold  hover:text-blue-600 transition-colors"
                 >
                   {link.label}
                 </Link>

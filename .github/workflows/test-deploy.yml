@@ -1,0 +1,44 @@
+name: Test Deployment Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test-deploy:
+    name: Test Build, Lint, and Local Deployment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint check
+        run: npm run lint
+
+      - name: Build project
+        run: npm run build
+
+      - name: Serve locally
+        run: npx serve@latest out -l 3000 &
+      
+      - name: Verify local deployment
+        run: curl -s http://localhost:3000 | grep "<title>" || exit 1
+
+      - name: Stop server
+        run: pkill serve

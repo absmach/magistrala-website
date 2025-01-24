@@ -32,7 +32,7 @@ export function UseCasesTabs({ useCases }: UseCasesTabsProps) {
           <TabsTrigger
             key={useCase.title}
             value={useCase.title}
-            className="data-[state=active]:bg-blue-800 data-[state=active]:text-white rounded-full px-6 py-2"
+            className="data-[state=active]:bg-blue-800 data-[state=active]:text-white rounded-full px-6 py-2 text-lg"
           >
             {useCase.title}
           </TabsTrigger>

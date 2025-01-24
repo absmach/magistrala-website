@@ -15,37 +15,37 @@ export const featuresSectionData = {
     {
       title: 'Efficient and Cloud-Native',
       description:
-        'Leverage a microservices-based, cloud-native architecture for scalable and efficient IoT application deployment.',
+        'Magistrala enables you to build, deploy, monitor and manage your IoT applications through a robust cloud-native architecture. This provides an extremely efficient and scalable deployment. Through the use of microservices you will have complete visibility over you ecosystems with the aid of remote monitoring, detailed and exhaustive logs as well as metric. This will ensire you never miss out.',
       imageUrl: 'scalability.svg',
     },
     {
       title: 'Rules Engine',
       description:
-        'Implement business logic and trigger custom actions in real-time with the built-in rules engine. The Rules Engine empowers you to create dynamic, event-driven solutions tailored to your specific needs, ensuring complete control over your operations.',
+        'Magistrala’s Rules Engine is a powerful tool for creating dynamic, event-driven workflows tailored to your specific needs. It enables you to filter, enrich, and transform incoming data from devices, assets, or system events. With customizable rule nodes and chains, you can trigger real-time actions such as notifications, external API calls, or data validation. Whether processing telemetry, handling lifecycle events, or automating operations, the Rules Engine ensures precise control and seamless integration across your IoT ecosystem.',
       imageUrl: 'calculator.svg',
     },
     {
       title: 'UI and Open APIs',
       description:
-        "Magistrala provides access to a User Interface which enables to quickly build, edit and share any dashboard data without needing any code basics. There are also well-documented open API's that enable you to integrate Magistrala easily into your own existing systems.",
+        'Magistrala offers a visually stunning and highly engaging User Interface that empowers users to create, manage and connect clients, groups, and users over channels with ease. Designed with ease of use in mind, the UI eliminates the need for coding knowledge while providing comprehensive guides and documentation for any assistance. With support for Domains, you can efficiently group people and manage them seamlessly. While the Dashboards provide intuitive data visualization, Magistrala also boasts multiple APIs and SDKs to enable effortless integration with your systems. Developers can dive into our detailed dev docs for an enjoyable and productive experience while extending the platforms functionality.',
       imageUrl: 'ui-woman-with-a-laptop.svg',
     },
     {
       title: 'Superior Security',
       description:
-        'Magistrala is built with security at its core, ensuring the protection and integrity of your data across diverse ecosystems. Advanced encryption, authentication, and fine-grained access control mechanisms safeguard sensitive information. The platform leverages access tokens for secure, token-based authentication and integrates with Google Zanzibar for distributed policy management, enabling scalable, granular access policies. Whether for IoT or enterprise systems, Magistrala provides the confidence to innovate without compromising security.',
+        'Magistrala is built with security at its core, ensuring the protection and integrity of your data across diverse applications. Advanced encryption, authentication, and fine-grained access control mechanisms safeguard your sensitive information protecting you from cyber threats. The platform leverages access tokens for secure, token-based authentication and integrates with Google Zanzibar for distributed policy management, enabling scalable as well as granular access policies. Whether for IoT or enterprise systems, Magistrala provides the confidence to innovate without compromising security.',
       imageUrl: 'abstract-art-5.svg',
     },
     {
       title: 'Readers and Writers',
       description:
-        'Magistrala enables seamless communication across diverse ecosystems with its powerful readers and writers framework. Utilize industry-leading tools like TimescaleDB, RabbitMQ, Mosquitto, and CoAPCLI to handle both message ingestion and delivery with ease. With full support for scalable databases and message brokers, you can ensure reliable data flow, optimized performance, and flexibility for your unique needs.',
+        'Magistrala enables seamless communication across diverse ecosystems with its powerful readers and writers framework. Messages are securely stored in scalable databases like TimescaleDB, ensuring they can be fetched at any time with minimal latency and maximum convenience. Whether it’s historical data retrieval or real-time message delivery, Magistrala offers unmatched reliability. Leverage industry-leading tools like RabbitMQ, Mosquitto, and CoAPCLI to handle both ingestion and delivery effortlessly. With robust support for message brokers and databases, you can ensure reliable data flow, optimized performance, and the flexibility to adapt to your unique requirements.',
       imageUrl: 'searching-location-on-the-phone.svg',
     },
     {
       title: 'Multi-Protocol Messaging',
       description:
-        'The Magistrala Platform is a cutting-edge SaaS solution designed to streamline communication between devices, applications, and systems, regardless of their underlying protocols such as http or mqtt. Built with multi-protocol messaging capabilities, it empowers businesses to handle data exchange across diverse infrastructures — from IoT ecosystems to cloud-based applications and enterprise software.',
+        'The Magistrala Platform is designed to streamline communication between devices, applications and systems, regardless of their underlying protocols such as HTTP or MQTT. This ensures that your devices can effortlessly exchange data, making your IoT infrastructure both flexible and efficient. Built with multi-protocol messaging capabilities, it empowers businesses to handle data exchange across diverse infrastructures — from IoT ecosystems to cloud-based applications and enterprise software.',
       imageUrl: 'surreal-hourglass.svg',
     },
   ],
@@ -283,7 +283,7 @@ export const footerData = {
     title: 'Newsletter',
     subtitle: 'Stay in the loop',
     placeholder: 'Your email address',
-    buttonText: 'Sign Up',
+    buttonText: 'Subscribe',
   },
   footerCopyright: {
     year: getCurrentYear(),
