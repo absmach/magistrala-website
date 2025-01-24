@@ -1,5 +1,6 @@
-import { getImageUrl } from '@/lib/getImageUrl';
-import Image from 'next/image';
+import { getImageUrl } from "@/lib/getImageUrl";
+import Image from "next/image";
+import { featuresSectionData } from "@/lib/constants";
 
 interface ProductFeatureCardProps {
   title: string;
@@ -17,7 +18,7 @@ export function ProductFeatureCard({
   return (
     <div
       className={`flex flex-col md:flex-row items-center justify-between gap-8 py-6 ${
-        reverse ? 'md:flex-row-reverse' : ''
+        reverse ? "md:flex-row-reverse" : ""
       }`}
     >
       <div className="w-full md:w-1/2 space-y-4">
@@ -34,5 +35,33 @@ export function ProductFeatureCard({
         />
       </div>
     </div>
+  );
+}
+
+export function FeaturesSection() {
+  const { sectionId, title, subtitle, features } = featuresSectionData;
+
+  return (
+    <section id={sectionId} className="py-20 bg-blue-200">
+      <div className="container mx-auto max-w-6xl px-6">
+        <h2 className="text-3xl font-bold mb-4 text-center text-blue-950">
+          {title}
+        </h2>
+        <p className="text-lg text-gray-700 mb-12 text-center">{subtitle}</p>
+
+        <div className="space-y-12">
+          {features.map((feature, index) => (
+            <div key={feature.title} className="last:border-none pb-4">
+              <ProductFeatureCard
+                title={feature.title}
+                description={feature.description}
+                reverse={index % 2 !== 0}
+                imageUrl={feature.imageUrl}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
