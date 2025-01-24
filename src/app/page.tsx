@@ -33,7 +33,7 @@ export default function Home() {
       <FeaturesSection />
 
       {/* Future Features Section */}
-      <NextFeaturesSection />
+      {/* <NextFeaturesSection /> */}
 
       {/* Use Cases Tabs */}
       <UseCasesSection />

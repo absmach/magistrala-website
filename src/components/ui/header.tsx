@@ -24,7 +24,10 @@ export default function Header() {
           <ul className="flex justify-center space-x-8 items-center">
             {navigationLinks.map((link) => (
               <li key={link.label}>
-                <Link href={link.href} className="hover:text-blue-600 transition-colors">
+                <Link
+                  href={link.href}
+                  className="hover:text-blue-600 transition-colors"
+                >
                   {link.label}
                 </Link>
               </li>
@@ -33,14 +36,15 @@ export default function Header() {
         </nav>
 
         {/* Button Section */}
-        <Link href="#pricing" className="flex-none">
-          <Button
-            variant="default"
-            className="bg-blue-800 text-white hover:bg-blue-600 border-none px-4 py-2 rounded"
-          >
-            Try For Free
-          </Button>
-        </Link>
+          <Link href="#pricing" className="flex-none">
+            <Button
+              variant="default"
+              aria-label="Try for free"
+              className="bg-blue-800 text-white hover:bg-blue-600 border-none px-4 py-2 rounded"
+            >
+              Try For Free
+            </Button>
+          </Link>
       </div>
     </header>
   );
