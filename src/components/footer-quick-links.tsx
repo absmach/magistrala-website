@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export function FooterQuickLinks() {
   return (
-    <div className="space-y-4 w-1/5">
+    <div className="space-y-4">
       <h4 className="font-semibold">Quick Links</h4>
       <nav className="flex flex-col space-y-2">
         {footerData.quickLinks.map((link, index) => (

@@ -75,6 +75,9 @@ export default function Header() {
             </Button>
           </SheetTrigger>
           <SheetContent side="top">
+            <SheetHeader>
+              <SheetTitle className="hidden">Menu</SheetTitle>
+            </SheetHeader>
             <Separator className="my-4 mt-8" />
             <nav className="flex flex-col gap-4 mt-8">
               <ul className="flex flex-col space-y-4">
