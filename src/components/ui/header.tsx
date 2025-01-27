@@ -12,16 +12,16 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 py-4 px-6 bg-white shadow-sm">
-      <div className="container mx-auto flex items-center jutsify-between py-2 px-1">
+    <header className="sticky top-0 z-50 px-6 bg-white shadow-sm">
+      <div className="container mx-auto flex items-center jutsify-between px-1">
         {/* Logo Section */}
-        <Link href="/" className=" flex-none">
+        <Link href="/" className="">
           <Image
             src={getImageUrl('abstract-machines_logo_landscape-black.svg')}
             alt="Logo"
-            width={150}
-            height={150}
-            className="mr-6"
+            width={250}
+            height={250}
+            className="mr-6 xxs:w-50 xxs:h-50"
           />
         </Link>
 
@@ -32,7 +32,7 @@ export default function Header() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className=" text-xl font-semibold  hover:text-blue-600 transition-colors"
+                  className=" text-xl  hover:text-blue-600 transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -42,7 +42,7 @@ export default function Header() {
         </nav>
 
         {/* CTA Button Section */}
-        <div className="flex items-center gap-6">
+        <div className=" hidden md:flex items-center gap-6">
           <Link href="#pricing">
             <Button
               variant="default"
@@ -52,20 +52,20 @@ export default function Header() {
               Try For Free
             </Button>
           </Link>
-
-          {/* Mobile Menu Button */}
-          <Button
-            className="md:hidden bg-blue-800 hover:bg-blue-800"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6 text-white bg-blue-800 hover:bg-blue-600" />
-            ) : (
-              <Menu className="h-6 w-6 text-white bg-blue-800 hover:bg-blue-600" />
-            )}
-          </Button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <Button
+          className="md:hidden bg-blue-800 hover:bg-blue-800"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? (
+            <X className="h-6 w-6 text-white bg-blue-800 hover:bg-blue-600" />
+          ) : (
+            <Menu className="h-6 w-6 text-white bg-blue-800 hover:bg-blue-600" />
+          )}
+        </Button>
       </div>
 
       {/* Mobile Navigation */}
@@ -89,6 +89,18 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="#pricing">
+                <Button
+                  variant="default"
+                  aria-label="Try for free"
+                  className="bg-blue-800 text-white hover:bg-blue-600 px-4 py-4 rounded w-full mb-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Try For Free
+                </Button>
+              </Link>
+            </li>
           </ul>
         </nav>
       )}

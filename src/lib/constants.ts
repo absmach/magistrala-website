@@ -136,7 +136,7 @@ export const useCasesSectionData = {
       title: 'Smart Cities',
       description:
         'Manage traffic flow, monitor air quality, and optimize energy usage across urban environments.',
-      imageUrl: 'smart-city2.avif',
+      imageUrl: 'iot.jpg',
       ctaText: 'Learn more',
       ctaLink: '#',
       secondaryCtaText: 'View demo',
@@ -154,7 +154,7 @@ export const useCasesSectionData = {
       title: 'Industrial IoT',
       description:
         'Monitor and control industrial equipment, optimize production processes, and predict maintenance needs in real-time.',
-      imageUrl: 'more-dashboards.jpg',
+      imageUrl: 'industrial.jpg',
       ctaText: 'Explore Industrial IoT',
       ctaLink: '#',
     },
@@ -194,12 +194,12 @@ export const pricingData = [
 ];
 
 export const heroData = {
-  title: 'Simplify Messaging  Empower Systems  Intergrate Seamlessly',
+  title: 'Simplify Messaging  Empower Systems  Integrate Seamlessly',
   subtitle:
     'Magistrala bridges the gap between devices, applications, and systems. With multi-protocol messaging, customizable dashboards, and robust security, we make it easy to manage, monitor, and scale your operations.',
   buttonText: 'Get Started',
   buttonLink: '#',
-  imageUrl: 'messaging.avif',
+  imageUrl: 'abstract1.svg',
 };
 
 export const bannerIcons = {

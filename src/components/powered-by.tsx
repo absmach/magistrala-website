@@ -9,7 +9,7 @@ export function PoweredBy() {
         <h3 className="text-center text-blue-950 font-semibold lg:text:3xl text-xl mb-8">
           POWERED BY
         </h3>
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
+        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-10">
           {poweredByPartners.map((partner) => (
             <a
               key={partner.name}

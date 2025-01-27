@@ -22,8 +22,10 @@ export function ProductFeatureCard({
       }`}
     >
       <div className="w-full md:w-1/2 space-y-4">
-        <h3 className="text-2xl text-blue-950 font-bold">{title}</h3>
-        <p className="text-gray-700 text-lg">{description}</p>
+        <h3 className="lg:text-4xl text-2xl text-blue-950 font-bold">
+          {title}
+        </h3>
+        <p className="text-gray-700 text-lg lg:text-xl">{description}</p>
       </div>
       <div className="w-full md:w-1/2">
         <Image
