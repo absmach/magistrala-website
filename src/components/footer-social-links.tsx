@@ -10,7 +10,7 @@ const icons = {
 
 export function FooterSocialLinks() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-1/5">
       <h4 className="font-semibold">Connect With Us</h4>
       <div className="flex flex-col space-y-2">
         {footerData.socialLinks.map((link) => {

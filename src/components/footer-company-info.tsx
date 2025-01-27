@@ -6,7 +6,7 @@ export function FooterCompanyInfo() {
   const { logo, name, description } = footerData.companyInfo;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-2/5">
       <Image
         src={getImageUrl(logo)}
         alt={`${name} Logo`}

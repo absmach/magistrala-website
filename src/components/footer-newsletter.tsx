@@ -5,10 +5,10 @@ export function FooterNewsletter() {
   const { title, subtitle, placeholder, buttonText } = footerData.newsletter;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-2/5">
       <h4 className="font-semibold">{title}</h4>
       <p className="text-sm text-muted-foreground">{subtitle}</p>
-      <form className="flex items-center gap-1 max-w-sm">
+      <form className="flex items-center gap-2 max-w-sm">
         <input
           type="email"
           placeholder={placeholder}

@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="bg-blue-200">
       <div className="container mx-auto px-6 py-12">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="flex flex-col sm:flex-row gap-8 justify-between mg-8">
           <FooterCompanyInfo />
           <FooterQuickLinks />
           <FooterSocialLinks />

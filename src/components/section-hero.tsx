@@ -19,13 +19,13 @@ export function Hero({
   imageUrl,
 }: HeroProps) {
   return (
-    <section className="py-20 md:h-auto">
+    <section className="py-20 md:h-[95vh]">
       <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2  space-y-2">
         <div className="text-center md:text-left space-y-8">
           <h2 className="lg:text-7xl text-5xl font-bold mb-4 text-blue-950 tracking-tight">
             {title}
           </h2>
-          <p className="lg:text-4xl text-2xl text-gray-800">{subtitle}</p>
+          <p className=" text-2xl text-gray-800">{subtitle}</p>
           <Button
             size="lg"
             variant="default"

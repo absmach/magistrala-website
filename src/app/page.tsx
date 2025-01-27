@@ -1,9 +1,9 @@
 import { ComingSoonBanner } from '@/components/coming-soonbanner';
-import { Hero } from '@/components/hero';
 import { PoweredBy } from '@/components/powered-by';
 import { BenefitsSection } from '@/components/section-benefits';
 import { FAQSection } from '@/components/section-faq';
 import { FeaturesSection } from '@/components/section-features';
+import { Hero } from '@/components/section-hero';
 import { UseCasesSection } from '@/components/usecase-tab';
 import { heroData } from '@/lib/constants';
 

@@ -10,11 +10,14 @@ import {
 } from '@/components/ui/sheet';
 import { navigationLinks } from '@/lib/constants';
 import { getImageUrl } from '@/lib/utils';
+import { Separator } from '@radix-ui/react-separator';
 import { Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto flex items-center justify-between px-4 py-2">
@@ -62,7 +65,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu Button */}
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <Button
               className="md:hidden bg-blue-800 hover:bg-blue-600 ml-auto"
@@ -71,22 +74,22 @@ export default function Header() {
               <Menu className="h-6 w-6 text-white" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-            <SheetHeader>
-              <SheetTitle>Menu</SheetTitle>
-            </SheetHeader>
+          <SheetContent side="top">
+            <Separator className="my-4 mt-8" />
             <nav className="flex flex-col gap-4 mt-8">
               <ul className="flex flex-col space-y-4">
                 {navigationLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="block text-xl text-gray-600 hover:text-blue-600 transition-colors"
+                      className="block text-xl text-gray-600 hover:text-blue-600 transition-colors text-center"
+                      onClick={() => setOpen(false)}
                     >
                       {link.label}
                     </Link>
                   </li>
                 ))}
+                <Separator className="my-4" />
                 <li className="pt-4">
                   <Link href="#pricing">
                     <Button

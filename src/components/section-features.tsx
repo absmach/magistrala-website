@@ -45,7 +45,7 @@ export function FeaturesSection() {
 
   return (
     <section id={sectionId} className="py-20 bg-blue-200">
-      <div className="container mx-auto max-w-6xl px-6">
+      <div className="container mx-auto px-6">
         <h2 className="lg:text-5xl text-3xl font-bold mb-4 text-center text-blue-950">
           {title}
         </h2>
