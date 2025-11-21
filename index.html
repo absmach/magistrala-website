@@ -269,6 +269,48 @@
     </section>
     <!-- End of What section -->
 
+        <!-- Deployments Section -->
+    <section
+      id="deployments-preview"
+      class="py-5"
+      
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center mt-5 mb-4">
+            <h2>Global Magistrala Deployments</h2>
+            <p class="text-muted">
+              See real-time deployment statistics from around the world
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="iframe-container">
+              <!-- Loading Screen -->
+              <div id="loading" class="loading-overlay">
+                <div class="spinner"></div>
+                &nbsp; Loading deployments...
+              </div>
+              <iframe
+                id="deploymentsFrame"
+                style="width: 100%; height: 100%; border: none"
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-md-12 text-center">
+            <a href="/deployments" class="btn btn-dark"
+              >View Full Deployments Dashboard</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of Deployments Section -->
+     
     <!-- Features section -->
     <section
       id="features"
@@ -967,6 +1009,8 @@
     </section>
     <!-- End of Customer Listing section -->
 
+
+
     <!-- Pricing Section -->
     <section id="pricing" class="py-5" style="background-color: #f9fafb">
       <div class="container">
@@ -1472,6 +1516,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></script>
     <script>
+      // Deployments iframe setup
+      document.addEventListener("DOMContentLoaded", function () {
+        const deploymentsIframe = document.getElementById("deploymentsFrame");
+        const deploymentsLoading = document.getElementById("loading");
+
+        if (deploymentsIframe && deploymentsLoading) {
+          // Calculate last month date range
+          const now = new Date();
+          const oneMonthAgo = new Date(
+            now.getTime() - 30 * 24 * 60 * 60 * 1000
+          );
+
+          const fromDate = oneMonthAgo.toISOString();
+          const toDate = now.toISOString();
+
+          // Set iframe src with date parameters
+          deploymentsIframe.src = `https://deployments.magistrala.abstractmachines.fr/?from=${encodeURIComponent(
+            fromDate
+          )}&to=${encodeURIComponent(
+            toDate
+          )}&offcanvas=false`;
+
+          deploymentsIframe.onload = () => {
+            deploymentsLoading.style.display = "none";
+          };
+
+          // Safety timeout
+          setTimeout(() => {
+            deploymentsLoading.style.display = "none";
+          }, 10000);
+        }
+      });
+
       document.addEventListener("DOMContentLoaded", function () {
         const toggleButtons = document.querySelectorAll(".pricing-toggle .btn");
         const priceElements = document.querySelectorAll(
