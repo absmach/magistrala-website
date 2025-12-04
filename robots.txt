@@ -1,0 +1,15 @@
+# robots.txt for Magistrala IoT Platform
+# https://magistrala.absmach.eu/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://magistrala.absmach.eu/sitemap.xml
+
+# Crawl delay (optional - uncomment if needed to reduce server load)
+# Crawl-delay: 1
+
+# Disallow specific paths if needed (examples below)
+# Disallow: /admin/
+# Disallow: /private/
