@@ -1,6 +1,21 @@
 * {
-  font-family: "Rubik", sans-serif;
+  font-family: "Rubik", "fallback for Rubik", sans-serif;
+
   font-size: 18px;
+}
+
+@font-face {
+  font-family: "fallback for Rubik";
+  font-display: swap;
+  src: local("Rubik");
+  ascent-override: 93.5%;
+  descent-override: 25%;
+  line-gap-override: 0;
+}
+
+/* Accessibility: Improve contrast for text-muted */
+.text-muted {
+  color: #596066 !important;
 }
 
 header {
@@ -21,6 +36,12 @@ header {
   color: #000;
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+/* Fix for partner logos stretching */
+.logo-img,
+.customer-logo {
+  width: auto;
 }
 
 section[id] {
@@ -219,6 +240,7 @@ section[id] {
 }
 
 @media (min-width: 576px) {
+
   /* sm+ */
   .membership-copy {
     font-size: 18px;
@@ -226,6 +248,7 @@ section[id] {
 }
 
 @media (min-width: 992px) {
+
   /* lg+ */
   .membership-copy {
     font-size: 21px;
