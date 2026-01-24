@@ -48,122 +48,132 @@
   <link rel="icon" href="/img/logos/Magistrala_logo_square_white.svg" type="image/svg+xml" />
 
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <link rel="stylesheet" type="text/css" href="/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print"
+    onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  </noscript>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-  <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+  <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css" media="print"
+    onload="this.media='all'" />
+  <noscript>
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css" />
+  </noscript>
 
   <!-- Structured Data (JSON-LD) for SEO -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Abstract Machines",
-    "url": "https://absmach.eu",
-    "logo": "https://magistrala.absmach.eu/img/logos/Magistrala_logo_landscape_black.svg",
-    "description": "IoT infrastructure and security company specializing in open-source IoT platforms",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "141 Quai de Valmy",
-      "addressLocality": "Paris",
-      "postalCode": "75010",
-      "addressCountry": "FR"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "info@absmach.eu",
-      "contactType": "Customer Service"
-    },
-    "sameAs": [
-      "https://twitter.com/absmach",
-      "https://www.linkedin.com/company/abstract-machines",
-      "https://github.com/absmach",
-      "https://medium.com/abstract-machines-blog"
-    ]
-  }
-  </script>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Abstract Machines",
+        "url": "https://absmach.eu",
+        "logo": "https://magistrala.absmach.eu/img/logos/Magistrala_logo_landscape_black.svg",
+        "description": "IoT infrastructure and security company specializing in open-source IoT platforms",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "141 Quai de Valmy",
+          "addressLocality": "Paris",
+          "postalCode": "75010",
+          "addressCountry": "FR"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@absmach.eu",
+          "contactType": "Customer Service"
+        },
+        "sameAs": [
+          "https://twitter.com/absmach",
+          "https://www.linkedin.com/company/abstract-machines",
+          "https://github.com/absmach",
+          "https://medium.com/abstract-machines-blog"
+        ]
+      }
+    </script>
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Magistrala IoT Platform",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Linux, Docker, Kubernetes",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR"
-    },
-    "description": "Complete open-source IoT platform for cloud and edge computing with support for MQTT, CoAP, HTTP and other protocols",
-    "softwareVersion": "Latest",
-    "license": "https://www.apache.org/licenses/LICENSE-2.0",
-    "url": "https://magistrala.absmach.eu",
-    "downloadUrl": "https://github.com/absmach/magistrala",
-    "author": {
-      "@type": "Organization",
-      "name": "Abstract Machines"
-    }
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
       {
-        "@type": "Question",
-        "name": "Is Magistrala cloud-hosted or self-hosted?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Magistrala gives you the best of both worlds. You can choose our fully managed cloud platform for a hassle-free experience or run your own instance using the open-source version. With Docker support, setting up a self-hosted deployment is straightforward and production-ready."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I use Magistrala as an open-source project?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! Magistrala is open-source and released under the permissive Apache 2.0 license, allowing both personal and commercial use. This means you can modify, extend and redistribute the platform freely. Businesses can integrate it into their products, deploy it at scale or offer services built on top of it."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What happens when I exceed message or client limits?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "When you exceed limits, the platform will gracefully reject excess messages or block new connections depending on your plan. You can upgrade your plan instantly and new resources are applied dynamically without downtime."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is role-based access control (RBAC) supported?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Absolutely. Magistrala implements a robust Role-Based Access Control (RBAC) system designed for granular control across the entire IoT stack. You can define roles and assign permissions at various scopes including user, group, domain, client and channel level. The system is backed by a distributed authorization engine and supports integrations with Google Zanzibar-like backends such as SpiceDB."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What other brokers are accessible to me to use?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Magistrala supports integration with a variety of message brokers, including MQTT, NATS and RabbitMQ. You can choose the broker that best fits your scalability and reliability needs. In addition to these, Magistrala offers support for WebSocket and HTTP protocols. For security, both TLS and mTLS (mutual TLS) are fully supported."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I integrate Magistrala with external MQTT brokers?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Magistrala supports seamless integration with external MQTT brokers using protocol adapters and bridge configurations. You can configure Magistrala to route messages from your existing broker through a secure channel, enabling token-based authentication and fine-grained access control. Integration is facilitated via documented APIs and MQTT bridge patterns, ensuring compatibility with popular brokers like Mosquitto and EMQX."
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Magistrala IoT Platform",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, Docker, Kubernetes",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "description": "Complete open-source IoT platform for cloud and edge computing with support for MQTT, CoAP, HTTP and other protocols",
+        "softwareVersion": "Latest",
+        "license": "https://www.apache.org/licenses/LICENSE-2.0",
+        "url": "https://magistrala.absmach.eu",
+        "downloadUrl": "https://github.com/absmach/magistrala",
+        "author": {
+          "@type": "Organization",
+          "name": "Abstract Machines"
         }
       }
-    ]
-  }
-  </script>
+    </script>
+
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Magistrala cloud-hosted or self-hosted?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Magistrala gives you the best of both worlds. You can choose our fully managed cloud platform for a hassle-free experience or run your own instance using the open-source version. With Docker support, setting up a self-hosted deployment is straightforward and production-ready."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use Magistrala as an open-source project?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! Magistrala is open-source and released under the permissive Apache 2.0 license, allowing both personal and commercial use. This means you can modify, extend and redistribute the platform freely. Businesses can integrate it into their products, deploy it at scale or offer services built on top of it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens when I exceed message or client limits?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "When you exceed limits, the platform will gracefully reject excess messages or block new connections depending on your plan. You can upgrade your plan instantly and new resources are applied dynamically without downtime."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is role-based access control (RBAC) supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Magistrala implements a robust Role-Based Access Control (RBAC) system designed for granular control across the entire IoT stack. You can define roles and assign permissions at various scopes including user, group, domain, client and channel level. The system is backed by a distributed authorization engine and supports integrations with Google Zanzibar-like backends such as SpiceDB."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What other brokers are accessible to me to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Magistrala supports integration with a variety of message brokers, including MQTT, NATS and RabbitMQ. You can choose the broker that best fits your scalability and reliability needs. In addition to these, Magistrala offers support for WebSocket and HTTP protocols. For security, both TLS and mTLS (mutual TLS) are fully supported."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I integrate Magistrala with external MQTT brokers?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Magistrala supports seamless integration with external MQTT brokers using protocol adapters and bridge configurations. You can configure Magistrala to route messages from your existing broker through a secure channel, enabling token-based authentication and fine-grained access control. Integration is facilitated via documented APIs and MQTT bridge patterns, ensuring compatibility with popular brokers like Mosquitto and EMQX."
+            }
+          }
+        ]
+      }
+    </script>
 </head>
 
 <body>
@@ -231,7 +241,8 @@
         </div>
         <div class="col-md-6 mt-5">
           <div class="d-flex align-items-center justify-content-center">
-            <img src="../img/patterns/magistrala.png" alt="pattern-white" class="img-fluid-large" />
+            <img src="/img/patterns/magistrala.png" alt="pattern-white" class="img-fluid-large" width="744" height="744"
+              fetchpriority="high" />
           </div>
         </div>
       </div>
@@ -245,26 +256,26 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-12 mt-5">
           <div class="d-flex justify-content-center flex-wrap">
-            <img src="../img/partners/target.png" alt="Target" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 70px" />
-            <img src="../img/partners/greennet.png" alt="Greennet" class="img-fluid logo-img mx-3 my-4"
-              style="max-height: 40px" />
-            <img src="../img/partners/eu.png" alt="EU Commission" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 70px" />
-            <img src="../img/partners/telefonica.png" alt="Telefonica" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 40px" />
-            <img src="../img/partners/tue.png" alt="TUe" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 40px" />
-            <img src="../img/partners/tno.png" alt="TNO" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 50px" />
-            <img src="../img/partners/parc.png" alt="Intel" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 40px" />
-            <img src="../img/partners/vtt.png" alt="VTT" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 50px" />
-            <img src="../img/partners/etf.png" alt="ETF" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 70px" />
-            <img src="../img/partners/fujitsu.png" alt="Fujitsu" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 70px" />
+            <img src="/img/partners/target.png" alt="Target" class="img-fluid logo-img mx-3 my-2"
+              style="max-height: 70px" loading="lazy" />
+            <img src="/img/partners/greennet.png" alt="Greennet" class="img-fluid logo-img mx-3 my-4"
+              style="max-height: 40px" loading="lazy" />
+            <img src="/img/partners/eu.png" alt="EU Commission" class="img-fluid logo-img mx-3 my-2"
+              style="max-height: 70px" loading="lazy" />
+            <img src="/img/partners/telefonica.png" alt="Telefonica" class="img-fluid logo-img mx-3 my-2"
+              style="max-height: 40px" loading="lazy" />
+            <img src="/img/partners/tue.png" alt="TUe" class="img-fluid logo-img mx-3 my-2" style="max-height: 40px"
+              loading="lazy" />
+            <img src="/img/partners/tno.png" alt="TNO" class="img-fluid logo-img mx-3 my-2" style="max-height: 50px"
+              loading="lazy" />
+            <img src="/img/partners/parc.png" alt="Intel" class="img-fluid logo-img mx-3 my-2" style="max-height: 40px"
+              loading="lazy" />
+            <img src="/img/partners/vtt.png" alt="VTT" class="img-fluid logo-img mx-3 my-2" style="max-height: 50px"
+              loading="lazy" />
+            <img src="/img/partners/etf.png" alt="ETF" class="img-fluid logo-img mx-3 my-2" style="max-height: 70px"
+              loading="lazy" />
+            <img src="/img/partners/fujitsu.png" alt="Fujitsu" class="img-fluid logo-img mx-3 my-2"
+              style="max-height: 70px" loading="lazy" />
           </div>
         </div>
       </div>
@@ -291,7 +302,8 @@
               <div class="spinner"></div>
               &nbsp; Loading deployments...
             </div>
-            <iframe id="deploymentsFrame" style="width: 100%; height: 100%; border: none" loading="lazy"></iframe>
+            <iframe id="deploymentsFrame" title="Magistrala Deployments Dashboard"
+              style="width: 100%; height: 100%; border: none" loading="lazy"></iframe>
           </div>
         </div>
       </div>
@@ -311,12 +323,13 @@
       <div class="row mb-5">
         <div class="col-md-6 mt-5">
           <div class="d-flex align-items-center justify-content-center">
-            <img src="../img/magistrala-concept.png" alt="pattern-white" class="img-fluid" />
+            <img src="/img/magistrala-concept.png" alt="pattern-white" class="img-fluid" width="611" height="491"
+              loading="lazy" />
           </div>
         </div>
         <div class="col-md-6">
           <div class="mt-5">
-            <h1>What is Magistrala</h1>
+            <h2>What is Magistrala</h2>
             <p>
               The Magistrala IoT Platform, formerly known as Mainflux, is a
               cutting-edge IoT infrastructure solution designed to empower
@@ -372,7 +385,7 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">Multi-Protocol Messaging</h5>
+              <h3 class="text-left mb-3">Multi-Protocol Messaging</h3>
               <p class="text-left">
                 Magistrala IoT Platform empowers your IoT ecosystem with
                 versatile multi-protocol messaging capabilities. Seamlessly
@@ -395,7 +408,7 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">Device and Payload Agnostic</h5>
+              <h3 class="text-left mb-3">Device and Payload Agnostic</h3>
               <p class="text-left">
                 Magistrala IoT Platform is agnostic to the type of IoT devices
                 you use and the payload content they transmit. Whether you
@@ -419,7 +432,7 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">Superior Security</h5>
+              <h3 class="text-left mb-3">Superior Security</h3>
               <p class="text-left">
                 Magistrala IoT Platform places a paramount emphasis on
                 security within your IoT ecosystem. It incorporates robust
@@ -444,7 +457,7 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">Efficient and Cloud-native</h5>
+              <h3 class="text-left mb-3">Efficient and Cloud-native</h3>
               <p class="text-left">
                 Magistrala IoT Platform leverages a cloud-native architecture,
                 incorporating microservices for efficient and scalable
@@ -469,9 +482,9 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">
+              <h3 class="text-left mb-3">
                 Extensible - IoT Protocol Adapters
-              </h5>
+              </h3>
               <p class="text-left">
                 Magistrala IoT Platform is extensible and comes equipped with
                 a rich library of existing IoT protocol adapters within the
@@ -497,9 +510,9 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">
+              <h3 class="text-left mb-3">
                 Pluggable Storage and Message Brokers
-              </h5>
+              </h3>
               <p class="text-left">
                 Magistrala IoT Platform offers flexibility in your choice of
                 databases, as it implements interfaces that allow you to
@@ -526,7 +539,7 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">UI and Open APIs</h5>
+              <h3 class="text-left mb-3">UI and Open APIs</h3>
               <p class="text-left">
                 Magistrala IoT Platform provides an open-source user interface
                 (UI) that empowers you to effortlessly manage your IoT
@@ -551,9 +564,9 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">
+              <h3 class="text-left mb-3">
                 High Code Quality and Well Tested
-              </h5>
+              </h3>
               <p class="text-left">
                 Magistrala IoT Platform is built with a strong commitment to
                 high code quality and reliability. Our development follows
@@ -578,9 +591,9 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">
+              <h3 class="text-left mb-3">
                 Open-Source Tools, SDKs, and Libraries
-              </h5>
+              </h3>
               <p class="text-left">
                 Magistrala IoT Platform goes beyond just connectivity—it
                 equips you with a rich ecosystem of open-source tools, SDKs,
@@ -605,7 +618,7 @@
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">Open-Source and Free</h5>
+              <h3 class="text-left mb-3">Open-Source and Free</h3>
               <p class="text-left">
                 Magistrala IoT Platform is proudly open-source, embracing the
                 collaborative spirit of innovation. It operates under the
@@ -637,7 +650,7 @@
     <div class="container mb-5">
       <div class="row">
         <div class="col-md-12 mt-5">
-          <h1>Magistrala Architecture</h1>
+          <h2>Magistrala Architecture</h2>
           <p>
             Magistrala, designed by Abstract Machines, represents the future
             of IoT messaging platforms. Its architecture is meticulously
@@ -697,7 +710,8 @@
         </div>
       </div>
       <div class="d-flex justify-content-center mt-5">
-        <img src="../img/magistrala-architecture-drawing.png" alt="Magistrala Architecture" class="img-fluid" />
+        <img src="/img/magistrala-architecture-drawing.png" alt="Magistrala Architecture" class="img-fluid" width="1107"
+          height="802" loading="lazy" />
       </div>
     </div>
   </section>
@@ -708,10 +722,11 @@
     <div class="container">
       <div class="row mt-5">
         <div class="col-md-6 d-flex align-items-center justify-content-center mt-5">
-          <img src="../img/protocols.png" alt="Magistrala IoT Protocol Adapters" />
+          <img src="/img/protocols.png" alt="Magistrala IoT Protocol Adapters" width="221" height="386"
+            loading="lazy" />
         </div>
         <div class="col-md-6 mt-5">
-          <h1>Protocol Adapters and Connectors</h1>
+          <h2>Protocol Adapters and Connectors</h2>
           <p>
             Elevate your IoT ecosystem with Magistrala, the ultimate IoT
             messaging platform designed to excel in scalability and
@@ -741,7 +756,7 @@
     <div class="container">
       <div class="row mt-5">
         <div class="col-md-6">
-          <h1>Scalability, High Availability, and Fault Tolerance</h1>
+          <h2>Scalability, High Availability, and Fault Tolerance</h2>
           <p>
             Magistrala, the ultimate IoT messaging platform, is designed to
             empower your IoT ecosystem with unmatched scalability, fault
@@ -759,7 +774,8 @@
           </p>
         </div>
         <div class="col-md-6 d-flex align-items-center justify-content-center">
-          <img src="../img/cluster.png" alt="Magistrala IoT Platform" class="img-fluid" />
+          <img src="/img/cluster.png" alt="Magistrala IoT Platform" class="img-fluid" width="431" height="361"
+            loading="lazy" />
         </div>
       </div>
     </div>
@@ -771,13 +787,14 @@
     <div class="container">
       <div class="row mt-5">
         <div class="col-md-6 d-flex align-items-center justify-content-center">
-          <img src="../img/interfaces.png" alt="Magistrala IoT Platform" class="img-fluid-large" />
+          <img src="/img/interfaces.png" alt="Magistrala IoT Platform" class="img-fluid-large" width="591" height="401"
+            loading="lazy" />
         </div>
         <div class="col-md-6">
-          <h1>
+          <h2>
             Interface Abstractions - Pluggable Identities, Message Brokers,
             Authorization, and Storage
-          </h1>
+          </h2>
           <p>
             Magistrala, the ultimate IoT messaging platform, offers the
             flexibility of interface implementations for pluggable components,
@@ -814,7 +831,7 @@
     <div class="container">
       <div class="row mt-5 mb-5">
         <div class="col-md-6">
-          <h1>Open-source and Free</h1>
+          <h2>Open-source and Free</h2>
           <p>
             Magistrala, the ultimate IoT messaging platform, is an open-source
             project that has been free from its inception. It's released under
@@ -827,7 +844,7 @@
           </p>
         </div>
         <div class="col-md-6 d-flex align-items-center justify-content-center">
-          <img src="../img/github.png" alt="Magistrala IoT Platform" />
+          <img src="/img/github.png" alt="Magistrala IoT Platform" width="271" height="261" loading="lazy" />
         </div>
       </div>
     </div>
@@ -899,8 +916,8 @@
           <div class="card h-100 p-4">
             <div class="d-flex align-items-center justify-content-center mb-3">
               <!-- Customer Logo Placeholder for Intel -->
-              <img src="../img/logos/intel.png" alt="Intel Logo" class="img-fluid customer-logo"
-                style="max-width: 200px; max-height: 100px" />
+              <img src="/img/logos/intel.png" alt="Intel Logo" class="img-fluid customer-logo"
+                style="max-width: 200px; max-height: 100px" width="2400" height="1587" loading="lazy" />
             </div>
             <p class="card-text text-left">
               Magistrala by Abstract Machines powers real-time metering on the
@@ -917,8 +934,8 @@
           <div class="card h-100 p-4">
             <div class="d-flex align-items-center justify-content-center mb-3">
               <!-- Customer Logo Placeholder for Ericsson -->
-              <img src="../img/logos/ericsson.png" alt="Ericsson Logo" class="img-fluid customer-logo"
-                style="max-width: 200px; max-height: 100px" />
+              <img src="/img/logos/ericsson.png" alt="Ericsson Logo" class="img-fluid customer-logo"
+                style="max-width: 200px; max-height: 100px" width="3840" height="2160" loading="lazy" />
             </div>
             <p class="card-text text-left">
               Magistrala, the IoT platform developed by Abstract Machines,
@@ -936,8 +953,8 @@
           <div class="card h-100 p-4">
             <div class="d-flex align-items-center justify-content-center mb-3">
               <!-- Customer Logo Placeholder for Target -->
-              <img src="../img/logos/target.png" alt="Target Logo" class="img-fluid customer-logo"
-                style="max-width: 200px; max-height: 100px" />
+              <img src="/img/logos/target.png" alt="Target Logo" class="img-fluid customer-logo"
+                style="max-width: 200px; max-height: 100px" width="2400" height="3057" loading="lazy" />
             </div>
             <p class="card-text text-left">
               Target relies on Magistrala by Abstract Machines as the
@@ -969,7 +986,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center mt-5 mb-3">
-          <h1>Pricing Plans</h1>
+          <h2>Pricing Plans</h2>
           <p class="text-muted">
             Choose the right plan for your IoT solution.
           </p>
@@ -981,7 +998,7 @@
         <div class="col-sm-6 col-lg-4 mb-4">
           <div class="card h-100 border rounded-4">
             <div class="card-body text-center d-flex flex-column">
-              <h5 class="fw-bold text-center">Trial</h5>
+              <h3 class="fw-bold text-center">Trial</h3>
               <p class="text-muted">Free early access</p>
               <h3 class="fw-bold text-center price-amount">Free</h3>
               <ul class="list-unstyled text-start flex-grow-1 px-3">
@@ -1023,7 +1040,7 @@
         <div class="col-sm-6 col-lg-4 mb-4">
           <div class="card h-100 border rounded-4">
             <div class="card-body text-center d-flex flex-column">
-              <h5 class="fw-bold">Enterprise</h5>
+              <h3 class="fw-bold">Enterprise</h3>
               <p class="text-muted">For large-scale deployments</p>
               <h3 class="fw-bold">Contact Us</h3>
               <ul class="list-unstyled text-start flex-grow-1 px-3">
@@ -1238,18 +1255,20 @@
             <div class="input-group">
               <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email"
                 aria-label="Email" aria-describedby="subscribe-btn" required="" />
-              <div hidden=""><input type="hidden" name="tags" value="8115258"></div>
+              <div hidden="">
+                <input type="hidden" name="tags" value="8115258" />
+              </div>
               <button class="btn bg-deep-blue" type="submit" id="subscribe-btn">
                 Subscribe
               </button>
             </div>
             <div id="mce-responses" class="clear foot">
-              <div class="response" id="mce-error-response" style="display: none;"></div>
-              <div class="response" id="mce-success-response" style="display: none;"></div>
+              <div class="response" id="mce-error-response" style="display: none"></div>
+              <div class="response" id="mce-success-response" style="display: none"></div>
             </div>
             <div style="position: absolute; left: -5000px" aria-hidden="true">
               <!--  real people should not fill this in and expect good things - do not remove this or risk form bot signups -->
-              <input type="text" name="b_70b43c7181d005024187bfb31_0a319b6b63" tabindex="-1" value="">
+              <input type="text" name="b_70b43c7181d005024187bfb31_0a319b6b63" tabindex="-1" value="" />
             </div>
 
             <!-- Privacy and Terms Disclaimer -->
@@ -1317,7 +1336,6 @@
           </p>
         </div>
 
-
         <!-- Resources  -->
         <div class="col mb-4 text-center text-md-start">
           <h5>Resources</h5>
@@ -1346,8 +1364,7 @@
   <!-- End of Footer section -->
 
   <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     // Deployments iframe setup
@@ -1356,7 +1373,8 @@
       const deploymentsLoading = document.getElementById("loading");
 
       if (deploymentsIframe && deploymentsLoading) {
-        deploymentsIframe.src = "https://deployments.absmach.eu?filter=hidden&sidebar=hidden";
+        deploymentsIframe.src =
+          "https://deployments.absmach.eu?filter=hidden&sidebar=hidden";
 
         deploymentsIframe.onload = () => {
           deploymentsLoading.style.display = "none";
@@ -1393,7 +1411,9 @@
         function updatePricing(period) {
           priceElements.forEach((priceEl) => {
             const yearlyPrice = parseInt(priceEl.getAttribute("data-yearly"));
-            const monthlyPrice = parseInt(priceEl.getAttribute("data-monthly"));
+            const monthlyPrice = parseInt(
+              priceEl.getAttribute("data-monthly")
+            );
 
             if (period === "yearly") {
               priceEl.innerHTML = `€${yearlyPrice}<span class="fs-6 period-text">/month</span>`;
