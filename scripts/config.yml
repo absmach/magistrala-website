@@ -1,0 +1,29 @@
+site:
+  name: "Magistrala Blogs"
+  url: "https://magistrala.absmach.eu"
+  description: "Technical articles, product updates, and engineering deep dives from the Magistrala team on building scalable open-source IoT systems, event-driven architectures, and modern backend platforms."
+  social:
+    twitter:
+    github:
+    linkedin:
+  
+blog:
+  posts_per_page: 10
+  date_format: "%B %d, %Y"
+  reading_speed: 200
+
+  # Category colors (Bootstrap color names)
+  category_colors:
+      blog: "primary"
+      announcement: "success"
+      news: "info"
+      tutorial: "warning"
+
+seo:
+  default_og_image: "https://magistrala.absmach.eu/img/logos/social-preview.png"
+  twitter_handle: "@absmach"
+
+theme:
+  primary_color: "#073763"
+  font_family: "Rubik, sans-serif, fallback for Rubik"
+  code_theme: "github-dark"
