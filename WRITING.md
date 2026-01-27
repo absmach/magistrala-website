@@ -110,12 +110,16 @@ If something looks off, fix your Markdown or frontmatter and run make build agai
    ```bash
    git checkout -b blog/my-new-feature
    ```
-2. **Commit your changes:**
+2. **Build the blog:**
    ```bash
-   git add content/blogs/my-new-feature.md img/blogs/my-new-feature/
+   make build
+   ```
+   This ensures the `blog/` directory is updated with your new post and reflects any changes in the listing pages.
+3. **Commit your changes:**
+   ```bash
+   git add content/blogs/my-new-feature.md img/blogs/my-new-feature/ blog/ .blogcache
    git commit -m "Add blog post: My New Feature"
    ```
-3. **Push and open a PR:**
+   **Note:** It is important to include the `blog/` folder and `.blogcache` in your commit so that the static site is updated upon merging.
+4. **Push and open a PR:**
    Push your branch to GitHub and open a Pull Request against the `main` branch.
-4. **CI Build:**
-   Once your PR is merged into `main`, the GitHub Action will automatically trigger a build to update the live site.

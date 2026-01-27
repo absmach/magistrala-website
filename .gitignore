@@ -1,2 +1,6 @@
-blog
-.blogcache
+blogs-builder
+vendor/
+*.exe
+*.test
+*.prof
+*.out

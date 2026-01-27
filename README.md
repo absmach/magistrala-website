@@ -16,15 +16,17 @@ This repository contains the source code for the [Magistrala](https://magistrala
 - **Go**: Required to run the blog builder.
 - **Make**: Used for task automation.
 
-## Getting Started
+## Guidelines for Contributors
 
-### 1. Build the Site
+To add a new blog post, follow these steps:
 
-To generate the blog's static files from the markdown content:
-
-```bash
-make build
-```
+1. Create your content in `content/blogs/` (see [WRITING.md](WRITING.md)).
+2. Build the site locally to generate the static files:
+   ```bash
+   make clean && make build
+   ```
+3. Commit both the source Markdown files **and** the generated files in the `blog/` folder.
+4. Open a Pull Request.
 
 ## Documentation
 

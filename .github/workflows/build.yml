@@ -1,11 +1,10 @@
 name: build blogs static files
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
-
+  push:
+    branches: [main]
 jobs:
   build-blogs:
     runs-on: ubuntu-latest
@@ -23,3 +22,12 @@ jobs:
       - name: Build blogs
         run: |
           make build
+
+      - name: Verify build is up to date
+        run: |
+          if [ -n "$(git status --porcelain blog/)" ]; then
+            echo "Error: The 'blog/' directory is out of sync with the markdown content."
+            echo "Please run 'make build' locally and commit the changes."
+            git status --porcelain blog/
+            exit 1
+          fi
