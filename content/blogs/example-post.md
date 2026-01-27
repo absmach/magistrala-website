@@ -3,18 +3,17 @@ title: "Welcome to Your Static Markdown Blog"
 slug: "example-post"
 excerpt: "This is an example blog post demonstrating all the features of your new static markdown blog. Learn how to write posts, use markdown syntax, and deploy your blog."
 description: "Complete guide to writing your first blog post with markdown, including syntax examples, frontmatter configuration, and best practices."
-date: "2024-01-15"
+date: "2024-01-26"
 author:
   name: "Blog Author"
-  picture: "/assets/team/johnDoe.jpg"
-coverImage: "/assets/blog/welcome.jpg"
+  picture: "/img/team/johnDoe.jpg"
+coverImage: "/img/blogs/welcome.jpg"
 category: blog
 featured: main
 tags:
   - Getting Started
   - Markdown
   - Tutorial
-readingTime: "5 min"
 ---
 
 # Welcome to Your Blog!

@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	contentDir  = "content/blog"
+	contentDir  = "content/blogs"
 	outputDir   = "blog"
 	templateDir = "scripts/templates"
 	cacheFile   = ".blogcache"
