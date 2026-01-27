@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strings"
 	"time"
 
 	"github.com/yuin/goldmark"
@@ -296,19 +297,47 @@ func getString(m map[string]interface{}, key string) string {
 	return ""
 }
 
+func normalizePicture(s string) string {
+	s = strings.TrimSpace(s)
+
+	if s == "" ||
+		strings.EqualFold(s, "undefined") ||
+		strings.EqualFold(s, "null") ||
+		s == "<nil>" {
+		return ""
+	}
+
+	return s
+}
+
 func getAuthor(m map[string]interface{}) AuthorInfo {
+	const defaultAvatar = "/img/avatar.png"
+
+	author := AuthorInfo{
+		Picture: defaultAvatar,
+	}
+
 	if v, ok := m["author"]; ok {
-		if am, ok := v.(map[interface{}]interface{}); ok {
-			return AuthorInfo{
-				Name:    fmt.Sprintf("%v", am["name"]),
-				Picture: fmt.Sprintf("%v", am["picture"]),
+		switch am := v.(type) {
+
+		case map[interface{}]interface{}:
+			name := fmt.Sprintf("%v", am["name"])
+			if name != "" && name != "<nil>" {
+				author.Name = name
 			}
-		} else if am, ok := v.(map[string]interface{}); ok {
-			return AuthorInfo{
-				Name:    fmt.Sprintf("%v", am["name"]),
-				Picture: fmt.Sprintf("%v", am["picture"]),
+
+			if pic := normalizePicture(fmt.Sprintf("%v", am["picture"])); pic != "" {
+				author.Picture = pic
+			}
+
+		case map[string]interface{}:
+			author.Name = getString(am, "name")
+
+			if pic := normalizePicture(getString(am, "picture")); pic != "" {
+				author.Picture = pic
 			}
 		}
 	}
-	return AuthorInfo{}
+
+	return author
 }
