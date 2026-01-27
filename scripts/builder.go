@@ -321,6 +321,33 @@ func normalizePicture(s string) string {
 	return s
 }
 
+func getGitHubAuthor() (string, string) {
+	eventPath := os.Getenv("GITHUB_EVENT_PATH")
+	if eventPath != "" {
+		data, err := os.ReadFile(eventPath)
+		if err == nil {
+			var event struct {
+				PullRequest struct {
+					User struct {
+						Login     string `json:"login"`
+						AvatarURL string `json:"avatar_url"`
+					} `json:"user"`
+				} `json:"pull_request"`
+			}
+			if err := json.Unmarshal(data, &event); err == nil && event.PullRequest.User.Login != "" {
+				return event.PullRequest.User.Login, event.PullRequest.User.AvatarURL
+			}
+		}
+	}
+
+	actor := os.Getenv("GITHUB_ACTOR")
+	if actor != "" {
+		return actor, fmt.Sprintf("https://github.com/%s.png", actor)
+	}
+
+	return "", ""
+}
+
 func getAuthor(m map[string]interface{}) AuthorInfo {
 	const defaultAvatar = "/img/avatar.png"
 
@@ -347,6 +374,16 @@ func getAuthor(m map[string]interface{}) AuthorInfo {
 			if pic := normalizePicture(getString(am, "picture")); pic != "" {
 				author.Picture = pic
 			}
+		}
+	}
+
+	if author.Name == "" || author.Name == "<nil>" {
+		name, pic := getGitHubAuthor()
+		if name != "" {
+			author.Name = name
+		}
+		if pic != "" && (author.Picture == "" || author.Picture == defaultAvatar) {
+			author.Picture = pic
 		}
 	}
 
