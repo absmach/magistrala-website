@@ -4,6 +4,14 @@
   font-size: 18px;
 }
 
+:root {
+  --bs-primary: #073763 !important;
+  --bs-primary-rgb: 7, 55, 99 !important;
+
+  --bs-primary-bg-subtle: #d9e6f2;
+  --bs-primary-border-subtle: #b6cde3;
+  --bs-primary-text-emphasis: #04203a;
+}
 @font-face {
   font-family: "fallback for Rubik";
   font-display: swap;
@@ -28,7 +36,9 @@ header {
   font-weight: 500;
   border-bottom: 2px solid transparent;
   padding: 0.5rem 0.75rem;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .navbar-secondary .nav-link:hover,
@@ -183,7 +193,9 @@ section[id] {
 .link-blue-sm {
   color: #073763;
   text-decoration: underline;
-  transition: color 0.2s ease, font-weight 0.2s ease;
+  transition:
+    color 0.2s ease,
+    font-weight 0.2s ease;
   font-weight: 400;
 }
 
@@ -240,7 +252,6 @@ section[id] {
 }
 
 @media (min-width: 576px) {
-
   /* sm+ */
   .membership-copy {
     font-size: 18px;
@@ -248,7 +259,6 @@ section[id] {
 }
 
 @media (min-width: 992px) {
-
   /* lg+ */
   .membership-copy {
     font-size: 21px;

@@ -1,0 +1,6 @@
+blogs-builder
+vendor/
+*.exe
+*.test
+*.prof
+*.out
