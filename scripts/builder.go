@@ -82,24 +82,17 @@ func (b *Builder) Build() error {
 	builtCount := 0
 	skippedCount := 0
 
+	anyChanged := false
+	if len(cache) != len(files) {
+		anyChanged = true
+	}
+
 	for _, file := range files {
 		fileHash, err := GetFileHash(file)
-		if err != nil {
-			fmt.Printf("Error hashing %s: %v\n", file, err)
-			continue
-		}
-
-		cacheKey := file
-		if !b.Force {
-			if h, ok := cache[cacheKey]; ok && h == fileHash {
-				skippedCount++
-
-				post, err := b.parsePost(md, file)
-				if err == nil {
-					posts = append(posts, *post)
-				}
-				newCache[cacheKey] = fileHash
-				continue
+		if err == nil {
+			newCache[file] = fileHash
+			if cache[file] != fileHash {
+				anyChanged = true
 			}
 		}
 
@@ -108,29 +101,7 @@ func (b *Builder) Build() error {
 			fmt.Printf("Error processing %s: %v\n", file, err)
 			continue
 		}
-
-		postDir := filepath.Join(b.OutputDir, post.Slug)
-		if err := os.MkdirAll(postDir, 0o755); err != nil {
-			fmt.Printf("Error creating post dir %s: %v\n", postDir, err)
-			continue
-		}
-		outputPath := filepath.Join(postDir, "index.html")
-		f, err := os.Create(outputPath)
-		if err != nil {
-			fmt.Printf("Error creating output file %s: %v\n", outputPath, err)
-			continue
-		}
-
-		if err := postTmp.Execute(f, post); err != nil {
-			f.Close()
-			fmt.Printf("Error rendering %s: %v\n", file, err)
-			continue
-		}
-		f.Close()
-
-		newCache[cacheKey] = fileHash
 		posts = append(posts, *post)
-		builtCount++
 	}
 
 	sort.Slice(posts, func(i, j int) bool {
@@ -139,27 +110,67 @@ func (b *Builder) Build() error {
 		return d1.After(d2)
 	})
 
-	listingData := ListingData{
-		Posts:       posts,
-		Site:        b.Config.Site,
-		Config:      *b.Config,
-		CurrentYear: time.Now().Year(),
-	}
+	if !anyChanged && !b.Force {
+		skippedCount = len(posts) + 1
+	} else {
+		for i := range posts {
+			post := &posts[i]
 
-	if err := os.MkdirAll(b.OutputDir, 0o755); err != nil {
-		return fmt.Errorf("blog dir doesn't exist: %w", err)
-	}
+			var nextRead []PostData
+			for j := 0; j < len(posts); j++ {
+				if posts[j].Slug != post.Slug {
+					nextRead = append(nextRead, posts[j])
+				}
+				if len(nextRead) == 3 {
+					break
+				}
+			}
+			post.LatestPosts = nextRead
 
-	listOut := filepath.Join(b.OutputDir, "index.html")
+			postDir := filepath.Join(b.OutputDir, post.Slug)
+			if err := os.MkdirAll(postDir, 0o755); err != nil {
+				fmt.Printf("Error creating post dir %s: %v\n", postDir, err)
+				continue
+			}
+			outputPath := filepath.Join(postDir, "index.html")
+			f, err := os.Create(outputPath)
+			if err != nil {
+				fmt.Printf("Error creating output file %s: %v\n", outputPath, err)
+				continue
+			}
 
-	fl, err := os.Create(listOut)
-	if err != nil {
-		return fmt.Errorf("failed to create listing file: %w", err)
-	}
-	defer fl.Close()
+			if err := postTmp.Execute(f, post); err != nil {
+				f.Close()
+				fmt.Printf("Error rendering %s: %v\n", post.Slug, err)
+				continue
+			}
+			f.Close()
+			builtCount++
+		}
 
-	if err := listingTmp.Execute(fl, listingData); err != nil {
-		return fmt.Errorf("failed to render listing: %w", err)
+		listingData := ListingData{
+			Posts:       posts,
+			Site:        b.Config.Site,
+			Config:      *b.Config,
+			CurrentYear: time.Now().Year(),
+		}
+
+		if err := os.MkdirAll(b.OutputDir, 0o755); err != nil {
+			return fmt.Errorf("blog dir doesn't exist: %w", err)
+		}
+
+		listOut := filepath.Join(b.OutputDir, "index.html")
+
+		fl, err := os.Create(listOut)
+		if err != nil {
+			return fmt.Errorf("failed to create listing file: %w", err)
+		}
+		defer fl.Close()
+
+		if err := listingTmp.Execute(fl, listingData); err != nil {
+			return fmt.Errorf("failed to render listing: %w", err)
+		}
+		builtCount++
 	}
 
 	b.saveCache(newCache)

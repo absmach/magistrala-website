@@ -68,6 +68,7 @@ type PostData struct {
 	Site          SiteConfig
 	Config        Config
 	CurrentYear   int
+	LatestPosts   []PostData
 }
 
 type ListingData struct {
