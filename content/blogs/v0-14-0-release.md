@@ -7,6 +7,7 @@ author:
   name: "Rodney Osodo"
   picture: "https://avatars.githubusercontent.com/u/28790446?v=4"
 tags: [release, Magistrala, update]
+category: announcement
 ---
 
 # What's New in Magistrala v0.14.0
