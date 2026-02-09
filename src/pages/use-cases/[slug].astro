@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import FeatureIcon from '../../components/ui/FeatureIcon.astro';
+import { USE_CASES, CTA_BUTTONS } from '../../config/site';
+
+export function getStaticPaths() {
+  return USE_CASES.map((uc) => ({
+    params: { slug: uc.slug },
+    props: { useCase: uc },
+  }));
+}
+
+const { useCase } = Astro.props;
+---
+
+<BaseLayout title={`${useCase.title} — Magistrala IoT Platform`} description={useCase.summary}>
+  <Header />
+  <main>
+    <section class="section-padding bg-white">
+      <div class="max-w-3xl mx-auto">
+        <a href="/use-cases/" class="text-sm text-neutral-500 hover:text-[#073763] mb-6 inline-block">&larr; All use cases</a>
+        <div class="flex items-center gap-4 mb-6">
+          <FeatureIcon icon={useCase.icon} />
+          <h1>{useCase.title}</h1>
+        </div>
+        <p class="text-lg text-neutral-600 mb-8 leading-relaxed">
+          {useCase.description}
+        </p>
+
+        <h2 class="text-xl font-semibold mb-4 text-[#04203a]">Key Benefits</h2>
+        <ul class="space-y-3 mb-10">
+          {useCase.benefits.map((b: string) => (
+            <li class="flex items-start gap-3 text-neutral-600">
+              <svg class="w-5 h-5 mt-0.5 shrink-0 text-[#073763]" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              {b}
+            </li>
+          ))}
+        </ul>
+
+        <div class="flex flex-wrap gap-3">
+          <a
+            href={CTA_BUTTONS.primary.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 bg-[#073763] text-white font-medium rounded-lg hover:bg-[#0a4a7a] transition-colors"
+          >
+            Try Magistrala
+          </a>
+          <a
+            href={CTA_BUTTONS.secondary.href}
+            class="px-6 py-3 border border-neutral-200 text-neutral-700 font-medium rounded-lg hover:border-neutral-300 transition-colors"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
