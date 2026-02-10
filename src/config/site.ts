@@ -17,7 +17,7 @@ export const SOCIAL = {
 } as const;
 
 export const CONTACT = {
-  email: "info@absmach.eu",
+  email: "bw7353917@gmail.com",
   address: {
     street: "141 Quai de Valmy",
     city: "Paris",
@@ -40,7 +40,7 @@ export const CTA_BUTTONS = {
   },
   secondary: {
     label: "Contact Us",
-    href: "mailto:info@absmach.eu",
+    href: "/contact",
   },
   docs: {
     label: "Read the Docs",
