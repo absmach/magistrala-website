@@ -1,0 +1,100 @@
+---
+import { USE_CASES } from '../../config/site';
+import { USE_CASES_CONTENT } from '../../config/home';
+import FeatureIcon from '../ui/FeatureIcon.astro';
+---
+
+<section id="use-cases" class="section-angle-top section-padding bg-neutral-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <h2 class="mb-4">{USE_CASES_CONTENT.heading}</h2>
+      <p class="text-neutral-600">
+        {USE_CASES_CONTENT.description}
+      </p>
+    </div>
+    <div class="usecase-carousel reveal" data-usecase-carousel>
+      <div class="usecase-track">
+        {USE_CASES.map((uc) => (
+          <div class="usecase-slide px-3">
+            <div class="rounded-2xl border border-neutral-200 p-8 bg-white shadow-soft h-full flex flex-col">
+              <FeatureIcon icon={uc.icon} class="mb-4" />
+              <h3 class="text-lg font-semibold mb-2 text-[#04203a]">{uc.title}</h3>
+              <p class="text-sm text-neutral-500 leading-relaxed mb-4 flex-1">{uc.summary}</p>
+              <a
+                href={`/use-cases/${uc.slug}/`}
+                class="text-sm font-medium text-[#073763] hover:underline"
+              >
+                {USE_CASES_CONTENT.learnMoreText} &rarr;
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="flex items-center justify-center gap-4 mt-8">
+        <button class="usecase-prev p-2 rounded-full border border-neutral-200 hover:bg-neutral-100 transition-colors" aria-label="Previous use cases">
+          <svg class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        <button class="usecase-next p-2 rounded-full border border-neutral-200 hover:bg-neutral-100 transition-colors" aria-label="Next use cases">
+          <svg class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="text-center mt-6">
+      <a
+        href={USE_CASES_CONTENT.viewAllHref}
+        class="text-sm font-medium text-[#073763] hover:underline"
+      >
+        {USE_CASES_CONTENT.viewAllText} &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const ucCarousel = document.querySelector('[data-usecase-carousel]');
+    if (!ucCarousel) return;
+
+    const track = ucCarousel.querySelector('.usecase-track') as HTMLElement;
+    const prevBtn = ucCarousel.querySelector('.usecase-prev');
+    const nextBtn = ucCarousel.querySelector('.usecase-next');
+    let offset = 0;
+
+    function getVisibleCount() {
+      if (window.innerWidth >= 1024) return 3;
+      if (window.innerWidth >= 768) return 2;
+      return 1;
+    }
+
+    function getSlideCount() {
+      return track ? track.children.length : 0;
+    }
+
+    function update() {
+      if (!track) return;
+      const pct = 100 / getVisibleCount();
+      track.style.transform = `translateX(-${offset * pct}%)`;
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      offset = Math.max(0, offset - 1);
+      update();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      const max = getSlideCount() - getVisibleCount();
+      offset = Math.min(max, offset + 1);
+      update();
+    });
+
+    window.addEventListener('resize', () => {
+      const max = getSlideCount() - getVisibleCount();
+      offset = Math.min(Math.max(0, offset), Math.max(0, max));
+      update();
+    });
+  });
+</script>

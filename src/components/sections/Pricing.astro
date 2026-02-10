@@ -1,0 +1,52 @@
+---
+import { PRICING_PLANS } from '../../config/site';
+import { PRICING_CONTENT } from '../../config/home';
+---
+
+<section id="pricing" class="section-angle-top section-padding bg-neutral-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <h2 class="mb-4">{PRICING_CONTENT.heading}</h2>
+      <p class="text-neutral-600">
+        {PRICING_CONTENT.description}
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      {
+        PRICING_PLANS.map((plan) => (
+          <div class:list={[
+            'rounded-xl border p-8 flex flex-col bg-white reveal',
+            plan.highlighted ? 'border-[#073763] border-2 relative' : 'border-neutral-200'
+          ]}>
+            {plan.highlighted && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#073763] text-white text-xs font-semibold px-4 py-1 rounded-full">
+                {PRICING_CONTENT.recommendedBadge}
+              </span>
+            )}
+            <h3 class="text-xl font-semibold mb-1 text-[#04203a]">{plan.name}</h3>
+            <p class="text-sm mb-6 text-neutral-500">{plan.subtitle}</p>
+            <p class="text-3xl font-bold mb-6 text-[#04203a]">{plan.price}</p>
+            <ul class="space-y-3 mb-8 flex-1">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <svg class="w-4 h-4 mt-0.5 shrink-0 text-[#073763]" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                  <span class="text-neutral-600">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={plan.cta.href}
+              target={plan.cta.href.startsWith('http') ? '_blank' : undefined}
+              rel={plan.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class="block text-center px-6 py-3 rounded-lg font-medium text-sm transition-colors bg-[#073763] text-white hover:bg-[#0a4a7a]"
+            >
+              {plan.cta.label}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
