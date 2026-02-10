@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../../assets/logos/Magistrala_logo_landscape_black.svg';
 import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
 ---
 
@@ -7,10 +9,11 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
     <div class="flex items-center justify-between h-16">
       <div class="shrink-0">
         <a href="/" class="block">
-          <img
-            src="/img/logos/Magistrala_logo_landscape_black.svg"
+          <Image
+            src={logo}
             alt="Magistrala"
             class="h-10 w-auto"
+            loading="eager"
           />
         </a>
       </div>
