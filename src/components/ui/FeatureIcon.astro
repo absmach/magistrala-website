@@ -7,7 +7,7 @@ interface Props {
 const { icon, class: className = '' } = Astro.props;
 ---
 
-<div class:list={['size-16 flex items-center justify-center rounded-lg bg-[#eff6ff]', className]}>
+<div class:list={['size-16 flex items-center justify-center rounded-lg ', className]}>
   {icon === 'protocols' && (
     <svg class="size-10 text-[#073763]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
       <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
