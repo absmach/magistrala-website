@@ -1,0 +1,223 @@
+---
+const protocols = [
+  {
+    id: "mqtt",
+    label: "MQTT",
+    color: "#22c55e",
+    parts: [
+      { text: "mosquitto_pub", cls: "term-cmd" },
+      { text: " -I ", cls: "term-flag" },
+      { text: '"WM Lyon Apt 01"', cls: "term-str" },
+      { text: " -u ", cls: "term-flag" },
+      { text: "a679ab56-...aaf", cls: "term-val" },
+      { text: " \\\n  -P ", cls: "term-flag" },
+      { text: "<client_secret>", cls: "term-val" },
+      { text: " \\\n  -t ", cls: "term-flag" },
+      { text: "m/<channel>/c/<client>", cls: "term-val" },
+      { text: " \\\n  -h ", cls: "term-flag" },
+      { text: "messaging.magistrala.absmach.eu", cls: "term-str" },
+      { text: " \\\n  -m ", cls: "term-flag" },
+      { text: '\'[{"n":"pressure","v":123}]\'', cls: "term-json" },
+      { text: " \\\n  -p ", cls: "term-flag" },
+      { text: "8883", cls: "term-num" },
+      { text: " -d", cls: "term-flag" },
+      { text: " --cafile ", cls: "term-flag" },
+      { text: "/etc/ssl/certs/ca-certificates.crt", cls: "term-val" },
+    ],
+  },
+  {
+    id: "coap",
+    label: "CoAP",
+    color: "#3b82f6",
+    parts: [
+      { text: "coap-cli", cls: "term-cmd" },
+      { text: " post ", cls: "term-flag" },
+      { text: "m/<channel>/c/<client>", cls: "term-val" },
+      { text: " \\\n  -a ", cls: "term-flag" },
+      { text: "<client_secret>", cls: "term-val" },
+      { text: " \\\n  -d ", cls: "term-flag" },
+      { text: '\'[{"n":"pressure","v":123}]\'', cls: "term-json" },
+      { text: " \\\n  -H ", cls: "term-flag" },
+      { text: "messaging.magistrala.absmach.eu", cls: "term-str" },
+      { text: " \\\n  -p ", cls: "term-flag" },
+      { text: "5684", cls: "term-num" },
+      { text: " -s", cls: "term-flag" },
+      { text: " -A ", cls: "term-flag" },
+      { text: "/etc/ssl/certs/ca-certificates.crt", cls: "term-val" },
+    ],
+  },
+  {
+    id: "ws",
+    label: "WebSocket",
+    color: "#a855f7",
+    parts: [
+      { text: "wscat", cls: "term-cmd" },
+      { text: " -c ", cls: "term-flag" },
+      {
+        text: '"wss://messaging.magistrala.absmach.eu\n  /api/ws/m/<channel>/c/<client>\n  /?authorization=<client_secret>"',
+        cls: "term-str",
+      },
+      { text: " \\\n  -x ", cls: "term-flag" },
+      { text: '\'[{"n":"pressure","v":123}]\'', cls: "term-json" },
+      { text: " \\\n  --ca ", cls: "term-flag" },
+      { text: "/etc/ssl/certs/ca-certificates.crt", cls: "term-val" },
+    ],
+  },
+  {
+    id: "http",
+    label: "HTTP",
+    color: "#f59e0b",
+    parts: [
+      { text: "curl", cls: "term-cmd" },
+      { text: " -s -S -i", cls: "term-flag" },
+      { text: " \\\n  --cacert ", cls: "term-flag" },
+      { text: "/etc/ssl/certs/ca-certificates.crt", cls: "term-val" },
+      { text: " \\\n  -X ", cls: "term-flag" },
+      { text: "POST", cls: "term-method" },
+      { text: " \\\n  -H ", cls: "term-flag" },
+      { text: '"Content-Type: application/senml+json"', cls: "term-str" },
+      { text: " \\\n  -H ", cls: "term-flag" },
+      { text: '"Authorization: Client <client_secret>"', cls: "term-str" },
+      {
+        text: " \\\n  https://messaging.magistrala.absmach.eu\n  /api/http/m/<channel>/c/<client>/",
+        cls: "term-str",
+      },
+      { text: " \\\n  -d ", cls: "term-flag" },
+      { text: '\'[{"n":"pressure","v":123}]\'', cls: "term-json" },
+    ],
+  },
+];
+---
+
+<div class="protocol-terminal" data-protocol-terminal>
+  <div class="protocol-terminal-tabs">
+    {
+      protocols.map((p, i) => (
+        <button
+          class:list={["protocol-tab", i === 0 ? "active" : ""]}
+          data-tab={p.id}
+          style={`--tab-color: ${p.color}`}
+        >
+          <span class="protocol-tab-dot" />
+          {p.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="protocol-terminal-body">
+    {
+      protocols.map((p, i) => (
+        <div
+          class:list={["protocol-pane", i === 0 ? "active" : ""]}
+          data-pane={p.id}
+        >
+          <div class="protocol-prompt">
+            <span class="term-prompt-symbol">$</span>
+            <span class="protocol-typed w-full" data-typed>
+              {p.parts.map((part) => (
+                <span class={part.cls}>{part.text}</span>
+              ))}
+            </span>
+            <span class="term-cursor" />
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document
+      .querySelectorAll("[data-protocol-terminal]")
+      .forEach((terminal) => {
+        const tabs = terminal.querySelectorAll(".protocol-tab");
+        const panes = terminal.querySelectorAll(".protocol-pane");
+        let activeTyping: { cancel: () => void } | null = null;
+
+        function switchTab(id: string) {
+          tabs.forEach((t) =>
+            t.classList.toggle("active", t.getAttribute("data-tab") === id),
+          );
+          panes.forEach((p) => {
+            const isActive = p.getAttribute("data-pane") === id;
+            p.classList.toggle("active", isActive);
+            if (isActive) startTyping(p as HTMLElement);
+          });
+        }
+
+        function startTyping(pane: HTMLElement) {
+          if (activeTyping) activeTyping.cancel();
+
+          const typed = pane.querySelector("[data-typed]") as HTMLElement;
+          if (!typed) return;
+
+          const spans = typed.querySelectorAll("span");
+          let cancelled = false;
+
+          spans.forEach((s) => {
+            (s as HTMLElement).style.opacity = "0";
+            (s as HTMLElement).style.display = "none";
+          });
+
+          async function animate() {
+            for (let i = 0; i < spans.length; i++) {
+              if (cancelled) return;
+              const span = spans[i] as HTMLElement;
+              span.style.display = "inline";
+
+              const text = span.textContent || "";
+              span.textContent = "";
+              span.style.opacity = "1";
+
+              for (let j = 0; j < text.length; j++) {
+                if (cancelled) {
+                  span.textContent = text;
+                  return;
+                }
+                span.textContent += text[j];
+                await new Promise((r) => setTimeout(r, 12));
+              }
+            }
+          }
+
+          activeTyping = {
+            cancel: () => {
+              cancelled = true;
+              spans.forEach((s) => {
+                (s as HTMLElement).style.opacity = "1";
+                (s as HTMLElement).style.display = "inline";
+              });
+            },
+          };
+
+          animate();
+        }
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            switchTab(tab.getAttribute("data-tab") || "");
+          });
+        });
+
+        const firstActive = terminal.querySelector(
+          ".protocol-pane.active",
+        ) as HTMLElement;
+        if (firstActive) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  startTyping(firstActive);
+                  observer.disconnect();
+                }
+              });
+            },
+            { threshold: 0.3 },
+          );
+          observer.observe(terminal);
+        }
+      });
+  });
+</script>

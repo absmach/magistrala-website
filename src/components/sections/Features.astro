@@ -3,6 +3,7 @@ import { FEATURES } from '../../config/site';
 import { FEATURES_CONTENT } from '../../config/home';
 import ScreenshotFrame from '../ui/ScreenshotFrame.astro';
 import FeatureIcon from '../ui/FeatureIcon.astro';
+import ProtocolTerminal from '../ui/ProtocolTerminal.astro';
 ---
 
 <!-- Features header -->
@@ -19,44 +20,20 @@ import FeatureIcon from '../ui/FeatureIcon.astro';
 {FEATURES.map((feature, i) => (
   <div class:list={['feature-band', i % 2 === 1 ? 'feature-band-tinted' : '']}>
     <div class="max-w-7xl mx-auto">
-      <div class:list={['grid lg:grid-cols-2 gap-12 items-center reveal']}>
+      <div class:list={['grid lg:grid-cols-3 gap-12 items-center reveal']}>
         <div class:list={[i % 2 === 1 ? 'lg:order-2' : '']}>
           <FeatureIcon icon={feature.icon} class="mb-4" />
           <h3 class="text-2xl font-semibold mb-3 text-[#04203a]">{feature.title}</h3>
-          <p class="text-neutral-600 leading-relaxed">{feature.description}</p>
+          <p class="text-neutral-600 leading-relaxed text-xl">{feature.description}</p>
         </div>
 
-        <div class:list={[i % 2 === 1 ? 'lg:order-1' : '']}>
+        <div class:list={[i % 2 === 1 ? 'lg:order-1' : '', "col-span-2"]}>
           {feature.visual.type === 'screenshots' && (
             <div class="feature-carousel" data-feature-carousel data-auto="4000">
               <div class="feature-carousel-track">
                 {feature.visual.images.map((img) => (
                   <div class="feature-carousel-slide">
-                    {/* Browser frame */}
-                    {(feature.visual as any).frame === 'browser' && (
-                      <ScreenshotFrame src={img.src} alt={img.alt} />
-                    )}
-                    {/* Dashboard frame */}
-                    {(feature.visual as any).frame === 'dashboard' && (
-                      <div class="dashboard-frame">
-                        <div class="dashboard-frame-sidebar">
-                          <div class="dashboard-frame-sidebar-dot"></div>
-                          <div class="dashboard-frame-sidebar-dot"></div>
-                          <div class="dashboard-frame-sidebar-dot active"></div>
-                          <div class="dashboard-frame-sidebar-dot"></div>
-                          <div class="dashboard-frame-sidebar-dot"></div>
-                        </div>
-                        <div class="dashboard-frame-content">
-                          <img src={img.src} alt={img.alt} loading="lazy" />
-                        </div>
-                      </div>
-                    )}
-                    {/* Floating frame */}
-                    {(feature.visual as any).frame === 'floating' && (
-                      <div class="floating-frame">
-                        <img src={img.src} alt={img.alt} loading="lazy" />
-                      </div>
-                    )}
+                    <ScreenshotFrame src={img.src} alt={img.alt} />
                   </div>
                 ))}
               </div>
@@ -80,36 +57,7 @@ import FeatureIcon from '../ui/FeatureIcon.astro';
           )}
 
           {feature.visual.type === 'protocols' && (
-            <div class="bg-[#f8fafc] rounded-xl border border-neutral-200 p-8">
-              <svg viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
-                <!-- Central hub -->
-                <circle cx="200" cy="140" r="40" fill="#073763" opacity="0.1" />
-                <circle cx="200" cy="140" r="28" fill="#073763" opacity="0.15" style="animation: pulseRing 3s ease-in-out infinite;" />
-                <circle cx="200" cy="140" r="18" fill="#073763" />
-                <text x="200" y="145" text-anchor="middle" fill="white" font-size="10" font-weight="600">MG</text>
-
-                <!-- MQTT -->
-                <circle cx="60" cy="60" r="24" fill="#eff6ff" stroke="#073763" stroke-width="1.5" />
-                <text x="60" y="64" text-anchor="middle" fill="#073763" font-size="9" font-weight="600">MQTT</text>
-                <line x1="84" y1="75" x2="175" y2="125" stroke="#073763" stroke-width="1.5" stroke-dasharray="4 4" style="animation: dataFlow 2s linear infinite;" />
-
-                <!-- CoAP -->
-                <circle cx="340" cy="60" r="24" fill="#eff6ff" stroke="#073763" stroke-width="1.5" />
-                <text x="340" y="64" text-anchor="middle" fill="#073763" font-size="9" font-weight="600">CoAP</text>
-                <line x1="316" y1="75" x2="225" y2="125" stroke="#073763" stroke-width="1.5" stroke-dasharray="4 4" style="animation: dataFlow 2s linear infinite; animation-delay: 0.5s;" />
-
-                <!-- HTTP -->
-                <circle cx="60" cy="220" r="24" fill="#eff6ff" stroke="#073763" stroke-width="1.5" />
-                <text x="60" y="224" text-anchor="middle" fill="#073763" font-size="9" font-weight="600">HTTP</text>
-                <line x1="84" y1="205" x2="175" y2="155" stroke="#073763" stroke-width="1.5" stroke-dasharray="4 4" style="animation: dataFlow 2s linear infinite; animation-delay: 1s;" />
-
-                <!-- WebSocket -->
-                <circle cx="340" cy="220" r="24" fill="#eff6ff" stroke="#073763" stroke-width="1.5" />
-                <text x="340" y="218" text-anchor="middle" fill="#073763" font-size="7" font-weight="600">Web</text>
-                <text x="340" y="228" text-anchor="middle" fill="#073763" font-size="7" font-weight="600">Socket</text>
-                <line x1="316" y1="205" x2="225" y2="155" stroke="#073763" stroke-width="1.5" stroke-dasharray="4 4" style="animation: dataFlow 2s linear infinite; animation-delay: 1.5s;" />
-              </svg>
-            </div>
+            <ProtocolTerminal />
           )}
 
           {feature.visual.type === 'rbac' && (
@@ -262,6 +210,86 @@ import FeatureIcon from '../ui/FeatureIcon.astro';
       carousel.addEventListener('mouseleave', startAuto);
 
       startAuto();
+    });
+
+    // Screenshot hover-to-enlarge using FLIP technique.
+    // The overlay is sized at the ENLARGED dimensions so the image renders
+    // at full resolution (no CSS scale = no blur). A transform shrinks it
+    // to match the original, then animates to identity.
+    const SCALE = 1.3;
+    const overlay = document.createElement('div');
+    overlay.className = 'screenshot-overlay';
+    document.body.appendChild(overlay);
+
+    let activeFrame: HTMLElement | null = null;
+    let hideRaf: number | null = null;
+
+    function showOverlay(frame: HTMLElement) {
+      if (hideRaf) { cancelAnimationFrame(hideRaf); hideRaf = null; }
+
+      const isNewFrame = activeFrame !== frame;
+      activeFrame = frame;
+
+      const rect = frame.getBoundingClientRect();
+
+      // Enlarged dimensions
+      const enlargedW = rect.width * SCALE;
+      const enlargedH = rect.height * SCALE;
+
+      // Centered over the original
+      const enlargedLeft = rect.left - (enlargedW - rect.width) / 2;
+      const enlargedTop = rect.top - (enlargedH - rect.height) / 2;
+
+      if (isNewFrame) {
+        overlay.style.transition = 'none';
+        overlay.classList.remove('active');
+        overlay.innerHTML = frame.innerHTML;
+      }
+
+      // Position at the enlarged size (image renders natively at this size)
+      overlay.style.left = `${enlargedLeft}px`;
+      overlay.style.top = `${enlargedTop}px`;
+      overlay.style.width = `${enlargedW}px`;
+
+      // FLIP: start scaled down to match original, animate to identity
+      const inv = 1 / SCALE;
+      overlay.style.transformOrigin = 'center center';
+      overlay.style.transform = `scale(${inv})`;
+
+      if (isNewFrame) {
+        overlay.offsetHeight; // force layout
+        overlay.style.transition = '';
+      }
+
+      requestAnimationFrame(() => {
+        overlay.style.transform = 'scale(1)';
+        overlay.classList.add('active');
+      });
+    }
+
+    function hideOverlay() {
+      if (!activeFrame) return;
+      const inv = 1 / SCALE;
+      overlay.style.transform = `scale(${inv})`;
+      overlay.classList.remove('active');
+      activeFrame = null;
+    }
+
+    document.querySelectorAll('.screenshot-frame').forEach((frame) => {
+      frame.addEventListener('mouseenter', () => {
+        showOverlay(frame as HTMLElement);
+      });
+      frame.addEventListener('mouseleave', () => {
+        hideRaf = requestAnimationFrame(() => {
+          if (!overlay.matches(':hover')) {
+            hideOverlay();
+          }
+        });
+      });
+    });
+
+    overlay.addEventListener('mouseleave', () => {
+      hideOverlay();
     });
   });
 </script>

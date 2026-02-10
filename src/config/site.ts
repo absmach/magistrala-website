@@ -62,7 +62,7 @@ export const PARTNERS = [
 ] as const;
 
 export type FeatureVisual =
-  | { type: 'screenshots'; images: { src: string; alt: string }[]; frame?: 'browser' | 'dashboard' | 'floating' }
+  | { type: 'screenshots'; images: { src: string; alt: string }[] }
   | { type: 'protocols' }
   | { type: 'rbac' };
 
@@ -88,10 +88,10 @@ export const FEATURES: readonly Feature[] = [
     icon: 'dashboard',
     visual: {
       type: 'screenshots',
-      frame: 'dashboard',
+
       images: [
-        { src: '/screenshots/homepage.png', alt: 'Magistrala dashboard overview with charts and usage metrics' },
-        { src: '/screenshots/homepage.png', alt: 'Magistrala dashboard overview with charts and usage metrics' },
+        { src: '/screenshots/dashboard-1.png', alt: 'Magistrala dashboard overview with charts and usage metrics' },
+        { src: '/screenshots/dashboard-2.png', alt: 'Magistrala dashboard overview with charts and usage metrics' },
       ],
     },
   },
@@ -102,7 +102,7 @@ export const FEATURES: readonly Feature[] = [
     icon: 'rules',
     visual: {
       type: 'screenshots',
-      frame: 'browser',
+
       images: [
         { src: '/screenshots/save-messages.png', alt: 'Visual rules engine pipeline with code editor' },
       ],
@@ -115,7 +115,7 @@ export const FEATURES: readonly Feature[] = [
     icon: 'alarms',
     visual: {
       type: 'screenshots',
-      frame: 'floating',
+
       images: [
         { src: '/screenshots/alarms.png', alt: 'Alarm table with severity, status, and assignee columns' },
       ],
@@ -128,7 +128,7 @@ export const FEATURES: readonly Feature[] = [
     icon: 'tenancy',
     visual: {
       type: 'screenshots',
-      frame: 'dashboard',
+
       images: [
         { src: '/screenshots/group-view.png', alt: 'Group management with hierarchical organization' },
       ],
@@ -148,7 +148,7 @@ export const FEATURES: readonly Feature[] = [
     icon: 'reports',
     visual: {
       type: 'screenshots',
-      frame: 'floating',
+
       images: [
         { src: '/screenshots/homepage.png', alt: 'Reports generation interface' },
       ],
@@ -161,7 +161,7 @@ export const FEATURES: readonly Feature[] = [
     icon: 'tokens',
     visual: {
       type: 'screenshots',
-      frame: 'browser',
+
       images: [
         { src: '/screenshots/send-message.png', alt: 'Send message dialog with protocol selection' },
       ],

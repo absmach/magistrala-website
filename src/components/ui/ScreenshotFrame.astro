@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   src: string;
   alt: string;
@@ -6,6 +8,17 @@ interface Props {
 }
 
 const { src, alt, class: className = '' } = Astro.props;
+
+// Dynamically resolve all screenshots from src/assets/screenshots
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/screenshots/*.{png,jpg,jpeg,webp}',
+  { eager: true }
+);
+
+// Match the config path (e.g. "/screenshots/homepage.png") to the asset
+const filename = src.split('/').pop();
+const assetPath = `/src/assets/screenshots/${filename}`;
+const image = allImages[assetPath]?.default;
 ---
 
 <div class:list={['screenshot-frame', className]}>
@@ -14,5 +27,16 @@ const { src, alt, class: className = '' } = Astro.props;
     <span class="screenshot-frame-dot"></span>
     <span class="screenshot-frame-dot"></span>
   </div>
-  <img src={src} alt={alt} loading="lazy" />
+  {image ? (
+    <Image
+      src={image}
+      alt={alt}
+      widths={[640, 960, 1280, 1920]}
+      sizes="(max-width: 768px) 100vw, 50vw"
+      quality={85}
+      loading="lazy"
+    />
+  ) : (
+    <img src={src} alt={alt} loading="lazy" />
+  )}
 </div>
