@@ -1,5 +1,6 @@
 ---
 import { SOCIAL, CONTACT, CTA_BUTTONS } from "../../config/site";
+import { NEWSLETTER_CONTENT } from "../../config/home";
 import { Image } from "astro:assets";
 import logo from "../../assets/logos/Magistrala_logo_landscape_white.svg";
 ---
@@ -14,9 +15,8 @@ import logo from "../../assets/logos/Magistrala_logo_landscape_white.svg";
           </a>
         </div>
         <p class="text-sm text-blue-200 mb-5 leading-relaxed">
-          Secure, scalable platform for device management,
-          real-time messaging, data processing, and visualization. Self-hosted
-          or cloud-managed.
+          Secure, scalable platform for device management, real-time messaging,
+          data processing, and visualization.
         </p>
         <div class="flex gap-4">
           <a
@@ -122,8 +122,6 @@ import logo from "../../assets/logos/Magistrala_logo_landscape_white.svg";
           <li>
             <a
               href={CTA_BUTTONS.docs.href}
-              target="_blank"
-              rel="noopener noreferrer"
               class="hover:text-white transition-colors"
             >
               Documentation
@@ -153,31 +151,73 @@ import logo from "../../assets/logos/Magistrala_logo_landscape_white.svg";
       </div>
 
       <div>
-        <h5 class="text-lg font-semibold mb-4 text-white">Legal</h5>
-        <ul class="space-y-3 text-sm text-blue-200">
-          <li>
-            <a href="/terms/" class="hover:text-white transition-colors"
-              >Terms of Service</a
-            >
-          </li>
-          <li>
-            <a href="/privacy/" class="hover:text-white transition-colors"
-              >Privacy Policy</a
-            >
-          </li>
-          <li>
-            <a href="/imprint/" class="hover:text-white transition-colors"
-              >Imprint</a
-            >
-          </li>
-        </ul>
+        <h5 class="text-lg font-semibold mb-4 text-white">
+          {NEWSLETTER_CONTENT.heading}
+        </h5>
+        <p class="text-sm text-blue-200 mb-4">
+          {NEWSLETTER_CONTENT.description}
+        </p>
+        <form
+          action={NEWSLETTER_CONTENT.formAction}
+          method="post"
+          target="_blank"
+          class="relative"
+        >
+          <input
+            type="email"
+            name="EMAIL"
+            placeholder={NEWSLETTER_CONTENT.placeholder}
+            required
+            class="w-full px-4 py-2.5 pr-24 text-sm border border-blue-700 bg-[#073763] text-white placeholder-blue-300 rounded-lg focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400"
+          />
+          <div hidden>
+            <input
+              type="hidden"
+              name="tags"
+              value={NEWSLETTER_CONTENT.hiddenTag}
+            />
+          </div>
+          <div style="position: absolute; left: -5000px;" aria-hidden="true">
+            <input
+              type="text"
+              name={NEWSLETTER_CONTENT.honeypotName}
+              tabindex="-1"
+              value=""
+            />
+          </div>
+          <button
+            type="submit"
+            class="absolute right-1 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-white text-[#073763] text-sm font-medium rounded-md hover:bg-blue-50 transition-colors"
+          >
+            {NEWSLETTER_CONTENT.buttonText}
+          </button>
+        </form>
+        <p class="text-xs text-blue-300 mt-3">
+          {NEWSLETTER_CONTENT.disclaimerPrefix}
+          <a href="/privacy" class="underline"
+            >{NEWSLETTER_CONTENT.privacyLinkText}</a
+          >{NEWSLETTER_CONTENT.disclaimerSuffix}
+        </p>
       </div>
     </div>
 
     <div
-      class="mt-10 pt-6 border-t border-blue-800/50 text-sm text-blue-300 text-center"
+      class="mt-10 pt-6 border-t border-blue-800/50 text-sm text-blue-300 flex flex-col md:flex-row justify-between items-center gap-4"
     >
-      &copy; {new Date().getFullYear()} Abstract Machines. All rights reserved.
+      <div>
+        &copy; {new Date().getFullYear()} Abstract Machines. All rights reserved.
+      </div>
+      <div class="flex gap-6 text-blue-200">
+        <a href="/terms" class="hover:text-white transition-colors"
+          >Terms of service</a
+        >
+        <a href="/privacy" class="hover:text-white transition-colors"
+          >Privacy Policy</a
+        >
+        <a href="/imprint" class="hover:text-white transition-colors"
+          >Imprint</a
+        >
+      </div>
     </div>
   </div>
 </footer>

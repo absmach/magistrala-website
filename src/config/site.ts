@@ -44,7 +44,7 @@ export const CTA_BUTTONS = {
   },
   docs: {
     label: "Read the Docs",
-    href: "https://docs.magistrala.absmach.eu/",
+    href: "/docs",
   },
 } as const;
 
