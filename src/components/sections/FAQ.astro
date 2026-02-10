@@ -1,13 +1,13 @@
 ---
-import { FAQ_ITEMS } from '../../config/site';
-import { FAQ_CONTENT } from '../../config/home';
-import AccordionItem from '../ui/AccordionItem.astro';
+import { FAQ_ITEMS } from "../../config/site";
+import { FAQ_CONTENT } from "../../config/home";
+import AccordionItem from "../ui/AccordionItem.astro";
 ---
 
 <section id="faq" class="section-padding bg-white">
   <div class="max-w-3xl mx-auto">
     <div class="text-center mb-14 reveal">
-      <h2 class="mb-4">{FAQ_CONTENT.heading}</h2>
+      <h2 class="mb-4">Frequently asked questions</h2>
     </div>
     {
       FAQ_ITEMS.map((item, i) => (

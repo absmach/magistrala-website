@@ -2,12 +2,13 @@
 interface Props {
   question: string;
   id: string;
+  delay?: number;
 }
 
-const { question, id } = Astro.props;
+const { question, id, delay = 0 } = Astro.props;
 ---
 
-<div class="rounded-xl border border-neutral-200 mb-4 overflow-hidden shadow-soft">
+<div class="rounded-xl border border-neutral-200 mb-4 overflow-hidden shadow-soft reveal" style={`transition-delay: ${delay}ms`}>
   <button
     class="accordion-button w-full text-left px-6 py-4 font-semibold text-lg text-[#073763] hover:bg-neutral-50 transition-colors flex justify-between items-center"
     aria-expanded="false"
@@ -36,21 +37,38 @@ const { question, id } = Astro.props;
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('[data-accordion-button]');
+  // Initialize accordion behavior once. Uses event delegation to ensure a single handler.
+  if (!(window as any).__accordionInit) {
+    (window as any).__accordionInit = true;
+    document.addEventListener('click', (e) => {
+      const target = (e.target as HTMLElement).closest('[data-accordion-button]') as HTMLElement | null;
+      if (!target) return;
+      const id = target.getAttribute('data-accordion-button');
+      const content = document.querySelector(`[data-accordion-content="${id}"]`);
+      const icon = target.querySelector('.accordion-icon');
+      const isExpanded = target.getAttribute('aria-expanded') === 'true';
 
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const id = button.getAttribute('data-accordion-button');
-        const content = document.querySelector(`[data-accordion-content="${id}"]`);
-        const icon = button.querySelector('.accordion-icon');
-        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      if (!isExpanded) {
+        // Close all others
+        document.querySelectorAll('[data-accordion-button]').forEach((b) => {
+          (b as HTMLElement).setAttribute('aria-expanded', 'false');
+          const bid = b.getAttribute('data-accordion-button');
+          const c = document.querySelector(`[data-accordion-content="${bid}"]`);
+          c?.classList.add('hidden');
+          const ic = b.querySelector('.accordion-icon');
+          ic?.classList.remove('rotate-180');
+        });
 
-        // Toggle this accordion
-        button.setAttribute('aria-expanded', (!isExpanded).toString());
-        content?.classList.toggle('hidden');
-        icon?.classList.toggle('rotate-180');
-      });
+        // Open clicked
+        target.setAttribute('aria-expanded', 'true');
+        content?.classList.remove('hidden');
+        icon?.classList.add('rotate-180');
+      } else {
+        // Close clicked
+        target.setAttribute('aria-expanded', 'false');
+        content?.classList.add('hidden');
+        icon?.classList.remove('rotate-180');
+      }
     });
-  });
+  }
 </script>

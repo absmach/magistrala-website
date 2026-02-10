@@ -1,54 +1,202 @@
 ---
-import { USE_CASES } from '../../config/site';
-import { USE_CASES_CONTENT } from '../../config/home';
-import FeatureIcon from '../ui/FeatureIcon.astro';
+
 ---
 
 <section id="use-cases" class="section-angle-top section-padding bg-neutral-50">
   <div class="max-w-7xl mx-auto">
     <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-      <h2 class="mb-4">{USE_CASES_CONTENT.heading}</h2>
+      <h2 class="mb-4">Built for your industry</h2>
       <p class="text-neutral-600">
-        {USE_CASES_CONTENT.description}
+        Magistrala adapts to your domain. From factory floors to smart grids,
+        the platform handles the complexity.
       </p>
     </div>
-    <div class="usecase-carousel reveal" data-usecase-carousel>
-      <div class="usecase-track">
-        {USE_CASES.map((uc) => (
-          <div class="usecase-slide px-3">
-            <div class="rounded-2xl border border-neutral-200 p-8 bg-white shadow-soft h-full flex flex-col">
-              <FeatureIcon icon={uc.icon} class="mb-4" />
-              <h3 class="text-lg font-semibold mb-2 text-[#04203a]">{uc.title}</h3>
-              <p class="text-sm text-neutral-500 leading-relaxed mb-4 flex-1">{uc.summary}</p>
-              <a
-                href={`/use-cases/${uc.slug}/`}
-                class="text-sm font-medium text-[#073763] hover:underline"
-              >
-                {USE_CASES_CONTENT.learnMoreText} &rarr;
-              </a>
+    <div class="relative" data-uc-carousel>
+      <div
+        class="overflow-hidden rounded-2xl border border-neutral-200 bg-white"
+      >
+        <div
+          class="uc-carousel-track flex transition-transform duration-500 ease-in-out"
+        >
+          <!-- Slide 1: Smart Water Metering -->
+          <div class="min-w-full">
+            <div
+              class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center p-6 lg:p-12"
+            >
+              <div class="order-2 lg:order-1">
+                <h3 class="text-2xl lg:text-3xl font-bold mb-4">
+                  Smart Water Metering
+                </h3>
+                <p class="text-base lg:text-lg leading-relaxed mb-6">
+                  Real-time visibility into water networks enabling faster <strong
+                    >leak detection</strong
+                  >, <strong>fraud prevention</strong>, and reduced <strong
+                    >non-revenue water (NRW)</strong
+                  >. Monitor consumption and pressure continuously across your
+                  network with support for <strong>NB-IoT, LoRaWAN</strong>, and
+                  other LPWAN technologies.
+                </p>
+                <a
+                  href="/use-cases/smart-water-metering/"
+                  class="text-sm font-medium text-[#073763] hover:underline"
+                >
+                  Smart water metering use case &rarr;
+                </a>
+              </div>
+              <div class="order-1 lg:order-2">
+                <div
+                  class="rounded-lg overflow-hidden border border-neutral-200"
+                >
+                  <img
+                    src="/screenshots/smart-water.png"
+                    alt="Smart water metering dashboard"
+                    class="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
           </div>
-        ))}
+
+          <!-- Slide 2: Industrial Gateway Integration -->
+          <div class="min-w-full">
+            <div
+              class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center p-6 lg:p-12"
+            >
+              <div class="order-2 lg:order-1">
+                <h3 class="text-2xl lg:text-3xl font-bold mb-4">
+                  Industrial Gateway Integration
+                </h3>
+                <p class="text-base lg:text-lg leading-relaxed mb-6">
+                  Connect legacy industrial equipment to the cloud with support
+                  for <strong>OPC-UA, Modbus, BACnet, and Profinet</strong>.
+                  Enable <strong>predictive maintenance</strong>, remote
+                  monitoring, and operational efficiency through edge-to-cloud
+                  connectivity and protocol translation.
+                </p>
+                <a
+                  href="/use-cases/industrial-gateway/"
+                  class="text-sm font-medium text-[#073763] hover:underline"
+                >
+                  Industrial gateway use case &rarr;
+                </a>
+              </div>
+              <div class="order-1 lg:order-2">
+                <div
+                  class="rounded-lg overflow-hidden border border-neutral-200"
+                >
+                  <img
+                    src="/screenshots/industrial-gateway.png"
+                    alt="Industrial gateway dashboard"
+                    class="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Smart City Solutions -->
+          <div class="min-w-full">
+            <div
+              class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center p-6 lg:p-12"
+            >
+              <div class="order-2 lg:order-1">
+                <h3 class="text-2xl lg:text-3xl font-bold mb-4">
+                  Smart City Solutions
+                </h3>
+                <p class="text-base lg:text-lg leading-relaxed mb-6">
+                  Build intelligent urban infrastructure with connected sensors
+                  and devices. Optimize <strong>traffic management</strong>, <strong
+                    >smart parking</strong
+                  >, <strong>street lighting</strong>, and <strong
+                    >waste management</strong
+                  >. Monitor conditions in real-time and respond to urban
+                  challenges proactively.
+                </p>
+                <a
+                  href="/use-cases/smart-city/"
+                  class="text-sm font-medium text-[#073763] hover:underline"
+                >
+                  Smart city use case &rarr;
+                </a>
+              </div>
+              <div class="order-1 lg:order-2">
+                <div
+                  class="rounded-lg overflow-hidden border border-neutral-200"
+                >
+                  <img
+                    src="/screenshots/smart-city.png"
+                    alt="Smart city dashboard"
+                    class="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flex items-center justify-center gap-4 mt-8">
-        <button class="usecase-prev p-2 rounded-full border border-neutral-200 hover:bg-neutral-100 transition-colors" aria-label="Previous use cases">
-          <svg class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-          </svg>
-        </button>
-        <button class="usecase-next p-2 rounded-full border border-neutral-200 hover:bg-neutral-100 transition-colors" aria-label="Next use cases">
-          <svg class="w-5 h-5 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-          </svg>
-        </button>
+
+      <!-- Prev / Next arrows -->
+      <button
+        class="uc-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full border border-neutral-200 bg-white shadow-sm flex items-center justify-center hover:bg-neutral-50 transition-colors"
+        aria-label="Previous slide"
+      >
+        <svg
+          class="w-5 h-5 text-neutral-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+        </svg>
+      </button>
+      <button
+        class="uc-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full border border-neutral-200 bg-white shadow-sm flex items-center justify-center hover:bg-neutral-50 transition-colors"
+        aria-label="Next slide"
+      >
+        <svg
+          class="w-5 h-5 text-neutral-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+        </svg>
+      </button>
+
+      <!-- Dots -->
+      <div class="flex justify-center gap-2 mt-6">
+        <button
+          class="uc-dot w-2 h-2 rounded-full bg-neutral-300 transition-all duration-200"
+          data-slide="0"
+          aria-label="Go to slide 1"></button>
+        <button
+          class="uc-dot w-2 h-2 rounded-full bg-neutral-300 transition-all duration-200"
+          data-slide="1"
+          aria-label="Go to slide 2"></button>
+        <button
+          class="uc-dot w-2 h-2 rounded-full bg-neutral-300 transition-all duration-200"
+          data-slide="2"
+          aria-label="Go to slide 3"></button>
       </div>
     </div>
+
     <div class="text-center mt-6">
       <a
-        href={USE_CASES_CONTENT.viewAllHref}
+        href="/use-cases/"
         class="text-sm font-medium text-[#073763] hover:underline"
       >
-        {USE_CASES_CONTENT.viewAllText} &rarr;
+        View all use cases &rarr;
       </a>
     </div>
   </div>
@@ -56,45 +204,119 @@ import FeatureIcon from '../ui/FeatureIcon.astro';
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const ucCarousel = document.querySelector('[data-usecase-carousel]');
-    if (!ucCarousel) return;
+    // Feature carousels (auto-advancing with progress bar)
+    document.querySelectorAll('[data-feature-carousel]').forEach((carousel) => {
+      const track = carousel.querySelector('.feature-carousel-track');
+      const dots = carousel.querySelectorAll('.carousel-dot');
+      const progressBar = carousel.querySelector('.carousel-progress-bar');
+      const slideCount = track ? track.children.length : 0;
+      if (!track || slideCount <= 1) return;
 
-    const track = ucCarousel.querySelector('.usecase-track') as HTMLElement;
-    const prevBtn = ucCarousel.querySelector('.usecase-prev');
-    const nextBtn = ucCarousel.querySelector('.usecase-next');
-    let offset = 0;
+      let current = 0;
+      let autoInterval: ReturnType<typeof setInterval> | null = null;
+      let progressStart = 0;
+      let progressRaf: number | null = null;
+      const delay = parseInt(carousel.getAttribute('data-auto') || '4000');
 
-    function getVisibleCount() {
-      if (window.innerWidth >= 1024) return 3;
-      if (window.innerWidth >= 768) return 2;
-      return 1;
-    }
+      function goTo(index: number) {
+        current = index;
+        (track as HTMLElement).style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d) => d.classList.remove('active'));
+        dots[current]?.classList.add('active');
+        resetProgress();
+      }
 
-    function getSlideCount() {
-      return track ? track.children.length : 0;
-    }
+      function next() {
+        goTo((current + 1) % slideCount);
+      }
 
-    function update() {
-      if (!track) return;
-      const pct = 100 / getVisibleCount();
-      track.style.transform = `translateX(-${offset * pct}%)`;
-    }
+      function resetProgress() {
+        progressStart = performance.now();
+        if (!progressRaf) tickProgress();
+      }
 
-    prevBtn?.addEventListener('click', () => {
-      offset = Math.max(0, offset - 1);
-      update();
+      function tickProgress() {
+        if (!progressBar) return;
+        const elapsed = performance.now() - progressStart;
+        const pct = Math.min((elapsed / delay) * 100, 100);
+        (progressBar as HTMLElement).style.width = `${pct}%`;
+        if (pct < 100) {
+          progressRaf = requestAnimationFrame(tickProgress);
+        } else {
+          progressRaf = null;
+        }
+      }
+
+      function startAuto() {
+        stopAuto();
+        resetProgress();
+        autoInterval = setInterval(next, delay);
+      }
+
+      function stopAuto() {
+        if (autoInterval) { clearInterval(autoInterval); autoInterval = null; }
+        if (progressRaf) { cancelAnimationFrame(progressRaf); progressRaf = null; }
+        if (progressBar) (progressBar as HTMLElement).style.width = '0%';
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          goTo(parseInt(dot.getAttribute('data-slide') || '0'));
+          startAuto();
+        });
+      });
+
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', startAuto);
+
+      startAuto();
     });
 
-    nextBtn?.addEventListener('click', () => {
-      const max = getSlideCount() - getVisibleCount();
-      offset = Math.min(max, offset + 1);
-      update();
-    });
+    // Use-case carousel
+    const ucEl = document.querySelector('[data-uc-carousel]');
+    if (ucEl) {
+      const track = ucEl.querySelector('.uc-carousel-track');
+      const dots = ucEl.querySelectorAll('.uc-dot');
+      const prevBtn = ucEl.querySelector('.uc-prev');
+      const nextBtn = ucEl.querySelector('.uc-next');
+      const slideCount = track ? track.children.length : 0;
+      if (!track || slideCount <= 1) return;
 
-    window.addEventListener('resize', () => {
-      const max = getSlideCount() - getVisibleCount();
-      offset = Math.min(Math.max(0, offset), Math.max(0, max));
-      update();
-    });
+      let current = 0;
+      let autoTimer: ReturnType<typeof setInterval> | null = null;
+      const AUTO_DELAY = 6000;
+
+      function goTo(i: number) {
+        current = ((i % slideCount) + slideCount) % slideCount;
+        (track as HTMLElement).style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d) => d.classList.remove('active'));
+        dots[current]?.classList.add('active');
+      }
+
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(() => goTo(current + 1), AUTO_DELAY);
+      }
+
+      function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      }
+
+      prevBtn?.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+      nextBtn?.addEventListener('click', () => { goTo(current + 1); startAuto(); });
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          goTo(parseInt(dot.getAttribute('data-slide') || '0'));
+          startAuto();
+        });
+      });
+
+      ucEl.addEventListener('mouseenter', stopAuto);
+      ucEl.addEventListener('mouseleave', startAuto);
+
+      goTo(0);
+      startAuto();
+    }
   });
 </script>
+

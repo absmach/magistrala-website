@@ -1,0 +1,341 @@
+---
+import BaseLayout from "../../components/layout/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import FeatureIcon from "../../components/ui/FeatureIcon.astro";
+import { USE_CASES, CTA_BUTTONS } from "../../config/site";
+import ColdStorageFlowchart from "@/components/usecases/industrial-integration-flowchart";
+import { SmartStreetlightFlowchart } from "@/components/usecases/smart-city-flowchart";
+import SmartWaterFlowchart from "@/components/usecases/smart-water-flowchart";
+import Threads from "@/components/Threads"
+import "@/components/Threads.css"
+
+
+export function getStaticPaths() {
+  return USE_CASES.map((uc) => ({
+    params: { slug: uc.slug },
+    props: { useCase: uc },
+  }));
+}
+
+const { useCase } = Astro.props;
+
+---
+
+<BaseLayout
+  title={`${useCase.title} — Magistrala IoT Platform`}
+  description={useCase.summary}
+>
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="section-padding bg-white">
+      <div class="max-w-7xl mx-auto">
+        <a href="/use-cases/" class="text-sm text-neutral-500 hover:text-[#073763] mb-6 inline-block">&larr; All use cases</a>
+
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <FeatureIcon icon={useCase.icon} />
+              <h1 class="text-4xl lg:text-5xl font-bold text-[#073763]">{useCase.title}</h1>
+            </div>
+            <p class="text-xl text-neutral-600 leading-relaxed font-medium max-w-3xl mb-8">
+              {useCase.description}
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <a
+                href={CTA_BUTTONS.primary.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-6 py-3 bg-[#073763] text-white font-semibold rounded-lg hover:bg-[#0a4a7a] transition-colors"
+              >
+                Live Demo
+              </a>
+              <a
+                href={CTA_BUTTONS.secondary.href}
+                class="px-6 py-3 border-2 border-[#073763] text-[#073763] font-semibold rounded-lg hover:bg-[#073763] hover:text-white transition-colors"
+              >
+                Talk to an Expert
+              </a>
+            </div>
+          </div>
+
+          {useCase.dashboard?.image && (
+            <div class="screenshot-frame">
+              <div class="screenshot-frame-bar">
+                <span class="screenshot-frame-dot" />
+                <span class="screenshot-frame-dot" />
+                <span class="screenshot-frame-dot" />
+              </div>
+              <img
+                src={useCase.dashboard.image}
+                alt={useCase.dashboard.alt || useCase.title}
+                loading="eager"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="relative section-padding overflow-hidden">
+       Threads background 
+      <div class="absolute inset-0 z-0">
+         <div class="absolute inset-0 opacity-40"> 
+          <Threads
+            client:load
+            color={[0, 0, 0]}
+amplitude={2}
+distance={0.3}
+            enableMouseInteraction={false}
+          />
+         </div> 
+
+         Contrast overlay 
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white/95 backdrop-blur-sm"
+        >
+        </div>
+      </div>
+
+       Content 
+      <div class="relative z-10 max-w-7xl mx-auto">
+        <a
+          href="/use-cases/"
+          class="text-sm text-neutral-600 hover:text-[#073763] mb-6 inline-block"
+        >
+          &larr; All use cases
+        </a>
+
+        <div class="flex items-center gap-4 mb-6">
+          <FeatureIcon icon={useCase.icon} />
+          <h1 class="text-4xl lg:text-5xl font-bold text-[#073763]">
+            {useCase.title}
+          </h1>
+        </div>
+
+        <p
+          class="text-xl text-neutral-700 leading-relaxed font-medium max-w-3xl mb-8"
+        >
+          {useCase.description}
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a
+            href={CTA_BUTTONS.primary.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 bg-[#073763] text-white font-semibold rounded-lg hover:bg-[#0a4a7a] transition-colors"
+          >
+            Live Demo
+          </a>
+
+          <a
+            href={CTA_BUTTONS.secondary.href}
+            class="px-6 py-3 border-2 border-[#073763] text-[#073763] font-semibold rounded-lg hover:bg-[#073763] hover:text-white transition-colors"
+          >
+            Talk to an Expert
+          </a>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Challenges — "Here's the problem" -->
+    {
+      useCase.challenges && (
+        <section class="section-padding bg-neutral-50 border-t border-neutral-100">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl lg:text-3xl font-bold text-[#073763] mb-4">
+                {useCase.challenges.title}
+              </h2>
+              <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+                {useCase.challenges.subtitle}
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+              {useCase.challenges.items.map((item) => (
+                <div class="p-6 bg-white rounded-xl border border-neutral-200 hover:shadow-lg transition-shadow">
+                  <div class="w-12 h-12 bg-[#eff6ff] rounded-lg flex items-center justify-center mb-4">
+                    <i class={`${item.icon} text-[#073763] text-xl`} />
+                  </div>
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    {item.title}
+                  </h3>
+                  <p class="text-neutral-600 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- How It Works -->
+    <section class="section-padding bg-white border-t border-neutral-100">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <!-- Left: Flowchart -->
+          <div class="rounded-xl border border-neutral-200 overflow-hidden">
+            {useCase.slug === "smart-water-metering" && <SmartWaterFlowchart client:load />}
+            {useCase.slug === "smart-city" && <SmartStreetlightFlowchart client:load />}
+            {useCase.slug === "industrial-gateway" && <ColdStorageFlowchart client:load />}
+          </div>
+
+          <!-- Right: Text -->
+          <div>
+            <h2 class="text-2xl lg:text-3xl font-bold text-[#073763] mb-6">
+              How It Works
+            </h2>
+            {
+              useCase.howItWorks && (
+                <ol class="space-y-5">
+                  {useCase.howItWorks.steps.map((step, i) => (
+                    <li class="flex gap-4">
+                      <span class="shrink-0 w-8 h-8 rounded-full bg-[#073763] text-white text-sm font-bold flex items-center justify-center">
+                        {i + 1}
+                      </span>
+                      <div>
+                        <h3 class="font-semibold text-neutral-900 mb-1">
+                          {step.title}
+                        </h3>
+                        <p class="text-sm text-neutral-500 leading-relaxed">
+                          {step.desc}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard — "See it in action" -->
+    {
+      useCase.dashboard && (
+        <section class="section-padding bg-neutral-50 border-t border-neutral-100">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl lg:text-3xl font-bold text-[#073763] mb-4">
+                {useCase.dashboard.title}
+              </h2>
+              <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+                {useCase.dashboard.subtitle}
+              </p>
+            </div>
+            <div class="screenshot-frame">
+              <div class="screenshot-frame-bar">
+                <span class="screenshot-frame-dot" />
+                <span class="screenshot-frame-dot" />
+                <span class="screenshot-frame-dot" />
+              </div>
+              <img
+                src={useCase.dashboard.image}
+                alt={useCase.dashboard.alt}
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Applications — "What you can do" -->
+    {
+      useCase.applications && (
+        <section class="section-padding bg-white border-t border-neutral-100">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-2xl lg:text-3xl font-bold text-[#073763] mb-4">
+                {useCase.applications.title}
+              </h2>
+              <p class="text-lg text-neutral-600 max-w-2xl mx-auto">
+                {useCase.applications.subtitle}
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {useCase.applications.items.map((item) => (
+                <div class="p-6 bg-neutral-50 rounded-xl border border-neutral-200 hover:shadow-lg transition-shadow">
+                  <div class="w-12 h-12 bg-[#eff6ff] rounded-lg flex items-center justify-center mb-4">
+                    <i class={`${item.icon} text-[#073763] text-xl`} />
+                  </div>
+                  <h3 class="text-lg font-semibold text-neutral-900 mb-2">
+                    {item.title}
+                  </h3>
+                  <p class="text-neutral-600 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Benefits — "What you gain" -->
+    <section class="section-padding bg-neutral-50 border-t border-neutral-100">
+      <div class="max-w-3xl mx-auto">
+        <h2
+          class="text-2xl lg:text-3xl font-bold mb-8 text-center text-[#073763]"
+        >
+          Key Benefits
+        </h2>
+        <ul class="space-y-4">
+          {
+            useCase.benefits.map((b: string) => (
+              <li class="flex items-start gap-3 text-neutral-700 font-medium">
+                <svg
+                  class="w-5 h-5 mt-0.5 shrink-0 text-[#073763]"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                {b}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- CTA — "Ready to get started?" -->
+    <section class="section-padding bg-white border-t border-neutral-100">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl lg:text-3xl font-bold text-[#073763] mb-4">
+          Ready to get started?
+        </h2>
+        <p class="text-lg text-neutral-600 mb-8">
+          Try Magistrala free on our managed cloud, or get in touch to discuss
+          your deployment.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a
+            href={CTA_BUTTONS.primary.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-8 py-3 bg-[#073763] text-white font-semibold rounded-lg hover:bg-[#0a4a7a] transition-colors"
+          >
+            Try Magistrala
+          </a>
+          <a
+            href={CTA_BUTTONS.secondary.href}
+            class="px-8 py-3 border-2 border-[#073763] text-[#073763] font-semibold rounded-lg hover:bg-[#073763] hover:text-white transition-colors"
+          >
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
