@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import { PARTNERS } from '../../config/site';
+import { PARTNERS_CONTENT } from '../../config/home';
+
+const partnerImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partners/*.{png,jpg,jpeg,svg}');
+
+const loadedImages = await Promise.all(
+  PARTNERS.map(async (partner) => {
+    const filename = partner.src.split('/').pop();
+    const imagePath = `/src/assets/partners/${filename}`;
+    const imageModule = await partnerImages[imagePath]?.();
+    return { partner, image: imageModule?.default };
+  })
+);
+---
+
+<section class="py-10 px-4 border-t border-neutral-100 bg-neutral-50 overflow-hidden">
+  <p class="text-center text-sm text-neutral-400 uppercase tracking-wide font-medium mb-8">{PARTNERS_CONTENT.heading}</p>
+  <div class="marquee-track">
+    {[...loadedImages, ...loadedImages].map(({ partner, image }) => {
+      if (!image) return null;
+
+      return (
+        <div class="shrink-0 px-8">
+          <Image
+            src={image}
+            alt={partner.name}
+            height={partner.height}
+            class="partner-logo w-auto max-w-30 object-contain"
+          />
+        </div>
+      );
+    })}
+  </div>
+</section>

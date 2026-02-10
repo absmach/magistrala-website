@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import Partners from '../components/sections/Partners.astro';
+import Features from '../components/sections/Features.astro';
+import WhyMagistrala from '../components/sections/WhyMagistrala.astro';
+import Deployments from '../components/sections/Deployments.astro';
+import UseCases from '../components/sections/UseCases.astro';
+import SuccessStories from '../components/sections/SuccessStories.astro';
+import Pricing from '../components/sections/Pricing.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import CTASection from '../components/sections/CTASection.astro';
+---
+
+<BaseLayout>
+  <Header />
+
+  <main>
+    <Hero />
+    <Partners />
+    <Features />
+    <WhyMagistrala />
+    <Deployments />
+    <UseCases />
+    <SuccessStories />
+    <Pricing />
+    <FAQ />
+    <CTASection />
+  </main>
+
+  <Footer />
+
+  <!-- Scroll to top -->
+  <button id="scroll-top" class="scroll-top-btn" aria-label="Scroll to top">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>
+  </button>
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    revealEls.forEach((el) => revealObserver.observe(el));
+
+    // Scroll to top
+    const scrollBtn = document.getElementById('scroll-top');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        scrollBtn.classList.toggle('visible', window.scrollY > 600);
+      });
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  });
+</script>

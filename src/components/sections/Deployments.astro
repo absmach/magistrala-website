@@ -1,0 +1,49 @@
+---
+import { DEPLOYMENTS_CONTENT } from '../../config/home';
+---
+
+<section class="section-padding bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-10 reveal">
+      <h2 class="mb-4">{DEPLOYMENTS_CONTENT.heading}</h2>
+      <p class="text-neutral-600">
+        {DEPLOYMENTS_CONTENT.description}
+      </p>
+    </div>
+    <div class="deployments-container reveal">
+      <div id="deployments-loading" class="deployments-loading">
+        <div class="deployments-spinner"></div>
+        {DEPLOYMENTS_CONTENT.loadingText}
+      </div>
+      <iframe
+        id="deployments-frame"
+        title="Magistrala Deployments Dashboard"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <div class="text-center mt-6">
+      <a
+        href={DEPLOYMENTS_CONTENT.linkUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm font-medium text-[#073763] hover:underline"
+      >
+        {DEPLOYMENTS_CONTENT.linkText} &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { DEPLOYMENTS_CONTENT } from '../../config/home';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const frame = document.getElementById('deployments-frame') as HTMLIFrameElement;
+    const loading = document.getElementById('deployments-loading');
+    if (frame && loading) {
+      frame.src = DEPLOYMENTS_CONTENT.iframeUrl;
+      frame.onload = () => { loading.style.display = 'none'; };
+      setTimeout(() => { loading.style.display = 'none'; }, 10000);
+    }
+  });
+</script>

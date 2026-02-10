@@ -1,0 +1,110 @@
+---
+import { FEATURES } from '../../config/site';
+import { FEATURES_CONTENT } from '../../config/home';
+import ScreenshotFrame from '../ui/ScreenshotFrame.astro';
+import FeatureIcon from '../ui/FeatureIcon.astro';
+import ProtocolTerminal from '../ui/ProtocolTerminal.astro';
+import { Image } from 'astro:assets';
+import authzedLogo from '../../assets/logos/authzed.svg';
+import oauthLogo from '../../assets/logos/oauth-2.png';
+import jwtLogo from '../../assets/logos/jwt.png';
+---
+
+<!-- Features header -->
+<section id="features" class="section-padding bg-white pb-0">
+  <div class="max-w-2xl mx-auto text-center reveal">
+    <h2 class="mb-4">{FEATURES_CONTENT.heading}</h2>
+    <p class="text-neutral-600">
+      {FEATURES_CONTENT.description}
+    </p>
+  </div>
+</section>
+
+<!-- Feature bands -->
+{FEATURES.map((feature, i) => {
+  const visual = feature.visual;
+  return (
+  <div class:list={['feature-band', i % 2 === 1 ? 'feature-band-tinted' : '']}>
+    <div class="max-w-7xl mx-auto">
+      <div class:list={['grid lg:grid-cols-12 gap-16 lg:gap-24 items-center reveal']}>
+        <!-- Text Column -->
+        <div class:list={[i % 2 === 1 ? 'lg:order-2 lg:col-span-5' : 'lg:col-span-5']}>
+        <div class="flex flex-row items-center gap-4">
+            <FeatureIcon icon={feature.icon} class="mb-4" />
+          <h3 class="text-3xl! font-semibold mb-3 text-[#04203a]">{feature.title}</h3>
+        </div>
+          <p class="text-neutral-600 leading-relaxed text-xl">{feature.description}</p>
+        </div>
+
+        <!-- Visual Column -->
+        <div class:list={[i % 2 === 1 ? 'lg:order-1 lg:col-span-7' : 'lg:col-span-7']}>
+          {visual.type === 'screenshots' && (
+            <div class="flex flex-col">
+              {visual.images.map((img, j) => (
+                <div class:list={[
+                  'transform transition-all duration-500 shadow-2xl rounded-xl -translate-y-2',
+                  visual.images.length > 1 && j > 0 ? '-mt-24 lg:-mt-32' : '',
+                  visual.images.length > 1 && j % 2 !== 0 ? 'lg:translate-x-12 z-10' : 'z-0',
+                  visual.images.length > 1 && j % 2 === 0 && j > 0 ? 'lg:-translate-x-12' : ''
+                ]}>
+                  <ScreenshotFrame src={img.src} alt={img.alt} />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {visual.type === 'protocols' && (
+            <ProtocolTerminal />
+          )}
+
+          {visual.type === 'rbac' && (
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl border border-blue-100 p-12 shadow-lg">
+              <div class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16">
+                <!-- SpiceDB -->
+                <div class="flex flex-col items-center gap-4 group">
+                  <div class="w-20 h-20 bg-[#F4F4F6] rounded-2xl flex items-center justify-center shadow-sm border border-neutral-100 group-hover:scale-110 transition-transform duration-300 p-4">
+                    <Image src={authzedLogo} alt="AuthZed Logo" class="w-full h-full object-contain" />
+                  </div>
+                  <span class="font-semibold text-neutral-700">SpiceDB</span>
+                </div>
+
+                <!-- Plus / Connector -->
+                <div class="text-blue-200">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </div>
+
+                <!-- OAuth2 -->
+                <div class="flex flex-col items-center gap-4 group">
+                  <div class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-neutral-100 group-hover:scale-110 transition-transform duration-300 p-4">
+                     <Image src={oauthLogo} alt="OAuth2 Logo" class="w-full h-full object-contain" />
+                  </div>
+                  <span class="font-semibold text-neutral-700">OAuth2.0</span>
+                </div>
+
+                <!-- Plus / Connector -->
+                <div class="text-blue-200">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </div>
+
+                <!-- Zanzibar/JWT -->
+                <div class="flex flex-col items-center gap-4 group">
+                  <div class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-neutral-100 group-hover:scale-110 transition-transform duration-300 p-4">
+                    <Image src={jwtLogo} alt="JWT Logo" class="w-full h-full object-contain" />
+                  </div>
+                  <span class="font-semibold text-neutral-700">JWT</span>
+                </div>
+              </div>
+              
+              <div class="mt-8 text-center">
+                <p class="text-sm text-neutral-500 bg-white/50 inline-block px-4 py-1.5 rounded-full border border-blue-50">
+                  Secure, scalable permissions inspired by Google Zanzibar
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+)})}
+

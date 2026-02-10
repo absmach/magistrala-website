@@ -1,0 +1,56 @@
+---
+interface Props {
+  question: string;
+  id: string;
+}
+
+const { question, id } = Astro.props;
+---
+
+<div class="rounded-xl border border-neutral-200 mb-4 overflow-hidden shadow-soft">
+  <button
+    class="accordion-button w-full text-left px-6 py-4 font-semibold text-lg text-[#073763] hover:bg-neutral-50 transition-colors flex justify-between items-center"
+    aria-expanded="false"
+    aria-controls={`accordion-${id}`}
+    data-accordion-button={id}
+  >
+    <span>{question}</span>
+    <svg
+      class="accordion-icon w-6 h-6 transition-transform"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+  <div
+    id={`accordion-${id}`}
+    class="accordion-content hidden px-6 py-4 bg-neutral-50 border-t border-neutral-200"
+    data-accordion-content={id}
+  >
+    <div class="text-base text-neutral-600">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('[data-accordion-button]');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.getAttribute('data-accordion-button');
+        const content = document.querySelector(`[data-accordion-content="${id}"]`);
+        const icon = button.querySelector('.accordion-icon');
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+        // Toggle this accordion
+        button.setAttribute('aria-expanded', (!isExpanded).toString());
+        content?.classList.toggle('hidden');
+        icon?.classList.toggle('rotate-180');
+      });
+    });
+  });
+</script>

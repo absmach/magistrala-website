@@ -1,0 +1,118 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/logos/Magistrala_logo_landscape_black.svg';
+import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-100">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <div class="shrink-0">
+        <a href="/" class="block">
+          <Image
+            src={logo}
+            alt="Magistrala"
+            class="h-12 w-auto"
+            loading="eager"
+          />
+        </a>
+      </div>
+
+      <div class="hidden lg:flex lg:items-center lg:gap-8">
+        {
+          NAV_ITEMS.map((item) => (
+            <a
+              href={item.href}
+              class="text-base font-medium text-neutral-600 hover:text-[#073763] transition-colors"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a
+          href={CTA_BUTTONS.docs.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-base font-medium text-neutral-600 hover:text-[#073763] transition-colors"
+        >
+          Docs
+        </a>
+        <a
+          href={CTA_BUTTONS.primary.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-6 py-2.5 bg-[#073763] text-white text-base font-medium rounded-lg hover:bg-[#0a4a7a] transition-colors"
+        >
+          {CTA_BUTTONS.primary.label}
+        </a>
+      </div>
+
+      <div class="lg:hidden">
+        <button
+          id="mobile-menu-button"
+          type="button"
+          class="p-2 text-neutral-600 hover:text-[#073763]"
+          aria-label="Toggle mobile menu"
+        >
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden pb-4 border-t border-neutral-100 mt-2">
+      <div class="flex flex-col gap-3 pt-4">
+        {
+          NAV_ITEMS.map((item) => (
+            <a
+              href={item.href}
+              class="text-base font-medium text-neutral-600 hover:text-[#073763] transition-colors mobile-menu-link"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a
+          href={CTA_BUTTONS.docs.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-base font-medium text-neutral-600 hover:text-[#073763] transition-colors mobile-menu-link"
+        >
+          Docs
+        </a>
+        <a
+          href={CTA_BUTTONS.primary.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-6 py-3 bg-[#073763] text-white text-base font-medium rounded-lg text-center"
+        >
+          {CTA_BUTTONS.primary.label}
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="h-20"></div>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  document.querySelectorAll('.mobile-menu-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+      mobileMenu?.classList.add('hidden');
+    }
+  });
+</script>

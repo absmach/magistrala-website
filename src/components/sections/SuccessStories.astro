@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import { SUCCESS_STORIES } from '../../config/site';
+import { SUCCESS_STORIES_CONTENT } from '../../config/home';
+import Card from '../ui/Card.astro';
+
+const partnerLogos = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partners/*.{png,jpg,jpeg,svg}');
+---
+
+<section class="section-padding bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <h2 class="mb-4">{SUCCESS_STORIES_CONTENT.heading}</h2>
+      <p class="text-neutral-600">
+        {SUCCESS_STORIES_CONTENT.description}
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      {
+        SUCCESS_STORIES.map((story) => {
+          const filename = story.logo.split('/').pop();
+          const imagePath = `/src/assets/partners/${filename}`;
+          const image = partnerLogos[imagePath]?.default;
+          
+          if (!image) return null;
+
+          return (
+            <Card>
+              <div class="flex items-center justify-center h-16 mb-4">
+                <Image
+                  src={image}
+                  alt={`${story.company} logo`}
+                  class="max-h-full max-w-40 w-auto object-contain"
+                />
+              </div>
+              <p class="text-sm text-neutral-600 leading-relaxed mb-4">{story.description}</p>
+              <a
+                href={story.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-medium text-[#073763] hover:underline"
+              >
+                {story.linkText} &rarr;
+              </a>
+            </Card>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

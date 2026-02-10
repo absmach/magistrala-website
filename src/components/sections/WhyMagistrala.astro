@@ -1,0 +1,36 @@
+---
+import { WHY_MAGISTRALA_CONTENT } from "../../config/home";
+---
+
+<section class="section-angle-top section-padding bg-neutral-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+      <h2 class="mb-4">{WHY_MAGISTRALA_CONTENT.heading}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      {
+        WHY_MAGISTRALA_CONTENT.items.map((item, index) => (
+          <div class="text-center reveal p-3 rounded-lg shadow">
+            <div class="size-20 mx-auto mb-4 flex items-center justify-center rounded-lg bg-[#eff6ff]">
+              <svg
+                class="size-12 text-[#073763]"
+                fill={index === 0 ? "currentColor" : "none"}
+                stroke={index === 0 ? "none" : "currentColor"}
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d={item.iconPath}
+                />
+              </svg>
+            </div>
+            <h3 class="font-semibold mb-2">{item.title}</h3>
+            <p class="text-md text-neutral-500">{item.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
