@@ -6,13 +6,13 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-100">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
+    <div class="flex items-center justify-between h-20">
       <div class="shrink-0">
         <a href="/" class="block">
           <Image
             src={logo}
             alt="Magistrala"
-            class="h-10 w-auto"
+            class="h-12 w-auto"
             loading="eager"
           />
         </a>
@@ -23,7 +23,7 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
           NAV_ITEMS.map((item) => (
             <a
               href={item.href}
-              class="text-sm font-medium text-neutral-600 hover:text-[#073763] transition-colors"
+              class="text-base font-medium text-neutral-600 hover:text-[#073763] transition-colors"
             >
               {item.label}
             </a>
@@ -33,7 +33,7 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
           href={CTA_BUTTONS.docs.href}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-sm font-medium text-neutral-600 hover:text-[#073763] transition-colors"
+          class="text-base font-medium text-neutral-600 hover:text-[#073763] transition-colors"
         >
           Docs
         </a>
@@ -41,7 +41,7 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
           href={CTA_BUTTONS.primary.href}
           target="_blank"
           rel="noopener noreferrer"
-          class="px-5 py-2 bg-[#073763] text-white text-sm font-medium rounded-lg hover:bg-[#0a4a7a] transition-colors"
+          class="px-6 py-2.5 bg-[#073763] text-white text-base font-medium rounded-lg hover:bg-[#0a4a7a] transition-colors"
         >
           {CTA_BUTTONS.primary.label}
         </a>
@@ -67,7 +67,7 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
           NAV_ITEMS.map((item) => (
             <a
               href={item.href}
-              class="text-sm font-medium text-neutral-600 hover:text-[#073763] transition-colors mobile-menu-link"
+              class="text-base font-medium text-neutral-600 hover:text-[#073763] transition-colors mobile-menu-link"
             >
               {item.label}
             </a>
@@ -77,7 +77,7 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
           href={CTA_BUTTONS.docs.href}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-sm font-medium text-neutral-600 hover:text-[#073763] transition-colors mobile-menu-link"
+          class="text-base font-medium text-neutral-600 hover:text-[#073763] transition-colors mobile-menu-link"
         >
           Docs
         </a>
@@ -85,7 +85,7 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
           href={CTA_BUTTONS.primary.href}
           target="_blank"
           rel="noopener noreferrer"
-          class="px-5 py-2.5 bg-[#073763] text-white text-sm font-medium rounded-lg text-center"
+          class="px-6 py-3 bg-[#073763] text-white text-base font-medium rounded-lg text-center"
         >
           {CTA_BUTTONS.primary.label}
         </a>
@@ -94,7 +94,7 @@ import { NAV_ITEMS, CTA_BUTTONS } from '../../config/site';
   </nav>
 </header>
 
-<div class="h-16"></div>
+<div class="h-20"></div>
 
 <script>
   const mobileMenuButton = document.getElementById('mobile-menu-button');
