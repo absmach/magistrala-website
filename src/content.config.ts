@@ -7,6 +7,8 @@ const docs = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     icon: z.string().optional(),
+    image: z.string().optional(),
+    keywords: z.array(z.string()).optional(),
   }),
 });
 

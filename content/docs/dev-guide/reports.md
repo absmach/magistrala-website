@@ -23,7 +23,7 @@ The Reports Service operates through three main components:
 2. **Scheduler**: Handles recurring report generation based on defined schedules.
 3. **Generator Engine**: Generates human-readable reports in various formats..
 
-![reports_architecture](../diagrams/reports_architecture.svg)
+![reports_architecture](/img/docs/diagrams/reports_architecture.svg)
 
 ## Reports Service Architecture
 

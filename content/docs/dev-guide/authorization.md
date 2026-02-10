@@ -330,7 +330,7 @@ Users can have any one of the following relations with a domain
 
 **Let's take the below domain_1 with entities for explaining about user domain relationship.**
 
-![domain_users](../diagrams/domain_users.svg)
+![domain_users](/img/docs/diagrams/domain_users.svg)
 
 ### Domain Administrator
 
@@ -339,7 +339,7 @@ Users with administrator relations have full control over all entities (clients,
 **Example:**
 **user_1** is **administrator** of **domain_1**. **user_1 can view all entities created by others and have administrator access to all entities in the domain**.
 
-![domain_users_administrator](../diagrams/domain_users_administrator.svg)
+![domain_users_administrator](/img/docs/diagrams/domain_users_administrator.svg)
 
 ### Domain Editor
 
@@ -348,7 +348,7 @@ Users with editor relations have access to update all entities (clients, channel
 **Example:**
 **user_2** is **editor** of **domain_1**. **user_2 can view all entities and have edit access to groups and channel entities, view access to client entities in the domain, and also able to create & manage new clients, channels & groups**.
 
-![domain_users_editor](../diagrams/domain_users_editor.svg)
+![domain_users_editor](/img/docs/diagrams/domain_users_editor.svg)
 
 ### Domain Viewer
 
@@ -357,7 +357,7 @@ Users with viewer relations have access to view all entities (clients, channels,
 **Example:**
 **user_3 can only view entities that are created by others in the domain and <span style={{ color:'blue' }}>also able to create & manage new clients, channels & groups</span>**
 
-![domain_users_viewer](../diagrams/domain_users_viewer.svg)
+![domain_users_viewer](/img/docs/diagrams/domain_users_viewer.svg)
 
 ### Domain Member
 
@@ -368,7 +368,7 @@ Domain members will not have access by default to any of the entities in the Dom
 **user_4 , user_5, user_6, user_7, user_8, user_9** is **member** of **domain_1**. **These member relation users can able to create & manage new clients, channels & groups in the domain. They can have access to the entities to which they have a relation in the domain. They could not view and manage other entities to which they don't have any relation in domain**.
 !!! note "Note: All other users having administrator, editor, viewer relation with domain will also have member relation inherit with domain, which allows them to create new clients, channels & groups."
 
-![domain_users_member](../diagrams/domain_users_member.svg)
+![domain_users_member](/img/docs/diagrams/domain_users_member.svg)
 
 After the user sign-up to Magistrala, the user is allowed to create a new domain or join an existing domain via invitations, without domain user could not create _clients_, _channels_, _groups_.
 
@@ -676,7 +676,7 @@ EOF
 The user who creates the entity will be the administrator of the entity by default.
 So **user_3** is **administrator** of **client_101, channel_101 and group_101.**
 
-![group_users_administrator_1](../diagrams/group_users_administrator_1.svg)
+![group_users_administrator_1](/img/docs/diagrams/group_users_administrator_1.svg)
 
 !!! Note "user_3 will also have domain viewer relation to client_101, channel_101, and group_101"
 
@@ -704,7 +704,7 @@ curl -sSiX POST 'http://localhost/channels/<channel_101_id>/groups/assign' -H "C
 EOF
 ```
 
-![group_users_administrator_2](../diagrams/group_users_administrator_2.svg)
+![group_users_administrator_2](/img/docs/diagrams/group_users_administrator_2.svg)
 
 **Members of domain 1 will not have access by default to any of the entities in domain 1, access shall be granted for specific entities by domain administrator or individual entity administrator.**
 
@@ -721,7 +721,7 @@ curl -sSiX POST 'http://localhost/domains/<DOMINA_1_ID>/users/assign'  -H "Conte
 }
 ```
 
-![group_users_administrator_3](../diagrams/group_users_administrator_3.svg)
+![group_users_administrator_3](/img/docs/diagrams/group_users_administrator_3.svg)
 
 ### Group Editor
 
@@ -730,7 +730,7 @@ Group editor users have access to view, update, assign, and unassign to the grou
 **Administrator of group_101 (user_3/user_4), assigns user_5 with editor relation.**
 **When domain member user_5 becomes an editor of group_101, user_5 can able to update, assign, and unassign to group_101. Since group_101 has channel_101 and client_101 as children. The user_5 has editor access to the group child entities channels, clients, and groups. In this case, user_5 has editor access to group_101, and also has edit access to its child entities channel_101 and client_101**
 
-![group_users_editor](../diagrams/group_users_editor.svg)
+![group_users_editor](/img/docs/diagrams/group_users_editor.svg)
 
 ### Group Viewer
 
@@ -738,7 +738,7 @@ Group viewer users have access to view group and also have access to view all of
 
 **When domain member user_6 becomes a viewer of group_101, user_6 can able to view all the child and nested child entities in group_101. user_6 can assign child entities under group_101 and also assign child entities under any other group and channels that are children of group_101.**
 
-![group_users_viewer](../diagrams/group_users_viewer.svg)
+![group_users_viewer](/img/docs/diagrams/group_users_viewer.svg)
 
 ## Examples
 
@@ -746,37 +746,37 @@ Group viewer users have access to view group and also have access to view all of
 
 user_6 creates new channel and client with the names channel_201 and client_201 respectively. Then connects both channel_201 and client_201.
 
-![group_users_viewer_1](../diagrams/group_users_viewer_1.svg)
+![group_users_viewer_1](/img/docs/diagrams/group_users_viewer_1.svg)
 
 Now user_5 can able to assign group_101 as a parent for channel_201
 
-![group_users_viewer_2](../diagrams/group_users_viewer_2.svg)
+![group_users_viewer_2](/img/docs/diagrams/group_users_viewer_2.svg)
 
 When channel_201 was assigned as a child of group_101, all the administrators, editors, and viewers of group_101 got the same access (relation) to channel_201 and client_201
 
-![group_users_viewer_3](../diagrams/group_users_viewer_3.svg)
+![group_users_viewer_3](/img/docs/diagrams/group_users_viewer_3.svg)
 
 ### Multiple Domain Members with Group, Channel & Client
 
 user_8 creates a new group with the name group_301
 user_9 creates a new client and channel with the names client_301 and channel_301 respectively, then connects both client and channel.
-![group_users_member_11](../diagrams/group_users_member_11.svg)
+![group_users_member_11](/img/docs/diagrams/group_users_member_11.svg)
 
 user_8 can able to assign channel_301 as a child of group_301
-![group_users_member_12](../diagrams/group_users_member_12.svg)
+![group_users_member_12](/img/docs/diagrams/group_users_member_12.svg)
 When channel_301 is assigned as a child of group_301, then the administrators, editors, and viewers of group_301 get the same respective access to channel_301.
 The administrator, editor, and viewer of channel_301 get the same respective access to client_301.
 So here user_8 becomes the administrator of both channel_301 and client_301
 
 user_5 can able to assign group_301 as a child of group_101
-![group_users_member_13](../diagrams/group_users_member_13.svg)
+![group_users_member_13](/img/docs/diagrams/group_users_member_13.svg)
 
 When group_301 becomes a child of group_101, then the administrator, editor, and viewer of group_101 get the same respective access to group_301.
 The administrator, editor, and viewer of group_301 get the same respective access to channel_301.
 The administrator, editor, and viewer of channel_301 get the same respective access to client_301.
 So here user_5 becomes the editor of group_301, channel_301, and client_301, user_4 becomes administrator of group_301, channel_301, and client_301.
 user_8 has administrator access only to group_301 and its child entities channel_301 and client_301.
-![group_users_member_14](../diagrams/group_users_member_14.svg)
+![group_users_member_14](/img/docs/diagrams/group_users_member_14.svg)
 
 ## User Registration
 
