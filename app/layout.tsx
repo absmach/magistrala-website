@@ -1,18 +1,13 @@
-import { Inter, Roboto } from 'next/font/google';
+import { Rubik } from 'next/font/google';
 import { Provider } from '@/components/provider';
 import './global.css';
-import { cn } from "@/lib/utils";
 
-const roboto = Roboto({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({
-  subsets: ['latin'],
-});
+const rubik = Rubik({ subsets: ['latin'], variable: '--font-rubik' });
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={cn(inter.className, roboto.variable)} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
+    <html lang="en" className={rubik.variable} suppressHydrationWarning>
+      <body className="flex flex-col min-h-screen font-(family-name:--font-rubik)">
         <Provider>{children}</Provider>
       </body>
     </html>

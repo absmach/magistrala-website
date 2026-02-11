@@ -1,16 +1,29 @@
-import Link from 'next/link';
+import { HeroSection } from "@/components/landing/hero";
+import { PartnersMarquee } from "@/components/landing/partners";
+import { FeaturesSection } from "@/components/landing/features";
+import { WhyMagistrala } from "@/components/landing/why-magistrala";
+import { GlobalDeployments } from "@/components/landing/deployments";
+import { UseCases } from "@/components/landing/use-cases";
+import { SuccessStories } from "@/components/landing/success-stories";
+import { PricingSection } from "@/components/landing/pricing";
+import { FAQSection } from "@/components/landing/faq";
+import { FinalCTA } from "@/components/landing/final-cta";
+import { Footer } from "@/components/landing/footer";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col justify-center text-center flex-1">
-      <h1 className="text-2xl font-bold mb-4">Hello World</h1>
-      <p>
-        You can open{' '}
-        <Link href="/docs" className="font-medium underline">
-          /docs
-        </Link>{' '}
-        and see the documentation.
-      </p>
-    </div>
+    <main>
+      <HeroSection />
+      <PartnersMarquee />
+      <FeaturesSection />
+      <WhyMagistrala />
+      <GlobalDeployments />
+      <UseCases />
+      <SuccessStories />
+      <PricingSection />
+      <FAQSection />
+      <FinalCTA />
+      <Footer />
+    </main>
   );
 }
