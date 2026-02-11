@@ -19,6 +19,7 @@
     "fumadocs-core": "16.5.4",
     "fumadocs-mdx": "14.2.7",
     "fumadocs-ui": "16.5.4",
+    "zod": "4.3.6",
     "lucide-react": "^0.563.0",
     "mermaid": "^11.12.2",
     "next": "16.1.6",
