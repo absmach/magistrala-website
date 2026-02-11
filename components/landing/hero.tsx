@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, BookOpen } from "lucide-react";
+import Image from "next/image";
 
 export function HeroSection() {
   return (
@@ -36,7 +37,10 @@ export function HeroSection() {
                 asChild
                 className="h-12 px-7 text-base bg-[#073763] hover:bg-[#0a4a82] text-white rounded-lg"
               >
-                <Link href="https://cloud.magistrala.absmach.eu/" target="_blank">
+                <Link
+                  href="https://cloud.magistrala.absmach.eu/"
+                  target="_blank"
+                >
                   Try Magistrala
                   <ArrowRight className="ml-2 size-4" />
                 </Link>
@@ -58,16 +62,15 @@ export function HeroSection() {
             <div className="rounded-xl border border-border/60 bg-card shadow-xl shadow-black/3 overflow-hidden">
               <div className="flex items-center gap-2 border-b border-border/60 px-4 py-3 bg-muted/30">
                 <div className="flex gap-1.5">
-                  <div className="size-3 rounded-full bg-border" />
-                  <div className="size-3 rounded-full bg-border" />
-                  <div className="size-3 rounded-full bg-border" />
+                  <div className="size-3 rounded-full bg-red-500" />
+                  <div className="size-3 rounded-full bg-yellow-400" />
+                  <div className="size-3 rounded-full bg-green-500" />
                 </div>
                 <span className="text-xs text-muted-foreground ml-2">
                   cloud.magistrala.absmach.eu
                 </span>
               </div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/screenshots/dashboard-2.png"
                 alt="Magistrala Dashboard"
                 className="w-full"
@@ -76,8 +79,7 @@ export function HeroSection() {
               />
             </div>
             <div className="absolute -bottom-4 -right-4 w-2/5 rounded-xl border border-border/60 bg-card shadow-lg shadow-black/5 overflow-hidden hidden md:block">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/screenshots/dashboard-1.png"
                 alt="Magistrala Analytics"
                 className="w-full"
