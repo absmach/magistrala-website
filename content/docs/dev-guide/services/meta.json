@@ -1,0 +1,12 @@
+{
+  "title": "Services",
+  "pages": [
+    "rules-engine",
+    "alarms",
+    "readers",
+    "reports",
+    "provision",
+    "consumers",
+    "Bootstrap"
+  ]
+}
