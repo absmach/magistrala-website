@@ -9,6 +9,7 @@ import { PricingSection } from "@/components/landing/pricing";
 import { FAQSection } from "@/components/landing/faq";
 import { FinalCTA } from "@/components/landing/final-cta";
 import { Footer } from "@/components/landing/footer";
+import { ScrollToTop } from "@/components/landing/scroll-to-top";
 
 export default function HomePage() {
   return (
@@ -24,6 +25,7 @@ export default function HomePage() {
       <FAQSection />
       <FinalCTA />
       <Footer />
+      <ScrollToTop />
     </main>
   );
 }

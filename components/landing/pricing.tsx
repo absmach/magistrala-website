@@ -44,7 +44,7 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="py-24 bg-slate-warm">
+    <section id="pricing" className="py-24 bg-background">
       <div className="mx-auto max-w-4xl px-6">
         <div className="text-center mb-16">
           <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
@@ -65,8 +65,8 @@ export function PricingSection() {
               className={cn(
                 "relative rounded-2xl border bg-card p-8 flex flex-col",
                 plan.featured
-                  ? "border-[#073763]/30 shadow-xl shadow-[#073763]/[0.06] ring-1 ring-[#073763]/10"
-                  : "border-border/40"
+                  ? "border-[#073763]/30 shadow-xl shadow-[#073763]/6 ring-1 ring-[#073763]/10"
+                  : "border-border/40",
               )}
             >
               {plan.featured && (
@@ -103,16 +103,14 @@ export function PricingSection() {
 
               <Button
                 asChild
-                className={cn(
-                  "w-full h-12 text-base rounded-lg",
-                  plan.featured
-                    ? "bg-[#073763] hover:bg-[#0a4a82] text-white"
-                    : "bg-transparent border border-[#073763]/20 text-[#073763] hover:bg-[#073763]/[0.04]"
-                )}
+                variant={plan.featured ? "default" : "outline"}
+                className="w-full h-12 text-base rounded-xl "
               >
                 <Link
                   href={plan.ctaHref}
-                  target={plan.ctaHref.startsWith("http") ? "_blank" : undefined}
+                  target={
+                    plan.ctaHref.startsWith("http") ? "_blank" : undefined
+                  }
                 >
                   {plan.cta}
                   <ArrowRight className="ml-2 size-4" />

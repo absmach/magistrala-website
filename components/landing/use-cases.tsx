@@ -41,7 +41,7 @@ const useCases = [
 
 export function UseCases() {
   return (
-    <section id="usecases" className="py-24 bg-slate-warm">
+    <section id="usecases" className="py-24 bg-background">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center mb-16">
           <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
