@@ -50,8 +50,8 @@ export function WhyMagistrala() {
                   strokeWidth="1.5"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d={reason.iconPath}
                   />
                 </svg>

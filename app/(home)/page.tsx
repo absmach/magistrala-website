@@ -1,6 +1,6 @@
 import { HeroSection } from "@/components/landing/hero";
 import { PartnersMarquee } from "@/components/landing/partners";
-import { FeaturesSection } from "@/components/landing/features";
+import { FeaturesSection } from "@/components/landing/features/features";
 import { WhyMagistrala } from "@/components/landing/why-magistrala";
 import { GlobalDeployments } from "@/components/landing/deployments";
 import { UseCases } from "@/components/landing/use-cases";
