@@ -41,8 +41,8 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-24 bg-background">
-      <div className="mx-auto max-w-3xl px-6">
+    <section id="faq" className="py-24 container mx-auto">
+      <div className="mx-auto max-w-4xl px-6">
         <div className="text-center mb-16">
           <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
             FAQ
@@ -59,9 +59,9 @@ export function FAQSection() {
               <div key={faq.question} className="py-5">
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-start justify-between gap-4 text-left"
+                  className="flex w-full items-start justify-between gap-4 text-left p-2"
                 >
-                  <span className="text-lg font-medium text-foreground">
+                  <span className="text-xl font-medium text-foreground">
                     {faq.question}
                   </span>
                   <ChevronDown
