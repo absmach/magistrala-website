@@ -14,7 +14,7 @@ export function HeroSection() {
       <div className="relative mx-auto max-w-350 px-6">
         <div className="grid lg:grid-cols-[45%_55%] gap-12 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#073763]/10 bg-[#073763]/4 px-4 py-1.5 text-sm text-[#073763] mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#073763]/10 bg-[#073763]/4 px-4 py-1.5 text-sm text-primary mb-8">
               <span className="inline-block size-1.5 rounded-full bg-[#073763] animate-pulse-subtle" />
               Open Source IoT Platform
             </div>
@@ -22,7 +22,7 @@ export function HeroSection() {
             <h1 className="text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl leading-[1.08]">
               Magistrala —
               <br />
-              <span className="text-[#073763]">Open Source IoT Platform </span>
+              <span className="text-primary">Open Source IoT Platform </span>
               <br />
               for Cloud & Edge
             </h1>
@@ -48,7 +48,7 @@ export function HeroSection() {
               <Button
                 asChild
                 variant="outline"
-                className="h-12 px-7 text-base border-[#073763]/20 text-[#073763] hover:bg-[#073763]/4 rounded-lg"
+                className="h-12 px-7 text-base border-[#073763]/20 text-primary hover:bg-[#073763]/4 rounded-lg"
               >
                 <Link href="/docs">
                   <BookOpen className="mr-2 size-4" />

@@ -87,7 +87,7 @@ export function UseCases() {
     <section id="usecases" className="py-24 bg-background">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center mb-16">
-          <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             Applications
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
@@ -141,7 +141,7 @@ export function UseCases() {
                       </p>
                       <a
                         href={uc.link}
-                        className="text-base font-medium text-[#073763] hover:text-[#0a4a82] transition-colors"
+                        className="text-base font-medium text-primary hover:text-[#0a4a82] transition-colors"
                       >
                         {uc.linkText} &rarr;
                       </a>

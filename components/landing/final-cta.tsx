@@ -17,7 +17,7 @@ export function FinalCTA() {
           <Button
             asChild
             variant="outline"
-            className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-[#073763] hover:bg-white/70 font-semibold rounded-xl"
+            className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 font-semibold rounded-xl"
           >
             <Link href="https://cloud.magistrala.absmach.eu/" target="_blank">
               Start Free
@@ -27,7 +27,7 @@ export function FinalCTA() {
           <Button
             asChild
             variant="outline"
-            className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-[#073763] hover:bg-white/70 rounded-xl"
+            className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 rounded-xl"
           >
             <Link href="/contact">Contact Sales</Link>
           </Button>

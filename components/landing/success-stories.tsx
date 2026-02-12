@@ -52,7 +52,7 @@ export function SuccessStories() {
     <section className="py-24 container mx-auto bg-background">
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center mb-16">
-          <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             Success Stories
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
@@ -90,7 +90,7 @@ export function SuccessStories() {
                   href={story.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-lg font-medium text-[#073763] hover:text-[#0a4a82] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-lg font-medium text-primary hover:text-[#0a4a82] transition-colors"
                 >
                   {story.linkText}
                   <ExternalLink className="size-3.5" />

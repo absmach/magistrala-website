@@ -18,7 +18,7 @@ export default function UseCasesPage() {
       <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#073763]/[0.04] to-transparent" />
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-4">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary mb-4">
             Use Cases
           </p>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
@@ -43,7 +43,7 @@ export default function UseCasesPage() {
               >
                 {/* Icon */}
                 <div className="mb-5 inline-flex items-center justify-center size-12 rounded-xl bg-[#073763]/[0.07] group-hover:bg-[#073763]/[0.12] transition-colors">
-                  <uc.icon className="size-6 text-[#073763]" />
+                  <uc.icon className="size-6 text-primary" />
                 </div>
 
                 {/* Content */}
@@ -55,7 +55,7 @@ export default function UseCasesPage() {
                 </p>
 
                 {/* Arrow */}
-                <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#073763] group-hover:gap-3 transition-all">
+                <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all">
                   Explore use case
                   <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </div>
@@ -82,7 +82,7 @@ export default function UseCasesPage() {
             <Button
               asChild
               size="lg"
-              className="bg-white text-[#073763] hover:bg-white/90 h-12 px-8 text-base font-semibold"
+              className="bg-white text-primary hover:bg-white/90 h-12 px-8 text-base font-semibold"
             >
               <a href="mailto:info@abstractmachines.dev">Contact us</a>
             </Button>

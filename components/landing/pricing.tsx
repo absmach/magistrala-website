@@ -47,7 +47,7 @@ export function PricingSection() {
     <section id="pricing" className="py-24 bg-background">
       <div className="mx-auto max-w-4xl px-6">
         <div className="text-center mb-16">
-          <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             Pricing
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
@@ -93,7 +93,7 @@ export function PricingSection() {
               <ul className="space-y-3 mb-8 flex-1">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-3">
-                    <Check className="size-4 text-[#073763] mt-0.5 shrink-0" />
+                    <Check className="size-4 text-primary mt-0.5 shrink-0" />
                     <span className="text-base text-muted-foreground">
                       {feature}
                     </span>

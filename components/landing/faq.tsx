@@ -44,7 +44,7 @@ export function FAQSection() {
     <section id="faq" className="py-24 container mx-auto">
       <div className="mx-auto max-w-4xl px-6">
         <div className="text-center mb-16">
-          <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             FAQ
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">

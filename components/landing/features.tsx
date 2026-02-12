@@ -215,7 +215,7 @@ export function FeaturesSection() {
     <section id="features" className="py-24 bg-background">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center mb-20">
-          <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
+          <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             Platform
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">

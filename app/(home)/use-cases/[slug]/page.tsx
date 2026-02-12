@@ -55,7 +55,7 @@ export default async function UseCaseDetailPage({
 
           <div className="flex items-start gap-5 mb-6">
             <div className="flex items-center justify-center size-14 rounded-2xl bg-[#073763]/8 shrink-0">
-              <uc.icon className="size-7 text-[#073763]" />
+              <uc.icon className="size-7 text-primary" />
             </div>
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
@@ -127,7 +127,7 @@ export default async function UseCaseDetailPage({
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
           <div className="max-w-2xl mb-12">
-            <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
+            <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
               How it works
             </p>
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
@@ -145,7 +145,7 @@ export default async function UseCaseDetailPage({
                 className="relative bg-card p-6 flex flex-col"
               >
                 {/* Step number */}
-                <span className="text-5xl font-black text-[#073763]/8 absolute top-4 right-5 select-none">
+                <span className="text-5xl font-black text-primary/8 absolute top-4 right-5 select-none">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-lg font-bold text-foreground mb-2 relative">
@@ -193,7 +193,7 @@ export default async function UseCaseDetailPage({
       <section className="py-20 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center mb-12">
-            <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
+            <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
               {uc.applications.title}
             </p>
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
@@ -208,7 +208,7 @@ export default async function UseCaseDetailPage({
                 className="rounded-xl border border-border/40 bg-card p-6 transition-all hover:shadow-lg hover:shadow-[#073763]/4 hover:border-[#073763]/10"
               >
                 <div className="mb-4 flex items-center justify-center size-10 rounded-lg bg-[#073763]/[0.07]">
-                  <app.icon className="size-5 text-[#073763]" />
+                  <app.icon className="size-5 text-primary" />
                 </div>
                 <h3 className="text-base font-semibold text-foreground mb-2">
                   {app.title}
@@ -227,7 +227,7 @@ export default async function UseCaseDetailPage({
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-[#073763] mb-3">
+              <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
                 Benefits
               </p>
               <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
@@ -242,7 +242,7 @@ export default async function UseCaseDetailPage({
                   className="flex items-start gap-3 rounded-lg bg-card border border-border/40 p-4"
                 >
                   <div className="flex items-center justify-center size-6 rounded-full bg-[#073763]/10 shrink-0 mt-0.5">
-                    <Check className="size-3.5 text-[#073763]" />
+                    <Check className="size-3.5 text-primary" />
                   </div>
                   <span className="text-base text-foreground leading-relaxed">
                     {benefit}
@@ -268,7 +268,7 @@ export default async function UseCaseDetailPage({
             <Button
               asChild
               size="lg"
-              className="bg-white text-[#073763] hover:bg-white/90 h-12 px-8 text-base font-semibold"
+              className="bg-white text-primary hover:bg-white/90 h-12 px-8 text-base font-semibold"
             >
               <a href="https://magistrala.abstractmachines.dev" target="_blank" rel="noopener noreferrer">
                 Try Magistrala free
