@@ -1,51 +1,95 @@
 ---
-import { Image } from 'astro:assets';
-import { SUCCESS_STORIES } from '../../config/site';
-import { SUCCESS_STORIES_CONTENT } from '../../config/home';
-import Card from '../ui/Card.astro';
-
-const partnerLogos = import.meta.glob<{ default: ImageMetadata }>('/src/assets/partners/*.{png,jpg,jpeg,svg}');
+import { SUCCESS_STORIES } from "../../config/site";
+import { SUCCESS_STORIES_CONTENT } from "../../config/home";
+import Card from "../ui/Card.astro";
 ---
 
 <section class="section-padding bg-white">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-14 reveal">
-      <h2 class="mb-4">{SUCCESS_STORIES_CONTENT.heading}</h2>
-      <p class="text-neutral-600">
-        {SUCCESS_STORIES_CONTENT.description}
-      </p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-8">
-      {
-        SUCCESS_STORIES.map((story) => {
-          const filename = story.logo.split('/').pop();
-          const imagePath = `/src/assets/partners/${filename}`;
-          const image = partnerLogos[imagePath]?.default;
-          
-          if (!image) return null;
+  <div class="max-w-2xl mx-auto text-center mb-14 reveal">
+    <h2 class="mb-4">Trusted by Industry Leaders</h2>
+    <p class="text-neutral-600">
+      Magistrala provides the backbone for reliable IoT infrastructure across
+      global enterprises.
+    </p>
+  </div>
 
-          return (
-            <Card>
-              <div class="flex items-center justify-center h-16 mb-4">
-                <Image
-                  src={image}
-                  alt={`${story.company} logo`}
-                  class="max-h-full max-w-40 w-auto object-contain"
-                />
-              </div>
-              <p class="text-sm text-neutral-600 leading-relaxed mb-4">{story.description}</p>
-              <a
-                href={story.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-sm font-medium text-[#073763] hover:underline"
-              >
-                {story.linkText} &rarr;
-              </a>
-            </Card>
-          );
-        })
-      }
-    </div>
+  <div class="scroll-stack" data-scroll-stack>
+    {
+      SUCCESS_STORIES.map((story, i) => (
+        <div class="scroll-stack-card reveal" style={`--card-index: ${i}`}>
+          <div class="max-w-3xl mx-auto rounded-2xl border border-neutral-200 bg-white p-8 md:p-10 shadow-sm">
+            <div class="flex items-center gap-3 mb-6">
+              <img
+                src={story.logo}
+                alt={`${story.company} logo`}
+                class="h-6 w-auto object-contain"
+                loading="lazy"
+              />
+              <span class="text-sm font-medium text-neutral-400">
+                {story.company}
+              </span>
+            </div>
+
+            <blockquote class="text-lg md:text-xl font-medium leading-relaxed text-neutral-800 mb-6">
+              &ldquo;{story.testimonial}&rdquo;
+            </blockquote>
+
+            <p class="text-sm text-neutral-500 leading-relaxed mb-6">
+              {story.description}
+            </p>
+
+            <a
+              href={story.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sm font-medium text-[#073763] hover:underline"
+            >
+              {story.linkText} &rarr;
+            </a>
+          </div>
+        </div>
+      ))
+    }
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const revealEls = document.querySelectorAll(".reveal");
+
+    revealEls.forEach((el, index) => {
+      const parent = el.parentElement;
+      if (
+        parent &&
+        (parent.classList.contains("flex") || parent.classList.contains("grid"))
+      ) {
+        (el as HTMLElement).style.transitionDelay = `${(index % 4) * 150}ms`;
+      }
+    });
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+    );
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+
+    const scrollBtn = document.getElementById("scroll-top");
+    if (scrollBtn) {
+      window.addEventListener("scroll", () => {
+        scrollBtn.classList.toggle("visible", window.scrollY > 600);
+      });
+
+      scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+  });
+</script>

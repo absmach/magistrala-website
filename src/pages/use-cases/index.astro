@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import FeatureIcon from '../../components/ui/FeatureIcon.astro';
+import { USE_CASES } from '../../config/site';
+---
+
+<BaseLayout title="Use Cases — Magistrala IoT Platform" description="Explore how Magistrala is used across industries for IoT device management, monitoring, and data processing.">
+  <Header />
+  <main>
+    <section class="section-padding bg-white">
+      <div class="max-w-7xl mx-auto">
+        <div class="max-w-2xl mb-14">
+          <h1 class="mb-4">Use Cases</h1>
+          <p class="text-lg text-neutral-600">
+            See how teams across industries use Magistrala to connect devices, process data, and automate operations.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            USE_CASES.map((uc) => (
+              <a
+                href={`/use-cases/${uc.slug}/`}
+                class="group rounded-2xl border border-neutral-200 bg-white overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
+              >
+                {uc.dashboard?.image && (
+                  <div class="relative h-44 overflow-hidden bg-neutral-100">
+                    <img
+                      src={uc.dashboard.image}
+                      alt={uc.dashboard.alt || uc.title}
+                      class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="p-6">
+                  <div class="flex items-center gap-3 mb-3">
+                    <FeatureIcon icon={uc.icon} />
+                    <h3 class="text-base font-semibold text-[#04203a]">{uc.title}</h3>
+                  </div>
+                  <p class="text-sm text-neutral-500 leading-relaxed mb-4">{uc.summary}</p>
+                  <span class="text-sm font-medium text-[#073763] group-hover:underline">
+                    Learn more &rarr;
+                  </span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

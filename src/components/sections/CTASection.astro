@@ -1,30 +1,105 @@
 ---
-import { CTA_BUTTONS } from '../../config/site';
-import { CTA_CONTENT } from '../../config/home';
+import { CTA_BUTTONS } from "../../config/site";
 ---
 
-<section class="section-padding bg-[#04203a] text-white text-center relative overflow-hidden">
-  <div class="hero-grid"></div>
-  <div class="relative z-10 max-w-2xl mx-auto">
-    <h2 class="text-white mb-4">{CTA_CONTENT.heading}</h2>
-    <p class="text-blue-200 mb-8">
-      {CTA_CONTENT.description}
-    </p>
-    <div class="flex flex-wrap justify-center gap-3">
-      <a
-        href={CTA_BUTTONS.primary.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="px-8 py-3 bg-white text-[#073763] font-medium rounded-lg hover:bg-neutral-100 transition-colors"
-      >
-        {CTA_CONTENT.primaryCta}
-      </a>
-      <a
-        href={CTA_BUTTONS.secondary.href}
-        class="px-8 py-3 border border-blue-300/30 text-white font-medium rounded-lg hover:bg-white/10 transition-colors"
-      >
-        {CTA_CONTENT.secondaryCta}
-      </a>
+<section class="py-16 md:py-24 mb-12 md:mb-16 px-4 sm:px-6 lg:px-8">
+  <div class="relative overflow-hidden max-w-4xl mx-auto rounded-2xl bg-[#073763] px-8 py-16 md:px-14 md:py-20">
+    <!-- Subtle radial glow -->
+    <div
+      class="pointer-events-none absolute inset-0"
+      aria-hidden="true"
+    >
+      <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#1a7ab8]/15 blur-[120px]"></div>
+      <div class="absolute right-0 top-0 w-[250px] h-[250px] rounded-full bg-[#4a9fd4]/10 blur-[100px]"></div>
+    </div>
+
+    <!-- Grid dots -->
+    <div
+      class="pointer-events-none absolute inset-0 cta-grid opacity-[0.04]"
+      aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 text-center">
+      <!-- Pill badge -->
+      <div class="cta-fade-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-400/20 bg-blue-400/10 text-blue-200 text-sm font-medium mb-8">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-blue-300"></span>
+        </span>
+        Open Source &amp; Cloud-Ready
+      </div>
+
+      <h2 class="cta-fade-up text-white text-3xl sm:text-4xl font-bold tracking-tight mb-4 leading-tight">
+        Ready to get started?
+      </h2>
+
+      <p class="cta-fade-up text-blue-200 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+        Try Magistrala free on our managed cloud, or deploy the open-source version on your own infrastructure.
+      </p>
+
+      <div class="cta-fade-up flex flex-wrap justify-center gap-4">
+        <a
+          href={CTA_BUTTONS.primary.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center gap-2.5 px-8 py-3.5 bg-white text-[#073763] font-semibold rounded-lg hover:bg-blue-50 transition-all duration-200 shadow-lg shadow-black/10"
+        >
+          <svg class="w-5 h-5 transition-transform duration-200 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.63 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+          </svg>
+          Try Magistrala
+          <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+
+        <a
+          href={CTA_BUTTONS.secondary.href}
+          class="group inline-flex items-center gap-2.5 px-8 py-3.5 border border-blue-300/30 text-blue-100 font-semibold rounded-lg hover:bg-white/10 hover:border-blue-300/50 transition-all duration-200"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
+          </svg>
+          Contact Us
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .cta-grid {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.5) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+
+  .cta-fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .cta-fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cta-fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .cta-fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .cta-fade-up:nth-child(4) { transition-delay: 0.3s; }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll(".cta-fade-up").forEach((el) => observer.observe(el));
+</script>
