@@ -55,7 +55,7 @@ export function TerminalComponent() {
 
   return (
     <div className="rounded-xl border border-border/60 bg-[#0c1222] shadow-2xl overflow-hidden">
-      <div className="flex items-center gap-2 border-b border-white/6 px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-white/6 px-4 py-3 sm:px-5 sm:py-4">
         <div className="flex gap-1.5">
           <div className="size-3 rounded-full bg-[#ff5f57]" />
           <div className="size-3 rounded-full bg-[#febc2e]" />
@@ -66,7 +66,7 @@ export function TerminalComponent() {
             <button
               key={p.id}
               onClick={() => switchTab(i)}
-              className="px-3 py-1 text-xs font-medium rounded-md transition-all cursor-pointer"
+              className="px-2 py-1 text-xs sm:px-3 sm:text-sm font-medium rounded-md transition-all cursor-pointer"
               style={{
                 color: active === i ? p.color : "rgba(255,255,255,0.4)",
                 backgroundColor: active === i ? `${p.color}18` : "transparent",
@@ -78,7 +78,7 @@ export function TerminalComponent() {
         </div>
       </div>
 
-      <div className="p-5 font-mono text-[13px] leading-relaxed min-h-50">
+      <div className="p-4 sm:p-6 lg:p-8 font-mono text-sm sm:text-base lg:text-lg leading-relaxed min-h-56 sm:min-h-64 lg:min-h-72">
         <span className="text-white/30">$ </span>
         <span className="whitespace-pre-wrap">
           {renderParts()}

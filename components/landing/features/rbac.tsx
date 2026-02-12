@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export function RBACLogos() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-12">
-      <div className="flex items-center justify-center gap-8">
+    <div className="flex flex-col items-center justify-center gap-4 py-8 sm:py-12">
+      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
         <div className="flex flex-col items-center gap-3 p-6 px-8 rounded-xl border border-border/40 bg-card shadow-sm">
           <Image
             src="/logos/authzed.svg"

@@ -112,8 +112,8 @@ export const features = [
     icon: "dashboard",
     visual: "screenshots" as const,
     images: [
-      { src: "/screenshots/dashboard-1.png", alt: "Dashboard overview" },
-      { src: "/screenshots/dashboard-2.png", alt: "Dashboard widgets" },
+      { src: "/screenshots/dashboard-2.png", alt: "Dashboard overview" },
+      { src: "/screenshots/dashboard-1.png", alt: "Dashboard widgets" },
     ],
   },
   {
@@ -123,11 +123,11 @@ export const features = [
     icon: "rules",
     visual: "screenshots" as const,
     images: [
+      { src: "/screenshots/rules-engine-2.png", alt: "Rules engine flow" },
       {
         src: "/screenshots/rules-engine-1.png",
         alt: "Rules engine configuration",
       },
-      { src: "/screenshots/rules-engine-2.png", alt: "Rules engine flow" },
     ],
   },
   {

@@ -21,7 +21,7 @@ export function FeatureIcon({ icon }: { icon: string }) {
   const d = iconPaths[icon];
   if (!d) return null;
   return (
-    <div className="mb-4 inline-flex items-center justify-center size-14 rounded-lg bg-primary/6">
+    <div className="inline-flex items-center justify-center size-14 rounded-lg bg-primary/6">
       <svg
         className="size-8 text-primary"
         fill="none"
