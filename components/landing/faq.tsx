@@ -58,6 +58,7 @@ export function FAQSection() {
             return (
               <div key={faq.question} className="py-5">
                 <button
+                  type="button"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                   className="flex w-full items-start justify-between gap-4 text-left p-2"
                 >
@@ -67,14 +68,16 @@ export function FAQSection() {
                   <ChevronDown
                     className={cn(
                       "size-4 text-muted-foreground shrink-0 mt-1 transition-transform duration-200",
-                      isOpen && "rotate-180"
+                      isOpen && "rotate-180",
                     )}
                   />
                 </button>
                 <div
                   className={cn(
                     "grid transition-all duration-200",
-                    isOpen ? "grid-rows-[1fr] opacity-100 mt-3" : "grid-rows-[0fr] opacity-0"
+                    isOpen
+                      ? "grid-rows-[1fr] opacity-100 mt-3"
+                      : "grid-rows-[0fr] opacity-0",
                   )}
                 >
                   <div className="overflow-hidden">

@@ -35,7 +35,7 @@ export function HeroSection() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button
                 asChild
-                className="h-12 px-7 text-base bg-[#073763] hover:bg-[#0a4a82] text-white rounded-lg"
+                className="h-12 px-7 text-base bg-[#073763] hover:bg-[#0a4a82] text-white rounded-xl"
               >
                 <Link
                   href="https://cloud.magistrala.absmach.eu/"
@@ -48,7 +48,7 @@ export function HeroSection() {
               <Button
                 asChild
                 variant="outline"
-                className="h-12 px-7 text-base border-[#073763]/20 text-primary hover:bg-[#073763]/4 rounded-lg"
+                className="h-12 px-7 text-base border-[#073763]/20 text-primary hover:bg-[#073763]/4 rounded-xl"
               >
                 <Link href="/docs">
                   <BookOpen className="mr-2 size-4" />

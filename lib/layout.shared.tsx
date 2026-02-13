@@ -5,22 +5,27 @@ import Logo from "@/public/logo.svg";
 export const linkItems: LinkItemType[] = [
   {
     text: "Features",
-    url: "#features",
+    url: "/#features",
     active: "url",
   },
   {
     text: "Use Cases",
-    url: "#usecases",
+    url: "/#usecases",
     active: "url",
   },
   {
     text: "Pricing",
-    url: "#pricing",
+    url: "/#pricing",
     active: "url",
   },
   {
     text: "FAQ",
-    url: "#faq",
+    url: "/#faq",
+    active: "url",
+  },
+  {
+    text: "Contact",
+    url: "/contact",
     active: "url",
   },
   {
