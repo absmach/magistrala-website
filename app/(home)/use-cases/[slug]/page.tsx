@@ -1,11 +1,11 @@
+import { ArrowLeft, ArrowRight, Check, ChevronRight } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, ArrowRight, ChevronRight } from "lucide-react";
-import { useCases, getUseCaseBySlug } from "@/lib/use-cases-data";
 import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
+import { getUseCaseBySlug, useCases } from "@/lib/use-cases-data";
 
 export function generateStaticParams() {
   return useCases.map((uc) => ({ slug: uc.slug }));
@@ -74,7 +74,11 @@ export default async function UseCaseDetailPage({
               size="lg"
               className="bg-[#073763] hover:bg-[#0a4a82] h-12 px-8 text-base"
             >
-              <a href="https://magistrala.abstractmachines.dev" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://magistrala.abstractmachines.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View live demo
               </a>
             </Button>
@@ -270,7 +274,11 @@ export default async function UseCaseDetailPage({
               size="lg"
               className="bg-white text-primary hover:bg-white/90 h-12 px-8 text-base font-semibold"
             >
-              <a href="https://magistrala.abstractmachines.dev" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://magistrala.abstractmachines.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Try Magistrala free
               </a>
             </Button>

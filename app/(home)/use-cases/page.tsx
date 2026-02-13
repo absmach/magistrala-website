@@ -1,9 +1,9 @@
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { useCases } from "@/lib/use-cases-data";
 import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
+import { useCases } from "@/lib/use-cases-data";
 
 export const metadata: Metadata = {
   title: "Use Cases | Magistrala IoT Platform",

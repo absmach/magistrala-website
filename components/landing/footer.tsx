@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { BookOpen, FileText, Github, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
-import { Mail, MapPin, FileText, Github, BookOpen } from "lucide-react";
+import Link from "next/link";
 import Logo from "@/public/logos/abstract-machines.svg";
 
 export function Footer() {
@@ -146,6 +146,7 @@ export function Footer() {
               action="https://absmach.us11.list-manage.com/subscribe/post?u=70b43c7181d005024187bfb31&amp;id=0a319b6b63&amp;f_id=002711e1f0"
               method="post"
               target="_blank"
+              rel="noopener"
             >
               <div className="relative w-full max-w-md">
                 <input

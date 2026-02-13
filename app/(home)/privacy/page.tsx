@@ -14,14 +14,14 @@ export default function PrivacyPage() {
       subtitle="Effective Date: August 6, 2025"
     >
       <p>
-        This Privacy Policy explains how Abstract Machines SAS (&ldquo;we,&rdquo;
-        &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects, uses, and protects
-        your personal data when you use the Magistrala SaaS platform
-        (&ldquo;Platform&rdquo;).
+        This Privacy Policy explains how Abstract Machines SAS
+        (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects,
+        uses, and protects your personal data when you use the Magistrala SaaS
+        platform (&ldquo;Platform&rdquo;).
       </p>
       <p>
-        We are committed to complying with the General Data Protection Regulation
-        (GDPR) and other applicable privacy laws.
+        We are committed to complying with the General Data Protection
+        Regulation (GDPR) and other applicable privacy laws.
       </p>
 
       <h2>1. Who We Are</h2>
@@ -35,9 +35,7 @@ export default function PrivacyPage() {
       </p>
 
       <h2>2. What Data We Collect</h2>
-      <p>
-        We collect and process the following categories of personal data:
-      </p>
+      <p>We collect and process the following categories of personal data:</p>
 
       <h3>2.1 Account and Identity Data</h3>
       <ul>
@@ -59,9 +57,7 @@ export default function PrivacyPage() {
       <h3>2.3 Technical and Usage Data</h3>
       <ul>
         <li>IP addresses and geolocation data</li>
-        <li>
-          Device information (browser type, operating system, device ID)
-        </li>
+        <li>Device information (browser type, operating system, device ID)</li>
         <li>Platform usage statistics and analytics</li>
         <li>API calls, requests, and response times</li>
         <li>Error logs and debugging information</li>
@@ -195,9 +191,7 @@ export default function PrivacyPage() {
       </p>
       <ul>
         <li>Tax and accounting requirements</li>
-        <li>
-          Regulatory compliance (financial services, data protection)
-        </li>
+        <li>Regulatory compliance (financial services, data protection)</li>
         <li>Court orders and legal proceedings</li>
         <li>
           Anti-money laundering (AML) and know-your-customer (KYC) requirements
@@ -221,9 +215,7 @@ export default function PrivacyPage() {
       </p>
 
       <h2>5. Cookies and Similar Technologies</h2>
-      <p>
-        We use cookies and similar technologies to enhance your experience:
-      </p>
+      <p>We use cookies and similar technologies to enhance your experience:</p>
 
       <h3>5.1 Essential Cookies (No consent required)</h3>
       <ul>
@@ -301,15 +293,14 @@ export default function PrivacyPage() {
         <li>Lodge complaints with CNIL (www.cnil.fr)</li>
       </ul>
       <p>
-        Contact:{" "}
-        <a href="mailto:privacy@absmach.eu">privacy@absmach.eu</a>
+        Contact: <a href="mailto:privacy@absmach.eu">privacy@absmach.eu</a>
       </p>
 
       <h2>10. Security</h2>
       <p>
-        We implement appropriate technical and organizational measures to protect
-        your data, including encryption, access control, and regular security
-        reviews.
+        We implement appropriate technical and organizational measures to
+        protect your data, including encryption, access control, and regular
+        security reviews.
       </p>
 
       <h2>11. Changes to This Policy</h2>

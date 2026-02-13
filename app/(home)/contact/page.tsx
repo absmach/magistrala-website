@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
@@ -15,10 +13,12 @@ import {
   User,
   XCircle,
 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Footer } from "@/components/landing/footer";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({

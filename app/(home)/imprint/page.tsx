@@ -75,9 +75,10 @@ export default function ImprintPage() {
 
       <h2>5. External Links</h2>
       <p>
-        This website may contain links to third-party websites. Abstract Machines
-        is not responsible for their content or availability and disclaims all
-        liability for any damage resulting from use of these sites.
+        This website may contain links to third-party websites. Abstract
+        Machines is not responsible for their content or availability and
+        disclaims all liability for any damage resulting from use of these
+        sites.
       </p>
 
       <h2>6. Personal Data and Privacy</h2>
@@ -91,16 +92,16 @@ export default function ImprintPage() {
 
       <h2>7. Governing Law</h2>
       <p>
-        This legal notice is governed by French law. Any dispute arising from the
-        use of the site will fall under the exclusive jurisdiction of the courts
-        of Paris, unless otherwise required by law.
+        This legal notice is governed by French law. Any dispute arising from
+        the use of the site will fall under the exclusive jurisdiction of the
+        courts of Paris, unless otherwise required by law.
       </p>
 
       <h2>8. Credits and Attribution</h2>
       <p>
-        Design assets, images, and icons are either property of Abstract Machines
-        or licensed from third parties under appropriate terms. Please refer to
-        page footers or linked attributions where applicable.
+        Design assets, images, and icons are either property of Abstract
+        Machines or licensed from third parties under appropriate terms. Please
+        refer to page footers or linked attributions where applicable.
       </p>
     </LegalLayout>
   );

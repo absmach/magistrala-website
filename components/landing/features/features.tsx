@@ -1,11 +1,11 @@
 "use client";
 
+import { features } from "@/lib/features";
 import { cn } from "@/lib/utils";
 import { FeatureIcon } from "./feature-icon";
-import { features } from "@/lib/features";
-import { TerminalComponent } from "./terminal";
 import { RBACLogos } from "./rbac";
 import { ScreenshotStack } from "./screenshot";
+import { TerminalComponent } from "./terminal";
 
 export function FeaturesSection() {
   return (

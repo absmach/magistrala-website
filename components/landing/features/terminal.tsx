@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { cn } from "@/lib/utils";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { protocols, syntaxColors } from "@/lib/features";
+import { cn } from "@/lib/utils";
 
-const TYPING_SPEED = 18;
+const TYPING_SPEED = 70;
 const PAUSE_AFTER = 3000;
 
 export function TerminalComponent() {
@@ -17,7 +17,7 @@ export function TerminalComponent() {
 
   // typing / auto-advance loop
   useEffect(() => {
-    if (!done) {
+    if (!done || charCount) {
       timerRef.current = setTimeout(
         () => setCharCount((c) => c + 1),
         TYPING_SPEED,
@@ -64,6 +64,7 @@ export function TerminalComponent() {
         <div className="flex gap-1 ml-4">
           {protocols.map((p, i) => (
             <button
+              type="button"
               key={p.id}
               onClick={() => switchTab(i)}
               className="px-2 py-1 text-xs sm:px-3 sm:text-sm font-medium rounded-md transition-all cursor-pointer"

@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
-import type Mail from 'nodemailer/lib/mailer';
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import type Mail from "nodemailer/lib/mailer";
 
 export async function POST(request: Request) {
   try {
@@ -8,15 +8,15 @@ export async function POST(request: Request) {
 
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
+        { error: "Missing required fields" },
+        { status: 400 },
       );
     }
 
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT) || 587,
-      secure: process.env.SMTP_SECURE === 'true',
+      secure: process.env.SMTP_SECURE === "true",
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     const organizationEmail: Mail.Options = {
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: process.env.CONTACT_EMAIL || process.env.SMTP_USER,
-      subject: `Contact Form: ${subject || 'New Inquiry'}`,
+      subject: `Contact Form: ${subject || "New Inquiry"}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -57,21 +57,29 @@ export async function POST(request: Request) {
                   <div class="label">Email:</div>
                   <div class="value">${email}</div>
                 </div>
-                ${company ? `
+                ${
+                  company
+                    ? `
                 <div class="field">
                   <div class="label">Company:</div>
                   <div class="value">${company}</div>
                 </div>
-                ` : ''}
-                ${subject ? `
+                `
+                    : ""
+                }
+                ${
+                  subject
+                    ? `
                 <div class="field">
                   <div class="label">Subject:</div>
                   <div class="value">${subject}</div>
                 </div>
-                ` : ''}
+                `
+                    : ""
+                }
                 <div class="field">
                   <div class="label">Message:</div>
-                  <div class="value">${message.replace(/\n/g, '<br>')}</div>
+                  <div class="value">${message.replace(/\n/g, "<br>")}</div>
                 </div>
               </div>
               <div class="footer">
@@ -86,7 +94,7 @@ export async function POST(request: Request) {
     const userConfirmationEmail: Mail.Options = {
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: email,
-      subject: 'Thank you for contacting Magistrala',
+      subject: "Thank you for contacting Magistrala",
       html: `
         <!DOCTYPE html>
         <html>
@@ -106,7 +114,7 @@ export async function POST(request: Request) {
           <body>
             <div class="container">
               <div class="header">
-                <img src="${process.env.NEXT_PUBLIC_BASE_URL || 'https://magistrala.absmach.eu'}/logo.svg" alt="Magistrala Logo" class="logo" />
+                <img src="${process.env.NEXT_PUBLIC_BASE_URL || "https://magistrala.absmach.eu"}/logo.svg" alt="Magistrala Logo" class="logo" />
                 <h1 style="margin: 0;">Thank You for Reaching Out!</h1>
               </div>
               <div class="content">
@@ -116,18 +124,18 @@ export async function POST(request: Request) {
                   <p>We typically respond within 1-2 business days. If your inquiry is urgent, please feel free to reach out to us directly.</p>
                   <p><strong>Your message:</strong></p>
                   <p style="background: #f3f4f6; padding: 15px; border-radius: 4px; border-left: 3px solid #073763;">
-                    ${message.replace(/\n/g, '<br>')}
+                    ${message.replace(/\n/g, "<br>")}
                   </p>
                 </div>
                 <div style="text-align: center;">
-                  <a href="${process.env.NEXT_PUBLIC_BASE_URL || 'https://magistrala.absmach.eu'}?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="display: inline-block; background: #073763; color: #ffffff !important; padding: 12px 24px; text-decoration: none; border-radius: 4px; margin-top: 20px; font-weight: 500;">Visit Our Website</a>
+                  <a href="${process.env.NEXT_PUBLIC_BASE_URL || "https://magistrala.absmach.eu"}?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="display: inline-block; background: #073763; color: #ffffff !important; padding: 12px 24px; text-decoration: none; border-radius: 4px; margin-top: 20px; font-weight: 500;">Visit Our Website</a>
                 </div>
               </div>
               <div class="footer">
                 <p><strong>Magistrala</strong> - Open-Source IoT Platform</p>
                 <p>Building the future of connected devices</p>
                 <p style="margin-top: 15px;">
-                  <a href="${process.env.NEXT_PUBLIC_BASE_URL || 'https://magistrala.absmach.eu'}?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="color: #073763 !important; text-decoration: none;">Website</a> |
+                  <a href="${process.env.NEXT_PUBLIC_BASE_URL || "https://magistrala.absmach.eu"}?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="color: #073763 !important; text-decoration: none;">Website</a> |
                   <a href="https://github.com/absmach/magistrala?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="color: #073763 !important; text-decoration: none;">GitHub</a> |
                   <a href="https://docs.magistrala.absmach.eu?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="color: #073763 !important; text-decoration: none;">Documentation</a>
                 </p>
@@ -143,13 +151,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: 'Email sent successfully',
+      message: "Email sent successfully",
     });
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     return NextResponse.json(
-      { error: 'Failed to send email' },
-      { status: 500 }
+      { error: "Failed to send email" },
+      { status: 500 },
     );
   }
 }

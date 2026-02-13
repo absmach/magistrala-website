@@ -3,7 +3,8 @@ import path from "node:path";
 import type { MetadataRoute } from "next";
 import { source } from "@/lib/source";
 
-const DOMAIN = process.env.NEXT_PUBLIC_SITE_URL || "https://magistrala.absmach.eu";
+const DOMAIN =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://magistrala.absmach.eu";
 
 export const dynamic = "force-static";
 

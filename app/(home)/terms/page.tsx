@@ -23,9 +23,9 @@ export default function TermsPage() {
       </p>
       <p>
         By creating an account, accessing, or using the Platform, you
-        (&ldquo;Customer,&rdquo; &ldquo;you,&rdquo; or &ldquo;your&rdquo;)
-        agree to be bound by these Terms and our Privacy Policy. If you do not
-        agree to these Terms, you may not use our Services.
+        (&ldquo;Customer,&rdquo; &ldquo;you,&rdquo; or &ldquo;your&rdquo;) agree
+        to be bound by these Terms and our Privacy Policy. If you do not agree
+        to these Terms, you may not use our Services.
       </p>
 
       <h2>2. Definitions</h2>
@@ -49,20 +49,20 @@ export default function TermsPage() {
         </li>
         <li>
           <strong>&ldquo;Intellectual Property Rights&rdquo;</strong> means all
-          intellectual property rights including patents, copyrights, trademarks,
-          and trade secrets.
+          intellectual property rights including patents, copyrights,
+          trademarks, and trade secrets.
         </li>
         <li>
           <strong>&ldquo;Platform&rdquo;</strong> means the Magistrala IoT
           Platform and all related services, software, and infrastructure.
         </li>
         <li>
-          <strong>&ldquo;Services&rdquo;</strong> means the hosted Magistrala IoT
-          Platform and associated features provided by Abstract Machines.
+          <strong>&ldquo;Services&rdquo;</strong> means the hosted Magistrala
+          IoT Platform and associated features provided by Abstract Machines.
         </li>
         <li>
-          <strong>&ldquo;Service Plan&rdquo;</strong> means either the Free Trial
-          or Enterprise Plan offering.
+          <strong>&ldquo;Service Plan&rdquo;</strong> means either the Free
+          Trial or Enterprise Plan offering.
         </li>
         <li>
           <strong>&ldquo;User&rdquo;</strong> means any person authorized by the
@@ -91,8 +91,9 @@ export default function TermsPage() {
       </ul>
       <p>
         You are fully responsible for all activities that occur under your
-        Account, whether authorized by you or not. You must immediately notify us
-        of any unauthorized use of your Account or any other breach of security.
+        Account, whether authorized by you or not. You must immediately notify
+        us of any unauthorized use of your Account or any other breach of
+        security.
       </p>
       <p>
         We reserve the right to refuse registration or terminate Accounts at our
@@ -133,13 +134,13 @@ export default function TermsPage() {
           Remove, alter, or obscure any proprietary notices on the Platform;
         </li>
         <li>
-          Circumvent or attempt to circumvent usage limits, security controls, or
-          access restrictions;
+          Circumvent or attempt to circumvent usage limits, security controls,
+          or access restrictions;
         </li>
         <li>Use the Platform to develop competing products or services;</li>
         <li>
-          Access the Platform through automated means except through our official
-          APIs;
+          Access the Platform through automated means except through our
+          official APIs;
         </li>
         <li>
           Interfere with or disrupt the Platform&rsquo;s operation or
@@ -184,16 +185,14 @@ export default function TermsPage() {
 
       <h3>5.4 Payment Processing</h3>
       <p>
-        For Enterprise plans, payment terms and methods will be specified in your
-        custom agreement.
+        For Enterprise plans, payment terms and methods will be specified in
+        your custom agreement.
       </p>
 
       <h3>5.5 Billing and Fees</h3>
       <ul>
         <li>Free trial accounts incur no charges;</li>
-        <li>
-          Enterprise plan fees are determined in your custom agreement;
-        </li>
+        <li>Enterprise plan fees are determined in your custom agreement;</li>
         <li>
           All fees are exclusive of applicable taxes, which you are responsible
           for;
@@ -210,9 +209,9 @@ export default function TermsPage() {
 
       <h2>6. Service Levels</h2>
       <p>
-        We strive to provide reliable service availability but make no guarantees
-        regarding uptime or performance unless specified in a separate Service
-        Level Agreement (SLA).
+        We strive to provide reliable service availability but make no
+        guarantees regarding uptime or performance unless specified in a
+        separate Service Level Agreement (SLA).
       </p>
       <ul>
         <li>
@@ -255,10 +254,10 @@ export default function TermsPage() {
 
       <h3>7.3 Data Security and Privacy</h3>
       <p>
-        We implement appropriate technical and organizational measures to protect
-        your Customer Data as described in our Privacy Policy. We will not
-        access, use, or disclose your Customer Data except as permitted by these
-        Terms or required by law.
+        We implement appropriate technical and organizational measures to
+        protect your Customer Data as described in our Privacy Policy. We will
+        not access, use, or disclose your Customer Data except as permitted by
+        these Terms or required by law.
       </p>
 
       <h3>7.4 Data Backup and Recovery</h3>
@@ -349,9 +348,7 @@ export default function TermsPage() {
       <p>You may terminate these Terms at any time by:</p>
       <ul>
         <li>Discontinuing use of your free trial account;</li>
-        <li>
-          Terminating your Enterprise agreement according to its terms;
-        </li>
+        <li>Terminating your Enterprise agreement according to its terms;</li>
         <li>Contacting our support team;</li>
         <li>Ceasing all use of the Platform.</li>
       </ul>
@@ -376,9 +373,7 @@ export default function TermsPage() {
           Your Customer Data will be deleted according to our data retention
           policy;
         </li>
-        <li>
-          You remain liable for all fees incurred prior to termination;
-        </li>
+        <li>You remain liable for all fees incurred prior to termination;</li>
         <li>
           Sections that by their nature should survive will continue to apply.
         </li>
@@ -403,8 +398,8 @@ export default function TermsPage() {
 
       <h3>11.3 Feedback</h3>
       <p>
-        Any feedback, suggestions, or ideas you provide about the Platform may be
-        used by us without restriction or compensation to you.
+        Any feedback, suggestions, or ideas you provide about the Platform may
+        be used by us without restriction or compensation to you.
       </p>
 
       <h3>11.4 Third-Party Content</h3>
@@ -426,9 +421,7 @@ export default function TermsPage() {
           MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
           NON-INFRINGEMENT;
         </li>
-        <li>
-          THAT THE PLATFORM WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE;
-        </li>
+        <li>THAT THE PLATFORM WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE;</li>
         <li>THAT DEFECTS WILL BE CORRECTED;</li>
         <li>THAT THE PLATFORM WILL MEET YOUR REQUIREMENTS.</li>
       </ul>
@@ -448,9 +441,7 @@ export default function TermsPage() {
           WE ARE NOT LIABLE FOR DATA LOSS, BUSINESS INTERRUPTION, OR LOST
           PROFITS;
         </li>
-        <li>
-          THESE LIMITATIONS APPLY REGARDLESS OF THE THEORY OF LIABILITY.
-        </li>
+        <li>THESE LIMITATIONS APPLY REGARDLESS OF THE THEORY OF LIABILITY.</li>
       </ul>
 
       <h3>12.3 Exceptions</h3>
@@ -477,15 +468,15 @@ export default function TermsPage() {
       <h3>13.3 Dispute Resolution Process</h3>
       <p>
         Before initiating formal legal proceedings, we encourage you to contact
-        us to seek a resolution. We will attempt to resolve disputes through good
-        faith negotiations.
+        us to seek a resolution. We will attempt to resolve disputes through
+        good faith negotiations.
       </p>
 
       <h3>13.4 Class Action Waiver</h3>
       <p>
         To the extent permitted by law, you agree that disputes will be resolved
-        on an individual basis and waive any right to participate in class action
-        lawsuits.
+        on an individual basis and waive any right to participate in class
+        action lawsuits.
       </p>
 
       <h2>14. Consumer Rights and Withdrawal</h2>
@@ -528,7 +519,8 @@ export default function TermsPage() {
       <p>
         Your continued use of the Platform after changes become effective
         constitutes acceptance of the modified Terms. If you do not agree to the
-        changes, you must stop using the Platform and may terminate your account.
+        changes, you must stop using the Platform and may terminate your
+        account.
       </p>
 
       <h3>15.3 Previous Versions</h3>

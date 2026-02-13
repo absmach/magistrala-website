@@ -1,6 +1,6 @@
+import { ArrowRight, Check } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const plans = [
