@@ -10,7 +10,7 @@ export const linkItems: LinkItemType[] = [
   },
   {
     text: "Use Cases",
-    url: "/#usecases",
+    url: "/use-cases",
     active: "url",
   },
   {

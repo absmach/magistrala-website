@@ -259,8 +259,8 @@ export default async function UseCaseDetailPage({
       </section>
 
       {/* ───────── CTA ───────── */}
-      <section className="py-20 md:py-24 bg-[#073763]">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+      <section className="py-10">
+        <div className="mx-auto lg:max-w-4xl max-sm:px-5 p-16 border rounded-4xl text-center bg-[#073763]">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
             Ready to get started?
           </h2>
@@ -271,24 +271,21 @@ export default async function UseCaseDetailPage({
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               asChild
-              size="lg"
-              className="bg-white text-primary hover:bg-white/90 h-12 px-8 text-base font-semibold"
+              variant="outline"
+              className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 font-semibold rounded-xl"
             >
-              <a
-                href="https://magistrala.abstractmachines.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link href="https://cloud.magistrala.absmach.eu/" target="_blank">
                 Try Magistrala free
-              </a>
+                <ArrowRight className="ml-2 size-4" />
+              </Link>
             </Button>
+
             <Button
               asChild
-              size="lg"
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 h-12 px-8 text-base font-semibold"
+              className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 rounded-xl"
             >
-              <a href="mailto:info@abstractmachines.dev">Contact sales</a>
+              <Link href="/contact">Contact Sales</Link>
             </Button>
           </div>
         </div>
