@@ -12,11 +12,10 @@ const plans = [
     ctaHref: "https://cloud.magistrala.absmach.eu/register",
     featured: false,
     features: [
-      "Up to 3 users",
-      "5 dashboards",
+      "10 users",
       "10 clients",
       "10 channels",
-      "2 groups",
+      "10 groups",
       "10,000 messages/month",
       "Community support",
     ],
