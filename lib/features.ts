@@ -123,11 +123,11 @@ export const features = [
     icon: "rules",
     visual: "screenshots" as const,
     images: [
-      { src: "/screenshots/rules-engine-2.png", alt: "Rules engine flow" },
       {
         src: "/screenshots/rules-engine-1.png",
         alt: "Rules engine configuration",
       },
+      { src: "/screenshots/rules-engine-2.png", alt: "Rules engine flow" },
     ],
   },
   {
@@ -137,9 +137,9 @@ export const features = [
     icon: "alarms",
     visual: "screenshots" as const,
     images: [
+      { src: "/screenshots/alarms-3.png", alt: "Alarm history" },
       { src: "/screenshots/alarms-1.png", alt: "Alarms overview" },
       { src: "/screenshots/alarms-2.png", alt: "Alarm configuration" },
-      { src: "/screenshots/alarms-3.png", alt: "Alarm history" },
     ],
   },
   {
@@ -167,8 +167,8 @@ export const features = [
     icon: "reports",
     visual: "screenshots" as const,
     images: [
-      { src: "/screenshots/reports-1.png", alt: "Reports overview" },
       { src: "/screenshots/reports-2.png", alt: "Report details" },
+      { src: "/screenshots/reports-1.png", alt: "Reports overview" },
     ],
   },
   {
@@ -178,8 +178,8 @@ export const features = [
     icon: "tokens",
     visual: "screenshots" as const,
     images: [
-      { src: "/screenshots/pat-1.png", alt: "PAT management" },
       { src: "/screenshots/pat-2.png", alt: "PAT creation" },
+      { src: "/screenshots/pat-1.png", alt: "PAT management" },
     ],
   },
 ];

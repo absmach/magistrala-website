@@ -85,14 +85,13 @@ function FeatureItem({
         isReversed ? "md:flex-row-reverse" : "md:flex-row",
       )}
     >
-      <div className="w-full md:w-2/5">
-        <div className="flex flex-row items-center gap-3 sm:gap-4 mb-4 sm:mb-8">
-          {feature.icon && <FeatureIcon icon={feature.icon} />}
-          <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
-            {feature.title}
-          </h3>
-        </div>
-        <p className="mt-3 sm:mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
+      <div className="w-full md:w-2/5 flex flex-col items-start gap-3 sm:gap-4 ">
+        {feature.icon && <FeatureIcon icon={feature.icon} />}
+        <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
+          {feature.title}
+        </h3>
+
+        <p className="text-base sm:text-xl text-muted-foreground leading-relaxed">
           {feature.description}
         </p>
       </div>
