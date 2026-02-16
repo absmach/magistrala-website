@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-const SLIDE_DURATION = 10000;
+const SLIDE_DURATION = 20000;
 const TOTAL = 3;
 
 const useCases = [
@@ -117,7 +117,7 @@ export function UseCases() {
               return (
                 <div
                   key={uc.title}
-                  className="absolute inset-x-0 top-0 rounded-2xl border border-border/40 bg-card shadow-lg transition-all duration-500 ease-in-out"
+                  className="absolute inset-x-0 top-0 rounded-2xl border border-border/40 bg-card shadow-lg transition-all duration-1000 ease-in-out"
                   style={{
                     zIndex,
                     transform: `translateY(${yOffset}px) scale(${scale})`,
