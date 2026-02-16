@@ -296,9 +296,7 @@ export default function ContactPage() {
               </Link>
 
               <Link
-                href="https://docs.magistrala.abstractmachines.fr?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=contact-page"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/docs"
                 className="group bg-card rounded-xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all"
               >
                 <div className="flex items-start justify-between mb-3">
