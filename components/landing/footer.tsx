@@ -95,7 +95,7 @@ export function Footer() {
           </div>
 
           {/* Resources */}
-          <div>
+          <div className="lg:ml-auto">
             <h4 className="text-base font-semibold text-foreground mb-4">
               Resources
             </h4>
@@ -135,7 +135,7 @@ export function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 lg:ml-auto">
             <h4 className="text-base font-semibold text-foreground mb-4">
               Newsletter
             </h4>
