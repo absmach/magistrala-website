@@ -99,7 +99,7 @@ function FeatureItem({
       <div className="w-full md:w-3/5">
         {feature.visual === "terminal" && <TerminalComponent />}
         {feature.visual === "screenshots" && feature.images && (
-          <ScreenshotStack images={feature.images} alt={feature.title} />
+          <ScreenshotStack images={feature.images} />
         )}
         {feature.visual === "rbac" && <RBACLogos />}
       </div>

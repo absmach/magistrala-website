@@ -138,7 +138,12 @@ export const features = [
     visual: "screenshots" as const,
     images: [
       { src: "/screenshots/alarms-3.png", alt: "Alarm history" },
-      { src: "/screenshots/alarms-1.png", alt: "Alarms overview" },
+      {
+        src: "/screenshots/alarms-1.png",
+        alt: "Alarms overview",
+        height: 400,
+        width: 350,
+      },
       { src: "/screenshots/alarms-2.png", alt: "Alarm configuration" },
     ],
   },
