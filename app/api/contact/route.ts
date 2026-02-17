@@ -114,7 +114,7 @@ export async function POST(request: Request) {
           <body>
             <div class="container">
               <div class="header">
-                <img src="${process.env.NEXT_PUBLIC_BASE_URL || "https://magistrala.absmach.eu"}/logo.svg" alt="Magistrala Logo" class="logo" />
+                <img src="${process.env.MG_LOGO_URL || "https://mg-images.fra1.cdn.digitaloceanspaces.com/Logo/Magistrala_logo_landscape_white.png"}" alt="Magistrala Logo" class="logo" />
                 <h1 style="margin: 0;">Thank You for Reaching Out!</h1>
               </div>
               <div class="content">

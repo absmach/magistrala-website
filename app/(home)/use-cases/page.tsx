@@ -54,7 +54,7 @@ export default function UseCasesPage() {
                 className="group relative flex flex-col rounded-2xl border border-border/40 bg-card overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-[#073763]/6 hover:border-[#073763]/20 hover:-translate-y-1"
               >
                 {/* Image */}
-                <div className="relative w-full aspect-[16/10] overflow-hidden bg-muted">
+                <div className="relative w-full aspect-16/10 overflow-hidden bg-muted">
                   <Image
                     src={uc.dashboard.image}
                     alt={uc.dashboard.alt}
@@ -68,7 +68,7 @@ export default function UseCasesPage() {
                 <div className="p-8 flex flex-col flex-1">
                   {/* Icon and Title */}
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="flex-shrink-0 inline-flex items-center justify-center size-12 rounded-xl bg-[#073763]/[0.07] group-hover:bg-[#073763]/12 transition-colors">
+                    <div className="shrink-0 inline-flex items-center justify-center size-12 rounded-xl bg-[#073763]/[0.07] group-hover:bg-[#073763]/12 transition-colors">
                       <uc.icon className="size-6 text-primary" />
                     </div>
                     <h2 className="text-2xl font-bold text-foreground leading-tight">
