@@ -127,7 +127,12 @@ export const features = [
         src: "/screenshots/rules-engine-1.png",
         alt: "Rules engine configuration",
       },
-      { src: "/screenshots/rules-engine-2.png", alt: "Rules engine flow" },
+      {
+        src: "/screenshots/rules-engine-2.png",
+        alt: "Rules engine flow",
+        height: 400,
+        width: 250,
+      },
     ],
   },
   {
@@ -137,14 +142,13 @@ export const features = [
     icon: "alarms",
     visual: "screenshots" as const,
     images: [
-      { src: "/screenshots/alarms-3.png", alt: "Alarm history" },
+      { src: "/screenshots/alarms-2.png", alt: "Alarm Rule" },
       {
         src: "/screenshots/alarms-1.png",
-        alt: "Alarms overview",
+        alt: "Alarm history",
         height: 400,
-        width: 350,
+        width: 250,
       },
-      { src: "/screenshots/alarms-2.png", alt: "Alarm configuration" },
     ],
   },
   {
@@ -154,8 +158,11 @@ export const features = [
     icon: "tenancy",
     visual: "screenshots" as const,
     images: [
-      { src: "/screenshots/domains-1.png", alt: "Domain management" },
-      { src: "/screenshots/domains-2.png", alt: "Domain settings" },
+      { src: "/screenshots/domains-1.png", alt: "Domain overview" },
+      {
+        src: "/screenshots/domains-2.png",
+        alt: "Domains selection",
+      },
     ],
   },
   {
@@ -183,8 +190,8 @@ export const features = [
     icon: "tokens",
     visual: "screenshots" as const,
     images: [
-      { src: "/screenshots/pat-2.png", alt: "PAT creation" },
       { src: "/screenshots/pat-1.png", alt: "PAT management" },
+      { src: "/screenshots/pat-2.png", alt: "PAT creation" },
     ],
   },
 ];
