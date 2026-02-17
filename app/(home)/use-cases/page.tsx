@@ -7,7 +7,7 @@ import { createMetadata } from "@/lib/metadata";
 import { useCases } from "@/lib/use-cases-data";
 
 export const metadata = createMetadata({
-  title: "Use Cases | Magistrala IoT Platform",
+  title: "Use Cases",
   description:
     "Discover how Magistrala powers IoT solutions across industries — from smart water metering to industrial gateway integration and smart city infrastructure.",
   keywords: [

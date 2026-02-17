@@ -2,7 +2,7 @@ import { LegalLayout } from "@/components/landing/legal-layout";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
-  title: "Terms of Service | Magistrala",
+  title: "Terms of Service",
   description:
     "Read the Terms of Service for Magistrala, the open-source IoT platform by Abstract Machines. Understand the rules and regulations guiding the use of our services.",
   keywords: [

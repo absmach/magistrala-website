@@ -2,7 +2,7 @@ import { LegalLayout } from "@/components/landing/legal-layout";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
-  title: "Privacy Policy | Magistrala",
+  title: "Privacy Policy",
   description:
     "Privacy Policy for Magistrala IoT Platform. Learn how Abstract Machines collects, uses, and protects your data.",
   keywords: [

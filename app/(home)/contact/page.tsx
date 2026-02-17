@@ -2,7 +2,7 @@ import { createMetadata } from "@/lib/metadata";
 import { ContactForm } from "./contact-form";
 
 export const metadata = createMetadata({
-  title: "Contact Us | Magistrala",
+  title: "Contact Us",
   description:
     "Get in touch with the Abstract Machines team. Questions about Magistrala IoT platform? We're here to help.",
   keywords: [

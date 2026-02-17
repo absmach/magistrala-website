@@ -21,7 +21,7 @@ export async function generateMetadata({
   const uc = getUseCaseBySlug(slug);
   if (!uc) return {};
   return createMetadata({
-    title: `${uc.title} | Magistrala IoT Platform`,
+    title: `${uc.title}`,
     description: uc.summary,
     openGraph: {
       url: `https://magistrala.absmach.eu/use-cases/${slug}/`,
@@ -76,7 +76,8 @@ export default async function UseCaseDetailPage({
             <Button
               asChild
               size="lg"
-              className="bg-[#073763] hover:bg-[#0a4a82] h-12 px-8 text-base"
+              variant="default"
+              className="h-12 px-8 text-base"
             >
               <Link
                 href="https://magistrala.absmach.eu?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=usecase-page"

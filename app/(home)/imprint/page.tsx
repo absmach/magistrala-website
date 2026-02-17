@@ -2,7 +2,9 @@ import { LegalLayout } from "@/components/landing/legal-layout";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata({
-  title: "Imprint | Abstract Machines",
+  title: {
+    absolute: "Imprint | Abstract Machines",
+  },
   description:
     "Legal Imprint and company information for Abstract Machines, the developers of Magistrala. Contact details and legal mentions.",
   keywords: [
