@@ -1,7 +1,6 @@
 import { Rubik } from "next/font/google";
 import { Provider } from "@/components/provider";
 import "./global.css";
-import { Metadata } from "next";
 import { baseUrl, createMetadata } from "@/lib/metadata";
 
 const rubik = Rubik({ subsets: ["latin"], variable: "--font-rubik" });
