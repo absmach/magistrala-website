@@ -39,7 +39,7 @@ export function WhyMagistrala() {
           {reasons.map((reason, index) => (
             <div
               key={reason.title}
-              className="text-center group relative rounded-2xl border border-border/40 bg-card p-8 transition-shadow hover:shadow-lg hover:shadow-[#073763]/4"
+              className="text-center group relative rounded-2xl border border-border/40 bg-card p-8 transition-shadow shadow hover:shadow-[#073763]/4"
             >
               <div className="mb-5 inline-flex items-center justify-center size-20 rounded-lg border bg-accent">
                 <svg

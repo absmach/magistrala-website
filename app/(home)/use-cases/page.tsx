@@ -1,16 +1,27 @@
 import { ArrowRight } from "lucide-react";
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
+import { createMetadata } from "@/lib/metadata";
 import { useCases } from "@/lib/use-cases-data";
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: "Use Cases | Magistrala IoT Platform",
   description:
     "Discover how Magistrala powers IoT solutions across industries — from smart water metering to industrial gateway integration and smart city infrastructure.",
-};
+  keywords: [
+    "IoT use cases",
+    "Magistrala",
+    "smart water metering",
+    "industrial IoT",
+    "smart city",
+    "Abstract Machines",
+  ],
+  openGraph: {
+    url: "https://magistrala.absmach.eu/use-cases/",
+  },
+});
 
 export default function UseCasesPage() {
   return (

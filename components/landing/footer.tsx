@@ -72,7 +72,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://matrix.to/#/#absmach:matrix.org"
+                  href="https://matrix.to/#/#magistrala:matrix.org"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2.5 text-muted-foreground hover:text-foreground transition-colors"

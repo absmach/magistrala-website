@@ -1,11 +1,23 @@
-import type { Metadata } from "next";
 import { LegalLayout } from "@/components/landing/legal-layout";
+import { createMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: "Terms of Service | Magistrala",
   description:
-    "Read the Terms of Service for Magistrala, the open-source IoT platform by Abstract Machines.",
-};
+    "Read the Terms of Service for Magistrala, the open-source IoT platform by Abstract Machines. Understand the rules and regulations guiding the use of our services.",
+  keywords: [
+    "Terms of Service",
+    "legal",
+    "Magistrala",
+    "Abstract Machines",
+    "IoT platform terms",
+    "usage agreement",
+    "open-source license",
+  ],
+  openGraph: {
+    url: "https://magistrala.absmach.eu/terms/",
+  },
+});
 
 export default function TermsPage() {
   return (

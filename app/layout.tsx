@@ -1,8 +1,19 @@
 import { Rubik } from "next/font/google";
 import { Provider } from "@/components/provider";
 import "./global.css";
+import { Metadata } from "next";
+import { baseUrl, createMetadata } from "@/lib/metadata";
 
 const rubik = Rubik({ subsets: ["latin"], variable: "--font-rubik" });
+
+export const metadata = createMetadata({
+  title: {
+    template: "%s | Magistrala",
+    default: "Magistrala",
+  },
+  description: "Open-source IoT platform for cloud and edge.",
+  metadataBase: baseUrl,
+});
 
 export default function Layout({ children }: LayoutProps<"/">) {
   return (

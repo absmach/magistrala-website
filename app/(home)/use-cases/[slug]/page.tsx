@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
+import { createMetadata } from "@/lib/metadata";
 import { getUseCaseBySlug, useCases } from "@/lib/use-cases-data";
 
 export function generateStaticParams() {
@@ -19,10 +20,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const uc = getUseCaseBySlug(slug);
   if (!uc) return {};
-  return {
+  return createMetadata({
     title: `${uc.title} | Magistrala IoT Platform`,
     description: uc.summary,
-  };
+    openGraph: {
+      url: `https://magistrala.absmach.eu/use-cases/${slug}/`,
+    },
+  });
 }
 
 export default async function UseCaseDetailPage({

@@ -25,7 +25,7 @@ const plans = [
     price: "Custom",
     description: "For large-scale production deployments",
     cta: "Contact Sales",
-    ctaHref: "mailto:info@absmach.eu",
+    ctaHref: "/contact",
     featured: true,
     features: [
       "Multitenant support",
