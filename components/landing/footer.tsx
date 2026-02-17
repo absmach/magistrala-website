@@ -12,7 +12,11 @@ export function Footer() {
         <div className="grid gap-16 sm:grid-cols-2 lg:grid-cols-5 items-center">
           {/* Product */}
           <div>
-            <Link href="https://absmach.eu" target="_blank">
+            <Link
+              href="https://absmach.eu?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=home-page"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Image
                 src={Logo}
                 alt="Magistrala"
@@ -146,7 +150,7 @@ export function Footer() {
               action="https://absmach.us11.list-manage.com/subscribe/post?u=70b43c7181d005024187bfb31&amp;id=0a319b6b63&amp;f_id=002711e1f0"
               method="post"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
             >
               <div className="relative w-full max-w-md">
                 <input

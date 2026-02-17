@@ -1,5 +1,6 @@
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const stories = [
   {
@@ -86,7 +87,7 @@ export function SuccessStories() {
                   {story.description}
                 </p>
 
-                <a
+                <Link
                   href={story.link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -94,7 +95,7 @@ export function SuccessStories() {
                 >
                   {story.linkText}
                   <ExternalLink className="size-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}

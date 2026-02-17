@@ -38,8 +38,9 @@ export function HeroSection() {
                 className="h-12 px-7 text-base bg-[#073763] hover:bg-[#0a4a82] text-white rounded-xl"
               >
                 <Link
-                  href="https://cloud.magistrala.absmach.eu/"
+                  href="https://cloud.magistrala.absmach.eu?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=contact-page"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Try Magistrala
                   <ArrowRight className="ml-2 size-4" />

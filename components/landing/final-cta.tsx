@@ -19,7 +19,11 @@ export function FinalCTA() {
             variant="outline"
             className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 font-semibold rounded-xl"
           >
-            <Link href="https://cloud.magistrala.absmach.eu/" target="_blank">
+            <Link
+              href="https://cloud.magistrala.absmach.eu??utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=home-page"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Start Free
               <ArrowRight className="ml-2 size-4" />
             </Link>

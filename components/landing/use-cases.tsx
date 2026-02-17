@@ -5,9 +5,6 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-const SLIDE_DURATION = 20000;
-const TOTAL = 3;
-
 const useCases = [
   {
     title: "Smart Water Metering",
@@ -37,6 +34,9 @@ const useCases = [
     linkText: "Smart city use case",
   },
 ];
+
+const SLIDE_DURATION = 20000;
+const TOTAL = useCases?.length;
 
 /**
  * Returns the visual "depth" of card `i` relative to `current`.

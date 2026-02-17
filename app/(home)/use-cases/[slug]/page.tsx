@@ -78,13 +78,13 @@ export default async function UseCaseDetailPage({
               size="lg"
               className="bg-[#073763] hover:bg-[#0a4a82] h-12 px-8 text-base"
             >
-              <a
-                href="https://magistrala.abstractmachines.dev"
+              <Link
+                href="https://magistrala.absmach.eu?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=usecase-page"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 View live demo
-              </a>
+              </Link>
             </Button>
             <Button
               asChild
@@ -92,7 +92,7 @@ export default async function UseCaseDetailPage({
               variant="outline"
               className="h-12 px-8 text-base"
             >
-              <a href="mailto:info@abstractmachines.dev">Talk to an expert</a>
+              <Link href="/contact">Talk to an expert</Link>
             </Button>
           </div>
         </div>
@@ -278,7 +278,11 @@ export default async function UseCaseDetailPage({
               variant="outline"
               className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 font-semibold rounded-xl"
             >
-              <Link href="https://cloud.magistrala.absmach.eu/" target="_blank">
+              <Link
+                href="https://cloud.magistrala.absmach.eu?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=usecase-page"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Try Magistrala free
                 <ArrowRight className="ml-2 size-4" />
               </Link>
