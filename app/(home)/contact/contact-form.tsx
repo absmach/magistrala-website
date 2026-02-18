@@ -314,7 +314,7 @@ export function ContactForm() {
               </Link>
 
               <Link
-                href="https://github.com/absmach/magistrala?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=contact-page"
+                href="https://github.com/absmach/magistrala"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-card rounded-xl border border-border p-6 hover:border-primary/50 hover:shadow-lg transition-all"

@@ -1,6 +1,13 @@
 "use client";
 
-import { BookOpen, FileText, Github, Mail, MapPin } from "lucide-react";
+import {
+  BookOpen,
+  FileText,
+  Github,
+  Mail,
+  MapPin,
+  Newspaper,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logos/abstract-machines.svg";
@@ -66,16 +73,16 @@ export function Footer() {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a
+                <Link
                   href="mailto:info@absmach.eu"
                   className="flex items-center gap-2.5 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Mail className="size-3.5 shrink-0" />
                   info@absmach.eu
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://matrix.to/#/#magistrala:matrix.org"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -89,7 +96,7 @@ export function Footer() {
                     <path d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.043 7.26v1.157h.033c.309-.443.683-.784 1.117-1.024.433-.245.936-.365 1.5-.365.54 0 1.033.107 1.488.32.45.214.773.553.96 1.016.293-.39.674-.72 1.143-.984a3.1 3.1 0 0 1 1.532-.404c.468 0 .894.07 1.278.206a2.2 2.2 0 0 1 .906.628c.24.28.413.62.527 1.022.112.404.168.863.168 1.382v5.592h-2.088V11.55c0-.304-.013-.6-.038-.882a1.9 1.9 0 0 0-.193-.724 1.15 1.15 0 0 0-.45-.484c-.197-.12-.465-.18-.803-.18-.34 0-.616.06-.832.18a1.36 1.36 0 0 0-.497.496 2.07 2.07 0 0 0-.248.74 5.3 5.3 0 0 0-.07.864v5.592H8.963V11.55c0-.254-.004-.51-.013-.762a2.4 2.4 0 0 0-.141-.71 1.03 1.03 0 0 0-.404-.528c-.186-.136-.457-.2-.813-.2a1.47 1.47 0 0 0-.478.096 1.6 1.6 0 0 0-.517.328c-.168.154-.303.36-.404.622-.1.26-.15.586-.15.974v5.792H3.963V7.81zm15.042 15.64V.55H21.72V0H24v24h-2.28v-.55z" />
                   </svg>
                   Chat on Matrix
-                </a>
+                </Link>
               </li>
               <li className="flex items-start gap-2.5 text-muted-foreground">
                 <MapPin className="size-3.5 shrink-0 mt-0.5" />
@@ -106,6 +113,17 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
+                  href="https://www.absmach.eu/blog/?category=magistrala&utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=home-page"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <Newspaper className="size-3.5 shrink-0" />
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/docs"
                   className="flex items-center gap-2.5 text-muted-foreground hover:text-foreground transition-colors"
                 >
@@ -114,7 +132,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://github.com/absmach/magistrala"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -122,10 +140,10 @@ export function Footer() {
                 >
                   <Github className="size-3.5 shrink-0" />
                   GitHub
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="https://docs.google.com/presentation/d/1BETx1jXJ2UVzv3uR0uvwkV_rwzoFIJVvCIO5ljrWck4/export/pdf"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -133,7 +151,7 @@ export function Footer() {
                 >
                   <FileText className="size-3.5 shrink-0" />
                   Datasheet
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -237,7 +255,7 @@ function SocialLink({
   children: React.ReactNode;
 }) {
   return (
-    <a
+    <Link
       href={href}
       target="_blank"
       rel="noopener noreferrer"
@@ -245,6 +263,6 @@ function SocialLink({
       className="flex items-center justify-center size-8 rounded-lg border border-border/40 text-muted-foreground hover:text-foreground hover:border-border transition-colors"
     >
       {children}
-    </a>
+    </Link>
   );
 }

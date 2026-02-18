@@ -34,6 +34,12 @@ export const linkItems: LinkItemType[] = [
     active: "url",
   },
   {
+    text: "Blog",
+    url: "https://www.absmach.eu/blog/?category=magistrala&utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=home-page",
+    active: "url",
+    external: true,
+  },
+  {
     type: "icon",
     label: "github",
     text: "Github",
