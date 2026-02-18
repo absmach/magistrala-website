@@ -147,7 +147,7 @@ export default async function UseCaseDetailPage({
             </p>
           </div>
 
-          <div className="grid gap-px sm:grid-cols-4 rounded-2xl overflow-hidden border border-border/40">
+          <div className="grid gap-2 sm:grid-cols-4 rounded-2xl overflow-hidden border border-border/40">
             {uc.howItWorks.steps.map((step, i) => (
               <div
                 key={step.title}
