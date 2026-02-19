@@ -97,6 +97,9 @@ export const syntaxColors: Record<string, string> = {
   "term-method": "#f87171",
 };
 
+const CLOUD_URL =
+  "https://cloud.magistrala.absmach.eu/register?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=features";
+
 export const features = [
   {
     title: "Multi-Protocol Messaging",
@@ -104,6 +107,7 @@ export const features = [
       "Connect devices over MQTT, CoAP, HTTP, and WebSocket. Protocol adapters handle translation so your devices speak whatever language they need to.",
     icon: "protocols",
     visual: "terminal" as const,
+    cta: { href: "/docs", label: "Read the docs", external: false },
   },
   {
     title: "Visual Dashboards",
@@ -115,6 +119,7 @@ export const features = [
       { src: "/screenshots/dashboard-2.png", alt: "Dashboard overview" },
       { src: "/screenshots/dashboard-1.png", alt: "Dashboard widgets" },
     ],
+    cta: { href: CLOUD_URL, label: "Try on Cloud", external: true },
   },
   {
     title: "Rules Engine",
@@ -134,6 +139,11 @@ export const features = [
         width: 250,
       },
     ],
+    cta: {
+      href: "/docs/user-guide/rules-engine",
+      label: "Read the docs",
+      external: false,
+    },
   },
   {
     title: "Alarm Management",
@@ -150,6 +160,11 @@ export const features = [
         width: 250,
       },
     ],
+    cta: {
+      href: "/docs/user-guide/alarms",
+      label: "Read the docs",
+      external: false,
+    },
   },
   {
     title: "Multitenancy",
@@ -164,6 +179,7 @@ export const features = [
         alt: "Domains selection",
       },
     ],
+    cta: { href: CLOUD_URL, label: "Try on Cloud", external: true },
   },
   {
     title: "Role-Based Access Control",
@@ -171,6 +187,11 @@ export const features = [
       "Fine-grained permissions at user, group, domain, client, and channel level. Backed by a distributed authorization engine compatible with SpiceDB.",
     icon: "security",
     visual: "rbac" as const,
+    cta: {
+      href: "/docs/dev-guide/dev-tools/authorization",
+      label: "Read the docs",
+      external: false,
+    },
   },
   {
     title: "Reports & Analytics",
@@ -182,6 +203,7 @@ export const features = [
       { src: "/screenshots/reports-2.png", alt: "Report details" },
       { src: "/screenshots/reports-1.png", alt: "Reports overview" },
     ],
+    cta: { href: CLOUD_URL, label: "Try on Cloud", external: true },
   },
   {
     title: "Personal Access Tokens",
@@ -193,5 +215,10 @@ export const features = [
       { src: "/screenshots/pat-1.png", alt: "PAT management" },
       { src: "/screenshots/pat-2.png", alt: "PAT creation" },
     ],
+    cta: {
+      href: "/docs/user-guide/pats",
+      label: "Read the docs",
+      external: false,
+    },
   },
 ];

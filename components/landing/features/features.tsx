@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowRight, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { features } from "@/lib/features";
 import { cn } from "@/lib/utils";
@@ -94,6 +96,23 @@ function FeatureItem({
         <p className="text-base sm:text-xl text-muted-foreground leading-relaxed">
           {feature.description}
         </p>
+
+        {feature.cta && (
+          <Link
+            href={feature.cta.href}
+            {...(feature.cta.external
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
+            className="inline-flex items-center gap-1.5 mt-4 text-base font-medium text-primary hover:text-[#0a4a82] transition-colors"
+          >
+            {feature.cta.label}
+            {feature.cta.external ? (
+              <ExternalLink className="size-3.5" />
+            ) : (
+              <ArrowRight className="size-4" />
+            )}
+          </Link>
+        )}
       </div>
 
       <div className="w-full md:w-3/5">
