@@ -109,14 +109,14 @@ export default function UseCasesPage() {
             <Button
               asChild
               variant="outline"
-              className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 font-semibold rounded-xl"
+              className="h-12 px-7 text-base border-white/20 dark:bg-white dark:text-black hover:dark:bg-white/90 font-semibold rounded-xl"
             >
               <a href="mailto:info@abstractmachines.dev">Contact us</a>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 rounded-xl"
+              className="h-12 px-7 text-base border-white/20 dark:bg-white dark:text-black hover:dark:bg-white/90 font-semibold rounded-xl"
             >
               <Link href="/docs">Browse documentation</Link>
             </Button>

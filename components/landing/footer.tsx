@@ -4,6 +4,7 @@ import { BookOpen, FileText, Mail, MapPin, Newspaper } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/logos/abstract-machines.svg";
+import { Button } from "../ui/button";
 
 // --- Icons ---
 
@@ -269,12 +270,13 @@ export function Footer() {
                     defaultValue=""
                   />
                 </div>
-                <button
+                <Button
                   type="submit"
-                  className="absolute right-1 top-1 bottom-1 px-4 rounded-xl bg-[#073763] text-white font-medium hover:bg-[#0a4a82] transition-colors"
+                  variant="default"
+                  className="absolute right-1 top-1 bottom-1 h-10 px-7 rounded-lg text-base"
                 >
                   Subscribe
-                </button>
+                </Button>
               </div>
               <p className="mt-2 text-xs text-muted-foreground">
                 By subscribing, you agree to our{" "}
