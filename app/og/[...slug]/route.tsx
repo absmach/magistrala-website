@@ -1,7 +1,6 @@
 import { ImageResponse } from "@takumi-rs/image-response";
 import { getPageImage, source } from "@/lib/source";
 import { useCases } from "@/lib/use-cases-data";
-import { Cpu } from "lucide-react";
 
 export const revalidate = false;
 
@@ -20,13 +19,19 @@ function OgImage() {
         padding: "80px 120px",
       }}
     >
-      {/* CPU/chip icon */}
-      <Cpu
-        width={72}
-        height={72}
-        stroke="rgba(255,255,255)"
-        strokeWidth="1.5"
-      />
+      <svg
+        width={300}
+        height={200}
+        viewBox="0 0 500 500"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <rect x="75" y="310" width="130" height="130" fill="#ffffff" />
+        <rect x="250" y="80" width="130" height="360" fill="#ffffff" />
+
+        <circle cx="500" cy="140" r="60" fill="#ffffff" />
+      </svg>
+
       {/* Headline */}
       <div
         style={{
