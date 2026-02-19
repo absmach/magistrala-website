@@ -48,6 +48,7 @@ export function WhyMagistrala() {
                   stroke={index === 0 ? "none" : "currentColor"}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
