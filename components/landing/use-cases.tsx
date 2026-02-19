@@ -60,6 +60,7 @@ export function UseCases() {
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
   // Progress bar + auto-advance
+  // biome-ignore lint/correctness/useExhaustiveDependencies: current resets the progress bar when the slide changes
   useEffect(() => {
     const bar = progressRef.current;
     if (!bar) return;

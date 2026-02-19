@@ -45,9 +45,6 @@ const stories = [
   },
 ];
 
-const CARD_TOP_START = 100;
-const CARD_TOP_STEP = 100;
-
 export function SuccessStories() {
   return (
     <section className="py-24 container mx-auto bg-background">
@@ -62,7 +59,7 @@ export function SuccessStories() {
         </div>
 
         <div className="flex flex-col gap-6">
-          {stories.map((story, i) => (
+          {stories.map((story) => (
             <div
               key={story.name}
               className="rounded-2xl border border-border/40 bg-card shadow-lg transition-shadow"

@@ -46,7 +46,10 @@ export function TerminalComponent() {
       const visible = Math.min(remaining, part.text.length);
       remaining -= visible;
       return (
-        <span key={i} style={{ color: syntaxColors[part.cls] || "#e2e8f0" }}>
+        <span
+          key={`${i}-${part.cls}`}
+          style={{ color: syntaxColors[part.cls] || "#e2e8f0" }}
+        >
           {part.text.slice(0, visible)}
         </span>
       );
