@@ -12,7 +12,7 @@ const useCases = [
       "Real-time visibility into water networks enabling faster leak detection, fraud prevention, and reduced non-revenue water (NRW). Monitor consumption and pressure continuously across your network with support for NB-IoT, LoRaWAN, and other LPWAN technologies.",
     image: "/screenshots/smart-water.png",
     imageAlt: "Smart water metering dashboard",
-    link: "/use-cases/smart-water-metering/",
+    link: "/use-cases/smart-water-metering",
     linkText: "Smart water metering use case",
   },
   {
@@ -21,7 +21,7 @@ const useCases = [
       "Connect legacy industrial equipment to the cloud with support for OPC-UA, Modbus, BACnet, and Profinet. Enable predictive maintenance, remote monitoring, and operational efficiency through edge-to-cloud connectivity and protocol translation.",
     image: "/screenshots/industrial-gateway.png",
     imageAlt: "Industrial gateway dashboard",
-    link: "/use-cases/industrial-gateway/",
+    link: "/use-cases/industrial-gateway",
     linkText: "Industrial gateway use case",
   },
   {
@@ -30,7 +30,7 @@ const useCases = [
       "Build intelligent urban infrastructure with connected sensors and devices. Optimize traffic management, smart parking, street lighting, and waste management. Monitor conditions in real-time and respond to urban challenges proactively.",
     image: "/screenshots/smart-city.png",
     imageAlt: "Smart city dashboard",
-    link: "/use-cases/smart-city/",
+    link: "/use-cases/smart-city",
     linkText: "Smart city use case",
   },
 ];
