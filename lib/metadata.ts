@@ -1,6 +1,10 @@
 import type { Metadata } from "next/types";
 
-export function createMetadata(override: Metadata): Metadata {
+export function createMetadata(
+  override: Metadata,
+  ogSlug = "magistrala",
+): Metadata {
+  const ogUrl = `${baseUrl}/og/${ogSlug}/image.webp`;
   return {
     ...override,
     openGraph: {
@@ -9,12 +13,10 @@ export function createMetadata(override: Metadata): Metadata {
       url: baseUrl,
       images: [
         {
-          url: `${baseUrl}/open-graph.png`,
-          secureUrl: `${baseUrl}/open-graph.png`,
-          alt: "Magistrala",
-          type: "image/jpeg",
+          url: ogUrl,
           width: 1200,
           height: 630,
+          alt: "Magistrala — Open Source IoT Platform for Cloud & Edge",
         },
       ],
       siteName: "Magistrala",
@@ -28,12 +30,10 @@ export function createMetadata(override: Metadata): Metadata {
       description: override.description ?? undefined,
       images: [
         {
-          url: `${baseUrl}/open-graph.png`,
-          secureUrl: `${baseUrl}/open-graph.png`,
-          alt: "Magistrala — IoT Platform by Abstract Machines",
-          type: "image/png",
+          url: ogUrl,
           width: 1200,
           height: 630,
+          alt: "Magistrala — Open Source IoT Platform for Cloud & Edge",
         },
       ],
       ...override.twitter,

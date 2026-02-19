@@ -20,13 +20,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const uc = getUseCaseBySlug(slug);
   if (!uc) return {};
-  return createMetadata({
-    title: `${uc.title}`,
-    description: uc.summary,
-    openGraph: {
-      url: `https://magistrala.absmach.eu/use-cases/${slug}/`,
+  return createMetadata(
+    {
+      title: `${uc.title}`,
+      description: uc.summary,
+      openGraph: {
+        url: `https://magistrala.absmach.eu/use-cases/${slug}/`,
+      },
     },
-  });
+    `use-cases/${slug}`,
+  );
 }
 
 export default async function UseCaseDetailPage({

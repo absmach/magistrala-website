@@ -1,0 +1,86 @@
+import { ImageResponse } from "@takumi-rs/image-response";
+import { getPageImage, source } from "@/lib/source";
+import { useCases } from "@/lib/use-cases-data";
+import { Cpu } from "lucide-react";
+
+export const revalidate = false;
+
+function OgImage() {
+  return (
+    <div
+      style={{
+        width: 1200,
+        height: 630,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background:
+          "linear-gradient(135deg, #020b18 0%, #052c50 55%, #073763 100%)",
+        padding: "80px 120px",
+      }}
+    >
+      {/* CPU/chip icon */}
+      <Cpu
+        width={72}
+        height={72}
+        stroke="rgba(255,255,255)"
+        strokeWidth="1.5"
+      />
+      {/* Headline */}
+      <div
+        style={{
+          fontSize: 50,
+          fontWeight: 700,
+          color: "#ffffff",
+          lineHeight: 1.2,
+          textAlign: "center",
+          marginTop: 36,
+          maxWidth: 1000,
+        }}
+      >
+        Magistrala — IoT Platform
+      </div>
+
+      {/* Subtitle */}
+      <div
+        style={{
+          fontSize: 28,
+          fontWeight: 400,
+          color: "rgba(255,255,255,0.55)",
+          marginTop: 24,
+        }}
+      >
+        Abstract Machines
+      </div>
+    </div>
+  );
+}
+
+export async function GET() {
+  return new ImageResponse(<OgImage />, {
+    width: 1200,
+    height: 630,
+    format: "webp",
+  });
+}
+
+export function generateStaticParams() {
+  const docsPages = source.getPages().map((page) => ({
+    slug: getPageImage(page).segments,
+  }));
+
+  const nonDocsPages = [
+    { slug: ["magistrala", "image.webp"] },
+    { slug: ["privacy", "image.webp"] },
+    { slug: ["imprint", "image.webp"] },
+    { slug: ["contact", "image.webp"] },
+    { slug: ["terms", "image.webp"] },
+    { slug: ["use-cases", "image.webp"] },
+    ...useCases.map((uc) => ({
+      slug: ["use-cases", uc.slug, "image.webp"],
+    })),
+  ];
+
+  return [...docsPages, ...nonDocsPages];
+}

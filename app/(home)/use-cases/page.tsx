@@ -6,22 +6,25 @@ import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/metadata";
 import { useCases } from "@/lib/use-cases-data";
 
-export const metadata = createMetadata({
-  title: "Use Cases",
-  description:
-    "Discover how Magistrala powers IoT solutions across industries — from smart water metering to industrial gateway integration and smart city infrastructure.",
-  keywords: [
-    "IoT use cases",
-    "Magistrala",
-    "smart water metering",
-    "industrial IoT",
-    "smart city",
-    "Abstract Machines",
-  ],
-  openGraph: {
-    url: "https://magistrala.absmach.eu/use-cases/",
+export const metadata = createMetadata(
+  {
+    title: "Use Cases",
+    description:
+      "Discover how Magistrala powers IoT solutions across industries — from smart water metering to industrial gateway integration and smart city infrastructure.",
+    keywords: [
+      "IoT use cases",
+      "Magistrala",
+      "smart water metering",
+      "industrial IoT",
+      "smart city",
+      "Abstract Machines",
+    ],
+    openGraph: {
+      url: "https://magistrala.absmach.eu/use-cases/",
+    },
   },
-});
+  "use-cases",
+);
 
 export default function UseCasesPage() {
   return (

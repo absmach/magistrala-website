@@ -1,23 +1,26 @@
 import { LegalLayout } from "@/components/landing/legal-layout";
 import { createMetadata } from "@/lib/metadata";
 
-export const metadata = createMetadata({
-  title: "Privacy Policy",
-  description:
-    "Privacy Policy for Magistrala IoT Platform. Learn how Abstract Machines collects, uses, and protects your data.",
-  keywords: [
-    "Privacy Policy",
-    "data protection",
-    "Magistrala",
-    "Abstract Machines",
-    "GDPR",
-    "IoT privacy",
-    "data security",
-  ],
-  openGraph: {
-    url: "https://magistrala.absmach.eu/privacy/",
+export const metadata = createMetadata(
+  {
+    title: "Privacy Policy",
+    description:
+      "Privacy Policy for Magistrala IoT Platform. Learn how Abstract Machines collects, uses, and protects your data.",
+    keywords: [
+      "Privacy Policy",
+      "data protection",
+      "Magistrala",
+      "Abstract Machines",
+      "GDPR",
+      "IoT privacy",
+      "data security",
+    ],
+    openGraph: {
+      url: "https://magistrala.absmach.eu/privacy/",
+    },
   },
-});
+  "privacy",
+);
 
 export default function PrivacyPage() {
   return (
