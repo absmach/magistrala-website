@@ -28,6 +28,7 @@ export function FeatureIcon({ icon }: { icon: string }) {
         stroke="currentColor"
         viewBox="0 0 24 24"
         strokeWidth="1.5"
+        aria-hidden="true"
       >
         <path strokeLinecap="round" strokeLinejoin="round" d={d} />
       </svg>

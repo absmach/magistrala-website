@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import type Mail from "nodemailer/lib/mailer";
-import { socialLinks, relatedProducts } from "@/lib/data";
+import { relatedProducts, socialLinks } from "@/lib/data";
 
 export async function POST(request: Request) {
   try {

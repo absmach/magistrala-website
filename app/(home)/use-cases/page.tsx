@@ -6,22 +6,25 @@ import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/metadata";
 import { useCases } from "@/lib/use-cases-data";
 
-export const metadata = createMetadata({
-  title: "Use Cases",
-  description:
-    "Discover how Magistrala powers IoT solutions across industries — from smart water metering to industrial gateway integration and smart city infrastructure.",
-  keywords: [
-    "IoT use cases",
-    "Magistrala",
-    "smart water metering",
-    "industrial IoT",
-    "smart city",
-    "Abstract Machines",
-  ],
-  openGraph: {
-    url: "https://magistrala.absmach.eu/use-cases/",
+export const metadata = createMetadata(
+  {
+    title: "Use Cases",
+    description:
+      "Discover how Magistrala powers IoT solutions across industries — from smart water metering to industrial gateway integration and smart city infrastructure.",
+    keywords: [
+      "IoT use cases",
+      "Magistrala",
+      "smart water metering",
+      "industrial IoT",
+      "smart city",
+      "Abstract Machines",
+    ],
+    openGraph: {
+      url: "https://magistrala.absmach.eu/use-cases/",
+    },
   },
-});
+  "use-cases",
+);
 
 export default function UseCasesPage() {
   return (
@@ -109,14 +112,14 @@ export default function UseCasesPage() {
             <Button
               asChild
               variant="outline"
-              className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 font-semibold rounded-xl"
+              className="h-12 px-7 text-base border-white/20 dark:bg-white dark:text-black hover:dark:bg-white/90 font-semibold rounded-xl"
             >
               <a href="mailto:info@abstractmachines.dev">Contact us</a>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 rounded-xl"
+              className="h-12 px-7 text-base border-white/20 dark:bg-white dark:text-black hover:dark:bg-white/90 font-semibold rounded-xl"
             >
               <Link href="/docs">Browse documentation</Link>
             </Button>

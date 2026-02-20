@@ -9,9 +9,9 @@ const stories = [
     height: 100,
     width: 100,
     description:
-      "Magistrala powers real-time metering on the edge for Intel, integrated with EdgeX Foundry under the Linux Foundation.",
-    link: "https://www.intel.com/content/www/us/en/developer/articles/technical/view-metering-in-action-on-edge-middleware-platforms.html",
-    linkText: "Read the case study",
+      "Magistrala (previously Mainflux) powers real-time metering on the edge for Intel, integrated with EdgeX Foundry under the Linux Foundation.",
+    link: "https://github.com/intel/Middleware-Metering",
+    linkText: "View GitHub Project",
   },
   {
     logo: "/logos/ericsson.png",
@@ -19,7 +19,7 @@ const stories = [
     height: 100,
     width: 140,
     description:
-      "Ericsson uses Magistrala for orchestration of IoT slices through edge and cloud microservice platforms.",
+      "Ericsson uses Magistrala (previously Mainflux) for orchestration of IoT slices through edge and cloud microservice platforms.",
     link: "https://www.researchgate.net/publication/334265054_Enabling_the_Orchestration_of_IoT_Slices_through_Edge_and_Cloud_Microservice_Platforms",
     linkText: "Read the paper",
   },
@@ -29,7 +29,7 @@ const stories = [
     height: 50,
     width: 60,
     description:
-      "Target uses Magistrala as the substrate of their IoT platform, deployed in-cloud and on the edge within their stores.",
+      "Target uses Magistrala (previously Mainflux) as the substrate of their IoT platform, deployed in-cloud and on the edge within their stores.",
     link: "https://youtu.be/VenSmkpzC8w?t=1988",
     linkText: "Watch the talk",
   },
@@ -39,14 +39,11 @@ const stories = [
     height: 100,
     width: 150,
     description:
-      "Nokia's Data Marketplace uses Magistrala to seamlessly connect real-time MQTT IoT data streams, enabling secure data sharing and monetization through Magistrala connectors.",
+      "Nokia's Data Marketplace uses Magistrala (previously Mainflux) to seamlessly connect real-time MQTT IoT data streams, enabling secure data sharing and monetization through Magistrala connectors.",
     link: "https://www.nokia.com/networks/data-marketplace/",
     linkText: "Learn more",
   },
 ];
-
-const CARD_TOP_START = 100;
-const CARD_TOP_STEP = 100;
 
 export function SuccessStories() {
   return (
@@ -62,11 +59,10 @@ export function SuccessStories() {
         </div>
 
         <div className="flex flex-col gap-6">
-          {stories.map((story, i) => (
+          {stories.map((story) => (
             <div
               key={story.name}
-              className="sticky rounded-2xl border border-border/40 bg-card shadow-lg transition-shadow"
-              style={{ top: `${CARD_TOP_START + i * CARD_TOP_STEP}px` }}
+              className="rounded-2xl border border-border/40 bg-card shadow-lg transition-shadow"
             >
               <div className="flex items-center gap-4 px-8 py-5 border-b border-border/30">
                 <Image

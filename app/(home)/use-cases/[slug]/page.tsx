@@ -20,13 +20,16 @@ export async function generateMetadata({
   const { slug } = await params;
   const uc = getUseCaseBySlug(slug);
   if (!uc) return {};
-  return createMetadata({
-    title: `${uc.title}`,
-    description: uc.summary,
-    openGraph: {
-      url: `https://magistrala.absmach.eu/use-cases/${slug}/`,
+  return createMetadata(
+    {
+      title: `${uc.title}`,
+      description: uc.summary,
+      openGraph: {
+        url: `https://magistrala.absmach.eu/use-cases/${slug}/`,
+      },
     },
-  });
+    `use-cases/${slug}`,
+  );
 }
 
 export default async function UseCaseDetailPage({
@@ -277,7 +280,7 @@ export default async function UseCaseDetailPage({
             <Button
               asChild
               variant="outline"
-              className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 font-semibold rounded-xl"
+              className="h-12 px-7 text-base border-white/20 dark:bg-white dark:text-black hover:dark:bg-white/90 font-semibold rounded-xl"
             >
               <Link
                 href="https://cloud.magistrala.absmach.eu?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=usecase-page"
@@ -292,7 +295,7 @@ export default async function UseCaseDetailPage({
             <Button
               asChild
               variant="outline"
-              className="h-12 px-7 text-base border-white/20 bg-white dark:bg-white text-primary hover:bg-white/70 rounded-xl"
+              className="h-12 px-7 text-base border-white/20 dark:bg-white dark:text-black hover:dark:bg-white/90 font-semibold rounded-xl"
             >
               <Link href="/contact">Contact Sales</Link>
             </Button>

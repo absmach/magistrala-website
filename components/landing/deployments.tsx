@@ -32,7 +32,7 @@ export function GlobalDeployments() {
           <Button
             asChild={true}
             variant="default"
-            className="h-12 px-7 text-base bg-[#073763] hover:bg-[#0a4a82] text-white rounded-xl"
+            className="h-12 px-7 text-base rounded-xl"
           >
             <Link
               href="https://deployments.absmach.eu?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=home_page"
