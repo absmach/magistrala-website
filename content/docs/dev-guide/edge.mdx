@@ -38,7 +38,7 @@ Agent service has following features:
 
 - Remote execution of commands
 - Remote terminal, remote session to `bash` managed by `Agent`
-- Heartbeat - listening to Message Broker topic `heartbeat.>` it can remotely provide info on running services, if services are publishing heartbeat ( like [Export](./edge.md#export))
+- Heartbeat - listening to Message Broker topic `heartbeat.>` it can remotely provide info on running services, if services are publishing heartbeat ( like [Export](./edge#export))
 - Proxying commands to other gateway services
 - Edgex SMA - remotely making requests to EdgeX endpoints and fetching results, if EdgeX is deployed.
 
@@ -570,18 +570,18 @@ In Magistrala `mqtt` service:
 magistrala-mqtt   | {"level":"info","message":"Publish - client ID export-88529fb2-6c1e-4b60-b9ab-73b5d89f7404 to the topic: m/6a45444c-4c89-46f9-a284-9e731674726a/c/e2adcfa6-96b2-425d-8cd4-ff8cb9c056ce/export/test","ts":"2020-05-08T15:16:02.999684791Z"}
 ```
 
-[agent]: ./edge.md#agent
-[export]: ./edge.md#export
-[magistrala]: ../user-guide/architecture.md
-[bootstrap]: ./bootstrap.md
-[bootstraping]: ./bootstrap.md#bootstrapping
-[provision]: ./provision.md
+[agent]: ./edge#agent
+[export]: ./edge#export
+[magistrala]: ../user-guide/architecture
+[bootstrap]: ./services/bootstrap
+[bootstraping]: ./services/bootstrap#bootstrapping
+[provision]: ./services/provision
 [edgex-repo]: https://github.com/edgexfoundry/edgex-go
 [conftoml]: https://github.com/absmach/export/blob/master/configs/config.toml
 [docker-compose]: https://github.com/absmach/magistrala/blob/main/docker/docker-compose.yml
 [env]: https://github.com/absmach/export#environmet-variables
-[mutual-tls]: ./authentication.md#mutual-tls-authentication-with-x509-certificates
-[certs-service]: ./certs.md#certs-service
+[mutual-tls]: ./dev-tools/authentication#mutual-tls-authentication-with-x509-certificates
+[certs-service]: ./certs#certs-service
 [protomsg]: https://github.com/absmach/magistrala/blob/main/pkg/messaging/message.proto
-[back-to-edge]: ./edge.md
+[back-to-edge]: ./edge
 [nats]: https://nats.io/
