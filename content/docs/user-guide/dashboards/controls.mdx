@@ -41,20 +41,28 @@ Configuration Fields:
 
 - **Channel (*Required*)** - The channel to which the message is sent.
 - **Client (*Required*)** - The target device receiving the command.
-- **Value Name (*Required*)** -The name of the value being controlled (e.g., **volume**).
-- **Subtopic** -  Optional message subtopic.
-- **Title** - Optional label for the widget on the dashboard.
+- **Value Name (*Required*)** - The name of the value being controlled (e.g., **volume**).
+- **Subtopic** - Optional message subtopic.
 
-Once all fields are complete, click `Create`. The Switch Card will be added to the dashboard
+Advanced Settings:
+
+- **Title** - Optional label for the widget on the dashboard.
+- **Switch Style** - Controls the visual style of the toggle:
+  - **Button (Power icon)** – Displays a circular power button. The button turns green when the device is **ON**.
+  - **Slide Toggle** – Displays a large horizontal slide switch that turns green when **ON**.
+
+Once all fields are complete, click `Create`. The Switch Card will be added to the dashboard.
 
 ---
 
 #### Use a Switch Card
 
-After creation, the switch appears with its configured **title** and **value name**.
+After creation, the switch card shows:
+- The configured **value name** at the top
+- The toggle control in the center (power button or slide, depending on the chosen style)
+- An **ON** / **OFF** status label at the bottom
 
-- The default state is **OFF**.
-- A user can toggle the switch to **ON**, sending a true command to the client.
+The default state is **OFF**. Toggle the control to **ON** to send a `true` command to the client.
 
 ![Switch Card OFF](../../img/dashboards/updated-switch.png)
 
@@ -71,6 +79,7 @@ Editable fields include:
 - **Value Name** - Modify the controlled value.
 - **Subtopic** - Modify the subtopic value.
 - **Title** - Update the displayed title.
+- **Switch Style** - Change between Button and Slide Toggle styles.
 
 ![Edit Switch Dialog](../../img/dashboards/edit-switch.png)
 
@@ -92,6 +101,7 @@ Switch Cards are ideal for simple device control:
 
 - Toggle ON/OFF commands
 - Real-time interaction with devices
+- Two visual styles: power button or slide toggle
 - Configurable titles, value names, and channels
 
 ## Slider Control
@@ -124,6 +134,7 @@ Advanced Settings:
 - **Minimum Value** – The lowest selectable value.
 - **Maximum Value** – The highest selectable value.
 - **Steps** – The value increment between slider positions.
+- **Slider Color** – An optional color picker for the slider thumb. Leave empty to use the default primary color.
 
 Click `Create` once the configuration is complete.
 
@@ -131,11 +142,14 @@ Click `Create` once the configuration is complete.
 
 #### Use the Slider Card
 
-Once added, the slider appears with the configured **title** and **unit**.
+Once added, the slider card shows:
+- The **current value** and **unit** in large text at the top
+- Tick marks above the slider track for visual reference
+- The **slider track** with a draggable thumb
+- **Min / Max** value labels below the track
+- The configured **value name** at the bottom
 
-A user can drag the handle to send a new numeric value.
-
-The selected value is sent immediately to the target client.
+Drag the handle to select a value. The new value is sent immediately to the target client.
 
 ![Slider Card](../../img/dashboards/created-slider.png)
 
@@ -155,6 +169,7 @@ This opens the **Update Slider** dialog.
 - **Title** - Update the displayed title.
 - **Minimum & Maximum Values** - Adjust the slider range.
 - **Steps** - Define the increment between values.
+- **Slider Color** - Change or clear the custom thumb color.
 
 ![Edit Slider Dialog](../../img/dashboards/edit-slider.png)
 

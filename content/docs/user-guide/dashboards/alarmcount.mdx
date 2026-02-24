@@ -10,7 +10,7 @@ keywords:
 image: /img/mg-preview.png
 ---
 
-The **Alarm Count** widget displays the total number of alarms based on your filter criteria. It provides a quick overview of system alerts in a compact card format.
+The **Alarm Count** widget displays the total number of alarms based on your filter criteria. The card shows a large themed icon on the left and the alarm count with its label on the right, giving a clear at-a-glance view of system alerts.
 
 ## Adding an Alarm Count Widget
 
@@ -24,10 +24,10 @@ The **Alarm Count** widget displays the total number of alarms based on your fil
 
 ### Basic Settings
 
-- **Label**: Short descriptive text displayed on the card (e.g., "Critical Alarms")
+- **Label**: Short descriptive text shown alongside the alarm count (e.g., "Critical Alarms")
 - **Update Interval**: How often the widget refreshes data
-- **Icon**: Visual icon displayed next to the label
-- **Color Theme**: Theme color for the card content
+- **Icon**: Visual icon displayed on the left side of the card
+- **Color Theme**: Controls the icon background, icon color, and the color of active filter tags on the card
 - **Title**: Widget title shown at the top
 
 ![Alarm Count Configurations](../../img/dashboards/alarm-count/configuration.png)
@@ -56,7 +56,12 @@ Use filters to narrow down which alarms to count. All filters are optional:
 
 1. Configure your desired settings and filters
 2. Click **Create**
-3. The alarm count card appears on your dashboard with the specified filters applied
+3. The alarm count card appears on your dashboard
+
+The card layout shows:
+- A large icon on the left with the chosen **Color Theme** background
+- The **label** and total **alarm count** on the right
+- Any active filters displayed as small colored tags at the bottom of the card, styled in the widget's **Color Theme**
 
 ![Alarm Count Cards](../../img/dashboards/alarm-count/cards.png)
 
