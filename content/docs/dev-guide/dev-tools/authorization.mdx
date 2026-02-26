@@ -998,179 +998,6 @@ Messages entity type supports publish/subscribe operations. In API requests, use
 | `publish`                       | `message_publish`   | Publish messages to a channel        |
 | `subscribe`                     | `message_subscribe` | Subscribe to messages from a channel |
 
-#### Operation Examples
-
-Below are concrete examples of API calls that align with common PAT operations. These examples assume that the PAT has scopes matching the operation, entity type, and domain.
-
-- **Create client in a domain** (`entity_type: clients`, `operation: create`)
-
-```bash
-curl -X POST 'http://localhost/{{DOMAINID}}/clients' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <PAT>' \
-  -d '{
-    "name": "new-client",
-    "tags": ["tag1"],
-    "status": "enabled"
-  }'
-```
-
-- **View a single client** (`entity_type: clients`, `operation: view`)
-
-```bash
-curl -X GET 'http://localhost/{{DOMAINID}}/clients/{{CLIENTID}}' \
-  -H 'Authorization: Bearer <PAT>'
-```
-
-- **List clients in a domain** (`entity_type: clients`, `operation: list`)
-
-```bash
-curl -X GET 'http://localhost/{{DOMAINID}}/clients' \
-  -H 'Authorization: Bearer <PAT>'
-```
-
-- **Delete a client** (`entity_type: clients`, `operation: delete`)
-
-```bash
-curl -X DELETE 'http://localhost/{{DOMAINID}}/clients/{{CLIENTID}}' \
-  -H 'Authorization: Bearer <PAT>'
-```
-
-- **Add users to a client role** (`entity_type: clients`, `operation: role_add`)
-
-```bash
-curl -X POST 'http://localhost/{{DOMAINID}}/clients/{{CLIENTID}}/roles/{{ROLEID}}/members' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <PAT>' \
-  -d '{
-    "members": [
-      "<USER_ID_1>",
-      "<USER_ID_2>"
-    ]
-  }'
-```
-
-- **Remove users from a client role** (`entity_type: clients`, `operation: role_remove`)
-
-```bash
-curl -X POST 'http://localhost/{{DOMAINID}}/clients/{{CLIENTID}}/roles/{{ROLEID}}/members/delete' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <PAT>' \
-  -d '{
-    "members": [
-      "<USER_ID_1>"
-    ]
-  }'
-```
-
-- **Create a group in a domain** (`entity_type: groups`, `operation: create`)
-
-```bash
-curl -X POST 'http://localhost/{{DOMAINID}}/groups' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <PAT>' \
-  -d '{
-    "name": "engineering",
-    "tags": ["team"]
-  }'
-```
-
-- **List groups in a domain** (`entity_type: groups`, `operation: list`)
-
-```bash
-curl -X GET 'http://localhost/{{DOMAINID}}/groups' \
-  -H 'Authorization: Bearer <PAT>'
-```
-
-- **Add users to a group role** (`entity_type: groups`, `operation: role_add`)
-
-```bash
-curl -X POST 'http://localhost/{{DOMAINID}}/groups/{{GROUPID}}/roles/{{ROLEID}}/members' \
-  -H 'Content-Type: application/json' \
-  -H 'Authorization: Bearer <PAT>' \
-  -d '{
-    "members": [
-      "<USER_ID_1>",
-      "<USER_ID_2>"
-    ]
-  }'
-```
-
-### Example Scope JSON
-
-```json
-{
-  "scopes": [
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "clients",
-      "operation": "create",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "clients",
-      "operation": "view",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "clients",
-      "operation": "list",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "clients",
-      "operation": "delete",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "clients",
-      "operation": "role_add",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "clients",
-      "operation": "role_remove",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "groups",
-      "operation": "role_add",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "groups",
-      "operation": "create",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "groups",
-      "operation": "list",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "dashboards",
-      "operation": "share",
-      "entity_id": "*"
-    },
-    {
-      "domain_id": "{{DOMAINID}}",
-      "entity_type": "messages",
-      "operation": "publish",
-      "entity_id": "*"
-    }
-  ]
-}
-```
-
 ### PAT Endpoint Operations
 
 SuperMQ exposes a couple of endpoints that allow the user to create, retrieve, update, delete and list PATs and their respective scopes.
@@ -1516,6 +1343,179 @@ curl --location --request DELETE 'http://localhost:9001/pats/{{PATID}}/scope' \
 
 > **NOTE:**
 > No response is expected.
+
+#### Operation Examples
+
+Below are concrete examples of API calls that align with common PAT operations. These examples assume that the PAT has scopes matching the operation, entity type, and domain.
+
+- **Create client in a domain** (`entity_type: clients`, `operation: create`)
+
+```bash
+curl -X POST 'http://localhost/{{DOMAINID}}/clients' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <PAT>' \
+  -d '{
+    "name": "new-client",
+    "tags": ["tag1"],
+    "status": "enabled"
+  }'
+```
+
+- **View a single client** (`entity_type: clients`, `operation: view`)
+
+```bash
+curl -X GET 'http://localhost/{{DOMAINID}}/clients/{{CLIENTID}}' \
+  -H 'Authorization: Bearer <PAT>'
+```
+
+- **List clients in a domain** (`entity_type: clients`, `operation: list`)
+
+```bash
+curl -X GET 'http://localhost/{{DOMAINID}}/clients' \
+  -H 'Authorization: Bearer <PAT>'
+```
+
+- **Delete a client** (`entity_type: clients`, `operation: delete`)
+
+```bash
+curl -X DELETE 'http://localhost/{{DOMAINID}}/clients/{{CLIENTID}}' \
+  -H 'Authorization: Bearer <PAT>'
+```
+
+- **Add users to a client role** (`entity_type: clients`, `operation: role_add`)
+
+```bash
+curl -X POST 'http://localhost/{{DOMAINID}}/clients/{{CLIENTID}}/roles/{{ROLEID}}/members' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <PAT>' \
+  -d '{
+    "members": [
+      "<USER_ID_1>",
+      "<USER_ID_2>"
+    ]
+  }'
+```
+
+- **Remove users from a client role** (`entity_type: clients`, `operation: role_remove`)
+
+```bash
+curl -X POST 'http://localhost/{{DOMAINID}}/clients/{{CLIENTID}}/roles/{{ROLEID}}/members/delete' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <PAT>' \
+  -d '{
+    "members": [
+      "<USER_ID_1>"
+    ]
+  }'
+```
+
+- **Create a group in a domain** (`entity_type: groups`, `operation: create`)
+
+```bash
+curl -X POST 'http://localhost/{{DOMAINID}}/groups' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <PAT>' \
+  -d '{
+    "name": "engineering",
+    "tags": ["team"]
+  }'
+```
+
+- **List groups in a domain** (`entity_type: groups`, `operation: list`)
+
+```bash
+curl -X GET 'http://localhost/{{DOMAINID}}/groups' \
+  -H 'Authorization: Bearer <PAT>'
+```
+
+- **Add users to a group role** (`entity_type: groups`, `operation: role_add`)
+
+```bash
+curl -X POST 'http://localhost/{{DOMAINID}}/groups/{{GROUPID}}/roles/{{ROLEID}}/members' \
+  -H 'Content-Type: application/json' \
+  -H 'Authorization: Bearer <PAT>' \
+  -d '{
+    "members": [
+      "<USER_ID_1>",
+      "<USER_ID_2>"
+    ]
+  }'
+```
+
+### Example Scope JSON
+
+```json
+{
+  "scopes": [
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "clients",
+      "operation": "create",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "clients",
+      "operation": "view",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "clients",
+      "operation": "list",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "clients",
+      "operation": "delete",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "clients",
+      "operation": "role_add",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "clients",
+      "operation": "role_remove",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "groups",
+      "operation": "role_add",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "groups",
+      "operation": "create",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "groups",
+      "operation": "list",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "dashboards",
+      "operation": "share",
+      "entity_id": "*"
+    },
+    {
+      "domain_id": "{{DOMAINID}}",
+      "entity_type": "messages",
+      "operation": "publish",
+      "entity_id": "*"
+    }
+  ]
+}
+```
 
 ### Authentication and Authorization Process
 
