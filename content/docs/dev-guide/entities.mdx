@@ -328,6 +328,34 @@ type Channel struct {
 The API endpoint for interacting with channels are described in the [channels API][channels-api].
 The CLI for interacting with channels are described in the [channels CLI][channels-cli].
 
+## Metadata
+
+`Metadata` is a free-form JSON object (`map[string]interface{}` in Go) available on all entity types. It is used to attach arbitrary structured data to an entity.
+
+```go
+type Metadata map[string]interface{}
+```
+
+### UI-Compatible Format
+
+When metadata is managed through the Magistrala UI, each user-defined key is stored with type information:
+
+```json
+{
+  "myKey": {
+    "value": "my value",
+    "type": "string",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+}
+```
+
+Supported types are: `string`, `integer`, `double`, `boolean`, `json`, `location`, `perimeter`.
+
+Entities provisioned via the API or CLI with raw (unwrapped) values — e.g. `{"myKey": "my value"}` — are accepted and displayed in the UI, but will not have type tracking or an `updatedAt` timestamp. To ensure full UI compatibility, use the wrapped format above.
+
+For complete details on metadata value types and the location/perimeter formats used by dashboard map widgets, see the [Metadata Management](../user-guide/metadata) user guide.
+
 [clients-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md#clients
 [channels-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md#channels
 [domains-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md

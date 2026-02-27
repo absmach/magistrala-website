@@ -117,6 +117,42 @@ Expected result:
 
 ```
 
+#### Update Channel Metadata
+
+To set metadata on a channel so it is recognized and displayed correctly by the Magistrala UI:
+
+```bash
+magistrala-cli channels update <channel_id> '{"metadata":{"<key>":{"value":"<value>","type":"string","updatedAt":"<timestamp>"}}}' <domain_id> <user_token>
+```
+
+Example usage:
+
+```bash
+magistrala-cli channels update 41a64d0c-5ac6-42d7-bff6-0d4d2828416e '{"metadata":{"location":{"value":"london","type":"string","updatedAt":"2026-01-01T00:00:00.000Z"}}}' 9879f314-8b0a-4a11-b157-8523491ffa81 token
+```
+
+Expected result:
+
+```json
+{
+  "created_at": "2025-02-12T17:25:02.063072Z",
+  "domain_id": "9879f314-8b0a-4a11-b157-8523491ffa81",
+  "id": "41a64d0c-5ac6-42d7-bff6-0d4d2828416e",
+  "metadata": {
+    "location": {
+      "value": "london",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
+  },
+  "name": "Lights",
+  "updated_at": "2026-01-01T00:00:00.000Z",
+  "updated_by": "6ccaf13c-ef88-4cf2-8e3a-c7c04c5eaf9b"
+}
+```
+
+See [Metadata Management](../../user-guide/metadata#api--cli-integration) for the full format reference.
+
 ### Enable Channel
 
 To enabke a channel:

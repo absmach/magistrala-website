@@ -125,6 +125,135 @@ Interactive map for defining geographic boundaries using polygons, circles, or r
 1. Click the **trash** icon next to the metadata entry
 2. Confirm deletion in the dialog
 
+## API / CLI Integration
+
+Entities provisioned via the Magistrala API or CLI must store metadata in the same flat format that the UI uses. Metadata is a JSON object where each user-defined key maps directly to the top level — there is no wrapper object.
+
+### Internal Storage Format
+
+Each metadata entry stored by the UI follows this structure:
+
+```json
+{
+  "myKey": {
+    "value": "my value",
+    "type": "string",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `value` | The actual data value |
+| `type` | One of: `string`, `integer`, `double`, `boolean`, `json`, `location`, `perimeter` |
+| `updatedAt` | ISO 8601 timestamp of the last update |
+
+### Provisioning via API
+
+To set metadata on an entity via the API so it is recognized by the UI, structure the metadata as a flat object at the top level:
+
+```json
+{
+  "metadata": {
+    "environment": {
+      "value": "production",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    "firmwareVersion": {
+      "value": "2.4.1",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
+  }
+}
+```
+
+Raw (unwrapped) values are also accepted — the UI will infer the type and display them — but they will not have a tracked `updatedAt` timestamp.
+
+### Location Format
+
+Location metadata has a specific value structure used by dashboard map widgets:
+
+```json
+{
+  "location": {
+    "value": {
+      "latitude": 48.8566,
+      "longitude": 2.3522,
+      "address": "Paris, France"
+    },
+    "type": "location",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+}
+```
+
+## Breaking Change: Removal of `metadata.ui` Wrapper
+
+In version `0.18.5` and earlier, the Magistrala UI stored all user-defined metadata nested under a `ui` key:
+
+```json
+{
+  "ui": {
+    "environment": {
+      "value": "production",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
+  }
+}
+```
+
+This wrapper has been removed. Metadata is now stored directly at the top level:
+
+```json
+{
+  "environment": {
+    "value": "production",
+    "type": "string",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+}
+```
+
+### UI-Managed User Preferences
+
+When a user first logs in, the Magistrala UI writes the following keys into `metadata` as defaults:
+
+| Key | Default value | Description |
+|-----|---------------|-------------|
+| `theme` | `"default"` | Active UI theme |
+| `language` | `"en"` | UI display language |
+| `subscribed` | `false` | Email notification subscription |
+
+These keys will be **set by the UI on first login**, so any values pre-set via the API or CLI for these keys will be overwritten at that point.
+
+Example of a user's metadata after first login:
+
+```json
+{
+  "metadata": {
+    "theme": {
+      "value": "default",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    "language": {
+      "value": "en",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    "subscribed": {
+      "value": false,
+      "type": "boolean",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
+  }
+}
+```
+
 ## Best Practices
 
 - Use descriptive keys that clearly identify the metadata purpose

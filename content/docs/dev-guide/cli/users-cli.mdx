@@ -173,7 +173,11 @@ Expected response:
       "id": "6ccaf13c-ef88-4cf2-8e3a-c7c04c5eaf9b",
       "last_name": "admin",
       "metadata": {
-        "role": "admin"
+        "theme": {
+          "value": "dark",
+          "type": "string",
+          "updatedAt": "2026-01-01T00:00:00.000Z"
+        }
       },
       "role": "admin",
       "status": "enabled",
@@ -234,16 +238,21 @@ Expected response:
 
 #### **Update User Metadata**
 
+Users have two metadata fields:
+
+- **`metadata`** — publicly readable. The UI uses this to store user preferences (theme, language, etc.). Follows the same typed format as other entities.
+- **`private_metadata`** — never returned in API responses to the user. Intended for server-side or admin-managed data that should not be client-visible.
+
 To update a user's metadata:
 
 ```bash
-magistrala-cli users update <user_id> '{"metadata":{"value2": "value3"}}' <user_token>
+magistrala-cli users update <user_id> '{"metadata":{"<key>":{"value":"<value>","type":"string","updatedAt":"<timestamp>"}}}' <user_token>
 ```
 
 Example usage:
 
 ```bash
-magistrala-cli users update 26ae3198-6060-4308-824c-c846953b9898 '{"metadata":{"aoty": "1"}}'  token
+magistrala-cli users update 26ae3198-6060-4308-824c-c846953b9898 '{"metadata":{"theme":{"value":"dark","type":"string","updatedAt":"2026-01-01T00:00:00.000Z"}}}'  token
 ```
 
 Expected response:
@@ -259,7 +268,11 @@ Expected response:
   "id": "26ae3198-6060-4308-824c-c846953b9898",
   "last_name": "Doe",
   "metadata": {
-    "aoty": "1"
+    "theme": {
+      "value": "dark",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "role": "user",
   "status": "enabled",
@@ -294,7 +307,11 @@ Expected response:
   "id": "26ae3198-6060-4308-824c-c846953b9898",
   "last_name": "Doe",
   "metadata": {
-    "aoty": "1"
+    "theme": {
+      "value": "dark",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "role": "user",
   "status": "enabled",
@@ -333,7 +350,11 @@ Expected response:
   "id": "26ae3198-6060-4308-824c-c846953b9898",
   "last_name": "Doe",
   "metadata": {
-    "aoty": "1"
+    "theme": {
+      "value": "dark",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "role": "user",
   "status": "enabled",
@@ -372,7 +393,11 @@ Expected response:
   "id": "26ae3198-6060-4308-824c-c846953b9898",
   "last_name": "Doe",
   "metadata": {
-    "aoty": "1"
+    "theme": {
+      "value": "dark",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "role": "user",
   "status": "enabled",
@@ -411,7 +436,11 @@ Expected response:
   "id": "26ae3198-6060-4308-824c-c846953b9898",
   "last_name": "Doe",
   "metadata": {
-    "aoty": "1"
+    "theme": {
+      "value": "dark",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "role": "user",
   "status": "enabled",
@@ -466,7 +495,11 @@ Expected response:
   "id": "26ae3198-6060-4308-824c-c846953b9898",
   "last_name": "Doe",
   "metadata": {
-    "aoty": "1"
+    "theme": {
+      "value": "dark",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "role": "user",
   "status": "enabled",
@@ -505,7 +538,11 @@ Expected response:
   "id": "26ae3198-6060-4308-824c-c846953b9898",
   "last_name": "Doe",
   "metadata": {
-    "aoty": "1"
+    "theme": {
+      "value": "dark",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "role": "user",
   "status": "disabled",
@@ -560,7 +597,11 @@ Expected response:
   "id": "26ae3198-6060-4308-824c-c846953b9898",
   "last_name": "Doe",
   "metadata": {
-    "aoty": "1"
+    "theme": {
+      "value": "dark",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "role": "user",
   "status": "enabled",
