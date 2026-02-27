@@ -356,6 +356,8 @@ Entities provisioned via the API or CLI with raw (unwrapped) values — e.g. `{"
 
 For complete details on metadata value types and the location/perimeter formats used by dashboard map widgets, see the [Metadata Management](../user-guide/metadata) user guide.
 
+> **Note:** Older deployments may store UI-managed metadata under a nested `ui` key (i.e. `metadata.ui`) rather than at the top level. A database migration is provided to flatten this structure automatically — existing users only need to upgrade to the latest version of Magistrala.
+
 [clients-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md#clients
 [channels-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md#channels
 [domains-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md
