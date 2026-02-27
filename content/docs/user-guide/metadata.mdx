@@ -218,42 +218,6 @@ This wrapper has been removed. Metadata is now stored directly at the top level:
 }
 ```
 
-### UI-Managed User Preferences
-
-When a user first logs in, the Magistrala UI writes the following keys into `metadata` as defaults:
-
-| Key | Default value | Description |
-|-----|---------------|-------------|
-| `theme` | `"default"` | Active UI theme |
-| `language` | `"en"` | UI display language |
-| `subscribed` | `false` | Email notification subscription |
-
-These keys will be **set by the UI on first login**, so any values pre-set via the API or CLI for these keys will be overwritten at that point.
-
-Example of a user's metadata after first login:
-
-```json
-{
-  "metadata": {
-    "theme": {
-      "value": "default",
-      "type": "string",
-      "updatedAt": "2026-01-01T00:00:00.000Z"
-    },
-    "language": {
-      "value": "en",
-      "type": "string",
-      "updatedAt": "2026-01-01T00:00:00.000Z"
-    },
-    "subscribed": {
-      "value": false,
-      "type": "boolean",
-      "updatedAt": "2026-01-01T00:00:00.000Z"
-    }
-  }
-}
-```
-
 ## Best Practices
 
 - Use descriptive keys that clearly identify the metadata purpose
