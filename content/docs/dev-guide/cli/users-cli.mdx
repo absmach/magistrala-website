@@ -240,8 +240,8 @@ Expected response:
 
 Users have two metadata fields:
 
-- **`metadata`** — publicly readable. The UI uses this to store user preferences (theme, language, etc.). Follows the same typed format as other entities.
-- **`private_metadata`** — never returned in API responses to the user. Intended for server-side or admin-managed data that should not be client-visible.
+- **`metadata`** — publicly readable. Follows the same typed format as other entities.
+- **`private_metadata`** — never returned in API responses to the user. The UI uses this to store user preferences (theme, language, etc.) and other server-side or admin-managed data that should not be client-visible.
 
 To update a user's metadata:
 
