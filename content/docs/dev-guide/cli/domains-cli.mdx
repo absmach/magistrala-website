@@ -143,11 +143,19 @@ In this command:
 - `<new_metadata>` is the new metadata for the domain.
 - `<user_token>` is your user token.
 
-Here's an example in which we're updating the domain with the ID `16a4ad70-a385-45c5-b50a-6d7e48d768d7` to have the name `domain_name` instead of `mydomain`, the alias `domain_alias` instead of `myalias`, and adding new metadata `{"location" : "london"}`.
+Here's an example in which we're updating the domain with the ID `16a4ad70-a385-45c5-b50a-6d7e48d768d7` to have the name `domain_name` instead of `mydomain`, the alias `domain_alias` instead of `myalias`, and adding new metadata:
 
 ```bash
 magistrala-cli domains update 16a4ad70-a385-45c5-b50a-6d7e48d768d7 '{"name" : "domain_name", "alias" : "domain_alias", "metadata" : {"location" : "london"}}' token
 ```
+
+To have the metadata recognized and displayed correctly by the Magistrala UI, use the UI-compatible format with type information:
+
+```bash
+magistrala-cli domains update 16a4ad70-a385-45c5-b50a-6d7e48d768d7 '{"name":"domain_name","alias":"domain_alias","metadata":{"location":{"value":"london","type":"string","updatedAt":"2026-01-01T00:00:00.000Z"}}}' token
+```
+
+See [Metadata Management](../../user-guide/metadata#api--cli-integration) for the full format reference.
 
 After running the command, you should see an output similar to this:
 
@@ -158,7 +166,11 @@ After running the command, you should see an output similar to this:
   "created_by": "6ccaf13c-ef88-4cf2-8e3a-c7c04c5eaf9b",
   "id": "16a4ad70-a385-45c5-b50a-6d7e48d768d7",
   "metadata": {
-    "location": "london"
+    "location": {
+      "value": "london",
+      "type": "string",
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    }
   },
   "name": "domain_name",
   "status": "enabled",
@@ -234,7 +246,11 @@ After you run this command, the system will show you a list of users in the doma
       },
       "id": "6a8c0864-1d95-4053-a335-a6399c0ccb0a",
       "metadata": {
-        "location": "london"
+        "location": {
+          "value": "london",
+          "type": "string",
+          "updatedAt": "2026-01-01T00:00:00.000Z"
+        }
       },
       "name": "user1",
       "status": "enabled",
