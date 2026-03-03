@@ -328,6 +328,39 @@ type Channel struct {
 The API endpoint for interacting with channels are described in the [channels API][channels-api].
 The CLI for interacting with channels are described in the [channels CLI][channels-cli].
 
+## Tags Filtering
+
+Tags are supported on **Users**, **Domains**, **Groups**, **Clients**, and **Channels**. When listing any of these entities, the `tags` query parameter can be used to filter results by one or more tag values.
+
+### Operators
+
+| Operator | Symbol | URL-encoded | Behaviour |
+|----------|--------|-------------|-----------|
+| OR | `,` | `,` | Returns entities that have **at least one** of the specified tags |
+| AND | `+` | `%2B` | Returns entities that have **all** of the specified tags |
+
+### Examples
+
+**OR filter** — return entities tagged `temperature` or `humidity`:
+
+```
+GET /domains/{domainID}/channels?tags=temperature,humidity
+```
+
+**AND filter** — return entities tagged both `outdoor` and `sensor`:
+
+```
+GET /domains/{domainID}/channels?tags=outdoor%2Bsensor
+```
+
+> **Note:** Because `+` is interpreted as a space in URL query strings, always percent-encode it as `%2B` when constructing AND filter requests manually.
+
+### Tag Value Constraints
+
+Because `,` and `+` are reserved as filter operators, **tag values themselves must not contain these characters**. A tag such as `outdoor+sensor` or `type,water` would conflict with the query syntax and produce incorrect filter results.
+
+Allowed examples: `temperature`, `meter-type:water`, `zone-A`
+
 [clients-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md#clients
 [channels-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md#channels
 [domains-api]: https://github.com/absmach/supermq-docs/blob/main/docs/api.md
