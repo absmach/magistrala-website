@@ -27,19 +27,83 @@ This action redirects the user to the PAT creation page, where required details 
 
 ![Create Pat](../img/pats/create-pat.png)
 
-The available operations include:
+Available scope entities are **Clients**, **Channels**, **Groups**, and **Domain**. Each entity type exposes a distinct set of operations:
 
-| Operation   | Description                          |
-| ----------- | ------------------------------------ |
-| `create`    | Create a new entity                  |
-| `read`      | Read/view an entity                  |
-| `list`      | List entities                        |
-| `update`    | Update/modify an entity              |
-| `delete`    | Delete an entity                     |
-| `share`     | Share an entity with others          |
-| `unshare`   | Remove sharing permissions           |
-| `publish`   | Publish messages to a channel        |
-| `subscribe` | Subscribe to messages from a channel |
+#### Clients
+
+| Operation                  | Description                              |
+| -------------------------- | ---------------------------------------- |
+| `view`                     | View a client                            |
+| `update`                   | Update client information                |
+| `update_tags`              | Update client tags                       |
+| `update_secret`            | Update client secret/credentials         |
+| `enable`                   | Enable a client                          |
+| `disable`                  | Disable a client                         |
+| `delete`                   | Delete a client                          |
+| `set_parent_group`         | Assign a parent group to a client        |
+| `remove_parent_group`      | Remove the parent group from a client    |
+| `connect_to_channel`       | Connect a client to a channel            |
+| `disconnect_from_channel`  | Disconnect a client from a channel       |
+
+#### Channels
+
+| Operation             | Description                              |
+| --------------------- | ---------------------------------------- |
+| `view`                | View a channel                           |
+| `update`              | Update channel information               |
+| `update_tags`         | Update channel tags                      |
+| `enable`              | Enable a channel                         |
+| `disable`             | Disable a channel                        |
+| `delete`              | Delete a channel                         |
+| `set_parent_group`    | Assign a parent group to a channel       |
+| `remove_parent_group` | Remove the parent group from a channel   |
+| `connect_client`      | Connect a client to the channel          |
+| `disconnect_client`   | Disconnect a client from the channel     |
+
+#### Groups
+
+| Operation                    | Description                                  |
+| ---------------------------- | -------------------------------------------- |
+| `view`                       | View a group                                 |
+| `update`                     | Update group information                     |
+| `update_tags`                | Update group tags                            |
+| `enable`                     | Enable a group                               |
+| `disable`                    | Disable a group                              |
+| `delete`                     | Delete a group                               |
+| `retrieve_group_hierarchy`   | Retrieve the group hierarchy                 |
+| `add_parent_group`           | Assign a parent group                        |
+| `remove_parent_group`        | Remove the parent group                      |
+| `add_children_groups`        | Add child groups                             |
+| `remove_children_groups`     | Remove specific child groups                 |
+| `remove_all_children_groups` | Remove all child groups                      |
+| `list_children_groups`       | List child groups                            |
+| `set_child_client`           | Assign a client as a child of the group      |
+| `remove_child_client`        | Remove a client from the group               |
+| `set_child_channel`          | Assign a channel as a child of the group     |
+| `remove_child_channel`       | Remove a channel from the group              |
+
+#### Domain
+
+The **Domain** entity scope is automatically locked to the current domain.
+
+| Operation                | Description                              |
+| ------------------------ | ---------------------------------------- |
+| `create`                 | Create a new domain                      |
+| `update`                 | Update domain information                |
+| `read`                   | Read domain details                      |
+| `enable`                 | Enable the domain                        |
+| `disable`                | Disable the domain                       |
+| `list`                   | List domains                             |
+| `send_invitation`        | Send a domain invitation                 |
+| `list_invitation`        | List invitations sent by the user        |
+| `list_domain_invitation` | List all invitations for the domain      |
+| `delete_invitation`      | Delete a domain invitation               |
+| `create_clients`         | Create clients within the domain         |
+| `list_clients`           | List clients in the domain               |
+| `create_channels`        | Create channels within the domain        |
+| `list_channels`          | List channels in the domain              |
+| `create_groups`          | Create groups within the domain          |
+| `list_groups`            | List groups in the domain                |
 
 ## View a PAT
 
