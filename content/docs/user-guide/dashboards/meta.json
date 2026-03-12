@@ -2,6 +2,7 @@
   "title": "Dashboards",
   "pages": [
     "introduction",
+    "dashboards",
     "widgets",
     "linechart",
     "areachart",
