@@ -3,6 +3,7 @@
   "pages": [
     "introduction",
     "dashboards",
+    "templates",
     "widgets",
     "linechart",
     "areachart",
