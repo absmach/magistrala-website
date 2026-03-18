@@ -9,7 +9,6 @@ import { PricingSection } from "@/components/landing/pricing";
 import { ScrollToTop } from "@/components/landing/scroll-to-top";
 import { SuccessStories } from "@/components/landing/success-stories";
 import { UseCases } from "@/components/landing/use-cases";
-import { WhatIsMagistrala } from "@/components/landing/what-is-magistrala";
 import { WhyMagistrala } from "@/components/landing/why-magistrala";
 
 const jsonLd = {
@@ -83,7 +82,6 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <HeroSection />
-      <WhatIsMagistrala />
       <PartnersMarquee />
       <FeaturesSection />
       <WhyMagistrala />
