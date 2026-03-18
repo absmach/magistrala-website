@@ -1,7 +1,3 @@
-// Server component — no "use client".
-// Renders all FAQ answers in initial HTML (bot-visible).
-// Accordion interactivity is handled by FAQAccordionItem (client).
-
 import { FAQAccordionItem } from "./faq-item";
 
 export interface FAQItem {

@@ -12,10 +12,6 @@ interface FAQItemProps {
 export function FAQAccordionItem({ question, answer }: FAQItemProps) {
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  // Only collapse after hydration so the initial HTML keeps answers visible.
-  // Before useEffect runs: mounted=false → showAnswer=true (matches SSR, no mismatch).
-  // After useEffect runs: mounted=true → showAnswer driven by isOpen state.
   useEffect(() => {
     setMounted(true);
   }, []);
