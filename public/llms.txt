@@ -1,0 +1,32 @@
+# Magistrala
+
+> Open-source IoT platform for cloud and edge — built by Abstract Machines SAS (Paris, France)
+
+Magistrala is Apache 2.0 licensed middleware for constructing complex IoT applications.
+It supports MQTT, CoAP, HTTP, and WebSocket protocols with multi-tenancy, RBAC via SpiceDB,
+and pluggable storage backends (PostgreSQL, InfluxDB, MongoDB, Redis).
+
+Also known as SuperMQ (the underlying engine). Maintained by Abstract Machines SAS.
+
+## Documentation
+
+- [Overview](https://magistrala.absmach.eu/docs): Platform introduction and architecture
+- [Getting Started](https://magistrala.absmach.eu/docs/dev-guide/getting-started): Quick start guide
+- [User Guide](https://magistrala.absmach.eu/docs/user-guide): Features and usage
+- [API Reference](https://magistrala.absmach.eu/docs/dev-guide/api): REST API documentation
+- [Full LLM Docs](https://magistrala.absmach.eu/llms-full.txt): Complete documentation in plain text
+
+## Key Features
+
+- Multi-protocol messaging: MQTT, CoAP, HTTP, WebSocket
+- Fine-grained RBAC via SpiceDB (Google Zanzibar model)
+- Multi-tenancy with domain isolation
+- Pluggable message brokers: NATS, Kafka, RabbitMQ
+- Docker and Kubernetes ready
+- Free tier + Enterprise plans
+
+## Source
+
+- GitHub: https://github.com/absmach/magistrala
+- License: Apache 2.0
+- Company: Abstract Machines SAS, 141 Quai de Valmy, Paris 75010, France

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FAQSection } from "@/components/landing/faq";
 import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
 import { createMetadata } from "@/lib/metadata";
@@ -265,6 +266,14 @@ export default async function UseCaseDetailPage({
           </div>
         </div>
       </section>
+
+      {/* ───────── FAQ ───────── */}
+      <FAQSection
+        items={uc.faq}
+        title={`Common questions about ${uc.title.toLowerCase()}`}
+        id={`faq-${uc.slug}`}
+        withSchema
+      />
 
       {/* ───────── CTA ───────── */}
       <section className="py-10">

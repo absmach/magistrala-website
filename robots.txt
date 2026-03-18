@@ -1,15 +1,25 @@
-# robots.txt for Magistrala IoT Platform
-# https://magistrala.absmach.eu/robots.txt
-
 User-agent: *
 Allow: /
 
-# Sitemap location
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://magistrala.absmach.eu/sitemap.xml
-
-# Crawl delay (optional - uncomment if needed to reduce server load)
-# Crawl-delay: 1
-
-# Disallow specific paths if needed (examples below)
-# Disallow: /admin/
-# Disallow: /private/
