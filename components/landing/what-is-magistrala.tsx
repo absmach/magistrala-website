@@ -1,7 +1,3 @@
-// Server component — no "use client".
-// 130–170 word entity-definition block optimised for AI citation and passage extraction.
-// Stats row provides quotable metrics for Perplexity, ChatGPT web search, and Google AI Overviews.
-
 const stats = [
   { value: "4", label: "IoT protocols", sub: "MQTT · CoAP · HTTP · WebSocket" },
   { value: "3+", label: "Message brokers", sub: "NATS · Kafka · RabbitMQ" },
