@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 export function GlobalDeployments() {
   return (
     <section className="py-24 bg-background">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto container">
         <div className="text-center mb-12">
           <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             Global Reach

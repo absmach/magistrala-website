@@ -23,7 +23,7 @@ const partners = [
 
 export function PartnersMarquee() {
   return (
-    <section className="border-y border-border/40 bg-muted/20 py-10">
+    <section className="border-y border-border/40 bg-muted/20 py-10 mx-auto container">
       <div className="mx-auto max-w-6xl px-6 mb-6">
         <p className="text-center text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Trusted by industry leaders
@@ -36,7 +36,7 @@ export function PartnersMarquee() {
           {[...partners, ...partners].map((partner, i) => (
             <div
               key={`${partner.name}-${i}`}
-              className="flex items-center justify-center mx-10 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              className="flex items-center justify-center mx-10 transition-all duration-300"
             >
               <Image
                 src={partner.src}

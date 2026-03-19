@@ -41,7 +41,7 @@ function useInView(options = {}) {
 export function FeaturesSection() {
   return (
     <section id="features" className="py-24 bg-background">
-      <div className="mx-auto max-w-350 px-4 sm:px-6">
+      <div className="mx-auto container">
         <div className="text-center mb-12 sm:mb-20">
           <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             Platform

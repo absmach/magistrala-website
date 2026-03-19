@@ -273,3 +273,36 @@
 #nd-nav li a:hover {
   color: var(--primary);
 }
+
+@utility container {
+  padding-inline: 1rem;
+  @media (width >= 640px) {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 640px) {
+  #nd-home-layout {
+    --fd-layout-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  #nd-home-layout {
+    --fd-layout-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  #nd-home-layout {
+    --fd-layout-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  #nd-home-layout {
+    --fd-layout-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+  #nd-home-layout {
+    --fd-layout-width: 1536px;
+  }
+}
