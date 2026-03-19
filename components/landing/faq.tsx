@@ -1,10 +1,12 @@
-"use client";
+import { FAQAccordionItem } from "./faq-item";
 
-import { ChevronDown } from "lucide-react";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
+export interface FAQItem {
+  question: string;
+  answer: string;
+}
 
-const faqs = [
+// Homepage FAQ data. Also mirrored in the FAQPage JSON-LD in app/(home)/page.tsx.
+export const homepageFaqs: FAQItem[] = [
   {
     question: "Is Magistrala cloud-hosted or self-hosted?",
     answer:
@@ -37,58 +39,59 @@ const faqs = [
   },
 ];
 
-export function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export interface FAQSectionProps {
+  items?: FAQItem[];
+  title?: string;
+  id?: string;
+  withSchema?: boolean;
+}
+
+export function FAQSection({
+  items = homepageFaqs,
+  title = "Frequently asked questions",
+  id = "faq",
+  withSchema = false,
+}: FAQSectionProps) {
+  const schema = withSchema
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: items.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: { "@type": "Answer", text: item.answer },
+        })),
+      }
+    : null;
 
   return (
-    <section id="faq" className="py-24 container mx-auto">
+    <section id={id} className="py-24 container mx-auto">
+      {schema && (
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      )}
+
       <div className="mx-auto max-w-4xl px-6">
         <div className="text-center mb-16">
           <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
             FAQ
           </p>
           <h2 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            Frequently asked questions
+            {title}
           </h2>
         </div>
 
         <div className="divide-y divide-border/60">
-          {faqs.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div key={faq.question} className="py-5">
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-start justify-between gap-4 text-left p-2"
-                >
-                  <span className="text-xl font-medium text-foreground">
-                    {faq.question}
-                  </span>
-                  <ChevronDown
-                    className={cn(
-                      "size-4 text-muted-foreground shrink-0 mt-1 transition-transform duration-200",
-                      isOpen && "rotate-180",
-                    )}
-                  />
-                </button>
-                <div
-                  className={cn(
-                    "grid transition-all duration-200",
-                    isOpen
-                      ? "grid-rows-[1fr] opacity-100 mt-3"
-                      : "grid-rows-[0fr] opacity-0",
-                  )}
-                >
-                  <div className="overflow-hidden">
-                    <p className="text-lg text-muted-foreground leading-relaxed pr-8">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {items.map((faq) => (
+            <FAQAccordionItem
+              key={faq.question}
+              question={faq.question}
+              answer={faq.answer}
+            />
+          ))}
         </div>
       </div>
     </section>

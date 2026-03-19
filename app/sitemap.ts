@@ -37,7 +37,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const page of source.getPages()) {
     pages.push({
       url: `${DOMAIN}${page.url}`,
-      lastModified: new Date(),
     });
   }
 
