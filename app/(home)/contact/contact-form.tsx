@@ -80,7 +80,7 @@ export function ContactForm() {
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-background via-muted/10 to-background flex items-center py-12 md:py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto">
           <div className="mx-auto max-w-5xl">
             {/* Header */}
             <div className="text-center mb-12">

@@ -51,7 +51,7 @@ export default async function UseCaseDetailPage({
       {/* ───────── Hero ───────── */}
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#073763]/5 to-transparent" />
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="container mx-auto">
           <Link
             href="/use-cases"
             className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-8 group"
@@ -71,7 +71,7 @@ export default async function UseCaseDetailPage({
             </div>
           </div>
 
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             {uc.description}
           </p>
 
@@ -104,7 +104,7 @@ export default async function UseCaseDetailPage({
 
       {/* ───────── Challenges ───────── */}
       <section className="py-20 md:py-24 bg-muted/30">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="container mx-auto">
           <div className="max-w-2xl mb-12">
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
               {uc.challenges.title}
@@ -137,7 +137,7 @@ export default async function UseCaseDetailPage({
 
       {/* ───────── How It Works ───────── */}
       <section className="py-20 md:py-24">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="container mx-auto">
           <div className="max-w-2xl mb-12">
             <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
               How it works
@@ -178,7 +178,7 @@ export default async function UseCaseDetailPage({
 
       {/* ───────── Dashboard ───────── */}
       <section className="py-20 md:py-24 bg-muted/30">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="container mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-2xl font-bold text-foreground sm:text-3xl">
               {uc.dashboard.title}
@@ -203,7 +203,7 @@ export default async function UseCaseDetailPage({
 
       {/* ───────── Key Applications ───────── */}
       <section className="py-20 md:py-24">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="container mx-auto">
           <div className="text-center mb-12">
             <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
               {uc.applications.title}
@@ -236,7 +236,7 @@ export default async function UseCaseDetailPage({
 
       {/* ───────── Benefits ───────── */}
       <section className="py-20 md:py-24 bg-muted/30">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-sm font-medium uppercase tracking-widest text-primary mb-3">
@@ -306,7 +306,7 @@ export default async function UseCaseDetailPage({
       {/* ───────── Prev / Next navigation ───────── */}
       {(prev || next) && (
         <section className="py-12 border-t border-border/30">
-          <div className="mx-auto max-w-5xl px-6 flex items-center justify-between">
+          <div className="container mx-auto flex items-center justify-between">
             {prev ? (
               <Link
                 href={`/use-cases/${prev.slug}`}
