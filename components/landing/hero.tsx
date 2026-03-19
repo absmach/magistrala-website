@@ -11,7 +11,7 @@ export function HeroSection() {
         <div className="absolute bottom-0 left-0 w-100 h-100 rounded-full bg-[#073763]/2 blur-3xl -translate-x-1/3 translate-y-1/3" />
       </div>
 
-      <div className="relative mx-auto max-w-350 px-6">
+      <div className="relative mx-auto container">
         <div className="grid lg:grid-cols-[45%_55%] gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#073763]/10 bg-[#073763]/4 px-4 py-1.5 text-sm text-primary mb-8">
