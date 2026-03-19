@@ -34,24 +34,6 @@ const jsonLd = {
       },
     },
     {
-      "@type": "WebSite",
-      "@id": "https://magistrala.absmach.eu/#website",
-      url: "https://magistrala.absmach.eu",
-      name: "Magistrala",
-      description:
-        "Open-source IoT platform for cloud and edge with multi-protocol messaging, RBAC, and real-time dashboards.",
-      publisher: { "@id": "https://magistrala.absmach.eu/#organization" },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate:
-            "https://magistrala.absmach.eu/docs?q={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
-    },
-    {
       "@type": "SoftwareApplication",
       "@id": "https://magistrala.absmach.eu/#software",
       name: "Magistrala",
