@@ -210,6 +210,9 @@ export function Footer() {
                 <MapPin className="size-3.5 shrink-0 mt-0.5" />
                 {ADDRESS}
               </li>
+              <li className="text-xs text-muted-foreground/70">
+                GDPR compliant &middot; EU-based company
+              </li>
             </ul>
           </div>
 

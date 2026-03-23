@@ -1,9 +1,25 @@
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export function HeroSection() {
+async function getGitHubStars(): Promise<number | null> {
+  try {
+    const res = await fetch("https://api.github.com/repos/absmach/magistrala", {
+      next: { revalidate: 3600 },
+      headers: { Accept: "application/vnd.github+json" },
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.stargazers_count ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export async function HeroSection() {
+  const stars = await getGitHubStars();
+
   return (
     <section className="relative overflow-hidden bg-background pt-24 pb-20 md:pt-32 md:pb-28">
       <div className="absolute inset-0 pointer-events-none">
@@ -58,6 +74,23 @@ export function HeroSection() {
                 </Link>
               </Button>
             </div>
+
+            {stars !== null && (
+              <Link
+                href="https://github.com/absmach/magistrala"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Star className="size-4 fill-yellow-400 text-yellow-400" />
+                <span>
+                  <strong className="text-foreground">
+                    {stars.toLocaleString()}
+                  </strong>{" "}
+                  stars on GitHub
+                </span>
+              </Link>
+            )}
           </div>
 
           <div className="relative">

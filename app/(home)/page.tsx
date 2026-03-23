@@ -16,7 +16,7 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://magistrala.absmach.eu/#organization",
+      "@id": "https://magistrala.absmach.eu/#org",
       name: "Abstract Machines",
       url: "https://absmach.eu",
       logo: "https://magistrala.absmach.eu/logos/abstract-machines.svg",
@@ -50,7 +50,17 @@ const jsonLd = {
         priceCurrency: "USD",
         description: "Free tier available",
       },
-      author: { "@id": "https://magistrala.absmach.eu/#organization" },
+      author: { "@id": "https://magistrala.absmach.eu/#org" },
+      creator: { "@id": "https://magistrala.absmach.eu/#org" },
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://magistrala.absmach.eu/#source",
+      name: "Magistrala",
+      codeRepository: "https://github.com/absmach/magistrala",
+      programmingLanguage: "Go",
+      license: "https://opensource.org/licenses/Apache-2.0",
+      creator: { "@id": "https://magistrala.absmach.eu/#org" },
     },
   ],
 };
