@@ -23,7 +23,7 @@ export function FAQAccordionItem({ question, answer }: FAQItemProps) {
       <button
         type="button"
         onClick={() => setIsOpen((o) => !o)}
-        aria-expanded={showAnswer}
+        aria-expanded={mounted ? isOpen : false}
         className="flex w-full items-start justify-between gap-4 text-left p-2"
       >
         <span className="text-xl font-medium text-foreground">{question}</span>
