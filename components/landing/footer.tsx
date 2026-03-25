@@ -156,7 +156,7 @@ const NEWSLETTER_FORM_ACTION =
 export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background">
-      <div className="container mx-auto py-6">
+      <div className="container mx-auto py-6 px-6">
         <div className="grid gap-16 sm:grid-cols-2 lg:grid-cols-5 items-center">
           {/* Brand */}
           <div>

@@ -32,7 +32,7 @@ export default function UseCasesPage() {
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#073763]/4 to-transparent" />
-        <div className="container mx-auto text-center">
+        <div className="container mx-auto px-6 text-center">
           <p className="text-sm font-medium uppercase tracking-widest text-primary mb-4">
             Use Cases
           </p>
@@ -48,7 +48,7 @@ export default function UseCasesPage() {
 
       {/* Cards grid */}
       <section className="pb-24 md:pb-32">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-6">
           <div className="grid gap-8 lg:grid-cols-2">
             {useCases.map((uc) => (
               <Link
@@ -99,7 +99,7 @@ export default function UseCasesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-10">
+      <section className="py-10 px-6">
         <div className="mx-auto lg:max-w-4xl max-sm:px-5 p-16 border rounded-4xl text-center bg-[#073763]">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
             Don&rsquo;t see your use case?
