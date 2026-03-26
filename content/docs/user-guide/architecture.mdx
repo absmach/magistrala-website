@@ -19,9 +19,9 @@ Magistrala IoT platform is comprised of the following services:
 | [mqtt-adapter][mqtt-adapter]     | Provides an MQTT and MQTT over WS interface for sending and receiving messages via MQTT |
 | [magistrala-cli][magistrala-cli] | Command line interface                                                                  |
 | [bootstrap][bootstrap]           | Provides basic configuration for newly created clients                                  |
-| [consumers][consumers]           | An abstraction of SuperMQ consumers that receives messages                              |
+| [consumers][consumers]           | An abstraction of Magistrala consumers that receives messages                           |
 | [email][email]                   | Magistrala Email Agent is used for sending emails                                       |
-| [provision][provision]           | Provides a HTTP API to interact with SuperMQ and setup configurations                   |
+| [provision][provision]           | Provides a HTTP API to interact with Magistrala and setup configurations                |
 | [rules-engine][rules-engine]     | Create rules using LUA script that process incoming messages                            |
 | [readers][readers]               | Implement message readers ie Postgres and Timescale                                     |
 
@@ -29,7 +29,7 @@ Magistrala IoT platform is comprised of the following services:
 
 ## Domain Model
 
-The platform is built upon [SuperMQ][supermq] which is built around 2 main entities: **users** and **clients**.
+The platform is built around 2 main entities: **users** and **clients**.
 
 `User` represents the real (human) user of the system. Users are represented via their email address, first and last names, a unique username, and password used as their secret, which they use as platform access credentials in order to obtain an access token. Once logged into the system, a user can manage their resources (i.e. groups, clients and channels) in CRUD fashion and define access control policies by connecting them.
 
@@ -71,4 +71,3 @@ Running Magistrala on gateway moves computation from cloud towards the edge thus
 [provision]: https://github.com/absmach/magistrala/tree/main/provision
 [rules-engine]: https://github.com/absmach/magistrala/tree/main/re
 [readers]: https://github.com/absmach/magistrala/tree/main/readers
-[supermq]: https://github.com/absmach/supermq

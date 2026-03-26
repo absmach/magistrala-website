@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS messages (
 // Initialize TimescaleDB Connection
 cfg := timescale.Config{
     Host: "localhost", Port: "5432",
-    User: "supermq", Pass: "supermq",
+    User: "magistrala", Pass: "magistrala",
     Name: "magistrala", SSLMode: "disable",
 }
 
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS messages (
 // Initialize PostgreSQL Connection
 cfg := postgres.Config{
     Host: "localhost", Port: "5432",
-    User: "supermq", Pass: "supermq",
+    User: "magistrala", Pass: "magistrala",
     Name: "magistrala", SSLMode: "disable",
 }
 
