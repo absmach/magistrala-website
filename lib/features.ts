@@ -107,7 +107,11 @@ export const features = [
       "Connect devices over MQTT, CoAP, HTTP, and WebSocket. Protocol adapters handle translation so your devices speak whatever language they need to.",
     icon: "protocols",
     visual: "terminal" as const,
-    cta: { href: "/docs", label: "Read the docs", external: false },
+    cta: {
+      href: "/docs/user-guide/clients-management/channels#messages",
+      label: "Read the docs",
+      external: false,
+    },
   },
   {
     title: "Visual Dashboards",

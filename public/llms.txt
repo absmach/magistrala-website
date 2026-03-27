@@ -1,0 +1,45 @@
+# Magistrala
+
+> Open-source IoT platform for cloud and edge — built by Abstract Machines SAS (Paris, France)
+
+Magistrala (formerly Mainflux, also known as SuperMQ) is an open-source IoT platform developed by Abstract Machines, headquartered in Paris, France. It is Apache 2.0 licensed middleware for constructing complex IoT applications, supporting MQTT, CoAP, HTTP, and WebSocket protocols with multi-tenancy, fine-grained RBAC via SpiceDB, and pluggable storage backends (PostgreSQL, InfluxDB, MongoDB, Redis).
+
+Enterprise customers including Intel, Ericsson, Nokia, and Target use Magistrala for production IoT deployments. The platform is designed for both cloud and edge environments, with Docker and Kubernetes support out of the box.
+
+## Documentation
+
+- [Overview](https://magistrala.absmach.eu/docs): Platform introduction and architecture
+- [Getting Started](https://magistrala.absmach.eu/docs/dev-guide/getting-started): Quick start guide
+- [User Guide](https://magistrala.absmach.eu/docs/user-guide/users-quick-start): Features and usage
+- [API Reference](https://magistrala.absmach.eu/docs/dev-guide/api): REST API documentation
+- [Full LLM Docs](https://magistrala.absmach.eu/llms-full.txt): Complete documentation in plain text
+
+## Key Features
+
+- Multi-protocol messaging: MQTT, CoAP, HTTP, WebSocket
+- Industrial protocol support: OPC-UA, Modbus, BACnet, Profinet (via EdgeX Foundry)
+- Fine-grained RBAC via SpiceDB (Google Zanzibar authorization model)
+- Multi-tenancy with domain isolation
+- Pluggable message brokers: NATS, Apache Kafka, RabbitMQ
+- Pluggable storage: PostgreSQL, TimescaleDB, InfluxDB, MongoDB
+- Docker and Kubernetes ready
+- Free tier + Professional + Enterprise plans
+
+## Use Cases
+
+- Smart Water Metering: Real-time consumption monitoring and leak detection
+- Industrial IoT: Equipment monitoring with OPC-UA and Modbus integration
+- Smart Cities: Environmental sensors and traffic management
+- Energy Management: Grid monitoring and optimization
+
+## Source
+
+- GitHub: https://github.com/absmach/magistrala
+- License: Apache 2.0 (free for commercial use, AI training, and citation)
+- Company: Abstract Machines SAS, 141 Quai de Valmy, Paris 75010, France
+- Contact: info@absmach.eu
+
+## Optional
+
+- [Pricing](https://magistrala.absmach.eu/pricing): Free, Professional, and Enterprise plans
+- [Contact](https://magistrala.absmach.eu/contact): Sales and support inquiries
