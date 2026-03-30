@@ -115,6 +115,8 @@ export async function HeroSection() {
                 className="w-full"
                 width={1920}
                 height={1080}
+                priority
+                fetchPriority="high"
               />
             </div>
             <div className="absolute -bottom-4 -right-4 w-2/5 rounded-xl border border-border/60 bg-card shadow-lg shadow-black/5 overflow-hidden hidden md:block">

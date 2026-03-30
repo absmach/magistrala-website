@@ -13,7 +13,7 @@ export const metadata = createMetadata({
   description:
     "Magistrala is an open-source IoT platform with multi-protocol support (MQTT, CoAP, HTTP, WebSocket), device management, and RBAC — built for cloud and edge.",
   metadataBase: baseUrl,
-  openGraph: { url: baseUrl },
+  openGraph: { url: `${baseUrl}/` },
 });
 
 export default function Layout({ children }: LayoutProps<"/">) {
