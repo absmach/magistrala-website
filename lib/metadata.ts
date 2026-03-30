@@ -14,17 +14,21 @@ export function createMetadata(
   const ogUrl = `${baseUrl}/og/${ogSlug}/image.webp`;
   const resolvedTitle = resolveTitle(override.title);
   const canonicalUrl =
-    (override.openGraph?.url as string | undefined) ?? baseUrl;
+    override.alternates?.canonical ??
+    (override.openGraph?.url as string | URL | undefined);
+  const alternates = canonicalUrl
+    ? {
+        ...override.alternates,
+        canonical: canonicalUrl,
+      }
+    : override.alternates;
+  const openGraphUrl = override.openGraph?.url;
   return {
     ...override,
-    alternates: {
-      canonical: canonicalUrl,
-      ...override.alternates,
-    },
+    ...(alternates ? { alternates } : {}),
     openGraph: {
       title: resolvedTitle,
       description: override.description ?? undefined,
-      url: baseUrl,
       images: [
         {
           url: ogUrl,
@@ -34,6 +38,7 @@ export function createMetadata(
         },
       ],
       siteName: "Magistrala",
+      ...(openGraphUrl ? { url: openGraphUrl } : {}),
       ...override.openGraph,
     },
     twitter: {
