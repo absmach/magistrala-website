@@ -21,6 +21,38 @@ export const metadata = createMetadata(
   "contact",
 );
 
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact Magistrala — Abstract Machines",
+  url: "https://magistrala.absmach.eu/contact",
+  description:
+    "Get in touch with the Abstract Machines team for Magistrala IoT platform sales, support, and enterprise enquiries.",
+  mainEntity: {
+    "@type": "Organization",
+    name: "Abstract Machines",
+    legalName: "Abstract Machines SAS",
+    url: "https://absmach.eu",
+    email: "info@absmach.eu",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "141 Quai de Valmy",
+      addressLocality: "Paris",
+      postalCode: "75010",
+      addressCountry: "FR",
+    },
+  },
+};
+
 export default function ContactPage() {
-  return <ContactForm />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
+      />
+      <ContactForm />
+    </>
+  );
 }

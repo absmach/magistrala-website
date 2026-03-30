@@ -81,9 +81,14 @@ const jsonLd = {
         {
           "@type": "Offer",
           name: "Enterprise",
-          description: "Custom limits, dedicated support",
+          description: "Unlimited scale, dedicated infrastructure, premium SLA",
           availability: "https://schema.org/InStock",
           url: "https://magistrala.absmach.eu/contact",
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            priceCurrency: "USD",
+            description: "Contact sales for custom pricing",
+          },
         },
       ],
       author: { "@id": "https://magistrala.absmach.eu/#org" },

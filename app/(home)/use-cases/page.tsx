@@ -26,9 +26,28 @@ export const metadata = createMetadata(
   "use-cases",
 );
 
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Magistrala IoT Platform Use Cases",
+  url: "https://magistrala.absmach.eu/use-cases",
+  itemListElement: useCases.map((uc, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: uc.title,
+    description: uc.summary,
+    url: `https://magistrala.absmach.eu/use-cases/${uc.slug}`,
+  })),
+};
+
 export default function UseCasesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       {/* Hero */}
       <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
         <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#073763]/4 to-transparent" />

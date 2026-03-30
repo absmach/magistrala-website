@@ -13,8 +13,14 @@ export function createMetadata(
 ): Metadata {
   const ogUrl = `${baseUrl}/og/${ogSlug}/image.webp`;
   const resolvedTitle = resolveTitle(override.title);
+  const canonicalUrl =
+    (override.openGraph?.url as string | undefined) ?? baseUrl;
   return {
     ...override,
+    alternates: {
+      canonical: canonicalUrl,
+      ...override.alternates,
+    },
     openGraph: {
       title: resolvedTitle,
       description: override.description ?? undefined,

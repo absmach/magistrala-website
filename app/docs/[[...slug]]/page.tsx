@@ -91,10 +91,15 @@ export async function generateMetadata(
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
+  const canonical = `${baseUrl}${page.url}`;
   return {
     title: page.data.title,
-    description: page.data.description,
+    description:
+      page.data.description ??
+      "Complete technical documentation for Magistrala — architecture, APIs, protocol support, CLI tools, and integration guides.",
+    alternates: { canonical },
     openGraph: {
+      url: canonical,
       images: getPageImage(page).url,
     },
   };

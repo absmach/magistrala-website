@@ -47,8 +47,23 @@ export default async function UseCaseDetailPage({
   const prev = idx > 0 ? useCases[idx - 1] : null;
   const next = idx < useCases.length - 1 ? useCases[idx + 1] : null;
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://magistrala.absmach.eu" },
+      { "@type": "ListItem", position: 2, name: "Use Cases", item: "https://magistrala.absmach.eu/use-cases" },
+      { "@type": "ListItem", position: 3, name: uc.title, item: `https://magistrala.absmach.eu/use-cases/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ───────── Hero ───────── */}
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#073763]/5 to-transparent" />
