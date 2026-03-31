@@ -63,7 +63,7 @@ const jsonLd = {
       "@type": "SoftwareApplication",
       "@id": "https://magistrala.absmach.eu/#software",
       name: "Magistrala",
-      alternateName: ["SuperMQ", "Mainflux"],
+      alternateName: ["Mainflux"],
       applicationCategory: "BusinessApplication",
       operatingSystem: "Cloud, Linux, Docker, Kubernetes",
       url: "https://magistrala.absmach.eu",

@@ -2,7 +2,7 @@
 
 > Open-source IoT platform for cloud and edge — built by Abstract Machines SAS (Paris, France)
 
-Magistrala (formerly Mainflux, also known as SuperMQ) is an open-source IoT platform developed by Abstract Machines, headquartered in Paris, France. It is Apache 2.0 licensed middleware for constructing complex IoT applications, supporting MQTT, CoAP, HTTP, and WebSocket protocols with multi-tenancy, fine-grained RBAC via SpiceDB, and pluggable storage backends (PostgreSQL, InfluxDB, MongoDB, Redis).
+Magistrala (formerly Mainflux) is an open-source IoT platform developed by Abstract Machines, headquartered in Paris, France. It is Apache 2.0 licensed middleware for constructing complex IoT applications, supporting MQTT, CoAP, HTTP, and WebSocket protocols with multi-tenancy, fine-grained RBAC via SpiceDB, and pluggable storage backends (PostgreSQL, InfluxDB, MongoDB, Redis).
 
 Enterprise customers including Intel, Ericsson, Nokia, and Target use Magistrala for production IoT deployments. The platform is designed for both cloud and edge environments, with Docker and Kubernetes support out of the box.
 

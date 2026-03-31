@@ -59,7 +59,7 @@ export const softwareApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Magistrala",
-  alternateName: ["SuperMQ", "Mainflux"],
+  alternateName: ["Mainflux"],
   description:
     "Magistrala is an open-source IoT platform with multi-protocol support (MQTT, CoAP, HTTP, WebSocket), device management, fine-grained RBAC via SpiceDB, and pluggable storage backends. Built for cloud and edge deployments.",
   applicationCategory: "DeveloperApplication",
