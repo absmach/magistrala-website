@@ -1,6 +1,6 @@
 ---
 title: LoRa
-description: Bridge LoRaWAN to Magistrala with the LoRa adapter—map Applications/Devices to Channels/Clients and forward JSON/SenML over MQTT.
+description: Bridge LoRaWAN to Magistrala with the LoRa adapter using ChirpStack, mapping Applications and Devices to Channels and Clients and forwarding JSON or SenML over MQTT.
 keywords:
   - LoRaWAN
   - LoRa adapter
@@ -13,57 +13,53 @@ keywords:
 image: /img/mg-preview.png
 ---
 
-Bridging with LoRaWAN Networks can be done over the [lora-adapter][lora-adapter]. This service sits between Magistrala and [LoRa Server][lora-server] and just forwards the messages from one system to another via MQTT protocol, using the adequate MQTT topics and in the good message format (JSON and SenML), i.e. respecting the APIs of both systems.
+Bridging LoRaWAN networks to Magistrala can be done with the [lora-adapter][lora-adapter]. This service sits between Magistrala and [ChirpStack][chirpstack] and forwards messages between the two systems over MQTT using compatible topic structures and payload formats such as JSON and SenML.
 
-LoRa Server is used for connectivity layer. Specially for the [LoRa Gateway Bridge][lora-gateway] service, which abstracts the [SemTech packet-forwarder UDP protocol][semtech] into JSON over MQTT. But also for the [LoRa Server][lora-server] service, responsible of the de-duplication and handling of uplink frames received by the gateway(s), handling of the LoRaWAN mac-layer and scheduling of downlink data transmissions. Finally the [Lora App Server][lora-app-server] services is used to interact with the system.
+Historically this page referred to "LoRa Server", "LoRa App Server", and "LoRa Gateway Bridge". These projects are now part of the [ChirpStack][chirpstack] ecosystem. In current ChirpStack deployments, the [ChirpStack Gateway Bridge][chirpstack-gateway-bridge] handles gateway connectivity and abstracts protocols such as the [Semtech UDP packet-forwarder][semtech], while ChirpStack itself provides device, application, gateway, and tenant management through its web interface and APIs.
 
-## Run Lora Server
+## Run ChirpStack
 
-Before to run the `lora-adapter` you must install and run LoRa Server. First, execute the following command:
-
-```bash
-go get github.com/brocaar/loraserver-docker
-```
-
-Once everything is installed, execute the following command from the LoRa Server project root:
+Before running the `lora-adapter`, install and run ChirpStack. The simplest path is the official Docker Compose quickstart:
 
 ```bash
-docker-compose up
+git clone https://github.com/chirpstack/chirpstack-docker.git
+cd chirpstack-docker
+docker compose up
 ```
 
-**Troubleshooting:** Magistrala and LoRa Server use their own MQTT brokers which by default occupy MQTT port `1883`. If both are ran on the same machine different ports must be used. You can fix this on Magistrala side by configuring the environment variable `MG_MQTT_ADAPTER_MQTT_PORT`.
+For current ChirpStack deployment guidance, refer to the [official Docker quickstart][chirpstack-docker].
 
-## Setup LoRa Server
+**Troubleshooting:** Magistrala and ChirpStack may each use MQTT components that default to port `1883`. If both are running on the same machine, you may need to reconfigure ports. On the Magistrala side, this can be addressed with `MG_MQTT_ADAPTER_MQTT_PORT`.
 
-Now that both systems are running you must provision LoRa Server, which offers for integration with external services, a RESTful and gRPC API. You can do it as well over the [LoRa App Server][lora-app-server], which is good example of integration.
+## Setup ChirpStack
 
-- **Create an Organization:** To add your own Gateways to the network you must have an Organization.
-- **Create a Network:** Set the address of your Network-Server API that is used by LoRa App Server or other custom components interacting with LoRa Server (by default loraserver:8000).
-- **Create a Gateways-Profile:** In this profile you can select the radio LoRa channels and the LoRa Network Server to use.
-- **Create a Service-profile:** A service-profile connects an organization to a network-server and defines the features that an organization can use on this Network-Server.
-- **Create a Gateway:** You must set proper ID in order to be discovered by LoRa Server.
-- **Create an Application:** This will allows you to create Devices by connecting them to this application. This is equivalent to Devices connected to channels in Magistrala.
-- **Create a Device-Profile:** Before creating Device you must create Device profile where you will define some parameter as LoRaWAN MAC version (format of the device address) and the LoRaWAN regional parameter (frequency band). This will allow you to create many devices using this profile.
-- **Create a Device:** Finally, you can create a Device. You must configure the `network session key` and `application session key` of your Device. You can generate and copy them on your device configuration or you can use your own pre generated keys and set them using the LoRa App Server UI.
-  Device connect through OTAA. Make sure that loraserver device-profile is using same release as device. If MAC version is 1.0.X, `application key = app_key` and `app_eui = deviceEUI`. If MAC version is 1.1 or ABP both parameters will be needed, APP_key and Network key.
+Once both systems are running, configure ChirpStack for your gateway and devices. ChirpStack exposes a web interface plus APIs for this setup.
 
-## Magistrala and LoRa Server
+- **Create a tenant:** In modern ChirpStack, tenants replace the older organization-style grouping. See [Tenants][chirpstack-tenants].
+- **Connect a gateway:** Register and configure your gateway so ChirpStack can receive uplinks. See [Connecting a gateway][chirpstack-connect-gateway].
+- **Create an application:** Devices are grouped under applications in ChirpStack.
+- **Create a device profile:** Define the LoRaWAN MAC version, region, and device capabilities. See [Device profiles][chirpstack-device-profiles].
+- **Create a device:** Add the device and configure OTAA or ABP activation settings as needed. See [Connecting a device][chirpstack-connect-device].
 
-Once everything is running and the LoRa Server is provisioned, execute the following command from Magistrala project root to run the lora-adapter:
+## Magistrala and ChirpStack
+
+Once everything is running and ChirpStack is provisioned, clone the contrib repository and run the lora-adapter from there:
 
 ```bash
-docker-compose -f docker/addons/lora-adapter/docker-compose.yml up -d
+git clone https://github.com/absmach/supermq-contrib.git
+cd supermq-contrib
+docker compose -f docker/addons/lora-adapter/docker-compose.yml up -d
 ```
 
-**Troubleshooting:** The lora-adapter subscribes to the LoRa Server MQTT broker and will fail if the connection is not established. You must ensure that the environment variable `MG_LORA_ADAPTER_MESSAGES_URL` is properly configured.
+**Troubleshooting:** The lora-adapter subscribes to the ChirpStack MQTT broker and will fail if the connection is not established. You must ensure that the environment variable `MG_LORA_ADAPTER_MESSAGES_URL` is properly configured.
 
 **Remark:** By default, `MG_LORA_ADAPTER_MESSAGES_URL` is set as `tcp://lora.mqtt.magistrala.io:1883` in the [docker-compose.yml][lora-docker-compose] file of the adapter. If you run the composition without configure this variable you will start to receive messages from our demo server.
 
 ### Route Map
 
-The lora-adapter use [Redis][redis] database to create a route map between both systems. As in Magistrala we use Channels to connect Clients, LoRa Server uses Applications to connect Devices.
+The lora-adapter uses [Redis][redis] to create a route map between both systems. In Magistrala, channels connect clients; in ChirpStack, applications group devices.
 
-The lora-adapter uses the metadata of provision events emitted by Magistrala system to update his route map. For that, you must provision Magistrala Channels and Clients with an extra metadata key in the JSON Body of the HTTP request. It must be a JSON object with key `lora` which value is another JSON object. This nested JSON object should contain `app_id` or `dev_eui` field. In this case `app_id` or `dev_eui` must be an existent Lora application ID or device EUI:
+The lora-adapter uses metadata from Magistrala provision events to update its route map. To do this, provision Magistrala channels and clients with an extra metadata key in the JSON body of the HTTP request. It must be a JSON object with key `lora`, whose value is another JSON object. This nested JSON object should contain `app_id` or `dev_eui`. In both cases, the value must correspond to an existing ChirpStack application ID or device EUI:
 
 **Channel structure:**
 
@@ -94,12 +90,16 @@ The lora-adapter uses the metadata of provision events emitted by Magistrala sys
 
 #### Messaging
 
-To forward LoRa messages the lora-adapter subscribes to topics `applications/+/devices/+` of the LoRa Server MQTT broker. It verifies the `app_id` and the `dev_eui` of received messages. If the mapping exists it uses corresponding `Channel ID` and `Client ID` to sign and forwards the content of the LoRa message to the Magistrala message broker.
+To forward LoRa messages, the lora-adapter subscribes to ChirpStack MQTT uplink topics. In current adapter configuration, this is controlled by `SMQ_LORA_ADAPTER_MESSAGES_TOPIC`, which commonly uses a pattern such as `application/+/device/+/event/up`. The adapter verifies the `app_id` and the `dev_eui` of received messages. If the mapping exists, it uses the corresponding `Channel ID` and `Client ID` to sign and forward the content of the LoRa message to the Magistrala message broker.
 
-[lora-adapter]: https://github.com/absmach/magistrala/tree/main/lora
-[lora-server]: https://www.loraserver.io
-[lora-gateway]: https://www.loraserver.io/lora-gateway-bridge/overview/
-[semtech]: https://github.com/Lora-net/packet_forwarder/blob/master/PROTOCOL.TXT
-[lora-app-server]: https://www.loraserver.io/lora-app-server/overview/
-[lora-docker-compose]: https://github.com/absmach/magistrala/blob/master/docker/addons/lora-adapter/docker-compose.yml
+[lora-adapter]: https://github.com/absmach/supermq-contrib/tree/main/lora
+[chirpstack]: https://www.chirpstack.io/
+[chirpstack-docker]: https://www.chirpstack.io/docs/getting-started/docker.html
+[chirpstack-gateway-bridge]: https://www.chirpstack.io/docs/gateway-bridge/index.html
+[chirpstack-tenants]: https://www.chirpstack.io/docs/chirpstack/use/tenants.html
+[chirpstack-connect-gateway]: https://www.chirpstack.io/docs/guides/connect-gateway.html
+[chirpstack-device-profiles]: https://www.chirpstack.io/docs/chirpstack/use/device-profiles.html
+[chirpstack-connect-device]: https://www.chirpstack.io/docs/guides/connect-device.html
+[semtech]: https://www.chirpstack.io/docs/chirpstack-gateway-bridge/backends/semtech-udp.html
+[lora-docker-compose]: https://github.com/absmach/supermq-contrib/blob/main/docker/addons/lora-adapter/docker-compose.yml
 [redis]: https://redis.io/

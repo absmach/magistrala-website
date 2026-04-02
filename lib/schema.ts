@@ -69,7 +69,7 @@ export const softwareApplicationSchema = {
   license: "https://www.apache.org/licenses/LICENSE-2.0",
   url: DOMAIN,
   downloadUrl: "https://github.com/absmach/magistrala",
-  releaseNotes: `${DOMAIN}/docs/changelog`,
+  releaseNotes: "https://github.com/absmach/magistrala/releases",
   screenshot: [
     {
       "@type": "ImageObject",
