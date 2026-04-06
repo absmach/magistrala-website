@@ -29,7 +29,7 @@ export const linkItems: LinkItemType[] = [
     active: "url",
   },
   {
-    text: "Docs",
+    text: "Documentation",
     url: "/docs",
     active: "url",
   },
