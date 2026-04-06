@@ -273,7 +273,7 @@ Core components are modular, making it easy to plug in custom modules or replace
 To enable mTLS, you'll need the following certificates:
 
 - **CA Certificate (`ca.crt`)**: The Certificate Authority's certificate used to sign both server and client certificates.
-- **Server Certificate (`server.crt`) and Private Key (`server.key`)**: Used by the server to authenticate itself to clients. These will be used by SuperMQ.
+- **Server Certificate (`server.crt`) and Private Key (`server.key`)**: Used by the server to authenticate itself to clients. These will be used by Magistrala.
 - **Client Certificate (`client.crt`) and Private Key (`client.key`)**: Used by the client to authenticate itself to the server.
 
 Certificates can be generated using the Magistrala Certs service as described in [certs service docs][certs]
@@ -528,7 +528,7 @@ When Unsubscribing from a channel, the reader is closed.
 For more information and examples checkout [official nats.io documentation][nats], [official rabbitmq documentation][rabbitmq], [official vernemq documentation][vernemq] and [official kafka documentation][kafka].
 
 [nats-jestream]: https://docs.nats.io/nats-concepts/jetstream
-[http-api]: https://docs.api.supermq.abstractmachines.fr/?urls.primaryName=api%2Fhttp.yaml
+[http-api]: https://docs.api.magistrala.absmach.eu/?urls.primaryName=api%2Fhttp.yaml
 [mosquitto]: https://mosquitto.org
 [paho]: https://www.eclipse.org/paho/
 [rfc7252]: https://tools.ietf.org/html/rfc7252

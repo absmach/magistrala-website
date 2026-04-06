@@ -74,7 +74,7 @@ export async function HeroSection() {
               >
                 <Link href="/docs">
                   <BookOpen className="mr-2 size-4" />
-                  View Documentation
+                  Docs
                 </Link>
               </Button>
             </div>

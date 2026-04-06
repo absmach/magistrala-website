@@ -127,7 +127,12 @@ const RESOURCE_LINKS = [
     label: "Blog",
     external: true,
   },
-  { href: "/docs", Icon: BookOpen, label: "Documentation", external: false },
+  {
+    href: "/docs",
+    Icon: BookOpen,
+    label: "Documentation",
+    external: false,
+  },
   {
     href: "https://github.com/absmach/magistrala",
     Icon: GitHubIcon,

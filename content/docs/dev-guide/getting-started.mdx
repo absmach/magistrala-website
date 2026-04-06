@@ -555,27 +555,27 @@ Magistrala's authorization is powered by [SpiceDB](https://authzed.com/spicedb).
 
 The `docker/spicedb/` directory intentionally contains only `override-schema.zed` and `combined-schema.zed`. Any stale `schema.zed` that appears there (e.g. after a manual copy) is automatically removed by the combine script.
 
-### Fetching the Latest SuperMQ Schema
+### Fetching the Latest Magistrala Schema
 
-When SuperMQ publishes upstream schema changes, pull them and regenerate the combined schema with:
+When Magistrala publishes upstream schema changes, pull them and regenerate the combined schema with:
 
 ```bash
-make fetch_supermq
+make fetch_magistrala
 ```
 
-This runs `scripts/supermq.sh`, which:
+This runs `scripts/magistrala.sh`, which:
 
-1. Clones the SuperMQ repository (sparse checkout, `docker/` folder only).
-2. Replaces `docker/supermq-docker/` with the freshly fetched files.
+1. Clones the Magistrala repository (sparse checkout, `docker/` folder only).
+2. Replaces `docker/magistrala-docker/` with the freshly fetched files.
 3. Automatically runs `scripts/combine-schema.sh` to regenerate `combined-schema.zed`.
 
 ### How the Combine Script Works
 
-`scripts/combine-schema.sh` merges the two schemas by injecting Magistrala's extensions directly into the upstream SuperMQ schema:
+`scripts/combine-schema.sh` merges the two schemas by injecting Magistrala's extensions directly into the upstream Magistrala schema:
 
 1. **Extract the `domain` overlay block** from `override-schema.zed` — reads Magistrala-specific relations (e.g. `alarm_update`, `rule_create`), domain-level permissions (e.g. `alarm_read_permission`), and the `membership_extension` expression.
 2. **Extract the `team` overlay block** — same process, relations only.
-3. **Inject into the upstream SuperMQ schema** — Magistrala relations and permissions are inserted after the last SuperMQ group relation/permission; `membership_extension` is spliced into `permission membership` before `organization->admin`.
+3. **Inject into the upstream Magistrala schema** — Magistrala relations and permissions are inserted after the last Magistrala group relation/permission; `membership_extension` is spliced into `permission membership` before `organization->admin`.
 4. **Append remaining definitions** — the overlay `domain`/`team` blocks are stripped (already merged); everything else (`definition alarm`, `definition rule`, `definition report`, etc.) is appended verbatim.
 5. **Write output** to `docker/spicedb/combined-schema.zed` with a generated-file header.
 6. **Clean up** — any stale `docker/spicedb/schema.zed` is removed.
@@ -598,7 +598,7 @@ sh scripts/combine-schema.sh
 
 ### Regenerating Without Fetching
 
-If you only changed `override-schema.zed` and don't need a SuperMQ update:
+If you only changed `override-schema.zed` and don't need a Magistrala update:
 
 ```bash
 sh scripts/combine-schema.sh

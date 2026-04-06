@@ -41,7 +41,7 @@ This makes it ideal for IoT applications where devices generate continuous strea
 For example:
 
 ```go
-import "github.com/absmach/supermq/consumers/timescale"
+import "github.com/absmach/magistrala/consumers/timescale"
 
 db := // initialize your TimescaleDB connection
 consumer := timescale.New(db)
@@ -61,7 +61,7 @@ It is a general-purpose relational database storage for structured data. It's wi
 For example:
 
 ```go
-import "github.com/absmach/supermq/consumers/postgres"
+import "github.com/absmach/magistrala/consumers/postgres"
 
 db := // initialize your PostgreSQL connection
 consumer := postgres.New(db)
@@ -85,7 +85,7 @@ Email is universally supported, making it a reliable method for sending critical
 For example:
 
 ```go
-import "github.com/absmach/supermq/consumers/notifiers/smtp"
+import "github.com/absmach/magistrala/consumers/notifiers/smtp"
 
 agent := // initialize SMTP agent
 notifier := smtp.New(agent)
@@ -106,7 +106,7 @@ SMS has high open rates and is effective for time-sensitive alerts like OTPs, sy
 For example:
 
 ```go
-import "github.com/absmach/supermq/consumers/notifiers/smpp"
+import "github.com/absmach/magistrala/consumers/notifiers/smpp"
 
 config := smpp.Config{Address: "smpp.server.com", Username: "user", Password: "pass"}
 notifier := smpp.New(config)

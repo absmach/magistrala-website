@@ -1,12 +1,18 @@
 {
   "title": "Services",
   "pages": [
-    "rules-engine",
-    "alarms",
-    "readers",
-    "reports",
-    "provision",
+    "auth",
+    "users",
+    "clients",
+    "channels",
     "consumers",
-    "Bootstrap"
+    "readers",
+    "provision",
+    "bootstrap",
+    "alarms",
+    "reports",
+    "rules-engine",
+    "journal",
+    "notifications"
   ]
 }

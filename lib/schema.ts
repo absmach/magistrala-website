@@ -179,10 +179,10 @@ export const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "What is the relationship between Magistrala, SuperMQ, and Mainflux?",
+      name: "What is the relationship between Magistrala and Mainflux?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Magistrala is the current name of the platform. It was formerly known as Mainflux and uses SuperMQ as its underlying engine. All three names refer to the same open-source IoT platform developed by Abstract Machines.",
+        text: "Magistrala is the current name of the platform. It was formerly known as Mainflux. Both names refer to the same open-source IoT platform developed by Abstract Machines.",
       },
     },
   ],
