@@ -96,10 +96,10 @@ The lora-adapter uses the metadata of provision events emitted by Magistrala sys
 
 To forward LoRa messages the lora-adapter subscribes to topics `applications/+/devices/+` of the LoRa Server MQTT broker. It verifies the `app_id` and the `dev_eui` of received messages. If the mapping exists it uses corresponding `Channel ID` and `Client ID` to sign and forwards the content of the LoRa message to the Magistrala message broker.
 
-[lora-adapter]: https://github.com/absmach/supermq-contrib/tree/main/lora
+[lora-adapter]: https://github.com/absmach/magistrala-contrib/tree/main/lora
 [lora-server]: https://www.chirpstack.io/
 [lora-gateway]: https://www.chirpstack.io/docs/gateway-bridge/
 [semtech]: https://www.chirpstack.io/docs/chirpstack-gateway-bridge/backends/semtech-udp.html
 [lora-app-server]: https://www.chirpstack.io/docs/chirpstack/use/index.html
-[lora-docker-compose]: https://github.com/absmach/supermq-contrib/blob/main/docker/addons/lora-adapter/docker-compose.yml
+[lora-docker-compose]: https://github.com/absmach/magistrala-contrib/blob/main/docker/lora-adapter/docker-compose.yml
 [redis]: https://redis.io/
