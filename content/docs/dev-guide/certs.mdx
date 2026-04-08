@@ -5,7 +5,7 @@ keywords:
   - Certificates
   - Certs
   - PKI
-  - Vault
+  - OpenBao
   - mTLS
   - Security
   - X.509
@@ -21,28 +21,26 @@ Provisioning is a process of configuration of an IoT platform in which system op
 Issues certificates for clients. `Certs` service can create certificates to be used when `Magistrala` is deployed to support mTLS.  
 `Certs` service will create certificate for valid client ID if valid user token is passed and user is owner of the provided client ID.
 
-Certificate service can create certificates in PKI mode - where certificates issued by PKI, when you deploy `Vault` as PKI certificate management `cert` service will proxy requests to `Vault` previously checking access rights and saving info on successfully created certificate.
+Certificate service can create certificates in PKI mode - where certificates issued by PKI, when you deploy `OpenBao` as PKI certificate management `cert` service will proxy requests to the configured PKI previously checking access rights and saving info on successfully created certificate.
 
 ### PKI mode
 
-When `MG_CERTS_VAULT_HOST` is set, it is presumed that `Vault` is installed and `certs` service will issue certificates using `Vault` API.
+When `MG_CERTS_VAULT_HOST` is set, it is presumed that `OpenBao` is installed and `certs` service will issue certificates using the configured PKI API.
 
-First you'll need to set up `Vault`.
+First you'll need to set up `OpenBao`.
 
-To setup `Vault` follow steps in [Build Your Own Certificate Authority (CA)][vault-pki-engine].
+To setup `OpenBao` follow the [PKI secrets engine setup and usage guide][openbao-pki-setup].
 
-To setup certs service with `Vault` following environment variables must be set:
+To setup certs service with `OpenBao` following environment variables must be set:
 
 ```bash
 MG_CERTS_VAULT_HOST=vault-domain.com
 MG_CERTS_VAULT_PKI_PATH=<vault_pki_path>
 MG_CERTS_VAULT_ROLE=<vault_role>
-MG_CERTS_VAULT_TOKEN=<vault_acces_token>
+MG_CERTS_VAULT_TOKEN=<openbao_access_token>
 ```
 
-For lab purposes you can use docker-compose and script for setting up PKI in [meodor-vault][meodor-vault].
-
-Make sure you have an already running instance of `Magistrala` , `Vault` and `Certs` service.
+Make sure you have an already running instance of `Magistrala`, `OpenBao` and `Certs` service.
 
 To start Magistrala run:
 
@@ -50,25 +48,7 @@ To start Magistrala run:
 make run_latest args="-d"
 ```
 
-To start vault run:
-
-```bash
-make run_addons vault up args="-d"
-```
-
-When vault service is up and running some initializations steps must be done to setup clients for `Certs` service. For more information about this steps please check [magistrala-vault][magistrala-vault]
-
-```bash
-bash docker/addons/vault/vault-init.sh
-bash docker/addons/vault/vault-unseal.sh
-bash docker/addons/vault/vault-set-pki.sh
-```
-
-`vault-init.sh` initializes Vault, generates unseal keys and root tokens, and updates corresponding environment variables in the `.env` file. It's important to securely store these keys as they are required to unseal Vault.
-
-`vault-unseal.sh` is used to unseal Vault after initialization, but it's typically not needed since Vault can unseal itself when starting the container.
-
-`vault-set-pki.sh` generates certificates for Vault, including root and intermediate certificates, and copies them to the `docker/ssl/certs` folder. The CA parameters are sourced from environment variables in the `.env` file.
+OpenBao deployment and PKI bootstrap steps are documented separately. Until then, configure OpenBao PKI before starting `certs`.
 
 To start certs service run:
 
@@ -86,12 +66,6 @@ To stop certs service run:
 
 ```bash
 make run_addons certs down
-```
-
-To stop vault service run:
-
-```bash
-make run_addons vault down
 ```
 
 This step can be skipped if you already have a client ID.
@@ -165,7 +139,5 @@ revoked: 2023-09-14 11:21:44 +0000 UTC
 
 For more information about the Certification service, please check out the [Certs documentation][api-docs].
 
-[vault-pki-engine]: https://learn.hashicorp.com/tutorials/vault/pki-engine
-[meodor-vault]: https://github.com/mteodor/vault
+[openbao-pki-setup]: https://openbao.org/docs/secrets/pki/setup/
 [api-docs]: https://docs.api.magistrala.absmach.eu/?urls.primaryName=api%2Fhttp.yaml&service=certs.yaml
-[magistrala-vault]: https://github.com/absmach/magistrala/tree/main/docker/addons/vault

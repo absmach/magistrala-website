@@ -254,17 +254,13 @@ If you want to clean your whole dockerized Magistrala installation you can use t
 
 The **Magistrala CLI** is the primary interface for interacting with the system.
 
-Open a new terminal from which you can interact with the running Magistrala system. The easiest way to do this is by using the Magistrala CLI, which can be downloaded as a tarball from GitHub (here we use release `0.14.0` but be sure to use the [latest CLI release][mg-releases]):
-
-```bash
-wget -O- https://github.com/absmach/magistrala/releases/download/0.14.0/magistrala-cli_0.14.0_linux-amd64.tar.gz | tar xvz -C $GOBIN
-```
+Open a new terminal from which you can interact with the running Magistrala system. The Magistrala releases page is available at [latest CLI release][mg-releases], but recent releases do not publish CLI tarball assets. Build the CLI from source as described in the [CLI guide][cli].
 
 > Make sure that `$GOBIN` is added to your `$PATH` so that `magistrala-cli` command can be accessible system-wide
 
 #### Build magistrala-cli
 
-Build `magistrala-cli` if the pre-built CLI is not compatible with your OS, i.e MacOS. Please see the [CLI][cli] for further details.
+Build `magistrala-cli` by following the [CLI guide][cli].
 
 ### Step 6 - Provision the System
 
