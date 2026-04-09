@@ -1,7 +1,6 @@
 {
     "$schema": "./node_modules/wrangler/config-schema.json",
     "name": "magistrala-website",
-    "main": "./dist/_worker.js/index.js",
     "pages_build_output_dir": "out",
     "compatibility_date": "2026-02-24",
     "compatibility_flags": [
@@ -11,15 +10,11 @@
     "observability": {
         "enabled": true
     },
-    "assets": {
-        "directory": "./dist",
-        "binding": "MG_WEBSITE_ASSETS",
-    },
     "vars": {
-        // "TEAM_CONTACT_EMAIL": "info@absmach.eu",
-        // "MAIL_FROM_EMAIL": "noreply@absmach.eu",
-        // "SMTP_HOST": "ssl0.ovh.net",
-        // "SMTP_PORT": "465",
-        // "SMTP_SECURE": "true"
+        "TEAM_CONTACT_EMAIL": "info@absmach.eu",
+        "MAIL_FROM_EMAIL": "noreply@absmach.eu",
+        "SMTP_HOST": "ssl0.ovh.net",
+        "SMTP_PORT": "465",
+        "SMTP_SECURE": "true"
     }
 }
