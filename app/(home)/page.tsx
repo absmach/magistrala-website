@@ -17,10 +17,10 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://magistrala.absmach.eu/#org",
+      "@id": "https://magistrala.absmach.eu/#publisher",
       name: "Abstract Machines",
       legalName: "Abstract Machines SAS",
-      url: "https://absmach.eu",
+      url: "https://magistrala.absmach.eu",
       logo: {
         "@type": "ImageObject",
         url: "https://magistrala.absmach.eu/logos/abstract-machines.svg",
@@ -52,7 +52,7 @@ const jsonLd = {
       "@id": "https://magistrala.absmach.eu/#website",
       url: "https://magistrala.absmach.eu",
       name: "Magistrala",
-      publisher: { "@id": "https://magistrala.absmach.eu/#org" },
+      publisher: { "@id": "https://magistrala.absmach.eu/#publisher" },
       potentialAction: {
         "@type": "SearchAction",
         target:
@@ -92,8 +92,21 @@ const jsonLd = {
           },
         },
       ],
-      author: { "@id": "https://magistrala.absmach.eu/#org" },
-      creator: { "@id": "https://magistrala.absmach.eu/#org" },
+      softwareVersion: "0.15.x",
+      downloadUrl: "https://github.com/absmach/magistrala/releases",
+      featureList: [
+        "Multi-protocol messaging: MQTT, CoAP, HTTP, WebSocket",
+        "Fine-grained RBAC via SpiceDB",
+        "Multi-tenancy with domain isolation",
+        "Pluggable message brokers: NATS, Apache Kafka, RabbitMQ",
+        "Pluggable storage: PostgreSQL, TimescaleDB, InfluxDB, MongoDB",
+        "Industrial protocol support: OPC-UA, Modbus, BACnet, Profinet",
+        "Docker and Kubernetes ready",
+        "Cloud and edge deployment",
+      ],
+      screenshot: "https://magistrala.absmach.eu/screenshots/dashboard-2.png",
+      author: { "@id": "https://magistrala.absmach.eu/#publisher" },
+      creator: { "@id": "https://magistrala.absmach.eu/#publisher" },
     },
     {
       "@type": "SoftwareSourceCode",
@@ -102,7 +115,7 @@ const jsonLd = {
       codeRepository: "https://github.com/absmach/magistrala",
       programmingLanguage: "Go",
       license: "https://opensource.org/licenses/Apache-2.0",
-      creator: { "@id": "https://magistrala.absmach.eu/#org" },
+      creator: { "@id": "https://magistrala.absmach.eu/#publisher" },
     },
   ],
 };

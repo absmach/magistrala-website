@@ -1,9 +1,11 @@
 const DOMAIN =
   process.env.NEXT_PUBLIC_SITE_URL || "https://magistrala.absmach.eu";
+const PUBLISHER_ID = `${DOMAIN}/#publisher`;
 
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": PUBLISHER_ID,
   name: "Abstract Machines",
   legalName: "Abstract Machines SAS",
   url: DOMAIN,
@@ -42,8 +44,7 @@ export const websiteSchema = {
   description:
     "Open-source IoT platform for cloud and edge with multi-protocol support",
   publisher: {
-    "@type": "Organization",
-    name: "Abstract Machines",
+    "@id": PUBLISHER_ID,
   },
   potentialAction: {
     "@type": "SearchAction",
@@ -122,14 +123,10 @@ export const softwareApplicationSchema = {
     },
   ],
   author: {
-    "@type": "Organization",
-    name: "Abstract Machines",
-    url: DOMAIN,
+    "@id": PUBLISHER_ID,
   },
   maintainer: {
-    "@type": "Organization",
-    name: "Abstract Machines",
-    url: DOMAIN,
+    "@id": PUBLISHER_ID,
   },
 };
 

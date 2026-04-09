@@ -7,7 +7,9 @@ import {
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { baseUrl } from "@/lib/metadata";
+import { DocAttribution } from "@/components/docs/doc-attribution";
+import { resolveAuthors } from "@/lib/authors";
+import { baseUrl, createMetadata } from "@/lib/metadata";
 import { getPageImage, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 
@@ -19,8 +21,8 @@ function buildBreadcrumbSchema(slug: string[] | undefined, title: string) {
     name: string;
     item?: string;
   }[] = [
-    { "@type": "ListItem", position: 1, name: "Home", item: base },
-    { "@type": "ListItem", position: 2, name: "Docs", item: `${base}/docs` },
+    { "@type": "ListItem", position: 1, name: "Home", item: `${base}/` },
+    { "@type": "ListItem", position: 2, name: "Docs", item: `${base}/docs/` },
   ];
 
   if (slug && slug.length > 1) {
@@ -38,10 +40,12 @@ function buildBreadcrumbSchema(slug: string[] | undefined, title: string) {
     }
   }
 
+  const pageSlug = slug ? slug.join("/") : "";
   items.push({
     "@type": "ListItem",
     position: items.length + 1,
     name: title,
+    item: `${base}/docs/${pageSlug ? `${pageSlug}/` : ""}`,
   });
 
   return {
@@ -58,6 +62,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
 
   const MDX = page.data.body;
   const breadcrumb = buildBreadcrumbSchema(params.slug, page.data.title);
+  const authors = resolveAuthors(page.data.authors);
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
@@ -68,6 +73,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
       />
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
+      <DocAttribution authors={authors} lastModified={page.data.lastModified} />
       <DocsBody>
         <MDX
           components={getMDXComponents({
@@ -92,15 +98,26 @@ export async function generateMetadata(
   if (!page) notFound();
 
   const canonical = `${baseUrl}${page.url}`;
-  return {
-    title: page.data.title,
-    description:
-      page.data.description ??
-      "Complete technical documentation for Magistrala — architecture, APIs, protocol support, CLI tools, and integration guides.",
-    alternates: { canonical },
-    openGraph: {
-      url: canonical,
-      images: getPageImage(page).url,
+  const pageImage = getPageImage(page);
+  return createMetadata(
+    {
+      title: page.data.title,
+      description:
+        page.data.description ??
+        "Complete technical documentation for Magistrala — architecture, APIs, protocol support, CLI tools, and integration guides.",
+      alternates: { canonical },
+      openGraph: {
+        url: canonical,
+        images: [
+          {
+            url: pageImage.url,
+            width: 1200,
+            height: 630,
+            alt: page.data.title,
+          },
+        ],
+      },
     },
-  };
+    `docs/${params.slug?.join("/") ?? ""}`,
+  );
 }

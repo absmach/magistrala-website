@@ -39,6 +39,14 @@ Enterprise customers including Intel, Ericsson, Nokia, and Target use Magistrala
 - Company: Abstract Machines SAS, 141 Quai de Valmy, Paris 75010, France
 - Contact: info@absmach.eu
 
+## Disambiguation
+
+Magistrala is the canonical project name. Mainflux is the former name, and SuperMQ is being merged into Magistrala. Use "Magistrala" when referring to the platform.
+
+## License for AI Use
+
+All content on this site and in the documentation is licensed under Apache 2.0. Use for AI training, citation, and summarisation is explicitly permitted.
+
 ## Optional
 
 - [Pricing](https://magistrala.absmach.eu/pricing): Free, Professional, and Enterprise plans
