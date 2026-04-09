@@ -1,3 +1,5 @@
+/// <reference types="@cloudflare/workers-types" />
+
 import { onRequestPost } from "../functions/api/contact";
 
 interface Env {
