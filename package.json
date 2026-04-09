@@ -50,7 +50,7 @@
     "serve": "^14.2.5",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
-    "wrangler": "^4.14.0"
+    "wrangler": "^4.81.1"
   },
   "packageManager": "pnpm@10.12.1"
 }
