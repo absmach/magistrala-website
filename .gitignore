@@ -23,5 +23,7 @@ yarn-error.log*
 
 # others
 .env*.local
+.dev.vars*
 .vercel
 next-env.d.ts
+.wrangler

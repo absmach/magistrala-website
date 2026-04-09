@@ -1,13 +1,15 @@
 import nodemailer from "nodemailer";
 
 interface Env {
-  SMTP_HOST: string;
-  SMTP_PORT: string;
-  SMTP_SECURE: string;
-  SMTP_USER: string;
-  SMTP_PASS: string;
+  SMTP_HOST?: string;
+  SMTP_PORT?: string;
+  SMTP_SECURE?: string;
+  SMTP_USER?: string;
+  SMTP_PASS?: string;
   SMTP_FROM?: string;
   CONTACT_EMAIL?: string;
+  MAIL_FROM_EMAIL?: string;
+  TEAM_CONTACT_EMAIL?: string;
   NEXT_PUBLIC_BASE_URL?: string;
   MG_LOGO_URL?: string;
   TURNSTILE_SECRET_KEY?: string;
@@ -161,8 +163,12 @@ export async function onRequestPost(context: {
   const smtpSecure = getString(env.SMTP_SECURE).toLowerCase() === "true";
   const smtpUser = getString(env.SMTP_USER);
   const smtpPass = getString(env.SMTP_PASS);
-  const fromEmail = getString(env.SMTP_FROM) || smtpUser;
-  const contactEmail = getString(env.CONTACT_EMAIL) || smtpUser;
+  const fromEmail =
+    getString(env.SMTP_FROM) || getString(env.MAIL_FROM_EMAIL) || smtpUser;
+  const contactEmail =
+    getString(env.CONTACT_EMAIL) ||
+    getString(env.TEAM_CONTACT_EMAIL) ||
+    smtpUser;
   const baseUrl =
     getString(env.NEXT_PUBLIC_BASE_URL) || "https://magistrala.absmach.eu";
   const logoUrl =
@@ -174,7 +180,18 @@ export async function onRequestPost(context: {
       {
         ok: false,
         error:
-          "Contact form is not configured yet. Please use direct email for now.",
+          "Contact form is not configured yet. Missing SMTP_HOST or SMTP_PORT.",
+      },
+      503,
+    );
+  }
+
+  if (!fromEmail || !contactEmail) {
+    return json(
+      {
+        ok: false,
+        error:
+          "Contact form is not configured yet. Missing sender or recipient email.",
       },
       503,
     );
@@ -200,11 +217,11 @@ export async function onRequestPost(context: {
 
   const socialBadges = [
     socialLinks.twitter &&
-      socialBadge(socialLinks.twitter, "#000000", "&#120143; Twitter"),
+    socialBadge(socialLinks.twitter, "#000000", "&#120143; Twitter"),
     socialLinks.linkedin &&
-      socialBadge(socialLinks.linkedin, "#0A66C2", "in LinkedIn"),
+    socialBadge(socialLinks.linkedin, "#0A66C2", "in LinkedIn"),
     socialLinks.community &&
-      socialBadge(socialLinks.community, "#073763", "[m] Matrix"),
+    socialBadge(socialLinks.community, "#073763", "[m] Matrix"),
   ].filter(Boolean);
 
   const socialLinksHtml =
@@ -266,26 +283,24 @@ export async function onRequestPost(context: {
                 <div class="label">Email:</div>
                 <div class="value">${safeEmail}</div>
               </div>
-              ${
-                safeCompany
-                  ? `
+              ${safeCompany
+        ? `
               <div class="field">
                 <div class="label">Company:</div>
                 <div class="value">${safeCompany}</div>
               </div>
               `
-                  : ""
-              }
-              ${
-                safeSubject
-                  ? `
+        : ""
+      }
+              ${safeSubject
+        ? `
               <div class="field">
                 <div class="label">Subject:</div>
                 <div class="value">${safeSubject}</div>
               </div>
               `
-                  : ""
-              }
+        : ""
+      }
               <div class="field">
                 <div class="label">Message:</div>
                 <div class="value">${safeMessage}</div>
