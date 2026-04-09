@@ -116,8 +116,15 @@ export function ContactForm() {
       });
 
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || "Failed to send message");
+        const data: unknown = await response.json();
+        const errorMessage =
+          typeof data === "object" &&
+          data !== null &&
+          "error" in data &&
+          typeof data.error === "string"
+            ? data.error
+            : "Failed to send message";
+        throw new Error(errorMessage);
       }
 
       setStatus("success");

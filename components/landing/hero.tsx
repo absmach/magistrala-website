@@ -14,8 +14,11 @@ async function getGitHubStars(): Promise<number | null> {
       headers,
     });
     if (!res.ok) return null;
-    const data = await res.json();
-    return data.stargazers_count ?? null;
+    const data: unknown = await res.json();
+    if (typeof data !== "object" || data === null) return null;
+
+    const starCount = (data as { stargazers_count?: unknown }).stargazers_count;
+    return typeof starCount === "number" ? starCount : null;
   } catch {
     return null;
   }
