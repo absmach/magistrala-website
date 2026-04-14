@@ -40,13 +40,13 @@ declare global {
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
 const TurnstileWidget = React.forwardRef<
-  HTMLDivElement,
+  HTMLDivElement | null,
   { siteKey: string; onVerify: (token: string) => void }
 >(({ siteKey, onVerify }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetId = useRef<string | null>(null);
 
-  React.useImperativeHandle(ref, () => containerRef.current!);
+  React.useImperativeHandle(ref, () => containerRef.current);
 
   useEffect(() => {
     const el = containerRef.current;

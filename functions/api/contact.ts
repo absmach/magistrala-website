@@ -217,11 +217,11 @@ export async function onRequestPost(context: {
 
   const socialBadges = [
     socialLinks.twitter &&
-    socialBadge(socialLinks.twitter, "#000000", "&#120143; Twitter"),
+      socialBadge(socialLinks.twitter, "#000000", "&#120143; Twitter"),
     socialLinks.linkedin &&
-    socialBadge(socialLinks.linkedin, "#0A66C2", "in LinkedIn"),
+      socialBadge(socialLinks.linkedin, "#0A66C2", "in LinkedIn"),
     socialLinks.community &&
-    socialBadge(socialLinks.community, "#073763", "[m] Matrix"),
+      socialBadge(socialLinks.community, "#073763", "[m] Matrix"),
   ].filter(Boolean);
 
   const socialLinksHtml =
@@ -283,24 +283,26 @@ export async function onRequestPost(context: {
                 <div class="label">Email:</div>
                 <div class="value">${safeEmail}</div>
               </div>
-              ${safeCompany
-        ? `
+              ${
+                safeCompany
+                  ? `
               <div class="field">
                 <div class="label">Company:</div>
                 <div class="value">${safeCompany}</div>
               </div>
               `
-        : ""
-      }
-              ${safeSubject
-        ? `
+                  : ""
+              }
+              ${
+                safeSubject
+                  ? `
               <div class="field">
                 <div class="label">Subject:</div>
                 <div class="value">${safeSubject}</div>
               </div>
               `
-        : ""
-      }
+                  : ""
+              }
               <div class="field">
                 <div class="label">Message:</div>
                 <div class="value">${safeMessage}</div>
@@ -363,7 +365,7 @@ export async function onRequestPost(context: {
               <p style="margin-top: 15px;">
                 <a href="${baseUrl}?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="color: #073763 !important; text-decoration: none;">Website</a> |
                 <a href="https://github.com/absmach/magistrala?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="color: #073763 !important; text-decoration: none;">GitHub</a> |
-                <a href="https://docs.magistrala.absmach.eu?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="color: #073763 !important; text-decoration: none;">Documentation</a>
+                <a href="https://magistrala.absmach.eu/docs?utm_source=email&utm_medium=confirmation&utm_campaign=contact-response" style="color: #073763 !important; text-decoration: none;">Documentation</a>
               </p>
               ${socialLinksHtml}
               <p style="margin-top: 10px; font-size: 12px; color: #9ca3af;">Reference: ${refId}</p>
