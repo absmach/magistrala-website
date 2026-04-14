@@ -105,6 +105,42 @@ The **Domain** entity scope is automatically locked to the current domain.
 | `create_groups`          | Create groups within the domain          |
 | `list_groups`            | List groups in the domain                |
 
+#### Rules
+
+| Operation              | Description                                      |
+| ---------------------- | ------------------------------------------------ |
+| `create`               | Create a rule                                    |
+| `list`                 | List rules                                       |
+| `view`                 | View a rule                                      |
+| `update`               | Update rule configuration                        |
+| `update_tags`          | Update rule tags                                 |
+| `update_schedule`      | Update rule schedule                             |
+| `enable`               | Enable a rule                                    |
+| `disable`              | Disable a rule                                   |
+| `delete`               | Delete a rule                                    |
+| `alarm_assign`         | Assign an alarm to a user                        |
+| `alarm_acknowledge`    | Acknowledge an alarm                             |
+| `alarm_resolve`        | Resolve an alarm                                 |
+
+> **Note:** Alarm-related permissions apply to all alarms linked to the selected rules.
+
+#### Reports
+
+| Operation              | Description                                      |
+| ---------------------- | ------------------------------------------------ |
+| `create`               | Create a report                                  |
+| `list`                 | List reports                                     |
+| `generate`             | Generate a report                                |
+| `view`                 | View a report                                    |
+| `update`               | Update report configuration                      |
+| `update_schedule`      | Update report schedule                           |
+| `enable`               | Enable a report                                  |
+| `disable`              | Disable a report                                 |
+| `delete`               | Delete a report                                  |
+| `update_template`      | Update the report template                       |
+| `view_template`        | View the report template                         |
+| `delete_template`      | Delete the report template                       |
+
 ## View a PAT
 
 After a PAT is created, the user is redirected to the PAT detail page. Alternatively, the user can view an existing PAT by clicking on the row or the `View` button in the row actions.
