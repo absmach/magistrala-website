@@ -32,10 +32,10 @@ This keeps runtime behavior simple: almost everything is static content, and onl
 - `next.config.mjs` uses `output: "export"` so `next build` generates static files in `out/`.
 - `wrangler.jsonc` binds `./out` as Worker assets via `MG_WEBSITE_ASSETS`.
 - `src/index.ts` is the Worker entrypoint:
-  - `/api/contact` (POST) is handled by `functions/api/contact.ts`
-  - all other paths are served through `env.MG_WEBSITE_ASSETS.fetch(request)`
+  - only `/api/contact` (POST) is handled by `functions/api/contact.ts`
+  - every other route is served from `env.MG_WEBSITE_ASSETS.fetch(request)`
 
-**The website is served from static assets, and the contact form is handled by Worker code.**
+**All pages are static export output (pure HTML/CSS/JS from `out/`). There is no SSR/ISR runtime. Only the contact endpoint runs Worker function code.**
 
 ### Deployment trigger
 
@@ -49,6 +49,35 @@ Deployments are handled by Cloudflare reading from the connected Git repository 
 - Root directory: `/`
 
 These settings match the current static export + Worker assets deployment model in this repository.
+
+### Mermaid architecture
+
+```mermaid
+flowchart LR
+  subgraph Build_and_Deploy
+    A[Git push to connected repo] --> B[Cloudflare build trigger]
+    B --> C[pnpm run build]
+    C --> D[next build with output export]
+    D --> E[out static assets]
+    B --> F[npx wrangler deploy]
+    E --> G[Worker assets binding MG_WEBSITE_ASSETS]
+    F --> G
+  end
+
+  subgraph Runtime_Request_Flow
+    U[Browser request] --> H[Cloudflare Worker src/index.ts]
+    H --> R{Is route POST /api/contact ?}
+    R -->|Yes| I[Execute API function functions/api/contact.ts]
+    I --> L[Turnstile verify + SMTP send]
+    L --> U
+
+    R -->|No| J[Read from MG_WEBSITE_ASSETS binding]
+    J --> K[Return prebuilt HTML CSS JS from out]
+    K --> N[No SSR runtime]
+    N --> O[No ISR revalidation]
+    O --> U
+  end
+```
 
 ### Trade-off comparison
 
