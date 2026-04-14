@@ -40,13 +40,18 @@ declare global {
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
 const TurnstileWidget = React.forwardRef<
-  HTMLDivElement | null,
+  HTMLDivElement,
   { siteKey: string; onVerify: (token: string) => void }
 >(({ siteKey, onVerify }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetId = useRef<string | null>(null);
 
-  React.useImperativeHandle(ref, () => containerRef.current);
+  React.useImperativeHandle(ref, () => {
+    if (!containerRef.current) {
+      throw new Error("Turnstile container is not mounted");
+    }
+    return containerRef.current;
+  });
 
   useEffect(() => {
     const el = containerRef.current;
