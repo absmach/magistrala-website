@@ -397,10 +397,10 @@ Provision service provides an HTTP API to interact with [Magistrala][provision-a
 
 For gateways to communicate with [Magistrala][magistrala] configuration is required (MQTT host, client, channels, certificates...). Gateway will send a request to [Bootstrap][bootstrap] service providing `<external_id>` and `<external_key>` in HTTP request to get the configuration. To make a request to [Bootstrap][bootstrap] service you can use [Agent][agent] service on a gateway.
 
-To create bootstrap configuration you can use [Bootstrap][bootstrap] or `Provision` service. [Magistrala UI][mgui] uses [Bootstrap][bootstrap] service for creating gateway configurations. `Provision` service should provide an easy way of provisioning your gateways i.e creating bootstrap configuration and as many clients and channels that your setup requires.
+To create bootstrap configuration you can use [Bootstrap][bootstrap] or `Provision` service. Magistrala UI uses [Bootstrap][bootstrap] service for creating gateway configurations. `Provision` service should provide an easy way of provisioning your gateways i.e creating bootstrap configuration and as many clients and channels that your setup requires.
 
 Also, you may use provision service to create certificates for each client. Each service running on gateway may require more than one client and channel for communication.
-If, for example, you are using services [Agent][agent] and [Export][exp] on a gateway you will need two channels for `Agent` (`data` and `control`) and one client for `Export`.
+If, for example, you are using services [Agent][agent] and Export on a gateway you will need two channels for `Agent` (`data` and `control`) and one client for `Export`.
 Additionally, if you enabled mTLS each service will need its own client and certificate for access to [Magistrala][magistrala].
 Your setup could require any number of clients and channels, this kind of setup we can call `provision layout`.
 
@@ -514,12 +514,12 @@ Example of provision layout below
 ### Authentication
 
 In order to create necessary entities provision service needs to authenticate against Magistrala.
-To provide authentication credentials to the provision service you can pass it in as an environment variable or in a config file as Magistrala user and password or as API token (that can be issued on `/users/tokens/issue` endpoint of [users service][users].
+To provide authentication credentials to the provision service you can pass them in as environment variables, in a config file as Magistrala user credentials, or as an API token issued on the `/users/tokens/issue` endpoint of the [users service][users].
 
 Additionally, users or API token can be passed in Authorization header, this authentication takes precedence over others.
 
-- `username`, `password` - (`MG_PROVISION_USER`, `MG_PROVISION_PASSWORD` in [.env][env], `MG_user`, `MG_pass` in [config.toml][conftoml]
-- API Key - (`MG_PROVISION_API_KEY` in [.env][env] or [config.toml][conftoml]
+- `username`, `password` - (`MG_PROVISION_USER`, `MG_PROVISION_PASSWORD` in [.env][env], `MG_user`, `MG_pass` in [config.toml][conftoml])
+- API Key - (`MG_PROVISION_API_KEY` in [.env][env] or [config.toml][conftoml])
 - `Authorization: Bearer Token|ApiKey` - request authorization header containing users token. Check [auth][auth].
 
 ### Running
@@ -662,10 +662,8 @@ For more information about the Provision service, please check out the [service 
 [agent]: https://github.com/absmach/agent
 [config]: https://github.com/absmach/magistrala/tree/main/provision#configuration
 [env]: https://github.com/absmach/magistrala/blob/main/docker/.env
-[mgui]: https://github.com/absmach/magistrala-ui-new
 [conftoml]: https://github.com/absmach/magistrala/blob/main/docker/addons/provision/configs/config.toml
-[users]: https://magistrala.absmach.eu/docs/dev-guide/services/users/
-[exp]: https://github.com/absmach/export
+[users]: /docs/dev-guide/services/users
 [cli]: /docs/dev-guide/cli/introduction-to-cli
 [auth]: /docs/dev-guide/dev-tools/authentication
 [provision-api]: https://github.com/absmach/magistrala/tree/main/provision

@@ -14,10 +14,6 @@ Magistrala IoT platform is comprised of the following services:
 | [clients][clients-service]       | Manages platform's clients and auth concerns in regards to clients                            |
 | [channels][channels-service]     | Manages platform's channels and auth concerns in regards to channels                          |
 | [domains][domains-service]       | Manages platform's domains and auth concerns in regards to domains                            |
-| [http-adapter][http-adapter]     | Provides an HTTP interface for sending messages via HTTP                                      |
-| [mqtt-adapter][mqtt-adapter]     | Provides an MQTT and MQTT over WS interface for sending and receiving messages via MQTT       |
-| [ws-adapter][ws-adapter]         | Provides a WebSocket interface for sending and receiving messages via WS                      |
-| [coap-adapter][coap-adapter]     | Provides a CoAP interface for sending and receiving messages via CoAP                         |
 | [magistrala-cli][magistrala-cli] | Command line interface                                                                        |
 | [bootstrap][bootstrap]           | Provides basic configuration for newly created clients                                        |
 | [consumers][consumers]           | Receives messages and persists or forwards them to configured destinations                    |
@@ -49,10 +45,9 @@ In general, there is no constraint put on content that is being exchanged throug
 
 ## Edge
 
-Magistrala platform can be run on the edge as well. Deploying Magistrala on a gateway makes it able to collect, store and analyze data, organize and authenticate devices. To connect Magistrala instances running on a gateway with Magistrala in a cloud we can use two gateway services developed for that purpose:
+Magistrala platform can be run on the edge as well. Deploying Magistrala on a gateway makes it able to collect, store and analyze data, organize and authenticate devices. To connect Magistrala instances running on a gateway with Magistrala in a cloud we can use the following gateway service:
 
 - [Agent][agent]
-- [Export][export]
 
 ## Unified IoT Platform
 
@@ -64,10 +59,6 @@ Running Magistrala on gateway moves computation from cloud towards the edge thus
 [clients-service]: https://github.com/absmach/magistrala/tree/main/clients
 [channels-service]: https://github.com/absmach/magistrala/tree/main/channels
 [domains-service]: https://github.com/absmach/magistrala/tree/main/domains
-[http-adapter]: /docs/dev-guide/dev-tools/messaging#http
-[mqtt-adapter]: /docs/dev-guide/dev-tools/messaging#mqtt
-[coap-adapter]: /docs/dev-guide/dev-tools/messaging#coap
-[ws-adapter]: /docs/dev-guide/dev-tools/messaging#websocket
 [magistrala-cli]: https://github.com/absmach/magistrala/tree/main/cli
 [bootstrap]: https://github.com/absmach/magistrala/tree/main/bootstrap
 [consumers]: https://github.com/absmach/magistrala/tree/main/consumers
@@ -80,4 +71,3 @@ Running Magistrala on gateway moves computation from cloud towards the edge thus
 [kafka]: https://kafka.apache.org/
 [senml]: https://tools.ietf.org/html/draft-ietf-core-senml-08
 [agent]: /docs/dev-guide/edge#agent
-[export]: /docs/dev-guide/edge#export

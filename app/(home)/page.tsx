@@ -31,7 +31,7 @@ const jsonLd = {
         "https://github.com/absmach",
         "https://twitter.com/absmach",
         "https://www.linkedin.com/company/abstract-machines",
-        "https://www.youtube.com/@abstractmachines",
+        "https://www.youtube.com/@absmach",
       ],
       address: {
         "@type": "PostalAddress",
