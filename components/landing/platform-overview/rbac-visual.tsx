@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export function RBACVisual() {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-8 sm:py-12">
-      <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8">
-        <div className="flex flex-col items-center gap-3 p-6 px-8 rounded-xl border border-border/40 bg-card shadow-sm">
+    <div className="flex flex-col items-center justify-center gap-4 py-6 sm:py-12">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8">
+        <div className="flex flex-col items-center gap-2 p-4 sm:p-6 sm:px-8 rounded-xl border border-border/40 bg-card shadow-sm">
           <Image
             src="/logos/authzed.svg"
             alt="SpiceDB by AuthZed"
@@ -35,7 +35,7 @@ export function RBACVisual() {
           </svg>
         </div>
 
-        <div className="flex flex-col items-center gap-3 p-6 px-8 rounded-xl border border-border/40 bg-card shadow-sm">
+        <div className="flex flex-col items-center gap-2 p-4 sm:p-6 sm:px-8 rounded-xl border border-border/40 bg-card shadow-sm">
           <Image
             src="/logos/oauth-2.png"
             alt="OAuth 2.0"
@@ -66,7 +66,7 @@ export function RBACVisual() {
           </svg>
         </div>
 
-        <div className="flex flex-col items-center gap-3 p-6 px-8 rounded-xl border border-border/40 bg-card shadow-sm">
+        <div className="flex flex-col items-center gap-2 p-4 sm:p-6 sm:px-8 rounded-xl border border-border/40 bg-card shadow-sm">
           <Image
             src="/logos/jwt.png"
             alt="JSON Web Tokens"

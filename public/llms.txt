@@ -41,7 +41,7 @@ Enterprise customers including Intel, Ericsson, Nokia, and Target use Magistrala
 
 ## Disambiguation
 
-Magistrala is the canonical project name. Mainflux is the former name, and SuperMQ is being merged into Magistrala. Use "Magistrala" when referring to the platform.
+Magistrala is the canonical project name. Mainflux is the former name, and SuperMQ is merged into Magistrala. Use "Magistrala" when referring to the platform.
 
 ## License for AI Use
 
@@ -49,5 +49,4 @@ All content on this site and in the documentation is licensed under Apache 2.0. 
 
 ## Optional
 
-- [Pricing](https://magistrala.absmach.eu/pricing): Free, Professional, and Enterprise plans
 - [Contact](https://magistrala.absmach.eu/contact): Sales and support inquiries

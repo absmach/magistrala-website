@@ -1,11 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import type { MetadataRoute } from "next";
+import { baseUrl } from "@/lib/metadata";
 import { solutions } from "@/lib/solutions-data";
 import { source } from "@/lib/source";
-
-const DOMAIN =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://magistrala.absmach.eu";
 
 export const dynamic = "force-static";
 
@@ -44,8 +42,7 @@ function collectPages(dir: string, route = ""): MetadataRoute.Sitemap {
 
     return [
       {
-        url: DOMAIN + (route || "/"),
-        lastModified: fs.statSync(fullPath).mtime,
+        url: `${baseUrl}${route || "/"}`,
         priority: getPriority(route),
         changeFrequency: getChangefreq(route),
       },
@@ -58,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const page of source.getPages()) {
     pages.push({
-      url: `${DOMAIN}${page.url}`,
+      url: `${baseUrl}${page.url}`,
       priority: 0.7,
       changeFrequency: "weekly",
     });
@@ -66,8 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const solution of solutions) {
     pages.push({
-      url: `${DOMAIN}/solutions/${solution.slug}/`,
-      lastModified: new Date(),
+      url: `${baseUrl}/solutions/${solution.slug}/`,
     });
   }
 

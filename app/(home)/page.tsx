@@ -11,19 +11,22 @@ import { ScrollToTop } from "@/components/landing/scroll-to-top";
 import { SolutionsGrid } from "@/components/landing/solutions";
 import { SuccessStories } from "@/components/landing/success-stories";
 import { WhyMagistrala } from "@/components/landing/why-magistrala";
+import { baseUrl } from "@/lib/metadata";
+
+const SITE = baseUrl.toString();
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://magistrala.absmach.eu/#publisher",
+      "@id": `${SITE}/#publisher`,
       name: "Abstract Machines",
       legalName: "Abstract Machines SAS",
-      url: "https://magistrala.absmach.eu",
+      url: SITE,
       logo: {
         "@type": "ImageObject",
-        url: "https://magistrala.absmach.eu/logos/abstract-machines.svg",
+        url: `${SITE}/logos/abstract-machines.svg`,
         width: 200,
         height: 50,
       },
@@ -49,25 +52,24 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://magistrala.absmach.eu/#website",
-      url: "https://magistrala.absmach.eu",
+      "@id": `${SITE}/#website`,
+      url: SITE,
       name: "Magistrala",
-      publisher: { "@id": "https://magistrala.absmach.eu/#publisher" },
+      publisher: { "@id": `${SITE}/#publisher` },
       potentialAction: {
         "@type": "SearchAction",
-        target:
-          "https://magistrala.absmach.eu/docs?search={search_term_string}",
+        target: `${SITE}/docs?search={search_term_string}`,
         "query-input": "required name=search_term_string",
       },
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://magistrala.absmach.eu/#software",
+      "@id": `${SITE}/#software`,
       name: "Magistrala",
       alternateName: ["Mainflux"],
       applicationCategory: "BusinessApplication",
       operatingSystem: "Cloud, Linux, Docker, Kubernetes",
-      url: "https://magistrala.absmach.eu",
+      url: SITE,
       description:
         "Open-source IoT platform for cloud and edge with multi-protocol messaging (MQTT, CoAP, HTTP, WebSocket), fine-grained RBAC via SpiceDB, multi-tenancy, and pluggable storage backends.",
       license: "https://www.apache.org/licenses/LICENSE-2.0",
@@ -84,7 +86,7 @@ const jsonLd = {
           name: "Enterprise",
           description: "Unlimited scale, dedicated infrastructure, premium SLA",
           availability: "https://schema.org/InStock",
-          url: "https://magistrala.absmach.eu/contact",
+          url: `${SITE}/contact`,
           priceSpecification: {
             "@type": "PriceSpecification",
             priceCurrency: "USD",
@@ -104,18 +106,18 @@ const jsonLd = {
         "Docker and Kubernetes ready",
         "Cloud and edge deployment",
       ],
-      screenshot: "https://magistrala.absmach.eu/screenshots/dashboard-2.png",
-      author: { "@id": "https://magistrala.absmach.eu/#publisher" },
-      creator: { "@id": "https://magistrala.absmach.eu/#publisher" },
+      screenshot: `${SITE}/screenshots/dashboard-2.png`,
+      author: { "@id": `${SITE}/#publisher` },
+      creator: { "@id": `${SITE}/#publisher` },
     },
     {
       "@type": "SoftwareSourceCode",
-      "@id": "https://magistrala.absmach.eu/#source",
+      "@id": `${SITE}/#source`,
       name: "Magistrala",
       codeRepository: "https://github.com/absmach/magistrala",
       programmingLanguage: "Go",
       license: "https://opensource.org/licenses/Apache-2.0",
-      creator: { "@id": "https://magistrala.absmach.eu/#publisher" },
+      creator: { "@id": `${SITE}/#publisher` },
     },
   ],
 };

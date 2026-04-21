@@ -14,7 +14,7 @@ import { FAQSection } from "@/components/landing/faq";
 import { Footer } from "@/components/landing/footer";
 import { DashboardCarousel } from "@/components/solutions/dashboard-carousel";
 import { Button } from "@/components/ui/button";
-import { createMetadata } from "@/lib/metadata";
+import { baseUrl, createMetadata } from "@/lib/metadata";
 import { getSolutionBySlug, solutions } from "@/lib/solutions-data";
 
 export function generateStaticParams() {
@@ -35,7 +35,7 @@ export async function generateMetadata({
       description: solution.metaDescription,
       keywords: solution.keywords,
       openGraph: {
-        url: `https://magistrala.absmach.eu/solutions/${slug}/`,
+        url: `${baseUrl}/solutions/${slug}/`,
       },
     },
     `solutions/${slug}`,
@@ -57,8 +57,34 @@ export default async function SolutionDetailPage({
 
   const cloudInstallUrl = `https://cloud.magistrala.absmach.eu?utm_source=magistrala.absmach.eu&utm_medium=website&utm_campaign=solution-${solution.slug}`;
 
+  const SITE = baseUrl.toString();
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE}/` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Solutions",
+        item: `${SITE}/solutions/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: solution.title,
+        item: `${SITE}/solutions/${slug}/`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20">
         <div className="absolute inset-0 -z-10 bg-linear-to-b from-primary/5 to-transparent" />

@@ -13,10 +13,16 @@ export function FeatureCard({
 }) {
   const Icon = feature.icon;
 
+  // Terminal and screenshot visuals use absolute inset-0 and need an explicit
+  // parent height on mobile. The RBAC visual uses flow layout and should size
+  // itself, so we let it drive its own height on mobile.
+  const isAbsoluteVisual =
+    feature.visual === "terminal" || feature.visual === "screenshot";
+
   return (
     <div
       className={cn(
-        "flex flex-col sm:flex-row transition-all duration-200 h-100",
+        "flex flex-col sm:flex-row transition-all duration-200 sm:h-100",
         reversed && "sm:flex-row-reverse",
       )}
     >
@@ -35,8 +41,13 @@ export function FeatureCard({
         </p>
       </div>
 
-      {/* Visual — fills remaining card width; card has fixed h-100 */}
-      <div className="relative flex-1 overflow-hidden bg-muted/10">
+      {/* Visual */}
+      <div
+        className={cn(
+          "relative flex-1 overflow-hidden bg-muted/10",
+          isAbsoluteVisual && "h-64 sm:h-auto",
+        )}
+      >
         {feature.visual === "terminal" && <TerminalVisual />}
         {feature.visual === "screenshot" && (
           <>

@@ -7,13 +7,16 @@ import {
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { DocAttribution } from "@/components/docs/doc-attribution";
-import { resolveAuthors } from "@/lib/authors";
 import { baseUrl, createMetadata } from "@/lib/metadata";
 import { getPageImage, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 
-function buildBreadcrumbSchema(slug: string[] | undefined, title: string) {
+function buildPageSchema(
+  slug: string[] | undefined,
+  title: string,
+  description: string | undefined,
+  url: string,
+) {
   const base = baseUrl.toString();
   const items: {
     "@type": string;
@@ -50,8 +53,20 @@ function buildBreadcrumbSchema(slug: string[] | undefined, title: string) {
 
   return {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items,
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: items,
+      },
+      {
+        "@type": "TechArticle",
+        headline: title,
+        ...(description ? { description } : {}),
+        url,
+        inLanguage: "en",
+        isPartOf: { "@type": "WebSite", url: `${base}/` },
+      },
+    ],
   };
 }
 
@@ -61,19 +76,23 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   if (!page) notFound();
 
   const MDX = page.data.body;
-  const breadcrumb = buildBreadcrumbSchema(params.slug, page.data.title);
-  const authors = resolveAuthors(page.data.authors);
+  const canonical = `${baseUrl}${page.url}`;
+  const pageSchema = buildPageSchema(
+    params.slug,
+    page.data.title,
+    page.data.description,
+    canonical,
+  );
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
       <script
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
-      <DocAttribution authors={authors} lastModified={page.data.lastModified} />
       <DocsBody>
         <MDX
           components={getMDXComponents({
