@@ -61,7 +61,7 @@ const HERO_CONTENT = {
   },
   stats: [
     { id: "stat-1", value: "13+", label: "Global\nPartners" },
-    { id: "stat-2", value: "50+", label: "Deployments" },
+    { id: "stat-2", value: "400+", label: "Deployments" },
     { id: "stat-3", value: "4+", label: "Protocols \n Supported" },
     { id: "stat-4", value: "2.5k+", label: "GitHub Stars" },
   ],
