@@ -12,6 +12,8 @@ keywords:
   - Subtopic
   - Send Email
   - Scheduler
+  - Role Management
+  - RBAC
 image: /img/mg-preview.png
 ---
 
@@ -474,8 +476,70 @@ With the Rules Engine, users can easily automate data processing pipelines in a 
 
 :::
 
+## Rule Roles
+
+Roles define a set of actions that can be allocated to users for a specific rule.
+
+To create a role, navigate to the **Roles** tab on the rule sidebar. Click on the `+ Create` button and provide a role name. The actions and members are optional fields.
+
+![Create rule role](../img/rules/rule-roles.png)
+
+### Role Information
+
+![Rule role information](../img/rules/rule-role-create.png) 
+
+The **Role name** is compulsory. You can optionally provide the role actions by selecting from the available actions. You can also optionally provide the members by searching for a user with their **username**.
+
+The following is the list of available actions for a rule:
+
+- `rule_read`
+- `rule_update`
+- `rule_delete`
+- `rule_manage_role`
+- `rule_add_role_users`
+- `rule_view_role_users`
+- `rule_remove_role_users`
+
+#### Update Rule Roles
+
+Click a role in the **Roles table** to open its page. The page has two tables for the **Role Actions** and the assigned **Role Members**.
+
+To update a **role name**, click on the **pencil** icon on the far right end of the field, update the value then click on the **check** icon to save or the **cross** icon to cancel.
+
+ ![Update role name](../img/rules/rule-update-role.png)
+
+To update the **Role Actions**, click on the **pencil** icon. A dialog box will appear allowing you to select the actions you want to add.
+
+ ![Update role actions](../img/rules/rule-update-role-actions.png) 
+
+To update the **Role Members**, click the **Add Members** button. A popup dialog will appear with the list of Domain Members from which a user can select.
+
+ ![Update role members](../img/rules/rule-update-role-members.png) 
+
+#### Delete Rule Roles
+
+You can delete actions by clicking on the **trash** icon. It opens a dialog that allows you to select which actions to remove. There is also an option to delete all actions at once.
+
+ ![Delete role actions](../img/rules/rule-role-delete-actions.png) 
+
+For **Role Members**, you can clear the entire table with the `Delete All Members` button:
+
+ ![Delete all role members](../img/rules/rule-delete-all-role-members.png) 
+
+To delete specific members from the Role Members table, click on the **trash** icon next to their entry.
+
+ ![Delete role members](../img/rules/rule-delete-role-members.png) 
+
+## Rule Members
+
+While members can be added through the **Roles** tab when creating a role, you can also assign members directly through the **Members** tab.
+
+Clicking the **Assign Member** button opens a dialog where you can select from the Domain Members and choose the role to assign them to.
+
+ ![Assign Members](../img/rules/rule-members.png) 
+
 ## Delete a rule
 
 To delete a rule, click the **Delete** quick action. A confirmation dialog appears asking you to type the rule's name before deletion is finalized. Use the **copy button** to copy the name, paste it into the input field, then click **Delete** to permanently remove the rule.
 
-![Delete rule](../img/rules/rule-delete.png)
+ ![Delete rule](../img/rules/rule-delete.png) 

@@ -7,6 +7,8 @@ keywords:
   - Data Reporting
   - Scheduled Reports
   - PDF CSV Exports
+  - Role Management
+  - RBAC
 image: /img/mg-preview.png
 ---
 
@@ -130,6 +132,74 @@ After a report is created, it will be added to the reports table. To view a repo
 While on the View Report Page, the user can update the details of the report, modify the schedule, add metrics or recipients, or download the report.
 
 ![Update Report](../img/reports/update-report.png)
+
+## Report Template
+
+Each report has an associated HTML template that controls how the generated PDF report is rendered. To edit the template, navigate to the **Template** tab on the report topbar.
+
+ ![Report Template](../img/reports/report-template.png)
+
+## Report Roles
+
+Roles define a set of actions that can be allocated to users for a specific report.
+
+To create a role, navigate to the **Roles** tab on the report topbar. Click on the `+ Create` button and provide a role name. The actions and members are optional fields.
+
+ ![Report role page](../img/reports/report-roles.png)
+
+### Role Information
+
+ ![Report role create](../img/reports/report-role-create.png)
+
+The **Role name** is compulsory. You can optionally provide the role actions by selecting from the available actions. You can also optionally provide the members by selecting from the dropdown.
+
+The following is the list of available actions for a report:
+
+- `report_read`
+- `report_update`
+- `report_delete`
+- `report_manage_role`
+- `report_add_role_users`
+- `report_view_role_users`
+- `report_remove_role_users`
+
+#### Update Report Roles
+
+Click a role in the **Roles table** to open its page. The page has two tables for the **Role Actions** and the assigned **Role Members**.
+
+To update a **role name**, click on the **pencil** icon on the far right end of the field, update the value then click on the **check** icon to save or the **cross** icon to cancel.
+
+ ![Update role name](../img/reports/report-update-role.png)
+
+To update the **Role Actions**, click on the **pencil** icon. A dialog box will appear allowing you to select the actions you want to add.
+
+ ![Update role actions](../img/reports/report-update-role-actions.png)
+
+To update the **Role Members**, click the **Add Members** button. A popup dialog will appear with the list of Domain Members from which a user can select.
+
+ ![Update role members](../img/reports/report-role-update-members.png)
+
+#### Delete Report Roles
+
+You can delete actions by clicking on the **trash** icon. It opens a dialog that allows you to select which actions to remove. There is also an option to clear all the actions.
+
+ ![Delete role actions](../img/reports/report-role-delete-actions.png)
+
+For **Role Members**, you can clear the entire table with the `Delete All Members` button:
+
+ ![Delete all role members](../img/reports/report-delete-all-role-members-dialog.png)
+
+To delete specific members from the Role Members table, click on the **trash** icon next to their entry.
+
+ ![Delete role members](../img/reports/report-delete-role-members.png)
+
+## Report Members
+
+While members can be added through the **Roles** tab when creating a role, you can also assign members directly through the **Members** section.
+
+Clicking the **Assign Member** button opens a dialog where you can select from the Domain Members and choose the role to assign them to.
+
+ ![Assign Members](../img/reports/report-members.png)
 
 ## Delete a report
 
