@@ -128,7 +128,7 @@ MG_GOOGLE_STATE=pGXVNhEeKfycuBzk5InlSfMlEU9UrhlkTUOSqhsgDzXP2Y4RsN
 For a local Docker-based environment, add the following lines to your .env or docker-compose.env:
 
 ```bash
-## In the SMQ
+## In the Magistrala
 
 SMQ_GOOGLE_CLIENT_ID=985229335584-m2mft8lqbgfn5gfw9ftrm3r2sgu4tsrw.apps.googleusercontent.com
 SMQ_GOOGLE_CLIENT_SECRET=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WYUIpw
@@ -305,10 +305,10 @@ mosquitto_sub -I <client_name> -u <client_id> -P <client_secret> --cafile docker
 ```
 
 [jwt]: https://jwt.io/
-[messaging]: ./messaging
+[messaging]: /docs/dev-guide/dev-tools/messaging
 [rf5280]: https://tools.ietf.org/html/rfc5280
 [ssl-makefile]: https://github.com/absmach/magistrala/blob/main/docker/ssl/Makefile
-[provision]: ./provision
+[provision]: /docs/dev-guide/services/provision
 [openssl]: https://www.openssl.org/
 [vault]: https://www.vaultproject.io/
 [oidc]: https://openid.net/connect/

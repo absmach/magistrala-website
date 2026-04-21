@@ -7,11 +7,16 @@ import {
 import { createRelativeLink } from "fumadocs-ui/mdx";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { baseUrl } from "@/lib/metadata";
+import { baseUrl, createMetadata } from "@/lib/metadata";
 import { getPageImage, source } from "@/lib/source";
 import { getMDXComponents } from "@/mdx-components";
 
-function buildBreadcrumbSchema(slug: string[] | undefined, title: string) {
+function buildPageSchema(
+  slug: string[] | undefined,
+  title: string,
+  description: string | undefined,
+  url: string,
+) {
   const base = baseUrl.toString();
   const items: {
     "@type": string;
@@ -19,8 +24,8 @@ function buildBreadcrumbSchema(slug: string[] | undefined, title: string) {
     name: string;
     item?: string;
   }[] = [
-    { "@type": "ListItem", position: 1, name: "Home", item: base },
-    { "@type": "ListItem", position: 2, name: "Docs", item: `${base}/docs` },
+    { "@type": "ListItem", position: 1, name: "Home", item: `${base}/` },
+    { "@type": "ListItem", position: 2, name: "Docs", item: `${base}/docs/` },
   ];
 
   if (slug && slug.length > 1) {
@@ -38,16 +43,30 @@ function buildBreadcrumbSchema(slug: string[] | undefined, title: string) {
     }
   }
 
+  const pageSlug = slug ? slug.join("/") : "";
   items.push({
     "@type": "ListItem",
     position: items.length + 1,
     name: title,
+    item: `${base}/docs/${pageSlug ? `${pageSlug}/` : ""}`,
   });
 
   return {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items,
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: items,
+      },
+      {
+        "@type": "TechArticle",
+        headline: title,
+        ...(description ? { description } : {}),
+        url,
+        inLanguage: "en",
+        isPartOf: { "@type": "WebSite", url: `${base}/` },
+      },
+    ],
   };
 }
 
@@ -57,14 +76,20 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
   if (!page) notFound();
 
   const MDX = page.data.body;
-  const breadcrumb = buildBreadcrumbSchema(params.slug, page.data.title);
+  const canonical = `${baseUrl}${page.url}`;
+  const pageSchema = buildPageSchema(
+    params.slug,
+    page.data.title,
+    page.data.description,
+    canonical,
+  );
 
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
       <script
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled static JSON-LD
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
@@ -81,7 +106,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
 }
 
 export async function generateStaticParams() {
-  return source.generateParams();
+  return [{ slug: [] }, ...source.generateParams()];
 }
 
 export async function generateMetadata(
@@ -92,15 +117,26 @@ export async function generateMetadata(
   if (!page) notFound();
 
   const canonical = `${baseUrl}${page.url}`;
-  return {
-    title: page.data.title,
-    description:
-      page.data.description ??
-      "Complete technical documentation for Magistrala — architecture, APIs, protocol support, CLI tools, and integration guides.",
-    alternates: { canonical },
-    openGraph: {
-      url: canonical,
-      images: getPageImage(page).url,
+  const pageImage = getPageImage(page);
+  return createMetadata(
+    {
+      title: page.data.title,
+      description:
+        page.data.description ??
+        "Complete technical documentation for Magistrala — architecture, APIs, protocol support, CLI tools, and integration guides.",
+      alternates: { canonical },
+      openGraph: {
+        url: canonical,
+        images: [
+          {
+            url: pageImage.url,
+            width: 1200,
+            height: 630,
+            alt: page.data.title,
+          },
+        ],
+      },
     },
-  };
+    `docs/${params.slug?.join("/") ?? ""}`,
+  );
 }

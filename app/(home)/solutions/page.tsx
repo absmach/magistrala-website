@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FAQSection, solutionsFaqs } from "@/components/landing/faq";
 import { Footer } from "@/components/landing/footer";
 import { Button } from "@/components/ui/button";
-import { createMetadata } from "@/lib/metadata";
+import { baseUrl, createMetadata } from "@/lib/metadata";
 import { solutions } from "@/lib/solutions-data";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +24,7 @@ export const metadata = createMetadata(
       "oil gas IoT",
     ],
     openGraph: {
-      url: "https://magistrala.absmach.eu/solutions/",
+      url: `${baseUrl}/solutions/`,
     },
   },
   "solutions",

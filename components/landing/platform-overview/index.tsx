@@ -20,7 +20,7 @@ export function PlatformOverview() {
         </div>
 
         {/* Feature cards — 1 per row, alternating content-left/visual-right layout */}
-        <div className="flex flex-col gap-40 mx-auto mb-16">
+        <div className="flex flex-col gap-12 sm:gap-24 lg:gap-40 mx-auto mb-16">
           {features.map((feature, index) => (
             <FeatureCard
               key={feature.title}

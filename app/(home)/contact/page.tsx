@@ -25,7 +25,7 @@ const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   name: "Contact Magistrala — Abstract Machines",
-  url: "https://magistrala.absmach.eu/contact",
+  url: "https://magistrala.absmach.eu/contact/",
   description:
     "Get in touch with the Abstract Machines team for Magistrala IoT platform sales, support, and enterprise enquiries.",
   mainEntity: {
