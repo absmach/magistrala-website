@@ -2,6 +2,7 @@
   "title": "Dev Guide",
   "pages": [
     "introduction",
+    "agent",
     "architecture",
     "getting-started",
     "entities",
