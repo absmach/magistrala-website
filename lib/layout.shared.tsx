@@ -15,6 +15,11 @@ const solutionItems = [
       "Sensor-driven irrigation schedules that eliminate water waste.",
   },
   {
+    text: "Oil & Gas",
+    url: "/solutions/oil-gas",
+    description: "Pipeline integrity monitoring and predictive maintenance.",
+  },
+  {
     text: "Smart City",
     url: "/solutions/smart-city",
     description:
@@ -34,11 +39,6 @@ const solutionItems = [
     text: "Smart Farming",
     url: "/solutions/smart-farming",
     description: "Precision irrigation and crop stress monitoring.",
-  },
-  {
-    text: "Oil & Gas",
-    url: "/solutions/oil-gas",
-    description: "Pipeline integrity monitoring and predictive maintenance.",
   },
   {
     text: "Air Quality",

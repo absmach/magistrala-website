@@ -5,7 +5,6 @@ import {
   Building2,
   Clock,
   CloudRain,
-  Cpu,
   DollarSign,
   Droplets,
   Eye,
@@ -14,7 +13,6 @@ import {
   Flame,
   Gauge,
   GitMerge,
-  Globe,
   Layers,
   Leaf,
   LineChart,
@@ -870,154 +868,165 @@ export const solutions: Solution[] = [
     ],
   },
 
-  // ── Oil & Gas ─────────────────────────────────────────────────────────
+  // ── Oil & Gas Field Monitoring ────────────────────────────────────────────────
   {
-    title: "Oil & Gas",
+    title: "Oil & Gas Field Monitoring",
     slug: "oil-gas",
-    icon: Gauge,
+    icon: Flame,
     summary:
-      "Monitor remote pipelines and predict pump failures before they cause costly downtime in harsh environments.",
+      "Most wellhead incidents have warning signals before they escalate: H2S creeping toward the OSHA ceiling, pressure trending past the warning threshold, a tank filling while the transfer pump is stopped overnight. This pack connects wellhead sensors to a single monitoring platform and fires the alarm the moment a threshold is crossed.",
     description:
-      "Deploy enterprise-grade pipeline integrity monitoring, remote asset management, and predictive maintenance infrastructure across upstream, midstream, and downstream operations. The Pipeline & Asset Intelligence Pack is pre-built for the reliability and security demands of the oil and gas sector.",
+      "The Oil & Gas Field Monitoring pack gives upstream production teams real-time visibility across wellhead gateways, flow meters, pressure sensors, gas detectors, storage tank sensors, separator controllers, and pump controllers. Five detection rules cover the alarm categories that matter in upstream production: high wellhead and casing pressure, H2S and LEL gas hazards, low oil flow, rising water cut, and tank overfill protection. When H2S climbs past 5 ppm at an unmanned wellsite, the alarm fires before anyone on the next shift arrives on site.",
     heroDetail:
-      "The Pipeline & Asset Intelligence Pack addresses the reliability and safety demands of upstream, midstream, and downstream oil and gas operations. It provides continuous telemetry from pipeline integrity sensors, pump performance monitors, pressure transmitters, and leak detection systems across both fixed facilities and remote unmanned locations. The pack is pre-configured for the data reliability, redundancy, and security requirements of safety-critical industrial environments, and integrates with standard industrial communication protocols used across the sector.",
+      "Five detection rules run continuously: high-pressure alerts catch wellhead and casing pressure excursions against configurable MAOP thresholds before blowout risk escalates; gas leak detection enforces OSHA H2S ceilings and LEL limits with severity-tiered alarms; well flow anomaly detection flags production declines and rising water cut; and tank overfill protection fires a critical alarm before crude reaches spill-risk levels. Pump and separator controls sit directly on the KPI dashboard so operators respond without switching screens. Three scheduled reports cover daily production, weekly operations, and monthly regulatory compliance.",
     whyMagistrala:
-      "Magistrala's industrial protocol support — including MQTT over TLS for low-bandwidth remote links — combined with its role-based access control and data isolation guarantees, makes it a fit for the security and reliability standards that oil and gas operators must meet.",
+      "Field devices connect over MQTT with per-client credentials, so a compromised sensor does not expose the rest of the wellsite network. Raw telemetry and validated data flow through separate channels, keeping detection rules clear of corrupted sensor records. One Well Operator template scales to any number of wellheads without duplicating dashboard configuration.",
     image: "/solutions/oil-and-gas.jpg",
+    docsPath: "/docs/user-guide/solution-packs/oil-gas-field-monitoring/",
     dashboardScreenshots: [
       {
-        src: "/screenshots/industrial-gateway.png",
-        alt: "Industrial gateway configuration for oil and gas assets",
+        src: "/screenshots/solutions/oil-and-gas-monitoring/field-operations-dashboard.png",
+        alt: "Field Operations KPI Dashboard showing daily oil production, wellhead pressure gauge, active alarm count, tank level, H2S reading, and pump control",
       },
       {
-        src: "/screenshots/dashboard-2.png",
-        alt: "Pipeline and asset monitoring dashboard",
+        src: "/screenshots/solutions/oil-and-gas-monitoring/real-time-monitoring-dashboard.png",
+        alt: "Real-Time Well Monitoring Dashboard with live flow rate, wellhead pressure trend, H2S concentration, tank level, and LEL percentage",
       },
       {
-        src: "/screenshots/alarms-1.png",
-        alt: "Safety-critical asset alarm management",
+        src: "/screenshots/solutions/oil-and-gas-monitoring/alarms-dashboard.png",
+        alt: "Alarm Monitoring Dashboard with active alarm counts by severity and full alarm triage table",
       },
       {
-        src: "/screenshots/rules-engine-1.png",
-        alt: "Leak detection and anomaly rules engine",
+        src: "/screenshots/solutions/oil-and-gas-monitoring/well-operator-dashboard.png",
+        alt: "Well Operator dashboard showing per-well flow rate, wellhead pressure gauge, H2S level, flow rate trend, and tank level",
+      },
+      {
+        src: "/screenshots/solutions/oil-and-gas-monitoring/field-manager-summary-dashboard.png",
+        alt: "Field Manager Summary dashboard with daily oil production chart, active alarms, water cut, tank level, and gas flow",
       },
     ],
 
     challenges: {
-      title: "Remote assets are invisible until they fail",
+      title: "Problems field operators deal with every shift",
       subtitle:
-        "Unplanned shutdowns in oil and gas cost industry an estimated $38B annually. Most failures are detectable weeks in advance — if the right monitoring is in place.",
+        "Wellhead incidents, gas hazards, and overfill events all have warning signals. The problem is having a system that catches them in time.",
       items: [
         {
-          icon: AlertTriangle,
-          title: "Unplanned Downtime",
-          desc: "Pump failures, compressor trips, and pipeline ruptures occur without warning when asset health data isn't collected or analyzed continuously.",
-        },
-        {
-          icon: Globe,
-          title: "Remote Asset Blind Spots",
-          desc: "Wellheads, pipeline segments, and compressor stations in remote or offshore locations have limited connectivity, creating gaps in operational visibility.",
-        },
-        {
           icon: ShieldAlert,
-          title: "Safety & Compliance Risk",
-          desc: "Missed gas leak detection events and delayed safety alarm responses create both operational risk and regulatory exposure for operating companies.",
+          title:
+            "H2S above threshold at an unmanned wellsite with no one on site",
+          desc: "An electrochemical H2S detector hitting the OSHA ceiling at an unmanned wellsite is a hazardous event with nobody there to respond. The alarm needs to fire before the next scheduled site visit.",
+        },
+        {
+          icon: AlertTriangle,
+          title: "A tank filling while the transfer pump is stopped overnight",
+          desc: "When the transfer pump trips at midnight and nobody notices, crude keeps flowing into the tank. By morning the level is at 90% and the spill risk window is closing. An overfill warning at 85% gives enough time to act.",
+        },
+        {
+          icon: TrendingDown,
+          title:
+            "Wellhead pressure trending toward MAOP between manual shift checks",
+          desc: "Pressure excursions that develop between manual checks can reach critical levels before anyone looks at the gauge. Continuous monitoring catches the trend at 1800 psi before it reaches 2200.",
         },
       ],
     },
 
     howItWorks: {
-      subtitle:
-        "From field instrument to SCADA-grade operations center — in one platform.",
+      subtitle: "Four steps from wellhead sensor to actionable alarm",
       steps: [
         {
-          title: "Connect",
-          desc: "Pressure transmitters, flow meters, gas detectors, and vibration sensors connect over MQTT, Modbus-over-TCP, or HTTP adapters. Remote sites use cellular or satellite backhaul.",
+          title: "Ingest",
+          desc: "Wellhead sensors and controllers publish SenML payloads over MQTT to the Raw Telemetry Channel using per-device credentials. Every reading is saved immediately.",
         },
         {
-          title: "Stream",
-          desc: "High-frequency telemetry flows into dedicated channels by asset type. Edge buffering handles connectivity gaps in remote locations — no data is lost during outages.",
+          title: "Validate",
+          desc: "A data processing rule checks each incoming record against field safe ranges before alarm logic runs. Out-of-range sensor values are discarded before they reach detection rules.",
         },
         {
           title: "Detect",
-          desc: "Leak indication rules flag pressure-drop anomalies across pipeline segments. Gas concentration thresholds trigger safety alarms. Vibration baselines identify impending bearing or seal failures.",
+          desc: "Five rules watch clean data continuously. Pressure above 1800 psi fires a warning; above 2200 psi fires a critical. H2S above 5 ppm triggers a gas hazard warning. Flow below 50 bbl/d with the pump running raises a production anomaly. Tank above 85% triggers an overfill warning.",
         },
         {
-          title: "Respond",
-          desc: "Safety-critical alarms trigger immediate notifications to control room operators and field crews. Maintenance predictions create work orders in integrated maintenance systems.",
+          title: "Report",
+          desc: "Daily production, weekly operations summary, and monthly compliance reports go out automatically by email. Long-term production records write to PostgreSQL for regulatory reporting.",
         },
       ],
     },
 
     applications: {
       title: "Key Applications",
-      subtitle: "Oil and gas operations running on this pack",
+      subtitle:
+        "Where upstream operators deploy the Oil & Gas Field Monitoring pack",
       items: [
         {
+          icon: Gauge,
+          title: "Wellhead production monitoring",
+          desc: "Flow rate, gas-oil ratio, and water cut tracked continuously across producing wells. Daily production reports close the loop without manual data collection.",
+        },
+        {
+          icon: ShieldAlert,
+          title: "H2S safety compliance at unmanned sites",
+          desc: "Continuous OSHA-threshold monitoring at wellheads and production facilities. Gas hazard alarms fire within seconds and reach on-call contacts by email before site personnel would detect the exposure manually.",
+        },
+        {
           icon: Activity,
-          title: "Pipeline Integrity Monitoring",
-          desc: "Continuous pressure and flow monitoring across pipeline segments detects slow leak signatures days before traditional inspection would identify them.",
+          title: "Tank battery level management",
+          desc: "Crude oil storage level monitored against two fill thresholds. Warning at 85% gives trucking schedulers a lead window before spill risk at 95%.",
         },
         {
           icon: Wrench,
-          title: "Predictive Maintenance",
-          desc: "Vibration, temperature, and motor current analysis on pumps and compressors identifies bearing wear and seal degradation weeks before failure.",
-        },
-        {
-          icon: Flame,
-          title: "Gas Leak Detection",
-          desc: "Multi-point gas sensor monitoring with wind-direction-aware alarm logic provides accurate source attribution for rapid emergency response.",
-        },
-        {
-          icon: Cpu,
-          title: "Remote Asset SCADA",
-          desc: "Real-time wellhead and compressor station monitoring replaces manual site visits and integrates with existing SCADA systems via standard protocols.",
+          title: "Separator and pump operations",
+          desc: "Separator temperature and pressure trended for process upsets. Transfer pump status displayed and controllable from the KPI dashboard without navigating to a separate control interface.",
         },
       ],
     },
 
     benefits: [
-      "Detect pipeline leak indicators days or weeks before physical inspection — preventing major ruptures",
-      "Reduce unplanned downtime by up to 40% with predictive maintenance on rotating equipment",
-      "Eliminate safety blind spots with continuous gas detection and safety-critical alarm management",
-      "Reduce helicopter and truck inspection costs with remote asset monitoring replacing manual site visits",
-      "Meet regulatory reporting requirements with automated pipeline integrity and maintenance records",
-      "Industrial-grade security with per-asset credentials, encrypted telemetry, and full audit trails",
+      "H2S and LEL alarms fire within seconds of OSHA threshold breach, giving operators time to respond before exposure risk escalates",
+      "Wellhead pressure warnings at 1800 psi give time to investigate before the 2200 psi critical limit is reached",
+      "Tank overfill warnings at 85% give trucking schedulers a practical lead window before the 95% critical alarm",
+      "Device Health Monitor flags any silent field device within 10-20 minutes, protecting both safety coverage and regulatory data completeness",
+      "Monthly compliance reports generate and deliver automatically, replacing manual production accounting assembly",
+      "Per-client MQTT credentials isolate each field device so a compromised sensor cannot access others on the wellsite",
+      "Tag-based Well Operator and Field Manager templates scale across multiple wells without duplicating configuration",
     ],
 
     faq: [
       {
-        question: "What industrial protocols does the Oil & Gas pack support?",
+        question:
+          "How do we adjust pressure thresholds to match our well's MAOP?",
         answer:
-          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Industrial field instruments using Modbus, HART, or OPC-UA connect via an external protocol adapter that translates readings into one of the native protocols. Pressure transmitters, flow meters, gas detectors, and vibration sensors from major vendors are supported this way.",
+          "Open the High Pressure Alert rule in the Rules page and edit the threshold constants. The defaults (1800 psi warning, 2200 psi critical for wellhead; 1700 psi for casing) are typical Permian Basin tight oil parameters. Replace them with the values from your well's specific Maximum Allowable Operating Pressure design specification. The change takes effect on the next incoming message with no restart required.",
       },
       {
-        question: "How are safety-critical alarms managed and escalated?",
+        question: "Can the pack monitor multiple wells or field sites?",
         answer:
-          "Safety-critical rules evaluate sensor data against configurable thresholds in real time. Breaches trigger immediate multi-channel alerts — email, SMS, and SCADA webhooks — with mandatory acknowledgment workflows. Unacknowledged alarms auto-escalate to the next responsible party on a configurable schedule.",
+          "Yes. Each field site is a Magistrala domain with its own device clients, channels, and rules. The Well Operator and Field Manager Summary templates use tag-based device references, so deploying a new well means provisioning its clients and assigning a group, not duplicating template definitions. A central operations view can aggregate alarm counts across all sites while individual site data stays isolated.",
       },
       {
         question:
-          "Can the platform operate in remote or intermittent-connectivity environments?",
+          "How are H2S safety alarms escalated when no one acknowledges them?",
         answer:
-          "Yes. Edge gateway nodes buffer messages locally during connectivity gaps and replay them in order when the link is restored. Time-series data arrives with original device timestamps, ensuring dashboards and analytics reflect accurate event sequences without data gaps.",
+          "The Gas Leak Detection rule sends email notifications to configured recipients the moment the alarm fires. For escalation chains, add multiple recipients in the rule's email output. For SMS or Safety Management System integration, use the rule's webhook output to POST the event to your external system. The alarm stays open in the platform until it is acknowledged or the H2S reading returns below threshold.",
       },
       {
-        question: "How does predictive maintenance work with the pack?",
+        question:
+          "Do all sensors need to connect through the Wellhead Gateway, or can they connect directly?",
         answer:
-          "Vibration and temperature data from rotating equipment is evaluated against baseline profiles and configurable anomaly rules. When degradation patterns emerge — rising bearing temperature, abnormal vibration frequency — alerts fire before failure occurs, enabling planned maintenance instead of emergency shutdowns.",
+          "Either works. Each device type has its own client credentials, so sensors can connect directly if they have MQTT capability. In most field deployments, all sensors route through the Wellhead Gateway: a single TLS connection handles the entire wellsite stream and the gateway can buffer readings during brief connectivity outages. Both approaches deliver identical telemetry to the Raw Telemetry Channel.",
       },
     ],
 
     metaDescription:
-      "Deploy pipeline integrity monitoring and predictive maintenance IoT infrastructure in minutes. The Magistrala Oil & Gas Pack includes pre-configured sensors, leak detection rules, and safety dashboards.",
+      "Monitor wellhead pressure, H2S gas concentration, oil flow rate, and tank levels in real time. Detect gas hazards and pressure excursions within seconds, protect against tank overfill, and automate production compliance reports with Magistrala's Oil & Gas Field Monitoring solution pack.",
     keywords: [
-      "oil gas IoT monitoring",
-      "pipeline integrity platform",
-      "predictive maintenance IoT",
-      "gas leak detection system",
-      "remote asset monitoring",
-      "Magistrala oil gas",
+      "oil gas field monitoring IoT",
+      "wellhead pressure monitoring",
+      "H2S gas detection system",
+      "upstream oil gas IoT",
+      "tank overfill protection",
+      "magistrala oil gas",
+      "SenML wellhead telemetry",
     ],
   },
 
