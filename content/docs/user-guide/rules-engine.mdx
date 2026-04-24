@@ -127,19 +127,93 @@ To utilize the message payload, you can use `message.<key>` in the input. For ex
 
 #### Comparison Block
 
-Use `if`, `and` and `or` conditions to evaluate message payloads:
+The Comparison Block lets you define conditions visually without writing a script.
+Each condition evaluates a field from the incoming message against a value you supply.
+When all conditions pass, the connected output nodes are triggered.
 
 ![comparison node](../img/rules/comparison-node.png)
 
-**Supported Payload Structures**:
+---
 
-- Nested objects: `message.<key>.<key>` (e.g., `message.payload.sensor.temperature`).
-- **SenML fields**: `v` (numeric), `vs` (string), `vb` (boolean), `vd` (data), `s` (sum).
+##### Input
 
-**Multiple Conditions**:  
-Chain conditions with `and` / `or`:
+Every input must start with `message.` followed by the path to the field you want to inspect.
+Two access styles are supported:
+
+| Style | Syntax | Example |
+|-------|--------|---------|
+| Dot notation | `message.<field>.<field>` | `message.payload.temperature` |
+| Bracket (array index) notation | `message.<field>[<index>].<field>` | `message.payload[1].v` |
+
+You can mix both styles in the same path:
+
+```
+message.payload[1].v          ← SenML array, first record's numeric value
+message.payload.sensor.temp   ← nested object
+message.status                ← top-level field
+```
+
+> **SenML tip:** SenML messages arrive as an array, so the value field is accessed with
+> `message.payload[1].v` (numeric), `message.payload[1].vs` (string), or
+> `message.payload[1].vb` (boolean).
+
+---
+
+##### Operators
+
+| Operator | Symbol | Description |
+|----------|--------|-------------|
+| Equal | `==` | Value matches exactly |
+| Not equal | `~=` | Value does not match |
+| Greater than | `>` | Value is strictly greater |
+| Less than | `<` | Value is strictly less |
+| Greater than or equal | `>=` | Value is greater or equal |
+| Less than or equal | `<=` | Value is less or equal |
+
+---
+
+##### Data Types
+
+Set the **Type** dropdown to match the kind of value you are comparing against:
+
+| Type | When to use | Example values |
+|------|-------------|----------------|
+| `num` | Any number — integer or decimal | `20`, `3.14`, `100`, `0.5` |
+| `string` | Text values | `"alarm"`, `"active"`, `"room-1"` |
+| `bool` | True/false flags | `true`, `false` |
+
+Choosing the wrong type will cause the comparison to behave unexpectedly:
+- Use `num` for any threshold check (temperature, pressure, count, etc.).
+- Use `string` when comparing labels, status codes, or names.
+- Use `bool` when the field is a boolean flag (e.g., a pump on/off state).
+
+---
+
+##### Multiple Conditions
+
+Click **Add Condition** to chain more than one comparison.
+Each additional condition requires a logical join:
+
+| Join | Behaviour |
+|------|-----------|
+| `and` | All conditions must be true |
+| `or` | At least one condition must be true |
 
 ![Add multiple conditions](../img/rules/add-multiple-conditions.png)
+
+**Example — trigger when flow is low AND pump is running:**
+
+| Input | Operator | Type | Value | Join |
+|-------|----------|------|-------|------|
+| `message.payload[1].v` | `<` | num | `50` | — |
+| `message.pump_running` | `==` | bool | `true` | and |
+
+**Example — alert on high H₂S OR high LEL reading:**
+
+| Input | Operator | Type | Value | Join |
+|-------|----------|------|-------|------|
+| `message.h2s` | `>` | num | `10` | — |
+| `message.lel` | `>` | num | `20` | or |
 
 #### Script Editors
 
