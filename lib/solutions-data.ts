@@ -573,147 +573,150 @@ export const solutions: Solution[] = [
     slug: "cold-storage",
     icon: Thermometer,
     summary:
-      "Ensure zero spoilage and strict regulatory compliance with continuous temperature and humidity monitoring.",
+      "Most cold storage incidents have warning signals before product is at risk: a frozen zone creeping toward −15 °C overnight, a door left open during a busy loading shift, a compressor drawing 5,800 W while the room warms. This pack connects your sensors to a single platform and fires the alarm the moment a threshold is crossed.",
     description:
-      "Protect perishable inventory and maintain cold chain compliance with a fully pre-configured monitoring platform. The Cold Chain Compliance Pack continuously tracks temperature, humidity, and door events across every zone — from warehouse cold rooms to refrigerated transport.",
+      "The Cold Storage Monitoring pack gives food safety managers and facility operators real-time visibility across two cold rooms — a frozen zone (−20 °C target) and a chilled zone (+3 °C target). Temperature and humidity sensors, CO2 monitors, door sensors, a power supply monitor, and refrigeration energy meters all feed into pre-built dashboards with eight detection rules and three scheduled reports already wired up. When the frozen zone temperature climbs past −15 °C at 3 AM, the HACCP warning alarm fires before product integrity is at risk.",
     heroDetail:
-      "The Cold Chain Compliance Pack is purpose-built for food manufacturers, pharmaceutical distributors, and logistics operators who face strict regulatory requirements around temperature-controlled storage and transport. It provides continuous monitoring of temperature, humidity, and access events across every zone in the cold chain — from production cold rooms and blast freezers to refrigerated trucks and last-mile delivery units. Automated exceedance alerts and HACCP-audit-ready reports are built directly into the pack, reducing the burden of manual compliance verification.",
+      "Eight detection rules run continuously: temperature alerts enforce zone-specific HACCP thresholds for the frozen room (warning at −15 °C, critical at −12 °C) and the chilled room (warning at +5 °C, critical at +8 °C); humidity alerts catch condensation risk at 85% before coils ice over; CO2 alerts enforce OSHA worker safety limits with warning at 2,000 ppm and evacuation alarm at 5,000 ppm; door open tracking fires at 120 seconds so operators can act before significant thermal ingress occurs; power failure and undervoltage alarms protect compressor equipment immediately on grid loss; battery backup monitoring fires before the UPS is exhausted; and energy anomaly detection flags compressors drawing above 5,000 W before fault escalates to failure. Three scheduled reports cover daily temperature logs, weekly energy consumption, and monthly HACCP compliance.",
     whyMagistrala:
-      "Magistrala's reliable message delivery, persistent event store, and fine-grained alarm management give cold chain operators the evidence trail and real-time response capability that food safety regulations and pharmaceutical compliance frameworks require.",
+      "All ten field devices connect to the same Telemetry Channel with per-client MQTT credentials, so a sensor fault on one device does not affect the rest of the monitoring network. Eight rules run from a single channel with no routing configuration required. One Cold Room Status template scales to any number of customer storage units by device tag without duplicating dashboard configuration. Daily temperature logs and monthly HACCP compliance reports run automatically.",
     image: "/solutions/cold-storage.jpg",
+    docsPath: "/docs/user-guide/solution-packs/cold-storage-monitoring/",
     dashboardScreenshots: [
       {
-        src: "/screenshots/dashboard-2.png",
-        alt: "Cold chain multi-zone monitoring dashboard",
+        src: "/screenshots/solutions/cold-storage-monitoring/operations-overview-dashboard.png",
+        alt: "Cold Storage Operations Overview with frozen zone and chilled zone temperature gauges, humidity readings, CO2 levels, door status indicators, active alarm count, and 24-hour temperature trend charts",
       },
       {
-        src: "/screenshots/alarms-1.png",
-        alt: "Temperature exceedance alarm management",
+        src: "/screenshots/solutions/cold-storage-monitoring/alarms-dashboard.png",
+        alt: "Alarm Monitoring Dashboard with active alarm counts by severity and full alarm triage table showing status, measurement, cause, value, and threshold",
       },
       {
-        src: "/screenshots/reports-1.png",
-        alt: "Cold chain compliance and audit reports",
+        src: "/screenshots/solutions/cold-storage-monitoring/energy-power-dashboard.png",
+        alt: "Energy & Power Dashboard with refrigeration unit power draw gauges, backup battery level, grid voltage, and 24-hour energy consumption bar charts for both compressor units",
       },
       {
-        src: "/screenshots/rules-engine-2.png",
-        alt: "Temperature threshold rules configuration",
+        src: "/screenshots/solutions/cold-storage-monitoring/cold-room-status-template.png",
+        alt: "Cold Room Status customer template showing live temperature, humidity, CO2 level, door status, and 24-hour temperature trend for an assigned storage unit",
       },
     ],
 
     challenges: {
-      title: "Silent failures destroy perishable inventory",
+      title: "Problems cold storage operators deal with every shift",
       subtitle:
-        "Cold chain failures are often discovered too late — after stock is spoiled, audits are failed, or regulators are already notified.",
+        "Temperature exceedances, equipment faults, and compliance gaps all have warning signals. The problem is having a system that catches them before product is at risk.",
       items: [
         {
           icon: AlertTriangle,
-          title: "Silent Exceedances",
-          desc: "Manual logging and periodic checks miss temperature exceedances that occur during off-hours, defrost cycles, or door events in busy operations.",
+          title:
+            "A frozen zone warming past −15 °C overnight with no one on site",
+          desc: "A compressor fault or door left ajar during a late loading run can push a frozen room toward the −12 °C HACCP critical limit in hours. The Warning alarm needs to fire at −15 °C, not when the morning shift arrives.",
         },
         {
           icon: ShieldAlert,
-          title: "Audit & Compliance Risk",
-          desc: "Paper-based logs are incomplete, tampered, or simply missing when food safety regulators or pharmaceutical QA auditors arrive on site.",
+          title: "Paper logs that are incomplete when the auditor arrives",
+          desc: "Manual temperature logs have gaps during nights, weekends, and busy periods. When a food safety regulator or pharmaceutical QA auditor asks for the last 30 days of records, incomplete logs mean failed audits.",
         },
         {
           icon: DollarSign,
-          title: "Reactive Spoilage Response",
-          desc: "Without real-time alerts, equipment failures and temperature exceedances are only discovered after stock is already lost — often representing significant financial exposure.",
+          title: "A compressor fault discovered after the room has warmed",
+          desc: "A refrigeration unit drawing 6,000 W instead of its normal 2,500 W is heading toward failure. Without continuous power draw monitoring, the first sign is often a warm room and spoiled stock.",
         },
       ],
     },
 
     howItWorks: {
-      subtitle:
-        "Continuous monitoring from sensor to audit-ready report — automated.",
+      subtitle: "Four steps from cold room sensor to actionable alarm",
       steps: [
         {
-          title: "Monitor",
-          desc: "Temperature and humidity loggers transmit readings every 1–15 minutes via MQTT or LoRaWAN. Door sensors fire events on open/close. All data flows into pre-defined cold chain channels.",
+          title: "Ingest",
+          desc: "All ten devices — temperature/humidity sensors, CO2 monitors, door sensors, the ambient station, power supply monitor, and energy meters — publish SenML readings over MQTT to the Telemetry Channel. Every record is saved immediately.",
+        },
+        {
+          title: "Detect",
+          desc: "Eight rules evaluate every incoming record in real time. Frozen zone above −15 °C fires a Warning; above −12 °C fires a Critical. Door open beyond 120 seconds fires a Warning. Compressor above 5,000 W fires an energy anomaly warning. Grid failure fires a Critical immediately.",
         },
         {
           title: "Alert",
-          desc: "HACCP threshold rules evaluate every incoming reading. Warning alarms fire before critical limits are reached, giving operators time to intervene before stock is compromised.",
-        },
-        {
-          title: "Escalate",
-          desc: "Unacknowledged alarms escalate through configurable notification chains — site manager, quality manager, on-call technician — until the exceedance is addressed and logged.",
+          desc: "Alarms appear on the Alarm Monitoring Dashboard the moment a threshold is crossed. Email notifications go to configured recipients — facility manager, food safety officer, or on-call engineer — with the device, measurement, value, and threshold included.",
         },
         {
           title: "Report",
-          desc: "Automated daily temperature logs and exceedance reports are generated from verified sensor data. Audit-ready PDF exports can be triggered on demand or scheduled automatically.",
+          desc: "Daily temperature logs, weekly energy consumption reports, and monthly HACCP compliance summaries run automatically and deliver by email. The monthly report covers average, minimum, and maximum temperature per zone with exceedance alarm counts for regulatory submission.",
         },
       ],
     },
 
     applications: {
       title: "Key Applications",
-      subtitle: "Where the Cold Chain Pack is deployed today",
+      subtitle: "Where the Cold Storage Monitoring pack is deployed today",
       items: [
         {
           icon: Thermometer,
-          title: "HACCP Compliance Monitoring",
-          desc: "Continuous, automated HACCP critical control point monitoring with timestamped, tamper-evident data ready for food safety audits.",
+          title: "Frozen and chilled warehouse HACCP compliance",
+          desc: "Continuous zone-specific monitoring against HACCP critical limits. Warning alarms fire at −15 °C and +5 °C, giving operators a response window before the critical thresholds of −12 °C and +8 °C are reached.",
         },
         {
-          icon: Truck,
-          title: "Refrigerated Transport Tracking",
-          desc: "In-transit temperature and location monitoring for refrigerated vehicles. Exceedance events are logged with GPS position for chain-of-custody records.",
+          icon: Shield,
+          title: "Pharmaceutical cold storage",
+          desc: "Temperature-sensitive drugs and vaccines monitored against WHO PQS and GDP guidelines. CO2 level monitoring provides additional worker safety coverage in confined storage areas.",
         },
         {
           icon: Activity,
-          title: "Equipment Health Monitoring",
-          desc: "Compressor performance analysis and defrost cycle monitoring flag equipment degradation before it causes a catastrophic failure.",
+          title: "Refrigeration equipment health monitoring",
+          desc: "Compressor power draw tracked against the normal 1,500–4,000 W operating range. Energy anomaly warnings fire at 5,000 W and fault alarms at 7,000 W — before mechanical failure forces a room shutdown.",
         },
         {
           icon: FileBarChart,
-          title: "Regulatory Reporting",
-          desc: "Automated generation of regulatory-format temperature reports for food safety authorities, pharmaceutical QA, and retail audit programs.",
+          title: "Regulatory compliance reporting",
+          desc: "Monthly HACCP compliance summaries with average, minimum, and maximum temperatures and exceedance alarm counts per zone, ready for food safety authority submissions and pharmaceutical QA audits.",
         },
       ],
     },
 
     benefits: [
-      "Eliminate stock losses with real-time alerts before exceedances become spoilage events",
-      "Pass food safety and pharmaceutical cold chain audits with automated, audit-ready data exports",
-      "Reduce manual logging labor — sensors and automated reports replace paper-based processes entirely",
-      "HACCP-compliant alert thresholds are pre-configured and can be customized per zone or product type",
-      "Multi-site visibility from a single dashboard — manage warehouses, transport, and retail from one platform",
-      "Full alarm acknowledgment tracking with responsible-party attribution for regulatory accountability",
+      "HACCP temperature warnings fire at −15 °C and +5 °C, giving operators a response window before the −12 °C and +8 °C critical limits are reached",
+      "CO2 worker safety monitoring enforces OSHA limits — warning at 2,000 ppm and evacuation alarm at 5,000 ppm before unsafe entry occurs",
+      "Door open alarms fire at 120 seconds so operators can act before significant thermal ingress affects room temperature",
+      "Grid power failure triggers a Critical alarm immediately; undervoltage below 180 V triggers a second Critical before compressor motors are damaged",
+      "Monthly HACCP compliance reports generate automatically with per-zone temperature history and exceedance alarm counts — replacing manual log assembly",
+      "One Cold Room Status template scales to any number of customer storage units by device tag, with no duplicate dashboard configuration required",
     ],
 
     faq: [
       {
         question: "Which temperature sensor types and protocols are supported?",
         answer:
-          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Cold chain loggers using proprietary wireless protocols (BLE, Zigbee, LoRaWAN) or wired buses (RS-485, 1-Wire) connect via an external protocol adapter or gateway. Sensors from major cold chain hardware vendors are supported this way without firmware changes.",
+          "Magistrala natively supports MQTT, HTTP, CoAP, and WebSocket. Temperature and humidity sensors using proprietary wireless protocols (BLE, Zigbee, LoRaWAN) or wired buses (RS-485, 1-Wire) connect via an external protocol adapter or gateway that translates readings into SenML payloads. Sensors from major cold chain hardware vendors are supported this way without firmware changes.",
       },
       {
         question: "How does the system handle HACCP threshold breaches?",
         answer:
-          "Pre-configured HACCP rules evaluate temperature readings in real time. When a threshold breach is detected, the platform immediately fires alerts to responsible parties via email, SMS, and webhook, logs the event with device ID and timestamp, and requires acknowledgment before clearing — maintaining a full audit trail.",
+          "Zone-specific temperature rules evaluate each incoming SenML record in real time. For the frozen zone, a Warning alarm fires when temperature exceeds −15 °C and escalates to Critical at −12 °C. For the chilled zone, Warning fires at +5 °C and Critical at +8 °C. Each alarm includes the device, measurement name, current value, and breach threshold. Email notifications go to the configured recipients immediately. Alarms remain open until acknowledged, maintaining the audit trail regulators require.",
       },
       {
-        question: "Can I manage cold chain monitoring across multiple sites?",
+        question:
+          "Can I monitor multiple cold rooms or facilities from one platform?",
         answer:
-          "Yes. Each facility, vehicle, or retail location is a separate domain with its own device groups, alert rules, and user roles. A central operations dashboard aggregates status across all sites, while site managers see only their own assets.",
+          "Yes. The pack ships with two zones — Cold Room A (frozen) and Cold Room B (chilled) — but the architecture scales to any number of rooms or facilities. Each additional room needs its own device clients and a group for access control. The Cold Room Status template scales automatically by device tag, so new rooms are covered without changing the template definition. Additional facilities can be deployed as separate domains with their own device groups, alert rules, and user roles.",
       },
       {
-        question: "How are compliance reports generated for audits?",
+        question: "How are the monthly HACCP compliance reports generated?",
         answer:
-          "Automated daily, weekly, and monthly reports are generated from raw sensor data and exported in PDF or CSV formats. Reports include exceedance summaries, acknowledgment records, and mean kinetic temperature calculations — ready for submission to food safety and pharmaceutical regulatory bodies.",
+          "The Monthly Compliance Report aggregates temperature readings for both cold rooms at daily intervals over the previous 30 days, including average, minimum, and maximum values per zone alongside a count of temperature exceedance alarms. It delivers automatically by email on a monthly schedule. The daily temperature log provides the day-by-day record for facilities that require shorter-interval audit evidence.",
       },
     ],
 
     metaDescription:
-      "Deploy cold chain monitoring and HACCP compliance infrastructure in minutes. The Magistrala Cold Chain Pack includes temperature sensors, compliance rules, and audit-ready reporting.",
+      "Monitor frozen and chilled storage zones in real time against HACCP thresholds. The Magistrala Cold Storage Monitoring pack includes temperature and humidity sensors, CO2 safety monitoring, compressor health rules, and automated HACCP compliance reports.",
     keywords: [
-      "cold chain monitoring IoT",
+      "cold storage monitoring IoT",
       "HACCP compliance platform",
       "temperature monitoring system",
-      "cold storage IoT",
+      "cold chain IoT",
       "food safety IoT",
-      "Magistrala cold chain",
+      "pharmaceutical cold storage",
+      "magistrala cold storage",
     ],
   },
 
