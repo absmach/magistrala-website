@@ -20,6 +20,11 @@ const solutionItems = [
     description: "Pipeline integrity monitoring and predictive maintenance.",
   },
   {
+    text: "Cold Storage",
+    url: "/solutions/cold-storage",
+    description: "HACCP-compliant cold chain monitoring across all zones.",
+  },
+  {
     text: "Smart City",
     url: "/solutions/smart-city",
     description:
@@ -29,11 +34,6 @@ const solutionItems = [
     text: "Smart Energy",
     url: "/solutions/smart-energy",
     description: "Balance grid loads and monitor renewable generation.",
-  },
-  {
-    text: "Cold Storage",
-    url: "/solutions/cold-storage",
-    description: "HACCP-compliant cold chain monitoring across all zones.",
   },
   {
     text: "Smart Farming",
