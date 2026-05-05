@@ -30,7 +30,7 @@ Bootstrap no longer treats a config as a Magistrala client with connected channe
 
 ![Bootstrap architecture showing edge devices, Bootstrap service, profiles, configs, binding snapshots, and Magistrala resource services](../../img/bootstrap/bootstrap-architecture.png)
 
-The diagram separates two paths. During **bind** or **refresh**, Bootstrap calls Magistrala services to read the current client or channel data, then stores that data as binding snapshots in Bootstrap DB. During **device bootstrap**, Bootstrap does not call Clients or Channels services; it renders from the config, profile, and binding snapshots already stored in Bootstrap.
+The diagram shows two Bootstrap flows. In the **management flow**, Bootstrap calls Magistrala services during bind or refresh to read the current client or channel data, then stores that data as binding snapshots in Bootstrap DB. In the **device bootstrap flow**, Bootstrap does not call Clients or Channels services; it renders from the config, profile, and binding snapshots already stored in Bootstrap.
 
 The main resources are:
 
@@ -70,6 +70,8 @@ This means every config using that profile must bind:
 
 After binding, the template can read the resolved data through `.Bindings`. For example, `.Bindings.mqtt_client.ID` refers to the bound client ID, and `.Bindings.telemetry.ID` refers to the bound channel ID.
 
+The optional `fields` list on a slot controls which keys are copied from the resource into the binding snapshot when binding or refreshing. If omitted, all fields the resolver provides are snapshotted. Restrict `fields` to limit what data Bootstrap stores.
+
 ## Bootstrap Flow
 
 1. Create a config with an `external_id` and `external_key`.
@@ -81,235 +83,6 @@ After binding, the template can read the resolved data through `.Bindings`. For 
 7. Bootstrap verifies the external key, loads the profile and bindings, renders the template, and returns the rendered config.
 
 Configs start disabled. A disabled config can be managed by authenticated users, but devices cannot bootstrap from it until it is enabled.
-
-## Real-World Example: Raspberry Pi Temperature Sensor
-
-Imagine a Raspberry Pi with a DHT22 temperature sensor. The Pi should receive an MQTT configuration from Bootstrap, then publish temperature readings to a Magistrala telemetry channel.
-
-The important split is:
-
-- Magistrala owns the runtime resources: the client and channels.
-- Bootstrap owns the device enrollment: external credentials, profile template, and binding snapshots.
-- The Raspberry Pi only needs its bootstrap URL, `external_id`, and `external_key` before first boot.
-
-### 1. Create Magistrala Runtime Resources
-
-First create the resources the Pi will use after bootstrap:
-
-- Create a Magistrala client, for example `raspberry-pi-warehouse-1`.
-- Create a telemetry channel, for example `warehouse-1-temperature`.
-- Optionally create a commands channel, for example `warehouse-1-pi-commands`.
-- Connect the client to the channels using the normal Magistrala client/channel connection flow.
-
-After this step, keep these values:
-
-```text
-client_id            = 6b5f5f74-f3b1-4b78-9d9a-4b7d9b0f2d11
-client_secret        = stored by Magistrala clients service
-telemetry_channel_id = 0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913
-commands_channel_id  = f9b6b1d2-66a1-4d9d-a509-75e6ddc3a2c8
-```
-
-You do not copy the client secret into the Bootstrap config manually. When Bootstrap binds the client resource, it snapshots the client identity and stores the client secret in encrypted `secret_snapshot`.
-
-### 2. Create a Bootstrap Profile
-
-Create a profile that knows what the Pi configuration should look like. This example renders JSON that the Pi can write to a local config file.
-
-```bash
-curl -s -S -i -X POST \
-  -H "Authorization: Bearer <user_token>" \
-  -H "Content-Type: application/json" \
-  http://localhost:9013/<domain_id>/clients/bootstrap/profiles \
-  -d '{
-    "name": "raspberry-pi-temperature-profile",
-    "description": "MQTT config for Raspberry Pi temperature sensors",
-    "template_format": "json",
-    "defaults": {
-      "mqtt_host": "mqtt.magistrala.local",
-      "mqtt_port": 1883,
-      "sample_interval_seconds": 30,
-      "sensor": "DHT22"
-    },
-    "binding_slots": [
-      {
-        "name": "mqtt_client",
-        "type": "client",
-        "required": true,
-        "fields": ["id", "identity", "secret"]
-      },
-      {
-        "name": "telemetry",
-        "type": "channel",
-        "required": true,
-        "fields": ["id", "name"]
-      },
-      {
-        "name": "commands",
-        "type": "channel",
-        "required": false,
-        "fields": ["id", "name"]
-      }
-    ],
-    "content_template": "{\n  \"device\": {\n    \"id\": \"{{ .Device.ID }}\",\n    \"external_id\": \"{{ .Device.ExternalID }}\",\n    \"site\": \"{{ .Vars.site }}\",\n    \"sensor\": \"{{ .Vars.sensor }}\",\n    \"sample_interval_seconds\": {{ .Vars.sample_interval_seconds }}\n  },\n  \"mqtt\": {\n    \"host\": \"{{ .Vars.mqtt_host }}\",\n    \"port\": {{ .Vars.mqtt_port }},\n    \"client_id\": \"{{ index (index .Bindings \"mqtt_client\").Snapshot \"identity\" }}\",\n    \"client_secret\": \"{{ index (index .Bindings \"mqtt_client\").Secret \"secret\" }}\",\n    \"telemetry_channel_id\": \"{{ (index .Bindings \"telemetry\").ID }}\"\n  }\n}"
-  }'
-```
-
-Save the returned profile ID:
-
-```text
-profile_id = 77708c94-3ff5-4068-ab5b-72d1318a9f1c
-```
-
-### 3. Create a Bootstrap Config for the Pi
-
-The config represents this physical Raspberry Pi. The `external_id` can be a serial number, MAC address, asset tag, or another stable ID burned into the device image.
-
-```bash
-curl -s -S -i -X POST \
-  -H "Authorization: Bearer <user_token>" \
-  -H "Content-Type: application/json" \
-  http://localhost:9013/<domain_id>/clients/configs \
-  -d '{
-    "external_id": "rpi-warehouse-1-temp-001",
-    "external_key": "rpi-temp-001-bootstrap-key",
-    "name": "Raspberry Pi warehouse 1 temperature sensor",
-    "profile_id": "77708c94-3ff5-4068-ab5b-72d1318a9f1c",
-    "render_context": {
-      "site": "warehouse-1",
-      "sample_interval_seconds": 15
-    }
-  }'
-```
-
-Save the config ID from the `Location` header:
-
-```text
-config_id = 3094cf29-e73f-4be1-a4d2-b5c5d7a827ec
-```
-
-The config-specific `sample_interval_seconds` overrides the profile default, so this Pi samples every 15 seconds.
-
-### 4. Bind the Pi Config to Magistrala Resources
-
-Now bind the profile slots to the client and channels you created in Magistrala.
-
-```bash
-curl -s -S -i -X PUT \
-  -H "Authorization: Bearer <user_token>" \
-  -H "Content-Type: application/json" \
-  http://localhost:9013/<domain_id>/clients/bootstrap/enrollments/3094cf29-e73f-4be1-a4d2-b5c5d7a827ec/bindings \
-  -d '{
-    "bindings": [
-      {
-        "slot": "mqtt_client",
-        "type": "client",
-        "resource_id": "6b5f5f74-f3b1-4b78-9d9a-4b7d9b0f2d11"
-      },
-      {
-        "slot": "telemetry",
-        "type": "channel",
-        "resource_id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913"
-      },
-      {
-        "slot": "commands",
-        "type": "channel",
-        "resource_id": "f9b6b1d2-66a1-4d9d-a509-75e6ddc3a2c8"
-      }
-    ]
-  }'
-```
-
-Binding validates the resources and stores snapshots in Bootstrap. If the client secret or channel details change later, refresh bindings before the Pi bootstraps again.
-
-### 5. Preview the Rendered Config
-
-Before enabling the device, preview the profile output with sample binding snapshots. `render-preview` does not load stored bindings by itself; it renders the profile with the config and bindings you send in the preview request.
-
-```bash
-curl -s -S -X POST \
-  -H "Authorization: Bearer <user_token>" \
-  -H "Content-Type: application/json" \
-  http://localhost:9013/<domain_id>/clients/bootstrap/profiles/77708c94-3ff5-4068-ab5b-72d1318a9f1c/render-preview \
-  -d '{
-    "config": {
-      "id": "3094cf29-e73f-4be1-a4d2-b5c5d7a827ec",
-      "external_id": "rpi-warehouse-1-temp-001",
-      "render_context": {
-        "site": "warehouse-1",
-        "sample_interval_seconds": 15
-      }
-    },
-    "bindings": [
-      {
-        "slot": "mqtt_client",
-        "type": "client",
-        "resource_id": "6b5f5f74-f3b1-4b78-9d9a-4b7d9b0f2d11",
-        "snapshot": {
-          "id": "6b5f5f74-f3b1-4b78-9d9a-4b7d9b0f2d11",
-          "identity": "raspberry-pi-warehouse-1"
-        },
-        "secret_snapshot": {
-          "secret": "example-client-secret"
-        }
-      },
-      {
-        "slot": "telemetry",
-        "type": "channel",
-        "resource_id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913",
-        "snapshot": {
-          "id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913",
-          "name": "warehouse-1-temperature"
-        }
-      }
-    ]
-  }'
-```
-
-For the real device flow, Bootstrap uses the stored binding snapshots from step 4 when the Pi calls the device bootstrap endpoint.
-
-### 6. Enable the Config
-
-Enable the config only after the profile and required bindings are ready:
-
-```bash
-curl -s -S -i -X POST \
-  -H "Authorization: Bearer <user_token>" \
-  http://localhost:9013/<domain_id>/clients/configs/3094cf29-e73f-4be1-a4d2-b5c5d7a827ec/enable
-```
-
-### 7. Bootstrap from the Raspberry Pi
-
-On first boot, the Pi calls Bootstrap with the external credentials you placed on the device:
-
-```bash
-curl -s -S \
-  -H "Authorization: Client rpi-temp-001-bootstrap-key" \
-  http://localhost:9013/clients/bootstrap/rpi-warehouse-1-temp-001
-```
-
-The response `content` is the rendered JSON configuration. The Pi saves it locally and uses it to connect to Magistrala MQTT:
-
-```json
-{
-  "device": {
-    "id": "3094cf29-e73f-4be1-a4d2-b5c5d7a827ec",
-    "external_id": "rpi-warehouse-1-temp-001",
-    "site": "warehouse-1",
-    "sensor": "DHT22",
-    "sample_interval_seconds": 15
-  },
-  "mqtt": {
-    "host": "mqtt.magistrala.local",
-    "port": 1883,
-    "client_id": "raspberry-pi-warehouse-1",
-    "client_secret": "example-client-secret",
-    "telemetry_channel_id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913"
-  }
-}
-```
-
-After that, the Pi reads the DHT22 sensor every 15 seconds and publishes readings to the configured telemetry channel.
 
 ## Configs
 
@@ -340,9 +113,25 @@ curl -s -S -i -X POST \
   }'
 ```
 
-`external_id` identifies the device during bootstrap. `external_key` is the secret known by the device and is hashed before storage. The plain value is not returned by the API.
+`external_id` identifies the device during bootstrap. `external_key` is the secret known by the device and is hashed with scrypt before storage. The plain value is never returned by the API.
 
 `render_context` contains per-device variables. During template rendering, these values are merged with profile `defaults`.
+
+The response body is the created config. The `id` is server-generated. `status` is always `disabled` on creation regardless of what is sent. `name` must be unique within a domain — attempting to create a second config with the same name in the same domain returns `409 Conflict`.
+
+```json
+{
+  "id": "3094cf29-e73f-4be1-a4d2-b5c5d7a827ec",
+  "external_id": "01:6:0:sb:sa",
+  "name": "warehouse sensor config",
+  "status": "disabled",
+  "profile_id": "77708c94-3ff5-4068-ab5b-72d1318a9f1c",
+  "render_context": {
+    "site": "warehouse-1",
+    "region": "nairobi"
+  }
+}
+```
 
 ### Config Fields
 
@@ -365,6 +154,8 @@ curl -s -S -i -X POST \
 ```
 
 `status` replaces the old `state` field. Valid status values are `disabled` and `enabled`. The old numeric values `0` and `1` are still accepted for compatibility.
+
+`content` is a static fallback string. When no profile is assigned, Bootstrap returns this value as the rendered output. When a profile is assigned, `content` is ignored during rendering.
 
 ### Config Endpoints
 
@@ -423,6 +214,8 @@ curl -s -S -i -X POST \
     "content_template": "{\n  \"device_id\": \"{{ .Device.ID }}\",\n  \"external_id\": \"{{ .Device.ExternalID }}\",\n  \"site\": \"{{ .Vars.site }}\",\n  \"client_id\": \"{{ (index .Bindings \"mqtt_client\").ID }}\",\n  \"telemetry_channel\": \"{{ (index .Bindings \"telemetry\").ID }}\",\n  \"qos\": {{ .Vars.qos }}\n}"
   }'
 ```
+
+`version` increments automatically on every profile update. It is read-only and is included in profile responses. Use it to track whether a profile has changed since a device last bootstrapped.
 
 Supported `template_format` values are:
 
@@ -615,6 +408,8 @@ Example response:
 | `GET` | `/{domain_id}/clients/bootstrap/enrollments/{config_id}/bindings` | List binding snapshots |
 | `POST` | `/{domain_id}/clients/bootstrap/enrollments/{config_id}/bindings/refresh` | Refresh stored binding snapshots |
 
+`refresh` re-calls Magistrala Clients and Channels services to update the stored snapshots for every binding on the config. Use it after a bound client's credentials rotate or a channel is reconfigured. Rendering always uses the last stored snapshot, so devices will not see updated resource data until after a refresh.
+
 ## Template Data
 
 Profile templates receive this render context:
@@ -631,7 +426,7 @@ Template fields:
 
 | Field | Description |
 | --- | --- |
-| `.Device.ID` | Bootstrap config ID |
+| `.Device.ID` | The Bootstrap config `id` for this device enrollment |
 | `.Device.ExternalID` | Device external ID |
 | `.Device.DomainID` | Domain ID |
 | `.Vars` | Profile defaults merged with config `render_context` |
@@ -641,7 +436,9 @@ Template fields:
 | `.Bindings.<slot>.Snapshot` | Non-secret snapshot fields |
 | `.Bindings.<slot>.Secret` | Decrypted secret snapshot fields available during render |
 
-When both profile `defaults` and config `render_context` contain the same key, config values take precedence.
+Profile `defaults` are merged first, then config `render_context` values are applied on top. Config values always win over profile defaults when both have the same key. `.Device.*` identity fields are always available regardless of what is in `defaults` or `render_context`.
+
+Templates are rendered with `missingkey=error`. A template that references `.Vars.key` where `key` is absent from both `defaults` and `render_context` will fail rendering and Bootstrap will return an error to the device.
 
 ## Device Bootstrap
 
@@ -665,7 +462,9 @@ Example response:
 }
 ```
 
-The response `content` is the rendered profile output when a profile is assigned. If no profile is assigned, Bootstrap returns the config's stored `content`.
+The response `content` is the rendered profile output when a profile is assigned. If no profile is assigned, Bootstrap returns the config's stored `content` field value without template processing.
+
+**Render errors** — Bootstrap returns a non-2xx status if the config is disabled, a required binding slot has no snapshot, or template execution fails. Devices should treat any error response as a signal to retry after a backoff.
 
 Device bootstrap endpoints:
 
@@ -1055,6 +854,235 @@ Prometheus metrics:
 ```bash
 curl -s -S http://localhost:9013/metrics
 ```
+
+## Real-World Example: Raspberry Pi Temperature Sensor
+
+Imagine a Raspberry Pi with a DHT22 temperature sensor. The Pi should receive an MQTT configuration from Bootstrap, then publish temperature readings to a Magistrala telemetry channel.
+
+The important split is:
+
+- Magistrala owns the runtime resources: the client and channels.
+- Bootstrap owns the device enrollment: external credentials, profile template, and binding snapshots.
+- The Raspberry Pi only needs its bootstrap URL, `external_id`, and `external_key` before first boot.
+
+### 1. Create Magistrala Runtime Resources
+
+First create the resources the Pi will use after bootstrap:
+
+- Create a Magistrala client, for example `raspberry-pi-warehouse-1`.
+- Create a telemetry channel, for example `warehouse-1-temperature`.
+- Optionally create a commands channel, for example `warehouse-1-pi-commands`.
+- Connect the client to the channels using the normal Magistrala client/channel connection flow.
+
+After this step, keep these values:
+
+```text
+client_id            = 6b5f5f74-f3b1-4b78-9d9a-4b7d9b0f2d11
+client_secret        = stored by Magistrala clients service
+telemetry_channel_id = 0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913
+commands_channel_id  = f9b6b1d2-66a1-4d9d-a509-75e6ddc3a2c8
+```
+
+You do not copy the client secret into the Bootstrap config manually. When Bootstrap binds the client resource, it snapshots the client identity and stores the client secret in encrypted `secret_snapshot`.
+
+### 2. Create a Bootstrap Profile
+
+Create a profile that knows what the Pi configuration should look like. This example renders JSON that the Pi can write to a local config file.
+
+```bash
+curl -s -S -i -X POST \
+  -H "Authorization: Bearer <user_token>" \
+  -H "Content-Type: application/json" \
+  http://localhost:9013/<domain_id>/clients/bootstrap/profiles \
+  -d '{
+    "name": "raspberry-pi-temperature-profile",
+    "description": "MQTT config for Raspberry Pi temperature sensors",
+    "template_format": "json",
+    "defaults": {
+      "mqtt_host": "mqtt.magistrala.local",
+      "mqtt_port": 1883,
+      "sample_interval_seconds": 30,
+      "sensor": "DHT22"
+    },
+    "binding_slots": [
+      {
+        "name": "mqtt_client",
+        "type": "client",
+        "required": true,
+        "fields": ["id", "identity", "secret"]
+      },
+      {
+        "name": "telemetry",
+        "type": "channel",
+        "required": true,
+        "fields": ["id", "name"]
+      },
+      {
+        "name": "commands",
+        "type": "channel",
+        "required": false,
+        "fields": ["id", "name"]
+      }
+    ],
+    "content_template": "{\n  \"device\": {\n    \"id\": \"{{ .Device.ID }}\",\n    \"external_id\": \"{{ .Device.ExternalID }}\",\n    \"site\": \"{{ .Vars.site }}\",\n    \"sensor\": \"{{ .Vars.sensor }}\",\n    \"sample_interval_seconds\": {{ .Vars.sample_interval_seconds }}\n  },\n  \"mqtt\": {\n    \"host\": \"{{ .Vars.mqtt_host }}\",\n    \"port\": {{ .Vars.mqtt_port }},\n    \"client_id\": \"{{ index (index .Bindings \"mqtt_client\").Snapshot \"identity\" }}\",\n    \"client_secret\": \"{{ index (index .Bindings \"mqtt_client\").Secret \"secret\" }}\",\n    \"telemetry_channel_id\": \"{{ (index .Bindings \"telemetry\").ID }}\"\n  }\n}"
+  }'
+```
+
+Save the returned profile ID:
+
+```text
+profile_id = 77708c94-3ff5-4068-ab5b-72d1318a9f1c
+```
+
+### 3. Create a Bootstrap Config for the Pi
+
+The config represents this physical Raspberry Pi. The `external_id` can be a serial number, MAC address, asset tag, or another stable ID burned into the device image.
+
+```bash
+curl -s -S -i -X POST \
+  -H "Authorization: Bearer <user_token>" \
+  -H "Content-Type: application/json" \
+  http://localhost:9013/<domain_id>/clients/configs \
+  -d '{
+    "external_id": "rpi-warehouse-1-temp-001",
+    "external_key": "rpi-temp-001-bootstrap-key",
+    "name": "Raspberry Pi warehouse 1 temperature sensor",
+    "profile_id": "77708c94-3ff5-4068-ab5b-72d1318a9f1c",
+    "render_context": {
+      "site": "warehouse-1",
+      "sample_interval_seconds": 15
+    }
+  }'
+```
+
+Save the config ID from the response body `id` field (also present in the `Location` response header):
+
+```text
+config_id = 3094cf29-e73f-4be1-a4d2-b5c5d7a827ec
+```
+
+The config-specific `sample_interval_seconds` overrides the profile default, so this Pi samples every 15 seconds.
+
+### 4. Bind the Pi Config to Magistrala Resources
+
+Now bind the profile slots to the client and channels you created in Magistrala.
+
+```bash
+curl -s -S -i -X PUT \
+  -H "Authorization: Bearer <user_token>" \
+  -H "Content-Type: application/json" \
+  http://localhost:9013/<domain_id>/clients/bootstrap/enrollments/3094cf29-e73f-4be1-a4d2-b5c5d7a827ec/bindings \
+  -d '{
+    "bindings": [
+      {
+        "slot": "mqtt_client",
+        "type": "client",
+        "resource_id": "6b5f5f74-f3b1-4b78-9d9a-4b7d9b0f2d11"
+      },
+      {
+        "slot": "telemetry",
+        "type": "channel",
+        "resource_id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913"
+      },
+      {
+        "slot": "commands",
+        "type": "channel",
+        "resource_id": "f9b6b1d2-66a1-4d9d-a509-75e6ddc3a2c8"
+      }
+    ]
+  }'
+```
+
+Binding validates the resources and stores snapshots in Bootstrap. If the client secret or channel details change later, refresh bindings before the Pi bootstraps again.
+
+### 5. Preview the Rendered Config
+
+Before enabling the device, preview the profile output with sample binding snapshots. `render-preview` does not load stored bindings by itself; it renders the profile with the config and bindings you send in the preview request.
+
+```bash
+curl -s -S -X POST \
+  -H "Authorization: Bearer <user_token>" \
+  -H "Content-Type: application/json" \
+  http://localhost:9013/<domain_id>/clients/bootstrap/profiles/77708c94-3ff5-4068-ab5b-72d1318a9f1c/render-preview \
+  -d '{
+    "config": {
+      "id": "3094cf29-e73f-4be1-a4d2-b5c5d7a827ec",
+      "external_id": "rpi-warehouse-1-temp-001",
+      "render_context": {
+        "site": "warehouse-1",
+        "sample_interval_seconds": 15
+      }
+    },
+    "bindings": [
+      {
+        "slot": "mqtt_client",
+        "type": "client",
+        "resource_id": "6b5f5f74-f3b1-4b78-9d9a-4b7d9b0f2d11",
+        "snapshot": {
+          "id": "6b5f5f74-f3b1-4b78-9d9a-4b7d9b0f2d11",
+          "identity": "raspberry-pi-warehouse-1"
+        },
+        "secret_snapshot": {
+          "secret": "example-client-secret"
+        }
+      },
+      {
+        "slot": "telemetry",
+        "type": "channel",
+        "resource_id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913",
+        "snapshot": {
+          "id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913",
+          "name": "warehouse-1-temperature"
+        }
+      }
+    ]
+  }'
+```
+
+For the real device flow, Bootstrap uses the stored binding snapshots from step 4 when the Pi calls the device bootstrap endpoint.
+
+### 6. Enable the Config
+
+Enable the config only after the profile and required bindings are ready:
+
+```bash
+curl -s -S -i -X POST \
+  -H "Authorization: Bearer <user_token>" \
+  http://localhost:9013/<domain_id>/clients/configs/3094cf29-e73f-4be1-a4d2-b5c5d7a827ec/enable
+```
+
+### 7. Bootstrap from the Raspberry Pi
+
+On first boot, the Pi calls Bootstrap with the external credentials you placed on the device:
+
+```bash
+curl -s -S \
+  -H "Authorization: Client rpi-temp-001-bootstrap-key" \
+  http://localhost:9013/clients/bootstrap/rpi-warehouse-1-temp-001
+```
+
+The response `content` is the rendered JSON configuration. The Pi saves it locally and uses it to connect to Magistrala MQTT:
+
+```json
+{
+  "device": {
+    "id": "3094cf29-e73f-4be1-a4d2-b5c5d7a827ec",
+    "external_id": "rpi-warehouse-1-temp-001",
+    "site": "warehouse-1",
+    "sensor": "DHT22",
+    "sample_interval_seconds": 15
+  },
+  "mqtt": {
+    "host": "mqtt.magistrala.local",
+    "port": 1883,
+    "client_id": "raspberry-pi-warehouse-1",
+    "client_secret": "example-client-secret",
+    "telemetry_channel_id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913"
+  }
+}
+```
+
+After that, the Pi reads the DHT22 sensor every 15 seconds and publishes readings to the configured telemetry channel.
 
 ## Compatibility Notes
 
