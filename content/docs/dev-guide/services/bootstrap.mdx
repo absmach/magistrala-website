@@ -78,11 +78,12 @@ The optional `fields` list on a slot controls which keys are copied from the res
 2. Create or upload a profile template.
 3. Assign the profile to the config.
 4. Bind profile slots to concrete resources.
-5. Enable the config.
-6. The device calls the bootstrap endpoint with its external credentials.
-7. Bootstrap verifies the external key, loads the profile and bindings, renders the template, and returns the rendered config.
+5. The device calls the bootstrap endpoint with its external credentials.
+6. Bootstrap verifies the external key, loads the profile and bindings, renders the template, and returns the rendered config.
 
-Configs start disabled. A disabled config can be managed by authenticated users, but devices cannot bootstrap from it until it is enabled.
+If you want to prevent devices from bootstrapping while the profile and bindings are being set up, disable the config after creation and re-enable it when ready.
+
+Configs start enabled. An enabled config is immediately available for device bootstrap. Disable a config to prevent devices from bootstrapping while the profile or bindings are still being configured, then re-enable it when ready.
 
 ## Configs
 
@@ -117,14 +118,14 @@ curl -s -S -i -X POST \
 
 `render_context` contains per-device variables. During template rendering, these values are merged with profile `defaults`.
 
-The response body is the created config. The `id` is server-generated. `status` is always `disabled` on creation regardless of what is sent. `name` must be unique within a domain — attempting to create a second config with the same name in the same domain returns `409 Conflict`.
+The response body is the created config. The `id` is server-generated. `status` is always `enabled` on creation regardless of what is sent. `name` must be unique within a domain — attempting to create a second config with the same name in the same domain returns `409 Conflict`.
 
 ```json
 {
   "id": "3094cf29-e73f-4be1-a4d2-b5c5d7a827ec",
   "external_id": "01:6:0:sb:sa",
   "name": "warehouse sensor config",
-  "status": "disabled",
+  "status": "enabled",
   "profile_id": "77708c94-3ff5-4068-ab5b-72d1318a9f1c",
   "render_context": {
     "site": "warehouse-1",
@@ -140,7 +141,7 @@ The response body is the created config. The `id` is server-generated. `status` 
   "id": "3094cf29-e73f-4be1-a4d2-b5c5d7a827ec",
   "external_id": "01:6:0:sb:sa",
   "name": "warehouse sensor config",
-  "status": "disabled",
+  "status": "enabled",
   "profile_id": "77708c94-3ff5-4068-ab5b-72d1318a9f1c",
   "render_context": {
     "site": "warehouse-1",
@@ -153,7 +154,7 @@ The response body is the created config. The `id` is server-generated. `status` 
 }
 ```
 
-`status` replaces the old `state` field. Valid status values are `disabled` and `enabled`. The old numeric values `0` and `1` are still accepted for compatibility.
+`status` replaces the old `state` field. Valid status values are `enabled` and `disabled`. Numeric values are still accepted: `0` = `enabled`, `1` = `disabled`.
 
 `content` is a static fallback string. When no profile is assigned, Bootstrap returns this value as the rendered output. When a profile is assigned, `content` is ignored during rendering.
 
@@ -170,7 +171,7 @@ The response body is the created config. The `id` is server-generated. `status` 
 | `POST` | `/{domain_id}/clients/configs/{config_id}/enable` | Enable device bootstrap for a config |
 | `POST` | `/{domain_id}/clients/configs/{config_id}/disable` | Disable device bootstrap for a config |
 
-List configs supports pagination and filters such as `status`, `external_id`, `id`, and partial `name`.
+List configs supports pagination and filters such as `status`, `external_id`, `id`, and partial `name`. By default, listing returns only `enabled` configs. Pass `?status=all` to list configs regardless of status, or `?status=disabled` to list only disabled configs.
 
 ## Profiles
 
@@ -228,6 +229,8 @@ Supported `template_format` values are:
 | `raw` | Return `content_template` without template execution |
 
 Template rendering uses `missingkey=error`, so missing variables fail rendering instead of silently producing invalid output.
+
+Templates are validated at create and update time. Submitting a profile with an invalid Go template syntax returns an error immediately, before the profile is saved.
 
 ### Upload Profile
 
@@ -368,6 +371,8 @@ curl -s -S -i -X PUT \
 ```
 
 The profile must declare the requested slot, and the requested `type` must match the slot type. Required slots must be bound before the config can render successfully.
+
+When a binding of type `channel` is saved, Bootstrap also calls the Magistrala Clients service to connect the enrolled client (`config.id`) to that channel. This means the device's client gains access to the channel as part of the bind operation. No separate connection step is needed.
 
 ### List Bindings
 
@@ -586,12 +591,20 @@ curl -s -S -i -X POST \
   }'
 ```
 
-List configs:
+List configs (enabled only by default):
 
 ```bash
 curl -s -S \
   -H "Authorization: Bearer <user_token>" \
   'http://localhost:9013/<domain_id>/clients/configs?offset=0&limit=10'
+```
+
+List all configs regardless of status:
+
+```bash
+curl -s -S \
+  -H "Authorization: Bearer <user_token>" \
+  'http://localhost:9013/<domain_id>/clients/configs?offset=0&limit=10&status=all'
 ```
 
 View a config:
@@ -899,8 +912,8 @@ curl -s -S -i -X POST \
     "description": "MQTT config for Raspberry Pi temperature sensors",
     "template_format": "json",
     "defaults": {
-      "mqtt_host": "mqtt.magistrala.local",
-      "mqtt_port": 1883,
+      "mqtt_host": "localhost",
+      "mqtt_port": 8883,
       "sample_interval_seconds": 30,
       "sensor": "DHT22"
     },
@@ -1043,7 +1056,7 @@ For the real device flow, Bootstrap uses the stored binding snapshots from step 
 
 ### 6. Enable the Config
 
-Enable the config only after the profile and required bindings are ready:
+The config is created enabled by default. If you disabled it during setup to prevent premature bootstraps, re-enable it now that the profile and required bindings are ready:
 
 ```bash
 curl -s -S -i -X POST \
@@ -1073,8 +1086,8 @@ The response `content` is the rendered JSON configuration. The Pi saves it local
     "sample_interval_seconds": 15
   },
   "mqtt": {
-    "host": "mqtt.magistrala.local",
-    "port": 1883,
+    "host": "localhost",
+    "port": 8883,
     "client_id": "raspberry-pi-warehouse-1",
     "client_secret": "example-client-secret",
     "telemetry_channel_id": "0df6c6a5-0dc7-4bb7-8298-0e3c8a89d913"
@@ -1088,5 +1101,7 @@ After that, the Pi reads the DHT22 sensor every 15 seconds and publishes reading
 
 - The `/clients/configs` path is kept for compatibility, but configs are no longer client-owned records.
 - Legacy certificate fields remain on configs and can still be updated through the certs endpoint.
-- The old `state` naming has moved to `status`; old numeric values are still accepted where supported.
+- The old `state` naming has moved to `status`. Numeric values are still accepted: `0` = `enabled`, `1` = `disabled`. Note that if you have existing records written by an older version of the service that stored `0` for disabled, those records will now be read as enabled. Migrate the numeric values if needed.
+- Configs are created enabled by default. Disable a config during setup to block device access, then re-enable when ready.
+- Binding a `channel` resource automatically connects the enrolled client to that channel in Magistrala. No separate connection step is needed.
 - Binding snapshots are the source for template resource data. If a client or channel changes after binding, refresh the bindings before the next bootstrap render.
