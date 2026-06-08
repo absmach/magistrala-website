@@ -1,3 +1,6 @@
+# ⚠️ ARCHIVED / MOVED ⚠️ 
+ All the content from this repo has been moved to company website.
+
 # Magistrala Website
 
 This is a Next.js application generated with
