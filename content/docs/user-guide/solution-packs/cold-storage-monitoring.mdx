@@ -1,0 +1,330 @@
+---
+title: Cold Storage Monitoring
+description: The Cold Storage Monitoring solution pack connects temperature and humidity sensors, CO2 monitors, door sensors, a power supply monitor, and refrigeration energy meters to a single monitoring platform. Built for food manufacturers, pharmaceutical distributors, and cold chain operators who need continuous HACCP-aligned temperature alerts, CO2 worker safety monitoring, and automated compliance reports, without custom integration work.
+keywords:
+  - Solution packs
+  - Cold storage monitoring
+  - HACCP compliance
+  - Temperature monitoring
+  - Cold chain IoT
+  - Food safety IoT
+  - Magistrala solutions
+image: /img/mg-preview.png
+---
+
+## Overview
+
+The pack monitors two cold storage zones — a frozen zone (−20 °C target) and a chilled zone (+3 °C target) — from field sensors through to the dashboards operators use every day.
+
+Readings from all ten field devices (temperature/humidity sensors, CO2 sensors, door sensors, an ambient monitoring station, a power supply monitor, and refrigeration energy meters) arrive in the Telemetry Channel. Eight rules run continuously: watching for temperature exceedances, high humidity, CO2 safety breaches, prolonged door openings, power supply failures, backup battery drain, and refrigeration energy anomalies. Critical alarms for HACCP-relevant temperature breaches fire within seconds of a threshold being crossed, with email notifications routed directly to facility managers and food safety officers.
+
+Operators work with three pre-built dashboards: a Cold Storage Operations Overview for live zone status across both cold rooms, an Energy & Power Dashboard for refrigeration performance, and an Alarm Monitoring Dashboard for triage. A Cold Room Status template gives customers a per-facility view scoped by device tag. Three scheduled reports — daily temperature log, weekly energy report, and monthly HACCP compliance summary — keep quality managers informed without manual data pulls.
+
+## Key Features
+
+**End-to-end cold chain telemetry pipeline.** The pack provisions ten device clients across two cold rooms, three channels (Telemetry, Commands, and Alerts), and three groups for access control (Cold Room A — Frozen Storage, Cold Room B — Chilled Storage, and Power Systems). Every SenML record that arrives in the Telemetry Channel is evaluated by detection rules continuously, so alarm latency is governed by the device's publish interval, not a polling schedule.
+
+![Provisioned device clients](/screenshots/solutions/cold-storage-monitoring/solution-clients.png)
+
+![Provisioned channels](/screenshots/solutions/cold-storage-monitoring/solution-channels.png)
+
+![Provisioned groups](/screenshots/solutions/cold-storage-monitoring/solution-groups.png)
+
+**HACCP-aligned multi-tier temperature monitoring.** The Temperature Alert rule enforces zone-specific thresholds for the frozen room (Cold Room A) and the chilled room (Cold Room B). For the frozen zone, a Warning alarm fires when temperature rises above −15 °C and escalates to Critical above −12 °C — the HACCP critical limit for frozen products. An Overcooled Warning fires when the room drops below −26 °C to prevent freezer burn and compressor overrun. For the chilled zone, a Warning fires above +5 °C, a Critical above +8 °C, and a separate High alarm fires below 0 °C to detect product freezing.
+
+**Humidity monitoring for condensation and mold risk.** The Humidity Alert rule raises a Warning when relative humidity in any zone exceeds 85% — the threshold where condensation forms on evaporator coils and mold growth on packaging accelerates — and escalates to Critical above 95%, indicating a likely coil ice-over or failed defrost cycle.
+
+**CO2 worker safety monitoring.** The CO2 Alert rule enforces OSHA-aligned thresholds for confined cold room entry. A Warning fires above 2,000 ppm, indicating workers should limit exposure duration. A Critical fires above 5,000 ppm — the OSHA 8-hour TWA limit — requiring immediate evacuation and ventilation before re-entry.
+
+**Door event tracking with thermal ingress detection.** The Door Open Alert monitors `door_open_duration` from both cold room door sensors. A Warning fires when a door has been open for more than 120 seconds; a Critical fires at 300 seconds. Operators receive an alarm while a door is still open, giving them time to respond before significant cold air loss affects room temperature.
+
+**Power supply and grid continuity monitoring.** The Power Failure Alert fires a Critical alarm the moment `power_source` reports battery backup active (value 2), signalling a grid outage. It also raises a Critical when `grid_voltage` drops below 180 V — outside the safe operating range for compressor motors — to prevent compressor damage from sustained undervoltage.
+
+**Backup battery drain monitoring.** The Backup Battery Alert raises a Warning when `battery_backup_level` falls below 20% and escalates to Critical below 10%, giving facility staff time to start a standby generator or arrange grid restoration before backup power is exhausted.
+
+**Refrigeration energy anomaly detection.** The Energy Anomaly Alert monitors `power_draw` from both refrigeration energy meters. A compressor drawing more than 5,000 W — above the normal 1,500–4,000 W operating range — triggers a Warning. Draw above 7,000 W triggers a Critical fault alarm, indicating a serious mechanical or electrical failure requiring immediate engineer dispatch.
+
+**Role-based dashboards and customer templates.** Three operational dashboards serve domain admins. One dashboard template uses tag-based device references (`device:temp-humidity`, `device:co2-sensor`, `device:door-sensor`) so the same Cold Room Status definition applies to any customer account when assigned to a group containing devices with those tags.
+
+![Provisioned dashboards](/screenshots/solutions/cold-storage-monitoring/solution-dashboards.png)
+
+**Automated compliance and energy reporting.** Three report schedules run without manual intervention: a daily temperature log, a weekly energy consumption report, and a monthly HACCP compliance summary delivered by email.
+
+![Provisioned report schedules](/screenshots/solutions/cold-storage-monitoring/solution-reports.png)
+
+## Getting Started
+
+### Prerequisites
+
+Before deploying the solution pack, confirm the following:
+
+- A Magistrala domain is provisioned and you have administrator credentials.
+- At least one compatible field device is available: a temperature/humidity sensor, a CO2 sensor, a door contact sensor with duration tracking, a power supply monitor reporting grid voltage and power source, or a refrigeration energy meter with power draw output.
+- Your device or gateway supports MQTT, HTTP, CoAP, or WebSocket and can publish JSON-encoded SenML payloads.
+- If you want email delivery for alarms and reports, SMTP credentials are configured in the platform settings.
+
+### Connecting Your Device
+
+**Step 1: Provision credentials from the platform.**
+
+Navigate to your domain's Clients section after deploying the solution pack. Each device (Temperature/Humidity Sensor Cold Room A, CO2 Sensor Cold Room B, etc.) has its own `client_id` and `client_secret`. Note the channel ID of the Telemetry Channel from the Channels section.
+
+**Step 2: Configure your device.**
+
+Set these connection parameters on the device or its gateway:
+
+| Parameter | Value                            |
+| --------- | -------------------------------- |
+| Broker    | `<your-magistrala-domain>`       |
+| Port      | `1883` (plain) or `8883` (TLS)   |
+| Topic     | `channels/<channel_id>/messages` |
+| Username  | `<client_id>`                    |
+| Password  | `<client_secret>`                |
+
+Use TLS (port 8883) in production. Plain MQTT (port 1883) is suitable for local development and testing only.
+
+**Step 3: Publish your first SenML payload.**
+
+Send a JSON array to the topic. Each object is one SenML record. The first record carries the base name (`bn`), base time (`bt`), and SenML version (`bver`) that apply to all following records unless overridden.
+
+```json
+[
+  { "bn": "cold-room-a-th:", "bt": 1750000000, "bver": 5 },
+  { "n": "temperature",         "u": "Cel", "v": -19.4 },
+  { "n": "humidity",            "u": "%",   "v": 72.5  }
+]
+```
+
+For the power supply monitor, send a separate payload with its own client credentials:
+
+```json
+[
+  { "bn": "power:", "bt": 1750000000, "bver": 5 },
+  { "n": "grid_voltage",         "u": "V",   "v": 229.0 },
+  { "n": "power_source",         "u": "",    "v": 0     },
+  { "n": "battery_backup_level", "u": "%",   "v": 95.0  }
+]
+```
+
+After publishing, check the Telemetry Channel's message log in the platform UI to confirm the payload arrived.
+
+### Supported Protocols
+
+| Protocol        | Port | Notes                                                              |
+| --------------- | ---- | ------------------------------------------------------------------ |
+| MQTT            | 1883 | Plain TCP. Development and LAN use only.                           |
+| MQTT (TLS)      | 8883 | Recommended for production deployments.                            |
+| HTTP            | 80   | POST to `http://<domain>/http/channels/<channel_id>/messages`.     |
+| HTTPS           | 443  | Recommended for HTTP-based devices.                                |
+| CoAP            | 5683 | UDP. Suitable for low-power constrained sensors.                   |
+| CoAP (DTLS)     | 5684 | Datagram TLS. Constrained devices in untrusted networks.           |
+| WebSocket       | 8080 | For browser-based or gateway streaming integrations.               |
+| WebSocket (TLS) | 8443 | Secure WebSocket.                                                  |
+
+## Dashboard Guide
+
+### Cold Storage Operations Overview
+
+The Operations Overview is the primary view for facility managers and quality officers on duty. It provides a live snapshot of both cold rooms, ambient conditions, CO2 levels, door status, and the current alarm count on a single screen.
+
+**Temperature — Cold Room A** is a live gauge spanning −30 °C to 0 °C, driven by the most recent `temperature` reading from the Cold Room A sensor. The gauge makes excursions toward the −15 °C warning zone immediately visible.
+
+**Temperature — Cold Room B** is a live gauge spanning −5 °C to +15 °C for the chilled zone. The warning zone begins at +5 °C; the critical zone at +8 °C.
+
+**Ambient Temperature** is a live gauge from the loading area monitoring station, showing the ambient `ambient_temperature` reading. Sustained high ambient temperature can contribute to thermal loading of both cold rooms.
+
+**Humidity — Cold Room A and Cold Room B** are live gauges spanning 0–100%. Values above 85% indicate condensation risk on evaporator coils; above 95%, active icing is probable.
+
+**CO2 Level — Cold Room A and Cold Room B** are value cards showing the current `co2_level` in ppm. Workers entering a room with a reading above 2,000 ppm should limit their exposure duration.
+
+**Door Status — Cold Room A and Cold Room B** are value cards showing the current open/closed state (0 = closed, 1 = open). A door showing open indicates either an active loading operation or an unintended open state requiring investigation.
+
+**Active Alarms** is an alarm count card showing the total number of open alarms across all severity levels.
+
+**Temperature Trend — Cold Room A and Cold Room B** are 24-hour line charts of `temperature` for each zone. Trending toward a threshold is easier to identify on a time-series chart than a gauge alone.
+
+**Facility Device Map** is a marker map widget plotting all ten sensors and meters at their installation coordinates stored in each device's metadata.
+
+**Cold Room Zone Map** is a polygon map showing Cold Room A and Cold Room B perimeters with device markers inside each zone.
+
+![Cold Storage Operations Overview](/screenshots/solutions/cold-storage-monitoring/operations-overview-dashboard.png)
+
+### Energy & Power Dashboard
+
+The Energy & Power Dashboard is the operational view for facility engineers responsible for refrigeration performance and power continuity.
+
+**Power Draw — Refrigeration Unit A and Unit B** are live gauges spanning 0–8,000 W. Normal operating range is 1,500–4,000 W per unit. Values above 5,000 W indicate an anomaly requiring investigation.
+
+**Backup Battery Level** is a live gauge spanning 0–100%. Values below 20% trigger a Warning alarm; below 10% a Critical.
+
+**Grid Voltage** is a value card showing the current `grid_voltage` in volts. The normal EU operating range is 207–253 V. Values below 180 V trigger a Critical undervoltage alarm.
+
+**Energy Consumption — Unit A and Unit B** are 24-hour bar charts of `energy_consumption` aggregated per hour in kWh, showing compressor energy draw patterns over the day and making defrost cycles visible as drops in power draw.
+
+**Power & Energy Device Map** is a marker map showing the Power Supply Monitor and both Energy Meters at their installation coordinates.
+
+![Energy & Power Dashboard](/screenshots/solutions/cold-storage-monitoring/energy-power-dashboard.png)
+
+### Alarm Monitoring Dashboard
+
+The Alarm Monitoring Dashboard is the triage centre for open alarms. It gives facility supervisors and on-call staff a unified view of the current alarm state.
+
+**Total Active Alarms** shows the count of all open alarms across all severity levels.
+
+**Critical Alarms** is filtered to Severity 5: HACCP temperature breaches, critical humidity, CO2 evacuation threshold, extended door open, grid power failure, grid undervoltage, critical battery level, and refrigeration fault.
+
+**High Severity Alarms** is filtered to Severity 4.
+
+**Medium Severity Alarms** is filtered to Severity 3: warning-level conditions for temperature, humidity, CO2, door open, backup battery, and energy anomaly.
+
+**All Alarms** is a full alarm table showing every open alarm with severity, status, measurement, cause, value, threshold, created timestamp, and last updated timestamp.
+
+![Alarm Monitoring Dashboard](/screenshots/solutions/cold-storage-monitoring/alarms-dashboard.png)
+
+### Cold Room Status Template
+
+The Cold Room Status template is a customer-facing view for tenants and consignment owners who need visibility into their assigned storage unit's conditions.
+
+It uses tag-based device references (`device:temp-humidity`, `device:co2-sensor`, `device:door-sensor`) so the same template definition applies to any cold room when assigned to a group containing devices with those tags. Customers see only the room their account is assigned to.
+
+Five widgets: a live temperature value card, a live humidity value card, a CO2 level value card, a door status value card, and a 24-hour temperature trend line chart.
+
+![Cold Room Status Template](/screenshots/solutions/cold-storage-monitoring/cold-room-status-template.png)
+
+## Rules & Automation
+
+![Provisioned automation rules](/screenshots/solutions/cold-storage-monitoring/solution-rules.png)
+
+### Save Messages
+
+Passes all SenML records that contain a numeric `v` field through to storage. This rule runs on the Telemetry Channel and ensures raw device data is always persisted, providing the complete sensor history needed for HACCP audit records and regulatory reporting.
+
+- **Input:** Telemetry Channel
+- **Output:** save_senml
+
+### Temperature Alert
+
+Monitors the `temperature` field in each incoming SenML message and applies zone-specific HACCP thresholds.
+
+**Frozen zone (Cold Room A):**
+
+- **Warning (Severity 3):** `temperature` > −15 °C. The frozen zone is warming toward the HACCP critical limit. Check refrigeration unit operation and door seals.
+- **Critical (Severity 5):** `temperature` > −12 °C. HACCP critical limit breached. Frozen product integrity is at immediate risk. Inspect the compressor unit and initiate product transfer if temperature cannot be restored within 30 minutes.
+- **Warning (Severity 3) — overcooled:** `temperature` < −26 °C. The room is running colder than necessary, causing freezer burn on sensitive products and indicating a possible faulty thermostat or refrigerant overcharge.
+
+**Chilled zone (Cold Room B):**
+
+- **Warning (Severity 3):** `temperature` > +5 °C. Temperature is above safe chilled storage range. Check door seals and cooling unit before the +8 °C critical limit is reached.
+- **Critical (Severity 5):** `temperature` > +8 °C. Food safety critical limit for refrigerated products exceeded. Inspect stock for spoilage and notify the food safety officer immediately.
+- **High (Severity 4):** `temperature` < 0 °C. Chilled products may be freezing. Verify thermostat settings and refrigeration controls.
+
+- **Outputs:** alarms, channels → Alerts Channel, email
+
+### Humidity Alert
+
+Monitors `humidity` in incoming SenML records across both cold rooms.
+
+- **Warning (Severity 3):** `humidity` > 85%. Condensation will form on evaporator coils and packaging. Inspect the defrost system and check for drainage issues.
+- **Critical (Severity 5):** `humidity` > 95%. Evaporator coil is likely iced over. Active mold growth on packaging is probable. Inspect the cold room and initiate a manual defrost.
+
+- **Outputs:** alarms, channels → Alerts Channel, email
+
+### CO2 Alert
+
+Monitors `co2_level` from CO2 sensors in both cold rooms.
+
+- **Warning (Severity 3):** `co2_level` > 2,000 ppm. Workers entering the room should limit exposure duration. Check ventilation and ensure the space is aired before extended entry.
+- **Critical (Severity 5):** `co2_level` > 5,000 ppm. OSHA 8-hour TWA limit exceeded. Do not enter without breathing apparatus. Evacuate the area and ventilate immediately.
+
+- **Outputs:** alarms, channels → Alerts Channel, email
+
+### Door Open Alert
+
+Monitors `door_open_duration` from door sensors on both cold rooms. Door sensors send the cumulative open duration every 30 seconds while the door is open; the value resets to 0 on close.
+
+- **Warning (Severity 3):** `door_open_duration` > 120 seconds. A door has been open for more than 2 minutes. Thermal ingress is increasing the energy load and may begin affecting room temperature.
+- **Critical (Severity 5):** `door_open_duration` > 300 seconds. A door has been open for more than 5 minutes. Significant cold air loss is occurring. Close the door immediately, or verify that loading dock seals are engaged.
+
+- **Outputs:** alarms, channels → Alerts Channel, email
+
+### Power Failure Alert
+
+Monitors `power_source` and `grid_voltage` from the power supply monitor.
+
+- **Critical (Severity 5) — grid failure:** `power_source` = 2 (battery backup active). The facility has switched to battery backup power. Contact the grid operator, start any standby generator, and prepare for controlled shutdown if power is not restored within the UPS runtime.
+- **Critical (Severity 5) — undervoltage:** `grid_voltage` < 180 V. Mains voltage is outside the safe operating range for compressor motors. Switch to backup power or shut down refrigeration units until voltage is restored.
+
+- **Outputs:** alarms, channels → Alerts Channel, email
+
+### Backup Battery Alert
+
+Monitors `battery_backup_level` from the power supply monitor.
+
+- **Warning (Severity 3):** `battery_backup_level` < 20%. If grid power fails now, the backup runtime is limited. Verify battery health and schedule a capacity test.
+- **Critical (Severity 5):** `battery_backup_level` < 10%. Battery backup is critically low. If grid power is currently unavailable, controlled shutdown is imminent. Notify operations staff immediately.
+
+- **Outputs:** alarms, channels → Alerts Channel, email
+
+### Energy Anomaly Alert
+
+Monitors `power_draw` from both refrigeration energy meters.
+
+- **Warning (Severity 3):** `power_draw` > 5,000 W. A compressor is drawing above its normal operating range of 1,500–4,000 W. Possible causes: dirty condenser coils, refrigerant leak, or failing compressor motor. Schedule a maintenance inspection.
+- **Critical (Severity 5):** `power_draw` > 7,000 W. Serious mechanical or electrical fault. Risk of compressor burnout. Dispatch a refrigeration engineer immediately.
+
+- **Outputs:** alarms, channels → Alerts Channel, email
+
+## Alarms Reference
+
+| Alarm Name                       | Trigger Condition                              | Severity     | Recommended Action                                                                        |
+| -------------------------------- | ---------------------------------------------- | ------------ | ----------------------------------------------------------------------------------------- |
+| Frozen Zone Temperature Warning  | `temperature` > −15 °C (Cold Room A)           | Warning (3)  | Check refrigeration unit and door seals before HACCP limit is reached                    |
+| Frozen Zone Temperature Critical | `temperature` > −12 °C (Cold Room A)           | Critical (5) | Initiate product transfer; inspect compressor unit immediately                            |
+| Frozen Zone Overcooled           | `temperature` < −26 °C (Cold Room A)           | Warning (3)  | Check thermostat and refrigerant charge; freezer burn risk on sensitive products          |
+| Chilled Zone Temperature Warning | `temperature` > +5 °C (Cold Room B)            | Warning (3)  | Check door seals and cooling unit before the +8 °C critical limit is reached             |
+| Chilled Zone Temperature Critical| `temperature` > +8 °C (Cold Room B)            | Critical (5) | Inspect stock for spoilage; notify food safety officer immediately                        |
+| Chilled Zone Too Cold            | `temperature` < 0 °C (Cold Room B)             | High (4)     | Verify thermostat settings; chilled products may be freezing                             |
+| High Humidity                    | `humidity` > 85%                               | Warning (3)  | Inspect defrost system; check for drainage issues                                         |
+| Critical Humidity                | `humidity` > 95%                               | Critical (5) | Initiate manual defrost; inspect for evaporator coil ice-over                            |
+| CO2 Level High                   | `co2_level` > 2,000 ppm                        | Warning (3)  | Limit worker entry duration; check ventilation                                            |
+| CO2 Level Critical               | `co2_level` > 5,000 ppm                        | Critical (5) | Do not enter without breathing apparatus; evacuate and ventilate immediately             |
+| Door Left Open                   | `door_open_duration` > 120 s                   | Warning (3)  | Investigate whether door is intentionally open; close to prevent thermal ingress         |
+| Door Extended Open               | `door_open_duration` > 300 s                   | Critical (5) | Close the door immediately; verify loading dock seals are engaged                        |
+| Grid Power Failure               | `power_source` = 2                             | Critical (5) | Start standby generator; contact grid operator; prepare for controlled shutdown          |
+| Grid Undervoltage                | `grid_voltage` < 180 V                         | Critical (5) | Switch to backup power or shut down refrigeration units until voltage is restored        |
+| Backup Battery Low               | `battery_backup_level` < 20%                   | Warning (3)  | Verify battery health; schedule a capacity test                                           |
+| Backup Battery Critical          | `battery_backup_level` < 10%                   | Critical (5) | Notify operations staff immediately; controlled shutdown may be imminent                 |
+| Refrigeration Energy Anomaly     | `power_draw` > 5,000 W                         | Warning (3)  | Schedule maintenance inspection; check condenser coils and refrigerant                   |
+| Refrigeration Fault              | `power_draw` > 7,000 W                         | Critical (5) | Dispatch refrigeration engineer immediately; consider manual failover to backup cooling  |
+
+## Reports
+
+### Daily Temperature Log
+
+Aggregates `temperature` (avg) and `humidity` (avg) at 3,600-second (hourly) intervals over the previous 24 hours for both Cold Room A and Cold Room B sensors. Delivers daily to the facility manager. Use this report to verify that zone temperatures were maintained within safe limits throughout the previous day and to satisfy daily HACCP record-keeping requirements.
+
+### Weekly Energy Report
+
+Aggregates `energy_consumption` (sum) and `power_draw` (avg) per refrigeration unit at daily intervals over the previous 7 days. Delivers weekly. Use this report to track energy efficiency trends, identify unusually high consumption days that may indicate a developing equipment fault, and feed into monthly utility cost reconciliation.
+
+### Monthly Compliance Report
+
+Aggregates `temperature` (avg, min, max) for both cold rooms at daily intervals over the previous 30 days, along with a count of temperature exceedance alarms per zone. Delivers monthly. This report is the primary artifact for HACCP audit submissions, food safety certification renewals, and regulatory inspections — it provides a comprehensive temperature history across both storage zones with evidence that exceedances were detected and alarms were raised.
+
+## Payload Reference
+
+| Field Name              | Unit  | Description                                                                                                                                                          | Example Value |
+| ----------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| `temperature`           | Cel   | Storage zone air temperature in degrees Celsius. Frozen zone target: −20 °C. Chilled zone target: +3 °C. See Alarms Reference for zone-specific thresholds.         | −19.4         |
+| `humidity`              | %     | Relative humidity in the storage zone. Above 85% triggers a warning; above 95% triggers a critical alarm for evaporator coil ice-over.                               | 72.5          |
+| `ambient_temperature`   | Cel   | Ambient air temperature from the loading area monitoring station. High ambient temperature increases thermal loading on cold rooms.                                   | 22.1          |
+| `ambient_humidity`      | %     | Ambient relative humidity from the loading area. High ambient humidity can infiltrate cold rooms during loading operations.                                           | 55.0          |
+| `co2_level`             | ppm   | CO2 concentration in parts per million. Above 2,000 ppm triggers a worker safety warning; above 5,000 ppm triggers a critical evacuation alarm.                      | 850           |
+| `door_status`           | —     | Current door state: 0 = closed, 1 = open. Sent on state change and every 30 seconds while open.                                                                      | 0             |
+| `door_open_duration`    | s     | Cumulative seconds the door has been continuously open. Resets to 0 on close. Warning at > 120 s; critical at > 300 s.                                               | 0             |
+| `grid_voltage`          | V     | Mains supply voltage at the facility switchboard. Normal EU range: 207–253 V. Below 180 V triggers a critical undervoltage alarm.                                    | 229.0         |
+| `power_source`          | —     | Active power source: 0 = grid, 1 = solar only, 2 = battery backup. A value of 2 triggers an immediate critical alarm.                                                | 0             |
+| `energy_consumption`    | kWh   | Cumulative energy consumed by the refrigeration unit since last reset. Used in daily and weekly energy reports.                                                       | 12.4          |
+| `power_draw`            | W     | Current power draw of the refrigeration compressor in watts. Normal range: 1,500–4,000 W. Above 5,000 W triggers a warning; above 7,000 W triggers a critical fault. | 2,850         |
+| `battery_backup_level`  | %     | UPS or battery backup charge level as a percentage of maximum capacity. Below 20% triggers a warning; below 10% triggers a critical alarm.                           | 95.0          |
+| `compressor_status`     | —     | Refrigeration compressor state: 0 = off (defrost cycle or fault), 1 = running. Unexpected off states combined with rising temperature may indicate a fault.           | 1             |
